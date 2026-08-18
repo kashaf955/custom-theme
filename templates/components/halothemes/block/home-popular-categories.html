@@ -1,0 +1,63 @@
+<div class="halo-block halo-home-section halo-bgGray" data-halo-load="animation">
+    <div class="container">
+        <div class="halo_featuredCategories">
+            <div class="halo-block-header halo-fadeInUp" data-halo-animate="1">
+                <h3 class="page-heading text-left">Popular Categories</h3>
+                <a class="link" href="#">View All Categories</a>
+            </div>
+            <div class="halo_featuredCategory-wrapper">
+                <div class="featuredCates--carousel" data-row="2" data-halo-load="init-carousel">
+                    {{#each (limit categories 6)}}
+                        {{#if @index '==' 0}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg1)}}{{/if}}
+                        {{/if}}
+                        {{#if @index '==' 1}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg2)}}{{/if}}
+                        {{/if}}
+                        {{#if @index '==' 2}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg3)}}{{/if}}
+                        {{/if}}
+                        {{#if @index '==' 3}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg4)}}{{/if}}
+                        {{/if}}
+                        {{#if @index '==' 4}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg5)}}{{/if}}
+                        {{/if}}
+                        {{#if @index '==' 5}}
+                            {{#if (merge this subImage=../theme_settings.halo_featuredCateImg6)}}{{/if}}
+                        {{/if}}
+                        <div class="items halo-fadeInUp" data-halo-animate="{{add @index 1}}">
+                            <div class="halo_featuredCategory">
+                                <div class="image">
+                                    <a href="{{url}}" aria-label="link">
+                                        {{#if subImage}}
+                                            <img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/product_images/uploaded_images/{{subImage}}" alt="{{name}}">
+                                        {{else if image}}
+                                            <img src="{{getImage image '170x170'}}" alt="{{name}}">
+                                        {{else}}
+                                            <img src="https://via.placeholder.com/160x160" alt="{{name}}">
+                                        {{/if}}
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h4 class="title"><a href="{{url}}" aria-label="{{name}}">{{name}}</a></h4>
+                                    {{#if children}}
+                                        <div class="subcategory-list">
+                                            {{#each (limit children 5)}}
+                                                <div class="subcategory-item">
+                                                    <svg class="icon" title="icon chevron right" aria-hidden="true"><use xlink:href="#icon-chevron-right" /></svg>
+                                                    <a href="{{url}}" aria-label="{{name}}">{{name}}</a>
+                                                </div>
+                                            {{/each}}
+                                        </div>
+                                        <a class="link" href="{{url}}" aria-label="view more">view more</a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+{{#if social_media}}
+    <ul class="socialLinks socialLinks--alt">
+        {{#each social_media}}
+            {{#if display_name '===' 'twitter'}}
+                <li class="socialLinks-item">
+                    <a class="icon icon--twitter"
+                    href="{{url}}"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open X Social Media in a new tab"
+                    >
+                        <span class="aria-description--hidden">X</span>
+                        <svg>
+                            <title>X</title>
+                            <desc>X</desc>
+                            <use href="#icon-x"/>
+                        </svg>
+                    </a>
+                </li>
+            {{else}}
+                <li class="socialLinks-item">
+                    <a class="icon icon--{{display_name}}"
+                    href="{{url}}"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open {{{capitalize display_name}}} Social Media in a new tab"
+                    >
+                        <span class="aria-description--hidden">{{{capitalize display_name}}}</span>
+                        <svg>
+                            <title>{{{capitalize display_name}}}</title>
+                            <desc>{{{capitalize display_name}}}</desc>
+                            <use href="#icon-{{display_name}}"/>
+                        </svg>
+                    </a>
+                </li>
+            {{/if}}
+        {{/each}}
+        {{#if theme_settings.social_icon_tiktok_link}}
+            <li class="socialLinks-item">
+                <a class="icon icon--tiktok" 
+                   href="{{theme_settings.social_icon_tiktok_link}}" 
+                   target="_blank"
+                   rel="noopener" 
+                   aria-label="Open Tiktok Social Media in a new tab"
+                >
+                    <span class="aria-description--hidden">Tiktok</span>
+                    <svg>
+                        <title>Tiktok</title>
+                        <desc>Tiktok</desc>
+                        <use xlink:href="#icon-tiktok"></use>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
+        {{#if theme_settings.social_icon_google_plus_link}}
+            <li class="socialLinks-item">
+                <a class="icon icon--google-plus" 
+                   href="{{theme_settings.social_icon_google_plus_link}}" 
+                   target="_blank" 
+                   rel="noopener" 
+                   aria-label="Open Google Plus Social Media in a new tab"
+                >
+                    <span class="aria-description--hidden">Google Plus</span>
+                    <svg>
+                        <title>Google Plus</title>
+                        <desc>Google Plus</desc>
+                        <use xlink:href="#icon-google-plus"></use>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
+        {{#if theme_settings.social_icon_snapchat_link}}
+            <li class="socialLinks-item">
+                <a class="icon icon--snapchat" 
+                   href="{{theme_settings.social_icon_snapchat_link}}" 
+                   target="_blank" 
+                   rel="noopener" 
+                   aria-label="Open Snapchat Social Media in a new tab"
+                >
+                    <span class="aria-description--hidden">Snapchat Ghost</span>
+                    <svg>
+                        <title>Snapchat Ghost</title>
+                        <desc>Snapchat Ghost</desc>
+                        <use xlink:href="#icon-snapchat-ghost"></use>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+{{/if}}

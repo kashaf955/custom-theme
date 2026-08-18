@@ -1,0 +1,58 @@
+{{#if theme_settings.halo-sidebar-all-categories}}
+    <div class="sidebarBlock" id="allCategories">
+        <h2 class="sidebarBlock-heading">{{lang 'categories.heading'}}</h2>
+        {{#if categories}}
+            <ul class="all-categories-list">
+                {{#each categories}}
+                    {{#if id '==' '11378'}}
+                    {{else}}
+                        {{#if id '==' '14238'}}
+                        {{else}}
+                            <li class="navPages-item{{#if is_active}} current-cate is-clicked{{/if}}">
+                                {{#if children}}
+                                    <a class="navPages-action navPages-action-lv1 has-subMenu" href="{{url}}">
+                                        <span class="text">{{name}}</span>
+                                    </a>
+                                    <span class="icon-dropdown">
+                                        <svg class="icon"><use xlink:href="#icon-chevron-down" /></svg>
+                                    </span>
+                                    <ul class="dropdown-category-list navPages-level-2">
+                                        {{#each children}}
+                                            <li class="navPage-subMenu-item{{#if is_active}} current-cate is-clicked{{/if}}">
+                                                {{#if children}}
+                                                    <a class="navPage-subMenu-action navPages-action navPages-action-lv2 has-subMenu" href="{{url}}">
+                                                        <span class="text">{{name}}</span>
+                                                    </a>
+                                                    <span class="icon-dropdown">
+                                                        <svg class="icon"><use xlink:href="#icon-chevron-down" /></svg>
+                                                    </span>
+                                                    <ul class="dropdown-category-list navPages-level-3">
+                                                        {{#each children}}
+                                                            <li class="navPage-subMenu-item{{#if is_active}} current-cate is-clicked{{/if}}">
+                                                                <a class="navPage-subMenu-action navPages-action navPages-action-lv3" href="{{url}}">
+                                                                    <span class="text">{{name}}</span>
+                                                                </a>
+                                                            </li>
+                                                        {{/each}}
+                                                    </ul>
+                                                {{else}}
+                                                    <a class="navPage-subMenu-action navPages-action navPages-action-lv2" href="{{url}}">
+                                                        <span class="text">{{name}}</span>
+                                                    </a>
+                                                {{/if}}
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{else}}
+                                    <a class="navPages-action navPages-action-lv1" href="{{url}}">
+                                        <span class="text">{{name}}</span>
+                                    </a>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+{{/if}}

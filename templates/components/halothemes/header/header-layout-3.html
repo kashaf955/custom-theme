@@ -1,0 +1,153 @@
+{{#if theme_settings.hl_topPro}}
+    <div id="hl_topPromotion">
+        <div class="container">
+            <a class="banner-promotion" href="{{theme_settings.hl_topPro_link}}" target="_blank" rel="noopener" title="promotion (opens in new window)">
+                {{#if theme_settings.hl_topPro_img}}
+                    <img class="image" src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.hl_topPro_img}}" alt="product images (opens in new window)">
+                {{/if}}
+                {{#if theme_settings.hl_topPro_text}}
+                    <span class="text">{{{theme_settings.hl_topPro_text}}}</span>
+                {{/if}}
+                {{#if theme_settings.hl_topPro_link}}
+                    <span class="link">{{theme_settings.hl_topPro_textButton}}</span>
+                {{/if}}
+            </a>
+            <button type="button" class="promotion-close" aria-label="{{lang 'common.close'}}">
+                <svg class="icon" role="img" aria-label="{{lang 'common.close'}}">
+                    <title>{{lang 'common.close'}}</title>
+                    <desc>{{lang 'common.close'}}</desc>
+                    <use xlink:href="#icon-close"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+{{/if}}
+
+<header class="header halo_header-layout-3 halo-fadeInLoad" data-halo-animate="0" role="banner">
+    {{#if theme_settings.hl_header_top}}
+        <div class="halo_topHeader">
+        {{> components/common/navigation-3}}
+        </div>
+    {{/if}}
+
+    <div class="halo_middleHeader">
+        <div class="middleHeader-container">
+            <div class="middleHeader-item left">
+                <div class="items item--hamburger">
+                    <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+                        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                    </a>
+                </div>
+                <div class="items item--searchMobile">
+                    <a class="navUser-action" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                        <div class="navUser-icon">
+                            <svg class="icon" title="icon search"><use xlink:href="#icon-search"></use></svg>
+                        </div>
+                        <span class="navUser-text">{{lang 'common.search'}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="middleHeader-item center">
+                <div class="items item--logo">
+                    {{#if page_type '===' 'default'}}
+                        <h1 class="header-logo">
+                            {{> components/common/store-logo}}
+                        </h1>
+                    {{else}}
+                        <div class="header-logo">
+                            {{> components/common/store-logo}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="middleHeader-item right">
+                {{#or (if theme_settings.hl_middle_img) (if theme_settings.hl_middle_text)}}
+                    <div class="items item--pay">
+                        {{#if theme_settings.hl_middle_img}}
+                            <img class="image" src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/product_images/uploaded_images/{{theme_settings.hl_middle_img}}" alt="{{theme_settings.hl_middle_img}}">
+                        {{/if}}
+                        {{#if theme_settings.hl_middle_text}}
+                            <p class="pay-text f-italic">{{{theme_settings.hl_middle_text}}}</p>
+                        {{/if}}
+                    </div>
+                {{/or}}
+                <div class="items item--quicksearch">
+                    <div class="dropdown dropdown--quickSearch header-search" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                        {{> components/common/quick-search  name='search_query'}}
+                    </div>
+                </div>
+                <div class="items item--account">
+                    {{#if customer}}
+                        <p class="my-account">
+                            <a class="navUser-action account-name" href="{{urls.account.index}}" data-login-form>
+                                <svg class="icon" title="icon user"><use xlink:href="#icon-user"></use></svg>
+                            </a>
+                        </p>
+                        <div class="my-account-link">
+                            <a class="navUser-action account-name" href="{{urls.account.index}}" data-login-form>{{customer.name}}.</a>
+                            <a class="navUser-action" href="{{urls.auth.logout}}">
+                                {{lang 'common.logout'}}
+                            </a>
+                        </div>
+                    {{else}}
+                        <p class="my-account">
+                            <a class="navUser-action" href="{{urls.auth.login}}" data-login-form>
+                                <svg class="icon" title="icon user"><use xlink:href="#icon-user"></use></svg>
+                            </a>
+                        </p>
+                        <div class="my-account-link">
+                            <a class="navUser-action" href="{{urls.auth.login}}" data-login-form>{{lang 'common.login'}}</a>
+                            {{#if settings.account_creation_enabled}}
+                                <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.join'}}</a>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                    <a class="navUser-action accountMobile" href="#" data-login-form>
+                        <div class="navUser-icon">
+                            <svg class="icon" title="icon user"><use xlink:href="#icon-user"/></svg>
+                        </div>
+                        <span class="navUser-text">{{lang 'common.account'}}</span>
+                    </a>
+                </div>
+                <div class="items item--wishlist">
+                    <a class="navUser-action" href="{{urls.account.wishlists.all}}">
+                        <div class="navUser-icon">
+                            <svg class="icon" title="icon heart"><use xlink:href="#icon-heart"></use></svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="items item--cart header-cart">
+                    <a class="navUser-action" 
+                        data-cart-preview 
+                        data-options="align:right" 
+                        href="{{urls.cart}}" 
+                        data-label="{{lang 'common.cart'}}">
+                        <div class="navUser-icon navUser-item-cartIcon">
+                            <svg class="icon" role="img" aria-label="{{lang 'cart.cart_preview'}}">
+                                <title>{{lang 'cart.cart_preview'}}</title>
+                                <desc>{{lang 'cart.cart_preview'}}</desc>
+                                <use xlink:href="#icon-cart"></use>
+                            </svg>
+                        </div>
+                        <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+                    </a>
+                    <a class="navUser-action navUser-action-price"
+                        data-cart-preview 
+                        data-options="align:right" 
+                        href="{{urls.cart}}" 
+                        data-label="{{lang 'common.cart'}}">
+                        <p class="navUser-item-price">{{lang 'common.cart_2'}} <span class="navUser-total-grandTotal" data-price="{{cart.grand_total.formatted}}"></span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="halo_bottomHeader">
+        <div class="navPages-container" id="menu" data-menu>
+            {{> components/common/navigation-menu-3}}
+        </div>
+    </div>
+
+    {{{region name="header_navigation_bottom--global"}}}
+</header>

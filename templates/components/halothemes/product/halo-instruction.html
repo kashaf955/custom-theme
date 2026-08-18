@@ -1,0 +1,11 @@
+<div id="instruction-popup" class="modal" data-reveal>
+    {{> components/common/modal/modal-close-btn}}
+    <div class="modal-content">
+        <div class="modal-body haloCustomScrollbar" style="padding: 0;">
+            <div class="text-center">
+                <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{value}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="loadingOverlay"></div>
+</div>

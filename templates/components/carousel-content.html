@@ -1,0 +1,16 @@
+<div class="heroCarousel-content{{#unless show_background}} heroCarousel-content--empty{{/unless}} {{#unless hasBackground '==' 'transparent'}} heroCarousel-content--notEmpty{{/unless}} heroCarousel-content--{{position}}">
+    {{#if heading}}
+        <h2 class="heroCarousel-title{{#if position '==' 'left'}} halo-fadeInLeft{{else if position '==' 'right'}} halo-fadeInRight{{else if position '==' 'center'}} halo-fadeIn{{/if}}" data-halo-animate="1">{{{heading}}}</h2>
+    {{/if}}
+    {{#if text}}
+        <p class="heroCarousel-description{{#if position '==' 'left'}} halo-fadeInLeft{{else if position '==' 'right'}} halo-fadeInRight{{else if position '==' 'center'}} halo-fadeIn{{/if}}" data-halo-animate="3">{{{text}}}</p>
+    {{/if}}
+    {{#if button_text}}
+        <div class="heroCarousel-action{{#if position '==' 'left'}} halo-fadeInLeft{{else if position '==' 'right'}} halo-fadeInRight{{else if position '==' 'center'}} halo-fadeIn{{/if}}" data-halo-animate="5">
+            {{#if button_text}}
+                <a href="{{url}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}, {{button_text}}" class="button button--primary"><span>{{button_text}}</span></a>
+            {{/if}}
+        </div>
+    {{/if}}
+</div>
+

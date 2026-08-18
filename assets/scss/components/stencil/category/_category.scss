@@ -1,0 +1,297 @@
+// =============================================================================
+// CATEGORY (CSS)
+// =============================================================================
+
+
+// Category header
+// -----------------------------------------------------------------------------
+.page.page-category {
+    margin: 0;
+}
+
+.page-listing-header {
+    position: relative;
+
+    &--banner {
+        display: block;
+        height: 270px;
+        background: #f0eeed;
+        position: relative;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+        }
+
+        +.halo_MultiCategory-wrapper {
+            .halo_MultiCategory {
+                @include smin-m {
+                    top: -40px;
+                }
+            }
+        }
+    }
+
+    &--content {
+        .page-heading {
+            margin-bottom: 15px;
+        }
+
+        .categoryImage-carousel {
+            margin-top: 32px;
+            margin-left: auto;
+            margin-right: auto;
+
+            @include smin-m {
+                padding-bottom: 45px;
+            }
+        }
+    }
+}
+
+.page-listing-header {
+    .container {
+        @include smax-m {
+            padding: 18px 0 0;
+
+            .breadcrumb-wrapper,
+            .page-heading,
+            .page-description > *:not(.categoryImage-carousel) {
+                padding: 0 10px
+            }
+        }
+    }
+}
+
+.categoryImage-carousel {
+    margin-top: 30px;
+    margin-left: -8px;
+    margin-right: -8px;
+    font-size: 0;
+    list-style: none;
+    white-space: nowrap;
+
+    .item {
+        padding: 0 8px;
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .slick-dots {
+        bottom: -5px;
+
+        @include smin-m {
+            bottom: -27px;
+        }
+    }
+}
+
+.haloSubCategories {
+    &__container.container {
+        @include smax-m {
+            padding: 0;
+        }
+    }
+
+    &__carousel {
+        .slick-dots {
+            bottom: -10px;
+        }
+
+        @include smin-xs {
+            padding-top: 65px;
+            margin: 0 -15px;
+        }
+    }
+
+    &__item {
+        width: 290px;
+        padding: 0 10px;
+        text-align: left;
+        display: table !important;
+        position: relative;
+        margin: 20px 0;
+
+        @include smin-xs {
+            width: 320px;
+            padding: 0 15px;
+            margin: 0 0 45px 0;
+        }
+
+        @media smin-m {
+            width: 100%;
+        }
+    }
+
+    &__content,
+    &__img {
+        vertical-align: middle;
+        display: table-cell;
+    }
+
+    &__content {
+        width: 56%;
+    }
+
+    &__img {
+        width: 44%;
+    }
+
+    &__name {
+        display: block;
+        margin: 0 0 10px 0;
+        color: #323232;
+
+        .text {
+            color: inherit;
+            position: relative;
+            margin: 0;
+            font-weight: 700;
+            padding-bottom: 1px;
+            line-height: 1;
+            font-size: 15px;
+            max-width: 70%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: inline-block;
+            vertical-align: middle;
+            text-transform: capitalize;
+
+            &:before {
+                content: "";
+                left: 0;
+                width: 0;
+                bottom: 0;
+                height: 1px;
+                position: absolute;
+                background-color: #323232;
+                transition: all 0.3s ease;
+            }
+        }
+
+        .count {
+            color: inherit;
+            text-align: center;
+            line-height: 1;
+            font-size: 12px;
+            margin-left: 15px;
+            padding: 4px 6px;
+            min-width: 30px;
+            border-radius: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #f7f7f7;
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+            .text:before {
+                width: 100%;
+            }
+
+            .count {
+                color: #ffffff;
+                background-color: #5d6673;
+            }
+        }
+
+        @include smin-xs {
+            .text {
+                max-width: 70%;
+            }
+
+            .count {
+                padding: 6px 12px;
+                min-width: 44px;
+            }
+        }
+    }
+
+    &__desc {
+        position: relative;
+        max-height: 40px;
+        overflow: hidden;
+
+        >* {
+            display: none;
+        }
+
+        p {
+            margin-bottom: 0;
+            display: block;
+        }
+
+        .dots {
+            display: block;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            background-color: #ffffff;
+        }
+    }
+}
+
+// Product Listing - Compare Button
+// -----------------------------------------------------------------------------
+.compare-link {
+    pointer-events: none;
+    display: none;
+
+    .button {
+        background: $color-white;
+        color: #323232;
+        border-color: $color-white;
+        text-transform: capitalize;
+        box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+        min-width: 129px;
+        padding: 0 10px;
+        font-weight: $fontWeight-normal;
+        border-radius: 3px;
+
+        .countPill {
+            position: relative;
+            top: unset;
+            left: unset;
+            bottom: unset;
+            right: unset;
+            display: inline;
+            background: transparent;
+            border-radius: 0;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            height: auto;
+            width: auto;
+            vertical-align: unset;
+        }
+
+        &:hover {
+            background: $color-textBase;
+            color: $color-white;
+            border-color: $color-textBase;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        display: block;
+        position: fixed;
+        top: auto;
+        bottom: 130px;
+        right: 30px;
+        z-index: 100;
+        pointer-events: auto;
+        transform: translateY(-50%);
+
+        .button {
+            display: none;
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+}

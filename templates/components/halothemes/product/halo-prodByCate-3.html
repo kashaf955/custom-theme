@@ -1,0 +1,37 @@
+{{> components/halothemes/product/halo-blockCate-3
+    section=section
+    productsnew=productsnew
+    cateID=cateID
+    mainBanner=mainBanner
+    subBanner=subBanner
+    subTitle=subTitle
+    subDesc=subDesc
+    subBanner1=subBanner1
+    subDesc1=subDesc1
+    subBanner2=subBanner2
+    subDesc2=subDesc2
+    subBanner3=subBanner3
+    subDesc3=subDesc3
+    subBanner4=subBanner4
+    subDesc4=subDesc4
+    subBanner5=subBanner5
+    subDesc5=subDesc5
+}}
+
+{{#if section '==' 'block-1'}}
+    {{{region name="home_block_category_with_banner_1"}}}
+{{else if section '==' 'block-2'}}
+    {{{region name="home_block_category_with_banner_2"}}}
+{{else if section '==' 'block-3'}}
+    {{{region name="home_block_category_with_banner_3"}}}
+{{else if section '==' 'block-4'}}
+    {{{region name="home_block_category_with_banner_4"}}}
+{{else if section '==' 'block-5'}}
+    {{{region name="home_block_category_with_banner_5"}}}
+{{else if section '==' 'block-6'}}
+    {{{region name="home_block_category_with_banner_6"}}}
+{{else if section '==' 'block-7'}}
+    {{{region name="home_block_category_with_banner_7"}}}
+{{else if section '==' 'block-8'}}
+    {{{region name="home_block_category_with_banner_8"}}}
+{{/if}}

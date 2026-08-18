@@ -1,0 +1,25 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+        summary: {{theme_settings.blog_sDescLimit}}
+---
+{{#if theme_settings.hl_skin_1}}
+    {{> components/halothemes/home/homepage-1}}
+{{else if theme_settings.hl_skin_2}}
+    {{> components/halothemes/home/homepage-2}}
+{{else if theme_settings.hl_skin_3}}
+    {{> components/halothemes/home/homepage-3}}
+{{/if}}

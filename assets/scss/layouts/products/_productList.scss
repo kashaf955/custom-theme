@@ -1,0 +1,283 @@
+// =============================================================================
+// PRODUCT LIST (CSS)
+// =============================================================================
+
+
+// Product list
+// -----------------------------------------------------------------------------
+.productList {
+    display: block;
+    margin: 0;
+    font-size: 0;
+    list-style: none;
+    text-align: left;
+
+    .product {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        padding: 0;
+        margin: 0 0 30px 0;
+        white-space: normal;
+
+        &.product-advertisment {
+            display: none;
+            margin-bottom: 0;
+        }
+    }
+
+    .card {
+        text-align: left;
+
+        .card-body {
+            text-align: left;
+
+            .card-price {
+                justify-content: left;
+            }
+
+            .card-compare {
+                left: 0;
+                transform: none;
+            }
+        }
+    }
+
+    .card-figure {
+        .card-figcaption-bottom {
+            display: none;
+        }
+    }
+
+    .card-body {
+        .card-body-content {
+            text-align: left;
+        }
+
+        .card-option {
+            .form-field {
+                text-align: left;
+                margin-bottom: 0;
+
+                +.form-field {
+                    margin-top: 19px;
+                }
+            }
+        }
+
+        .card-figcaption-bottom {
+            display: block;
+            position: relative;
+            bottom: 0;
+            opacity: 1;
+            visibility: visible;
+            padding-top: 10px;
+            padding-bottom: 12px;
+            background-color: transparent;
+
+            .card-figcaption-button {
+                height: 50px;
+                line-height: 48px;
+                max-width: 305px;
+
+                .home-layout-3 & {
+                    font-size: 18px;
+                    font-weight: 400;
+                    border: 1px solid $buttonStyle-primary-borderColor;
+                    background-color: $buttonStyle-primary-backgroundColor;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .number-review {
+            top: 1px;
+        }
+
+        @media(min-width: 1025px) {
+            .card-compare {
+                position: relative;
+                bottom: 0;
+                opacity: 1;
+                z-index: 1;
+                overflow: visible;
+                display: inline-block;
+            }
+        }
+    }
+
+    .card-link {
+        .card-img-container {
+            margin: 0 auto;
+            max-width: 100%;
+        }
+    }
+
+    .card-option {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .card-text[data-test-info-type="brandName"] {
+        margin-bottom: 3px;
+    }
+
+    .card-rating-category {
+        display: block;
+        margin: 12px 0 7px;
+        font-weight: $fontWeight-normal;
+        line-height: 14px;
+        letter-spacing: $letterSpacing-base;
+        color: $color-textSecondary;
+    }
+
+    .card-desc {
+        display: block;
+        margin: 12px 0;
+        font-size: $card-title-fontSize;
+        font-weight: $fontWeight-normal;
+        line-height: 26px;
+        letter-spacing: $letterSpacing-base;
+        color: $color-textSecondary;
+    }
+
+    .card-price {
+        justify-content: flex-start;
+    }
+
+    .card-wrapper {
+        >.card-text {
+            display: none;
+        }
+    }
+
+    @media (min-width: 551px) {
+        .card {
+            width: 100%;
+            display: table;
+        }
+
+        .card-figure {
+            display: table-cell;
+            vertical-align: top;
+            width: 250px;
+        }
+
+        .card-body {
+            display: table-cell;
+            vertical-align: top;
+            padding: 0 0 0 30px;
+            width: calc(100% - 250px);
+
+            .card-body-content {
+                padding-top: 0;
+            }
+        }
+    }
+
+    @media (min-width: 768px) {
+        .card-body {
+            .card-body-button {
+                justify-content: flex-start;
+            }
+
+            .card-wishlist {
+                margin: 0 0 0 15px;
+            }
+
+            .card-action {
+                max-width: 278px;
+            }
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .product {
+            margin-bottom: 55px;
+        }
+
+        .card {
+            .card-figure {
+                &:hover {
+                    .card-figure-action {
+                        opacity: 1;
+                        visibility: visible;
+                        pointer-events: auto;
+                    }
+                }
+            }
+        }
+
+        .card-figure {
+            width: 390px;
+
+            .card-figure-action {
+                position: absolute;
+                top: auto;
+                left: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                z-index: 10;
+                transition: $anchor-transition;
+                width: 100%;
+            }
+
+            .card-quickview,
+            .card-compare {
+                flex: 0 0 50%;
+            }
+
+            .card-quickview {
+                +.card-compare {
+                    border-left: 1px solid #dfdcd5;
+                }
+            }
+        }
+
+        .card-body {
+            display: table-cell;
+            vertical-align: top;
+            padding-left: 30px;
+            padding-top: 0;
+            width: calc(100% - 390px);
+
+            .card-body-button {
+                margin-top: 28px;
+            }
+
+            .card-wishlist {
+                &:hover {
+                    border-radius: 50%;
+                    background-color: $buttonStyle-default-backgroundColorHover;
+
+                    .icon {
+                        fill: $buttonStyle-default-colorHover;
+                    }
+                }
+            }
+        }
+
+        .card-option {
+            .form-field {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .card-body {
+            padding-left: 55px;
+            padding-top: 0;
+
+            .card-wishlist {
+                margin-left: 30px;
+            }
+        }
+    }
+}

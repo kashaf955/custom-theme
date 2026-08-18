@@ -1,0 +1,14 @@
+{{#if theme_settings.halo-sidebar-recent-post}}
+    <div class="sidebarBlock" id="recentPost-content">
+        <h2 class="sidebarBlock-heading"><span>{{lang 'blog.recent_posts'}}</span></h2>
+        <div class="sidebarBlock-content">
+        	<div class="recentPosts_List">
+        		{{#each post}}
+        			<div class="recentPost_item">
+        				<a class="recentPost_title" href="{{url}}"><span>{{title}}</span></a>
+        			</div>
+        		{{/each}}
+        	</div>
+        </div>
+    </div>
+{{/if}}

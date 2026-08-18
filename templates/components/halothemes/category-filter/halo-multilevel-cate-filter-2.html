@@ -1,0 +1,32 @@
+<div class="halo_MultiCategory layout-2" data-multi-level="{{theme_settings.hl_multi_level}}" data-multi-level-order="{{theme_settings.hl_multi_level_order}}">
+    <div class="halo_multilevel-category-filter halo-fadeInUp" data-halo-animate="1">
+        <div class="form-label">
+            <h4 class="title">{{#if theme_settings.hl_multi_level_label}}{{theme_settings.hl_multi_level_label}}{{else}}Shop By Truck{{/if}}</h4>
+            {{#if theme_settings.hl_multi_level_desc}}
+                <span class="desc">{{theme_settings.hl_multi_level_desc}}</span>
+            {{else}}
+                <span class="desc">Find parts that fit your truck</span>
+            {{/if}}
+        </div>
+        <div class="form-wrapper">
+            <div class="form-field">
+                <label class="form-label" for="halo_select-level-1">Make</label>
+                <select id="halo_select-level-1" class="form-select"><option selected="" disabled="">{{#if theme_settings.hl_multi_level_text1}}{{theme_settings.hl_multi_level_text1}}{{else}}Make{{/if}}</option></select>
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="halo_select-level-2">Model</label>
+                <select id="halo_select-level-2" class="form-select"><option selected="" disabled="">{{#if theme_settings.hl_multi_level_text2}}{{theme_settings.hl_multi_level_text2}}{{else}}Model{{/if}}</option></select>
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="halo_select-level-3">Part</label>
+                <select id="halo_select-level-3" class="form-select"><option selected="" disabled="">{{#if theme_settings.hl_multi_level_text3}}{{theme_settings.hl_multi_level_text3}}{{else}}Part{{/if}}</option></select>
+            </div>
+            <div class="group-button">
+                <a class="button button--primary" href="#" id="halo_select-browse" title="{{#if theme_settings.hl_multi_level_button}}{{theme_settings.hl_multi_level_button}}{{else}}GO{{/if}}"><span>{{#if theme_settings.hl_multi_level_button}}{{theme_settings.hl_multi_level_button}}{{else}}GO{{/if}}</span></a>
+                <a class="button" href="#" id="halo_clear-select" title="{{#if theme_settings.hl_multi_level_button2}}{{theme_settings.hl_multi_level_button2}}{{else}}Reset{{/if}}">
+                    <svg class="icon" title="icon refresh"><use xlink:href="#icon-refresh"></use></svg><span>{{#if theme_settings.hl_multi_level_button2}}{{theme_settings.hl_multi_level_button2}}{{else}}Reset{{/if}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

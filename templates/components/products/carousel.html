@@ -1,0 +1,56 @@
+<section class="halo-productCarousel productCarousel" 
+    id="{{block_id}}" 
+    data-list-name="{{list}}"  
+    data-slick='{
+        "dots": {{dots}},
+        "arrows": true,
+        "infinite": false,
+        "mobileFirst": true,
+        "adaptiveHeight": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "slide": ".js-product-slide",
+        "responsive": [
+            {
+                "breakpoint": 1399,
+                "settings": {
+                    "arrows": true,
+                    "slidesToShow": {{block_column}},
+                    "slidesToScroll": {{block_column}}
+                }
+            },
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": 4,
+                    "slidesToScroll": 4,
+                "arrows": true
+                }
+            },
+            {
+                "breakpoint": 767,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3,
+                "arrows": true
+                }
+            },
+            {
+                "breakpoint": 320,
+                "settings": {
+                    "slidesToShow": 2,
+                    "slidesToScroll": 2,
+                "arrows": true
+                }
+            }
+        ]
+    }'>
+    {{#each (limit products block_limit)}}
+        <div class="productCarousel-slide js-product-slide" data-halo-load="animation">
+            {{> components/products/card productsnew=../productsnew settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </div>
+    {{/each}}
+    {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}}
+</section>

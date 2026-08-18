@@ -1,0 +1,17 @@
+<ul class="productGrid productListing">
+    {{#each products}}
+    <li class="product">
+        {{> components/products/card 
+            product=this 
+            custom_fields=this.custom_fields 
+            settings=../settings 
+            show_compare=../show_compare 
+            show_rating=../settings.show_product_rating 
+            theme_settings=../theme_settings 
+            customer=../customer 
+            event=../event 
+            position=(add @index 1)
+        }}
+    </li>
+    {{/each}}
+</ul>

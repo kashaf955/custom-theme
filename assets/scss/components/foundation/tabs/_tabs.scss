@@ -1,0 +1,327 @@
+// =============================================================================
+// TABS (CSS)
+// =============================================================================
+//
+// Most of these styles deliberately reset Citadel's defaults for smaller
+// screens since the styles in Stencil for smaller screens are more persistent
+// across breakpoints.
+//
+// -----------------------------------------------------------------------------
+
+.tabs {
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 30px;
+
+    &.tabs-custom {
+        border: none;
+        font-size: 0;
+        margin-left: -8px;
+        margin-right: -8px;
+        margin-bottom: 15px;
+
+        .tab {
+            float: none;
+            width: 50%;
+            border: none;
+            padding: 0 8px;
+            margin: 16px 0 0 0;
+            display: inline-block;
+            vertical-align: middle;
+
+            .tab-title {
+                padding: 0;
+                font-size: 12px;
+                font-weight: 700;
+                color: #9b9b9b;
+                text-align: center;
+                border-radius: 3px;
+                padding: 6px 5px;
+                border: 1px solid #9b9b9b;
+                text-transform: capitalize;
+            }
+
+            &:nth-child(-n + 2) {
+                margin-top: 0;
+            }
+
+            &.is-active {
+                .tab-title {
+                    color: stencilColor('color-textHeading');
+                    border-color: stencilColor('color-textHeading');
+
+                    .productCarousel-tabs {
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+
+    @include smin-xs {
+        &.tabs-custom {
+            margin-bottom: 30px;
+
+            .tab {
+                width: auto;
+                margin: 0 15px;
+                color: #9b9b9b;
+                padding-left: 15px;
+                padding-right: 15px;
+                border: none;
+                border-bottom: 2px solid #9b9b9b;
+
+                .tab-title {
+                    font-size: 18px;
+                    border-radius: 0;
+                    border: none;
+                    color: inherit;
+                    padding: 0 0 12px 0;
+                }
+
+                &:before {
+                    content: none;
+                }
+
+                &.is-active {
+                    border-bottom: 2px solid stencilColor('color-textHeading');
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1025px) {
+        &.tabs-custom {
+            text-align: center;
+            margin-left: 0;
+            margin-right: 0;
+
+            .tab {
+                .tab-title {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}
+
+.tab {
+    float: none;
+    position: relative;
+    border: 1px solid #eeeeee;
+
+    &.is-active {
+        border: 1px solid #000000;
+
+        @include smin-xs {
+            border: none;
+
+            &:before {
+                width: 100%;
+
+                .productCarousel-tabs & {
+                    width: 100%;
+                    background-color: #000000;
+                }
+            }
+        }
+    }
+
+    @include smin-xs {
+        border: none;
+        float: none;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 20px;
+
+        &:before {
+            left: 0;
+            bottom: -1px;
+            width: 0;
+            height: 2px;
+            content: "";
+            position: absolute;
+            background-color: #000000;
+            transition: all 0.3s ease;
+
+            .productCarousel-tabs & {
+                width: 100%;
+                background-color: #999999;
+            }
+        }
+    }
+
+    @include smin-m {
+        margin-right: 25px;
+    }
+
+    @include smin-l {
+        margin-right: 35px;
+    }
+}
+
+.tab-title {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: capitalize;
+    padding: spacing("half") + spacing("quarter") 0;
+    text-decoration: $tab-title-text-decoration;
+    font-family: $fontFamily-headings;
+    color: stencilColor('color-textHeading');
+    font-weight: stencilFontWeight("headings-font");
+
+    &:hover,
+    &:focus {
+        color: inherit;
+    }
+
+    .productCarousel-tabs & {
+        color: #999999;
+    }
+
+    @include smin-xs {
+        text-align: left;
+        padding: 0 0 10px 0;
+    }
+}
+
+.tabs-contents {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.no-js {
+    .tab-content {
+        display: none;
+    }
+}
+
+.tab-content {
+
+    //
+    // State for when tab-content has js generated of calculated content, like carousel
+    //
+    // Purpose: The content being display: none, means any js calculated dimensions
+    // are incorrect as the elements inside the tab-content have no dimensions to grab.
+    // Carousel is a prime example. It needs widths to calculate the layout and slides
+    // -----------------------------------------------------------------------------
+    &.has-jsContent {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
+
+        // scss-lint:disable NestingDepth
+        &.is-active {
+            height: auto;
+            overflow: visible;
+            padding: $tabs-content-padding;
+            visibility: visible;
+        }
+
+        // scss-lint:enable NestingDepth
+    }
+
+
+    //
+    // Product review displays in tabs
+    //
+    // Purpose: Display product reviews within tabbed content on product pages.
+    // -----------------------------------------------------------------------------
+    .productReview {
+        @include smin-xs {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: grid-calc(6, $total-columns);
+        }
+    }
+
+    .productReviews {
+        border-top: 0;
+    }
+
+    &.is-active {
+        .toggle-content {
+            display: block;
+        }
+    }
+}
+
+.tabs-vertical {
+    margin-bottom: 0;
+
+    .toggle-title {
+        margin: 0;
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: stencilColor('color-textHeading');
+        border-bottom: 1px solid #ebebeb;
+
+        .toggleLink {
+            width: 100%;
+            float: none;
+            color: inherit;
+            vertical-align: top;
+            display: inline-block;
+
+            .text {
+                float: left;
+            }
+
+            .icon {
+                width: 15px;
+                height: 24px;
+                float: right;
+                padding: 5px 0;
+                transform: rotate(90deg);
+                fill: #c1c1c1;
+                stroke: #c1c1c1;
+                transition: all 0.3s ease;
+            }
+
+            &.is-open {
+                .icon {
+                    transform: rotate(270deg);
+                }
+            }
+        }
+
+        @include breakpoint('small') {
+            font-size: 16px;
+        }
+    }
+
+    .toggle-content {
+        font-size: $body-fontSize;
+        padding: 30px 0 35px 0;
+    }
+
+    .productReview {
+        &:first-child {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+    }
+
+    &:first-child {
+        border-top: none;
+
+        .toggle-title {
+            padding-top: 0;
+        }
+    }
+}

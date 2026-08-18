@@ -1,0 +1,155 @@
+// =============================================================================
+// PRODUCT GRID (CSS)
+// =============================================================================
+
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+//
+// -----------------------------------------------------------------------------
+
+.productGrid {
+
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+
+    .product {
+        .card {
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eeeeee;
+        }
+        
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+        @include smin-xs {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include smin-m {
+            width: grid-calc(4, $total-columns);
+        }
+    }
+
+    .card-compare {
+        left: auto;
+        right: 0;
+        bottom: 0;
+
+        .home-layout-2 & {
+            bottom: 35px;
+        }
+
+        .home-layout-3 & {
+            bottom: 85px;
+        }
+    }
+}
+
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar+.page-content {
+    .productGrid {
+        .product {
+
+            // 1
+            @include smin-xs {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+}
+
+
+//
+// Product Grid with masonry layout
+//
+// Purpose: Display products in a masonry grid, with a display inline-block for
+// older browsers that don't support css multicolumn
+//
+// -----------------------------------------------------------------------------
+
+.productMasonry {
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
+
+    @include smax-xs {
+        column-count: 3;
+    }
+
+    @include smin-m {
+        column-count: 4;
+    }
+
+    .product {
+        break-inside: avoid;
+        display: block;
+        margin-bottom: spacing("double");
+        padding: 0;
+        page-break-inside: avoid; // for firefox
+        width: 100%;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .no-csscolumns & {
+        .product {
+            @include smin-m {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include smin-m {
+            column-count: 6;
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .no-csscolumns & {
+        .product {
+            @include smin-m {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include smin-m {
+            @include grid-column(12);
+
+            float: none;
+
+            .product {
+                @include grid-column(4, $float: none);
+            }
+        }
+    }
+}

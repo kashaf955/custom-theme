@@ -1,0 +1,4892 @@
+// =============================================================================
+// Chrome World Trucks — Design System Overrides
+// Design-only changes. All filters and functionality remain intact.
+// =============================================================================
+
+$cwt-gold: #c9a227;
+$cwt-gold-bright: #ffbb00;
+// Deeper bronze-gold for text on light/white backgrounds — $cwt-gold-bright fails
+// WCAG contrast there (~1.7:1); this hits ~5:1 while keeping the gold identity.
+$cwt-gold-text: #8a6a12;
+$cwt-black: #000000;
+$cwt-dark: #0a0a0a;
+$cwt-charcoal: #1a1a1a;
+// Surface 2 — one step lighter than $cwt-charcoal, for anything that sits ON TOP of a
+// charcoal panel (modals, dropdowns, popovers) so stacked layers read as elevated, not flat.
+$cwt-elevated: #242424;
+$cwt-border-subtle: rgba(255, 255, 255, 0.08);
+$cwt-border-strong: rgba(255, 255, 255, 0.16);
+// Text hierarchy on dark surfaces — matches the opacity tiers already used in the header.
+$cwt-text-primary: rgba(255, 255, 255, 0.9);
+$cwt-text-secondary: rgba(255, 255, 255, 0.75);
+$cwt-text-tertiary: rgba(255, 255, 255, 0.55);
+$cwt-dark-overlay: rgba(10, 10, 10, 0.92);
+$cwt-breakpoint-desktop: 1400px; // laptop < 1400px = 100%, desktop ≥ 1400px = 90%
+
+@mixin cwt-content-width {
+    width: 100%;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+
+    @media (min-width: $cwt-breakpoint-desktop) {
+        width: 90%;
+        max-width: 90% !important;
+    }
+}
+
+// Prevent horizontal page scroll (overflow-x: hidden alone forces overflow-y: auto on children)
+html {
+    overflow-x: hidden;
+    overflow-y: scroll; // keep page scroll on viewport, not nested boxes
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.header.halo_header-layout-2,
+.body,
+main#main-content,
+.page {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+// =============================================================================
+// Global surfaces — dark base
+// Replaces the default white body/page background sitewide. Header, hero, and
+// footer already set their own $cwt-black backgrounds explicitly and are
+// unaffected by this. See the design-system token block above for the surface
+// tiers ($cwt-dark page / $cwt-charcoal panel / $cwt-elevated modal).
+// =============================================================================
+html,
+body,
+.body,
+main#main-content,
+.page {
+    background-color: $cwt-dark !important;
+}
+
+body {
+    color: $cwt-text-primary;
+}
+
+// Floating fixed-position widgets (recently-viewed flyout, social share, back-to-top)
+// all default to a white "body-bg" panel — needs a dark surface + shadow that still
+// reads against a dark page instead of disappearing into it.
+.lst-seen-widget,
+.lst-social-media,
+.wrap-icons {
+    background: $cwt-charcoal !important;
+    color: $cwt-text-primary !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid $cwt-border-subtle;
+
+    .in-content .product-info {
+        background: $cwt-charcoal !important;
+        border-color: $cwt-border-subtle !important;
+    }
+}
+
+.wrap-icons div {
+    color: $cwt-gold-bright !important;
+
+    @media (min-width: 1025px) {
+        &:hover {
+            background-color: rgba($cwt-gold-bright, 0.12) !important;
+        }
+    }
+}
+
+// Loading overlay — was a white veil (rgba(body-bg, .5)); a dark scrim reads as
+// "dimming" instead of a bright flash over dark content mid-AJAX-request.
+.blocker {
+    background: rgba($cwt-dark, 0.75) !important;
+}
+
+// Unified site width — laptop 100%, desktop 90%
+.cwt-site-width,
+.header.halo_header-layout-2 .halo_topHeader .navUser .container,
+.header.halo_header-layout-2 .cwt-header-main,
+.header.halo_header-layout-2 .cwt-nav-wrap,
+.header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
+.home-layout-2 .container,
+.body .container,
+.footer .container {
+    @include cwt-content-width;
+}
+
+// Keep top header visible (theme hides it below 801px)
+.header.halo_header-layout-2 .halo_topHeader {
+    display: block !important;
+}
+
+.header.halo_header-layout-2 #menu.navPages-container {
+    margin-right: 0 !important;
+}
+
+// -----------------------------------------------------------------------------
+// Header — dark premium bar
+// -----------------------------------------------------------------------------
+.header.halo_header-layout-2 {
+    background-color: $cwt-black;
+    border-bottom: 1px solid rgba($cwt-gold-bright, 0.15);
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible !important;
+
+    @media (min-width: 801px) {
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
+// Top utility bar (phone, email, help center, about us)
+.cwt-top-header,
+.halo_topHeader {
+    background-color: $cwt-black !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 101;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+
+    .navUser {
+        background-color: $cwt-black !important;
+        color: #ffffff !important;
+        position: relative;
+        top: auto;
+        right: auto;
+        padding: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .navUser .container {
+        display: flex !important;
+        align-items: center;
+        min-height: 38px;
+        padding: 6px 15px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+    .cwt-top-contact,
+    .navUser--left {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+
+        .navUser-item {
+            display: inline-flex !important;
+            width: auto !important;
+            margin: 0 !important;
+            float: none !important;
+            flex: 0 0 auto;
+            visibility: visible !important;
+        }
+
+        .navUser-action {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            font-size: 12px !important;
+            font-weight: 400;
+            padding: 0;
+            color: #ffffff !important;
+            visibility: visible !important;
+            max-width: 100%;
+
+            span {
+                display: inline !important;
+                visibility: visible !important;
+                color: #ffffff !important;
+                font-size: 12px !important;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        .icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            fill: #ffffff !important;
+            stroke: #ffffff !important;
+        }
+    }
+
+    .navUser--center {
+        flex: 1 1 auto;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 12px;
+        min-width: 0;
+    }
+
+    .navUser--right {
+        flex: 0 0 auto;
+        display: flex !important;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        .navUser-item {
+            display: inline-block !important;
+            width: auto !important;
+            margin: 0 !important;
+            float: none !important;
+        }
+
+        .navUser-item-currency {
+            display: none !important;
+        }
+
+        .navUser-action {
+            font-size: 12px;
+            font-weight: 400;
+            padding: 0;
+            white-space: normal;
+        }
+    }
+
+    .navUser-action,
+    .navUser-action span,
+    .text-promotion,
+    .text-promotion .text {
+        color: #ffffff !important;
+        font-size: 12px;
+        letter-spacing: 0.01em;
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .text-promotion .text {
+        font-weight: 600;
+        line-height: 1.35;
+    }
+
+    .navUser-action svg {
+        fill: #ffffff !important;
+        stroke: #ffffff !important;
+    }
+
+    @media (max-width: 800px) {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+
+        .navUser .container {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 12px;
+            overflow: visible;
+        }
+
+        .navUser--left,
+        .navUser--center,
+        .navUser--right {
+            flex: 1 1 100%;
+            width: 100%;
+            max-width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .navUser--right {
+            gap: 12px 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .navUser--left,
+        .cwt-top-contact {
+            gap: 8px 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .navUser-action {
+                white-space: normal;
+                justify-content: center;
+                text-align: center;
+
+                span {
+                    white-space: normal;
+                    word-break: break-word;
+                }
+            }
+        }
+
+        .text-promotion .text {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .navUser--center {
+            display: none !important;
+        }
+
+        .navUser--left,
+        .cwt-top-contact {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+
+            .navUser-item {
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .navUser-action {
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+
+                span {
+                    font-size: 11px !important;
+                    line-height: 1.35;
+                }
+            }
+        }
+
+        .navUser .container {
+            padding: 10px;
+        }
+
+        .navUser--right .navUser-action {
+            font-size: 11px !important;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Trust bar — price match, returns, order tracking, secure checkout
+// -----------------------------------------------------------------------------
+.cwt-trust-bar {
+    background-color: $cwt-charcoal;
+    border-bottom: 1px solid rgba($cwt-gold-bright, 0.18);
+    position: relative;
+    z-index: 100;
+    width: 100%;
+
+    // Collapse along with the top utility bar when the header goes sticky
+    // (theme's existing .is-sticky behavior hides .halo_topHeader the same way)
+    // so the pinned header stays a slim, unobtrusive strip while scrolling.
+    .header.is-sticky & {
+        display: none;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 9px 0;
+        list-style: none;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+
+        a,
+        &--static {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        a {
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: color 0.15s ease;
+
+            &:hover,
+            &:focus {
+                color: $cwt-gold-bright !important;
+
+                .icon {
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
+                }
+            }
+        }
+
+        &--static {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        span {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+            transition: fill 0.15s ease, stroke 0.15s ease;
+        }
+
+        // Divider between items, hidden on the first
+        &:not(:first-child) {
+            padding-left: 24px;
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        &__list {
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 9px 15px;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        &__item {
+            span {
+                font-size: 10.5px;
+            }
+
+            &:not(:first-child) {
+                padding-left: 18px;
+            }
+        }
+    }
+
+    @media (max-width: 550px) {
+        &__list {
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        &__item {
+            .icon {
+                width: 14px;
+                height: 14px;
+            }
+
+            span {
+                font-size: 10px;
+            }
+
+            &:not(:first-child) {
+                padding-left: 14px;
+            }
+        }
+    }
+}
+
+.halo_middleHeader {
+    background-color: $cwt-black !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.halo_bottomHeader {
+    background-color: $cwt-black;
+
+    .navPages-container,
+    #menu.navPages-container {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background-color: $cwt-black;
+        justify-content: center !important;
+
+        @media (min-width: 801px) {
+            display: block !important;
+            height: auto;
+            position: relative;
+        }
+    }
+
+    .cwt-nav-wrap {
+        width: 100%;
+    }
+
+    .cwt-nav__row {
+        width: 100%;
+
+        &--main {
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-start;
+            font-size: 0;
+            width: 100%;
+            padding: 4px 0 10px;
+            overflow: visible !important;
+        }
+    }
+
+    // Shop All Categories — single category entry (full tree in dropdown)
+    .halo_allCate {
+        display: inline-flex !important;
+        flex: 0 0 270px;
+        align-items: center;
+        vertical-align: middle;
+        width: 270px;
+        font-size: 14px;
+        position: relative;
+        overflow: visible !important;
+        z-index: 40;
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+        .halo_allCateText {
+            width: 100%;
+            padding: 0 16px;
+            line-height: 48px;
+            cursor: pointer;
+            user-select: none;
+
+            .text {
+                color: #ffffff !important;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 11px;
+                letter-spacing: 0.05em;
+            }
+
+            .icon,
+            .icon-down {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+                transition: transform 0.3s ease;
+            }
+        }
+
+        // Closed by default — opens on hover, focus, or click (.is-open)
+        .halo_allCateDropdown {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transform: translateY(12px) !important;
+            pointer-events: none !important;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+
+        &:hover,
+        &:focus-within,
+        &.is-open {
+            .halo_allCateDropdown {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: translateY(0) !important;
+                pointer-events: auto !important;
+            }
+
+            .halo_allCateText .icon-down {
+                transform: rotate(180deg);
+            }
+        }
+
+        .halo_allCateDropdown {
+            background-color: #ffffff;
+            z-index: 45;
+            font-size: 14px;
+            overflow: visible !important;
+            right: auto !important;
+            width: 280px !important;
+            min-width: 280px !important;
+            max-width: 280px !important;
+        }
+    }
+
+    .cwt-nav-pages {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 11px;
+        overflow: visible !important;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .navPages {
+            display: inline-flex;
+            justify-content: center;
+            width: auto;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .cwt-nav__page-list {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px 18px;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+            width: auto;
+
+            > .navPages-item {
+                display: inline-flex;
+                flex: 0 0 auto;
+                float: none;
+            }
+        }
+    }
+
+    .halo_allCate + .cwt-nav-pages {
+        margin-left: 0;
+    }
+
+    .cwt-nav-categories {
+        display: none !important;
+    }
+
+    .halo_allCateDropdown {
+        min-width: 280px;
+        width: 280px;
+        max-width: 280px;
+        right: auto !important;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+
+        .navPages-action,
+        .navPage-subMenu-action,
+        .navPage-subMenu-action .text {
+            color: $cwt-black !important;
+
+            &:hover,
+            &:focus {
+                color: $cwt-gold-bright !important;
+            }
+        }
+
+        .navPage-subMenu-title,
+        .navPage-subMenu-all {
+            display: none !important;
+        }
+
+        // Level 1 — vertical brand list
+        .navPages-list > .navPages-item {
+            display: block;
+            width: 100%;
+            position: relative;
+            overflow: visible !important;
+
+            > .navPages-action {
+                transition: background-color 0.15s ease;
+
+                .text {
+                    color: $cwt-black !important;
+                    font-size: 14px;
+                    font-weight: 700;
+                    transition: color 0.15s ease;
+                }
+
+                .navPages-action-moreIcon {
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(-90deg);
+
+                    svg {
+                        transition: fill 0.15s ease, stroke 0.15s ease;
+                    }
+                }
+            }
+
+            &:hover,
+            &:focus-within {
+                > .navPages-action {
+                    background-color: $cwt-black !important;
+
+                    .text {
+                        color: $cwt-gold-bright !important;
+                    }
+
+                    .navPages-action-moreIcon svg {
+                        fill: $cwt-gold-bright !important;
+                        stroke: $cwt-gold-bright !important;
+                    }
+                }
+
+                > .navPage-subMenu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            }
+
+            // Level 2 — flyout panel to the right
+            > .navPage-subMenu {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                min-width: 300px;
+                width: 300px;
+                margin: 0;
+                padding: 10px 0 14px;
+                background-color: #ffffff !important;
+                border: 1px solid rgba($cwt-black, 0.08) !important;
+                box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1) !important;
+                z-index: 50;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+
+                > .container {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    max-width: none !important;
+                    width: 100% !important;
+                }
+            }
+        }
+
+        .navPage-subMenu-item-child {
+            position: relative;
+            overflow: visible !important;
+            padding: 0 !important;
+
+            > .navPage-subMenu-action {
+                padding: 11px 36px 11px 20px !important;
+                line-height: 1.35 !important;
+                transition: background-color 0.15s ease;
+
+                .text {
+                    color: $cwt-black !important;
+                    font-size: 14px !important;
+                    font-weight: 700 !important;
+                    transition: color 0.15s ease;
+                }
+
+                .navPages-action-moreIcon {
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(-90deg);
+
+                    svg {
+                        transition: fill 0.15s ease, stroke 0.15s ease;
+                    }
+                }
+            }
+
+            > a.navPage-subMenu-action {
+                display: block;
+                padding: 11px 20px !important;
+            }
+
+            &:hover,
+            &:focus-within {
+                > .navPage-subMenu-action {
+                    background-color: $cwt-black !important;
+
+                    .text {
+                        color: $cwt-gold-bright !important;
+                    }
+
+                    .navPages-action-moreIcon svg {
+                        fill: $cwt-gold-bright !important;
+                        stroke: $cwt-gold-bright !important;
+                    }
+                }
+
+                > .navPage-subMenu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            }
+
+            // Level 3 — second flyout to the right
+            &.has-dropdown > .navPage-subMenu {
+                position: absolute !important;
+                top: 0 !important;
+                left: 100% !important;
+                min-width: 300px;
+                width: 300px;
+                margin: 0;
+                padding: 10px 0 14px;
+                background-color: #ffffff !important;
+                border: 1px solid rgba($cwt-black, 0.08) !important;
+                box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1) !important;
+                z-index: 55;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        // Override theme stacking — always cascade horizontally
+        .navPage-subMenu .navPage-subMenu {
+            top: 0 !important;
+            left: 100% !important;
+            position: absolute !important;
+            width: 300px !important;
+            min-width: 300px !important;
+            box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        // If megamenu class was applied previously, force flyout width
+        .navPages-item.has-megamenu {
+            position: relative !important;
+
+            > .navPage-subMenu {
+                max-width: 300px !important;
+                min-width: 300px !important;
+                width: 300px !important;
+
+                .cateArea > .navPage-subMenu-list {
+                    display: block !important;
+
+                    > li {
+                        flex: none !important;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                }
+            }
+        }
+
+        .navPages-action-moreIcon {
+            fill: #999 !important;
+            stroke: #999 !important;
+        }
+    }
+
+    .cwt-nav-pages .navPages-action.navPages-action-lv1 {
+        padding: 14px 16px;
+        white-space: nowrap;
+        line-height: 1.3;
+    }
+
+    // Desktop nav — no vertical/horizontal scroll; items wrap to new lines
+    @media (min-width: 801px) {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+
+        .navPages-container,
+        #menu.navPages-container {
+            overflow: visible !important;
+            overflow-y: visible !important;
+            height: auto !important;
+            max-height: none !important;
+        }
+
+        .cwt-nav-wrap,
+        .cwt-nav__row {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
+
+        .navPages,
+        .halo_allCate,
+        .cwt-nav-pages {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+            overflow-y: visible !important;
+            overflow-x: visible !important;
+        }
+
+        .halo_allCate .navPages,
+        .cwt-nav-pages .navPages {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+            overflow-y: visible !important;
+            -webkit-overflow-scrolling: auto;
+        }
+
+        .cwt-nav__category-list,
+        .cwt-nav__page-list {
+            height: auto !important;
+            max-height: none !important;
+        }
+    }
+
+    @media (min-width: 801px) and (max-width: 1200px) {
+        .cwt-nav-pages .navPages-action.navPages-action-lv1 {
+            padding: 12px 8px;
+            font-size: 10px;
+        }
+
+        .halo_allCate .halo_allCateText {
+            line-height: 44px;
+            padding: 0 12px;
+        }
+    }
+
+    // Override theme left-align — center page links in main nav row
+    .header-layout-2 &,
+    .halo_header-layout-2 & {
+        .cwt-nav__row--main {
+            justify-content: flex-start !important;
+        }
+
+        .cwt-nav-pages {
+            justify-content: center !important;
+        }
+
+        .cwt-nav-pages .navPages {
+            text-align: center !important;
+            justify-content: center !important;
+        }
+
+        .cwt-nav-pages .cwt-nav__page-list {
+            justify-content: center !important;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .cwt-nav-wrap {
+            display: none !important;
+        }
+
+        .navPages-container {
+            display: none !important;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            overflow-y: auto;
+            background-color: $cwt-black !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+
+            &.is-open {
+                display: block !important;
+            }
+        }
+    }
+
+    // Top-level page links — light on black
+    .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action {
+        color: #e8e8e8 !important;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        font-size: 11px;
+
+        .text,
+        span:not(.navPages-label):not(.navPages-action-moreIcon) {
+            color: #e8e8e8 !important;
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+            color: $cwt-gold-bright !important;
+            background-color: rgba(255, 255, 255, 0.08) !important;
+
+            .text,
+            span:not(.navPages-label):not(.navPages-action-moreIcon) {
+                color: $cwt-gold-bright !important;
+            }
+        }
+    }
+
+    .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action svg {
+        fill: #e8e8e8 !important;
+        stroke: #e8e8e8 !important;
+    }
+
+    .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action.is-open,
+    .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action.activePage {
+        color: $cwt-gold-bright !important;
+
+        .text,
+        span:not(.navPages-label):not(.navPages-action-moreIcon) {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    // Shop All Categories — flyout panels (megamenu disabled in template)
+    .halo_allCate {
+        .has-dropdown > .navPage-subMenu {
+            background-color: #ffffff !important;
+        }
+    }
+
+    // Utility page row flyouts — dark panel
+    .cwt-nav-pages {
+        .navPages-item {
+            position: relative;
+            overflow: visible !important;
+
+            &:hover,
+            &:focus-within {
+                > .navPage-subMenu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            }
+        }
+
+        .navPage-subMenu,
+        .navPages-item .navPage-subMenu {
+            background-color: $cwt-charcoal !important;
+            border: 1px solid rgba($cwt-gold-bright, 0.2) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+            padding: 8px 0 12px !important;
+            z-index: 50 !important;
+            overflow: visible !important;
+        }
+
+        .navPage-subMenu-item-child {
+            padding: 0 8px !important;
+        }
+
+        .navPage-subMenu-action,
+        .navPages-action-lv2,
+        .navPages-action-lv3 {
+            padding: 10px 16px !important;
+            line-height: 1.4 !important;
+
+            span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                color: #ffffff !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: rgba(255, 255, 255, 0.06) !important;
+
+                span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                    color: $cwt-gold-bright !important;
+                }
+            }
+        }
+    }
+
+    // Megamenu panels (horizontal bar only — not Shop All Categories)
+    .halo-megamenu,
+    .cwt-nav-categories .navPages-item.has-megamenu > .navPage-subMenu,
+    .cwt-nav-categories .navPages-list-megamenu .has-megamenu > .navPage-subMenu {
+        background-color: #ffffff !important;
+
+        .navPages-action,
+        .navPage-subMenu-action,
+        .navPage-subMenu-action .text,
+        a,
+        a .text {
+            color: $cwt-black !important;
+
+            &:hover,
+            &:focus {
+                color: $cwt-gold-text !important;
+            }
+        }
+    }
+}
+
+// Flyout submenus — visible on hover/open
+.header-layout-2,
+.halo_header-layout-2 {
+    .halo_allCate,
+    .halo_allCateDropdown,
+    .cwt-nav-wrap,
+    .cwt-nav__row--main {
+        overflow: visible !important;
+    }
+
+    .navPages-item.has-dropdown:hover > .navPage-subMenu,
+    .navPages-item.has-megamenu:hover > .navPage-subMenu,
+    .navPages-item:focus-within > .navPage-subMenu,
+    .navPages-item .navPage-subMenu.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    .navPage-subMenu-item-child.has-dropdown:hover > .navPage-subMenu,
+    .navPage-subMenu-item-child.has-dropdown:focus-within > .navPage-subMenu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .navPage-subMenu-horizontal.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+// Homepage: theme forces Shop All Categories open — keep closed until hover/click
+.page-type-default.header-layout-2,
+.page-type-default.halo_header-layout-2 {
+    .header:not(.is-sticky):not(.halo_header-layout-3) .halo_allCate:not(:hover):not(:focus-within):not(.is-open) .halo_allCateDropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(12px) !important;
+        pointer-events: none !important;
+    }
+}
+
+// Order Now Pay Later banner removed
+#hl_topPromotion {
+    display: none !important;
+}
+
+// -----------------------------------------------------------------------------
+// CWT header layout — logo left | search center | icons right
+// -----------------------------------------------------------------------------
+.cwt-header-main {
+    gap: 20px;
+
+    @media (min-width: 801px) {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+    }
+
+    > .middleHeader-item {
+        &.left,
+        &.center,
+        &.right {
+            @media (min-width: 801px) {
+                display: flex !important;
+                width: auto !important;
+                padding: 0 !important;
+            }
+        }
+
+        &.left.cwt-header-logo {
+            @media (min-width: 801px) {
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            .item--logo {
+                .header-logo {
+                    height: auto;
+                    margin: 0;
+                    text-align: left;
+
+                    &__link,
+                    .cwt-header-logo__link {
+                        justify-content: flex-start;
+                        width: auto;
+                        max-width: 240px;
+                    }
+                }
+
+                .cwt-header-logo__img {
+                    max-width: 200px;
+                    max-height: 52px;
+                }
+            }
+        }
+
+        &.center.cwt-header-search {
+            @media (min-width: 801px) {
+                flex: 1;
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .item--quicksearch {
+                display: block !important;
+                width: 100%;
+                max-width: 720px;
+                margin: 0 auto;
+            }
+        }
+
+        &.right.cwt-header-actions {
+            @media (min-width: 801px) {
+                justify-content: flex-end;
+                gap: 28px;
+            }
+
+            > .items {
+                margin-left: 0 !important;
+                text-align: center;
+
+                + .items {
+                    margin-left: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.cwt-header-label {
+    margin: 0 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1;
+}
+
+.cwt-header-action-row {
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+
+    .icon {
+        width: 26px;
+        height: 26px;
+
+        &.icon--account-outline {
+            width: 28px;
+            height: 28px;
+            color: $cwt-gold-bright;
+            fill: none !important;
+            stroke: $cwt-gold-bright;
+        }
+    }
+
+    .cwt-header-action-text {
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+}
+
+.cwt-header-actions {
+    .item--account {
+        .my-account,
+        .my-account-link,
+        .navUser-text {
+            display: none !important;
+        }
+
+        .cwt-header-action-row,
+        .accountMobile {
+            padding-top: 14px;
+
+            @media (min-width: 801px) {
+                padding-top: 18px;
+            }
+        }
+
+        .icon--account-outline {
+            display: block;
+        }
+
+        .accountMobile {
+            @media (min-width: 801px) {
+                display: none !important;
+            }
+        }
+    }
+
+    .item--cart {
+        .countPill {
+            position: absolute;
+            top: -4px;
+            right: -10px;
+        }
+    }
+
+    .cwt-header-label {
+        @media (max-width: 800px) {
+            display: none;
+        }
+    }
+}
+
+.halo_topHeader {
+    .navUser--center,
+    .navUser--right {
+        @media (min-width: 801px) {
+            width: auto;
+        }
+    }
+}
+
+// Hide legacy account text in any header layout
+.halo_middleHeader .item--account {
+    .my-account,
+    .my-account-link {
+        display: none !important;
+    }
+}
+
+.cwt-header-logo__img {
+    display: block;
+    width: auto;
+    max-width: 200px;
+    max-height: 56px;
+    object-fit: contain;
+}
+
+.cwt-header-logo__link {
+    display: block;
+    line-height: 0;
+}
+
+@media (min-width: 801px) {
+    .halo_middleHeader .mobile_search_custom {
+        display: none !important;
+    }
+
+    .cwt-header-main .item--hamburger {
+        display: none !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .cwt-site-width,
+    .header.halo_header-layout-2 .halo_topHeader .navUser .container,
+    .header.halo_header-layout-2 .cwt-header-main,
+    .header.halo_header-layout-2 .cwt-nav-wrap,
+    .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
+    .home-layout-2 .container,
+    .body .container,
+    .footer .container {
+        width: 100% !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        max-width: 100% !important;
+    }
+
+    .cwt-header-main {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        gap: 8px;
+        max-width: 100% !important;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+    .cwt-header-main .cwt-header-search {
+        display: none !important;
+    }
+
+    .cwt-header-main {
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+
+        .middleHeader-item.left {
+            display: flex !important;
+            width: auto;
+            flex: 1 1 auto;
+            min-width: 0;
+            max-width: calc(100% - 130px);
+            justify-content: flex-start;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+        }
+
+        .middleHeader-item.right {
+            display: flex !important;
+            width: auto;
+            flex: 0 0 auto;
+            gap: 4px;
+            flex-shrink: 0;
+
+            .cwt-header-label,
+            .cwt-header-action-text,
+            .my-account.cwt-header-label,
+            .my-account-link {
+                display: none !important;
+            }
+
+            .items {
+                margin: 0 !important;
+            }
+
+            .item--account {
+                .cwt-header-action-row:not(.accountMobile) {
+                    display: none !important;
+                }
+
+                .accountMobile {
+                    display: flex !important;
+                    padding-top: 0 !important;
+                }
+            }
+
+            .navUser-text {
+                display: none;
+            }
+
+            .cwt-header-action-row .icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    }
+
+    .cwt-header-logo__img {
+        max-width: 140px;
+        max-height: 44px;
+    }
+
+    .halo_middleHeader .mobile_search_custom {
+        display: block !important;
+        width: 100%;
+        padding: 0 12px 10px;
+        background-color: $cwt-black;
+
+        .header-search {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .form-input {
+            font-size: 16px; // prevent iOS zoom
+        }
+    }
+
+    .halo_middleHeader .item--hamburger {
+        display: block !important;
+    }
+
+    .mobileMenu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        flex-shrink: 0;
+
+        .mobileMenu-toggleIcon,
+        .mobileMenu-toggleIcon::before,
+        .mobileMenu-toggleIcon::after {
+            background-color: $cwt-gold-bright !important;
+        }
+    }
+
+    .halo_middleHeader {
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+}
+
+.middleHeader-container {
+    .navUser-action,
+    .navUser-action .navUser-text,
+    .item--account .my-account,
+    .item--account .my-account-link .navUser-action {
+        color: #ffffff !important;
+    }
+
+    .navUser-action svg {
+        fill: $cwt-gold-bright !important;
+    }
+
+    .countPill {
+        background-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+        font-weight: 700;
+    }
+
+    .item--account .my-account-link .navUser-action + .navUser-action {
+        border-left-color: rgba($cwt-gold-bright, 0.4) !important;
+    }
+}
+
+// Search bar — gold accent
+.header-search {
+    .form-input {
+        background-color: #ffffff !important;
+        border: 2px solid $cwt-gold-bright !important;
+        border-right: none !important;
+        color: $cwt-black;
+    }
+
+    #search_category {
+        border: 2px solid $cwt-gold-bright !important;
+        border-right: none !important;
+        background: #ffffff !important;
+        color: $cwt-black !important;
+
+        .icon {
+            fill: $cwt-black !important;
+            stroke: $cwt-black !important;
+        }
+    }
+
+    button[type="submit"] {
+        background-color: $cwt-gold-bright !important;
+        border: 2px solid $cwt-gold-bright !important;
+        min-width: 52px;
+
+        .icon {
+            fill: $cwt-black !important;
+            stroke: $cwt-black !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: darken($cwt-gold-bright, 8%) !important;
+            border-color: darken($cwt-gold-bright, 8%) !important;
+        }
+    }
+}
+
+.mobileMenu-toggle {
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background-color: $cwt-gold-bright !important;
+    }
+}
+
+// Search results dropdown — the input box above stays white by design (matches
+// the "Shop All Categories" flyout pattern); the results panel itself becomes
+// an elevated dark surface. Product cards inside it stay white, same as
+// everywhere else in the catalog.
+.quickSearchResults {
+    background-color: $cwt-elevated !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+
+    .suggestion-title {
+        color: $cwt-text-primary;
+    }
+
+    .category-suggestion a {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+.quickSearchMessage {
+    background-color: $cwt-elevated !important;
+    color: $cwt-text-secondary;
+}
+
+// -----------------------------------------------------------------------------
+// Shop By Truck filter — dark glass panel (functionality unchanged)
+// -----------------------------------------------------------------------------
+.halo_MultiCategory,
+.halo_MultiCategory.layout-2 {
+    background-color: $cwt-dark-overlay !important;
+    border: 1px solid rgba($cwt-gold-bright, 0.25) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+
+    .halo_multilevel-category-filter {
+        > .form-label,
+        > .form-label .title,
+        > .form-label .desc {
+            color: #ffffff !important;
+        }
+
+        .title {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+
+        .desc {
+            color: rgba(255, 255, 255, 0.75) !important;
+            font-weight: 400;
+        }
+
+        .form-select {
+            background-color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+            color: $cwt-black;
+            height: 42px;
+        }
+
+        #halo_select-browse {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+
+            span {
+                color: $cwt-black !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: darken($cwt-gold-bright, 8%) !important;
+                border-color: darken($cwt-gold-bright, 8%) !important;
+            }
+        }
+
+        #halo_clear-select {
+            color: rgba(255, 255, 255, 0.85) !important;
+            background: transparent !important;
+            border-color: transparent !important;
+
+            svg {
+                fill: rgba(255, 255, 255, 0.85) !important;
+            }
+
+            span {
+                color: rgba(255, 255, 255, 0.85) !important;
+                text-decoration-color: rgba(255, 255, 255, 0.5);
+            }
+
+            &:hover {
+                color: $cwt-gold-bright !important;
+
+                svg,
+                span {
+                    color: $cwt-gold-bright !important;
+                    fill: $cwt-gold-bright !important;
+                }
+            }
+        }
+    }
+}
+
+.page-type-default.home-layout-2 .halo_MultiCategory {
+    background-color: $cwt-dark-overlay !important;
+}
+
+.halo-home-section-fillter {
+    .category-filter {
+        border-radius: 4px;
+        overflow: hidden;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// CWT Custom Hero
+// -----------------------------------------------------------------------------
+.cwt-hero {
+    position: relative;
+    width: 100%;
+    min-height: 460px;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background-color: $cwt-black;
+
+    @media (min-width: 768px) {
+        min-height: 520px;
+    }
+
+    @media (min-width: 1201px) {
+        min-height: 580px;
+    }
+}
+
+.cwt-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-position: left center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+
+    @media (min-width: 768px) {
+        background-position: 20% center;
+    }
+
+    @media (min-width: 1201px) {
+        background-position: left center;
+    }
+}
+
+.cwt-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.25) 40%,
+        rgba(0, 0, 0, 0.65) 100%
+    );
+
+    @media (min-width: 1201px) {
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0.2) 35%,
+            rgba(0, 0, 0, 0.75) 100%
+        );
+    }
+}
+
+.cwt-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    min-height: inherit;
+    padding-top: 56px;
+    padding-bottom: 44px;
+    justify-content: flex-start;
+    align-items: center;
+
+    @media (min-width: 1201px) {
+        justify-content: flex-end;
+        padding-top: 64px;
+        padding-bottom: 50px;
+    }
+}
+
+.cwt-hero__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    max-width: 640px;
+    padding-top: 8px;
+
+    @media (min-width: 1201px) {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-end;
+        gap: 36px;
+        max-width: 980px;
+        width: auto;
+        padding-top: 12px;
+    }
+}
+
+.cwt-hero__content {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+
+    @media (min-width: 1201px) {
+        flex: 0 1 440px;
+        max-width: 440px;
+    }
+}
+
+.cwt-hero__title {
+    margin: 0 0 16px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.cwt-hero__title-line {
+    display: block;
+    font-size: clamp(28px, 5vw, 52px);
+    color: #ffffff;
+
+    &--gold {
+        color: $cwt-gold-bright;
+    }
+}
+
+.cwt-hero__subtitle {
+    margin: 0 0 28px;
+    font-size: clamp(14px, 2vw, 18px);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 480px;
+
+    @media (max-width: 767px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.cwt-hero__actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px;
+    margin-bottom: 8px;
+
+    @media (min-width: 768px) {
+        justify-content: flex-start;
+    }
+}
+
+.cwt-hero__btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+    white-space: nowrap;
+
+    @media (min-width: 768px) {
+        flex: 0 1 auto;
+        min-width: 160px;
+        font-size: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.cwt-hero__btn--outline {
+    background-color: transparent !important;
+    border: 2px solid $cwt-gold-bright !important;
+    color: #ffffff !important;
+
+    span {
+        color: #ffffff !important;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+
+        span {
+            color: $cwt-black !important;
+        }
+    }
+}
+
+// Filter embedded in hero — desktop only (>1200px)
+.cwt-hero__filter {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+
+    @media (min-width: 1201px) {
+        flex: 0 0 340px;
+        max-width: 340px;
+        display: block !important;
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
+    @media (max-width: 1200px) {
+        display: none !important;
+    }
+
+    .halo_MultiCategory.layout-2 {
+        margin-bottom: 0 !important;
+        padding: 22px 24px 26px !important;
+    }
+
+    .halo_multilevel-category-filter > .form-label {
+        text-align: left !important;
+        margin-bottom: 16px !important;
+
+        .title {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 15px !important;
+            line-height: 1.3 !important;
+        }
+
+        .desc {
+            font-size: 12px;
+            font-weight: 400 !important;
+            opacity: 0.8;
+        }
+    }
+
+    #halo_clear-select span {
+        display: inline-block !important;
+    }
+}
+
+// Filter below hero — laptop & tablet (<=1200px)
+.cwt-hero__filter-below {
+    display: none;
+    padding: 28px 15px 24px;
+    margin-top: 4px;
+    background-color: $cwt-black;
+    border-top: 1px solid rgba($cwt-gold-bright, 0.15);
+    position: relative;
+    z-index: 5;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 1200px) {
+        display: block !important;
+        min-height: 1px;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .category-filter-mobile {
+        margin-top: 0;
+        min-height: 200px;
+
+        &:not(:empty) {
+            min-height: 0;
+        }
+
+        .halo_MultiCategory {
+            width: 100% !important;
+            margin: 0 !important;
+            margin-bottom: 0 !important;
+            padding: 22px 20px 26px !important;
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            border: 1px solid rgba($cwt-gold-bright, 0.25) !important;
+            background-color: $cwt-dark-overlay !important;
+            color: #ffffff !important;
+        }
+
+        #halo_clear-select span {
+            display: inline-block !important;
+        }
+    }
+}
+
+// Hide empty hero filter slot when JS moves filter below
+.cwt-hero__filter:not(:has(.category-filter)) {
+    @media (min-width: 1201px) {
+        display: none !important;
+    }
+}
+
+.home-layout-2 .halo-home-section-top {
+    .container {
+        padding-top: 0;
+    }
+
+    .halo-home-section-left {
+        width: 100% !important;
+    }
+
+    // Suppress legacy carousel if injected via widget region
+    > .heroCarousel,
+    > .heroCarousel-2 {
+        display: none !important;
+    }
+
+    .halo-home-section-right {
+        @media (min-width: 1201px) {
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+// Category page filter — keep visible, match dark style
+.page-type-category,
+.page-type-product {
+    .halo_MultiCategory-wrapper .halo_MultiCategory {
+        background-color: $cwt-dark-overlay !important;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Hero carousel
+// -----------------------------------------------------------------------------
+.heroCarousel {
+    .heroCarousel-title {
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+
+        em,
+        strong {
+            color: $cwt-gold-bright;
+            font-style: normal;
+        }
+    }
+
+    .button--primary {
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 700;
+    }
+
+    .button--secondary,
+    .button--tertiary {
+        border: 2px solid #ffffff !important;
+        color: #ffffff !important;
+        background: transparent !important;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+
+        &:hover {
+            background: #ffffff !important;
+            color: $cwt-black !important;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Section headings
+// -----------------------------------------------------------------------------
+.page-heading,
+.halo-block-header .title,
+.halo-block-header h2.title,
+.halo-block-header h3.title,
+.halo-block-header-wrapper .title,
+.halo-block-product .page-heading,
+.custom-ecb .title,
+.custom-ecb h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: $cwt-text-primary !important;
+}
+
+// -----------------------------------------------------------------------------
+// Fera testimonials carousel
+// -----------------------------------------------------------------------------
+.cwt-testimonials {
+    padding: 48px 0 56px;
+    background-color: $cwt-charcoal;
+    border-top: 1px solid $cwt-border-subtle;
+    border-bottom: 1px solid $cwt-border-subtle;
+
+    &__header {
+        margin-bottom: 28px;
+        text-align: center;
+
+        .title {
+            margin: 0;
+            font-size: 24px;
+            color: $cwt-text-primary;
+        }
+    }
+
+    &__widget {
+        width: 100%;
+        min-height: 120px;
+    }
+
+    @media (max-width: 800px) {
+        padding: 36px 0 40px;
+
+        &__header .title {
+            font-size: 20px;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Product cards
+// -----------------------------------------------------------------------------
+// Grid gutters — the base grid gives cards very little breathing room and
+// adds an old-style bottom-underline separator that fights the card's own
+// border/shadow. Give every card even spacing on all sides instead.
+.productGrid .product {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-bottom: 32px;
+
+    .card {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+        border-bottom: 1px solid #ececec !important;
+    }
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+
+    // Rounded top corners on the photo — .card-figure already clips overflow.
+    .card-figure {
+        border-radius: 9px 9px 0 0;
+        background: #f7f7f7;
+    }
+
+    @media (min-width: 801px) {
+        &:hover {
+            transform: translateY(-5px);
+            border-color: rgba($cwt-gold-bright, 0.45);
+            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.14);
+        }
+    }
+
+    // Badges — pill shape, tighter tracking, consistent with brand type scale.
+    // Colors stay merchant-configurable (theme settings), only shape changes.
+    .halo-badges {
+        top: 12px;
+
+        &.halo-badges-left {
+            left: 12px;
+        }
+
+        &.halo-badges-right {
+            right: 12px;
+        }
+    }
+
+    // Only badge types with their own fill (new/custom/sold-out) get the pill
+    // treatment — the percent "sale" badge is plain text with no background,
+    // so a shadow there would float with nothing behind it.
+    .halo-badge.new-badge,
+    .halo-badge.custom-badge,
+    .halo-badge.soldOut-badge {
+        border-radius: 20px;
+        padding: 0 10px;
+        letter-spacing: 0.04em;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .sale-and-free_ship .text.cstm-free-ship {
+        border-radius: 20px;
+        padding: 0 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    // Wishlist / quick view — premium circular icon buttons, top-right
+    .card-figcaption-top {
+        top: 12px;
+        right: 12px;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        box-shadow: none;
+
+        .button {
+            width: 36px;
+            height: 36px;
+            min-width: 0;
+            border-radius: 50% !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+
+            .icon-wrapper {
+                width: 36px;
+                height: 36px;
+            }
+
+            svg {
+                width: 15px;
+                height: 15px;
+                fill: $cwt-black;
+                stroke: $cwt-black;
+            }
+
+            &:hover {
+                background-color: $cwt-black !important;
+                transform: scale(1.08);
+
+                svg {
+                    fill: $cwt-gold-bright;
+                    stroke: $cwt-gold-bright;
+                }
+            }
+        }
+
+        .quickview,
+        .quickview + .wishlist {
+            border-radius: 50%;
+            border-left: 0;
+            margin: 0;
+        }
+    }
+
+    .card-body {
+        padding: 16px 18px 20px;
+    }
+
+    .card-text[data-test-info-type="brandName"] {
+        color: #8f8f8f;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+    }
+
+    .card-title a {
+        color: $cwt-black;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+
+        &:hover {
+            color: $cwt-gold-text;
+        }
+    }
+
+    // Cards stay on a white surface by design, but their price/rating text
+    // uses the sitewide color-textSecondary token, which is now light (for
+    // the dark page background) — restore dark text here specifically.
+    .card-price {
+        color: #555555;
+
+        p {
+            color: #555555;
+        }
+
+        .price-section {
+            &.non-sale-price--withoutTax,
+            &.non-sale-price--withTax {
+                color: #a8a8a8;
+            }
+
+            &.price-none + .price-section--withoutTax,
+            &.price-none + .price-section--withTax {
+                color: #555555;
+            }
+        }
+    }
+
+    .rating--small .rating--count {
+        color: #777777;
+    }
+
+    .card-countDown {
+        color: #333333;
+    }
+
+    .card-figcaption-button.quickview {
+        color: #333333;
+    }
+
+    .card-figcaption-button,
+    .card-actions .button {
+        background-color: $cwt-black !important;
+        border-color: $cwt-black !important;
+        color: #ffffff !important;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 11px;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+        }
+    }
+}
+
+.sale-and-free_ship .text.cstm-free-ship {
+    background-color: $cwt-gold-bright !important;
+    color: $cwt-black !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+}
+
+.card-price .price--non-sale,
+.card-price .price--rrp {
+    color: #999999;
+}
+
+// -----------------------------------------------------------------------------
+// Buttons global
+// -----------------------------------------------------------------------------
+.button--primary {
+    background-color: $cwt-gold-bright !important;
+    border-color: $cwt-gold-bright !important;
+    color: $cwt-black !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
+    span {
+        color: $cwt-black !important;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $cwt-black !important;
+        border-color: $cwt-black !important;
+        color: #ffffff !important;
+
+        span {
+            color: #ffffff !important;
+        }
+    }
+}
+
+.button--secondary {
+    background-color: $cwt-black !important;
+    border-color: $cwt-black !important;
+    color: #ffffff !important;
+
+    &:hover,
+    &:focus {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Service / trust bar
+// -----------------------------------------------------------------------------
+.halo-service {
+    background-color: $cwt-black;
+    border-top: 1px solid rgba($cwt-gold-bright, 0.2);
+    border-bottom: 1px solid rgba($cwt-gold-bright, 0.2);
+
+    .service-item {
+        .title {
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .icon {
+            fill: $cwt-gold-bright;
+        }
+    }
+}
+
+// =============================================================================
+// Remaining homepage sections (hero and product cards are already done)
+// =============================================================================
+
+// Reused sitewide as a light-gray section band by the base theme (Popular
+// Categories, recent posts, several product-by-category blocks, and the
+// category page header). One override converts all of it to Surface 1.
+.halo-bgGray {
+    background-color: $cwt-charcoal !important;
+}
+
+#categoryCustom {
+    @include cwt-content-width;
+
+    .page-heading {
+        text-align: center;
+    }
+}
+
+// Framed circle around each category image — previously relied entirely on
+// the source image happening to look circular, with no actual CSS shaping.
+.categoryCustom-wrapper {
+    text-align: center;
+
+    .image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 4px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: $cwt-charcoal;
+        border: 2px solid rgba($cwt-gold-bright, 0.35);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        transition: border-color 0.25s ease, transform 0.25s ease;
+
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &:hover {
+            border-color: $cwt-gold-bright;
+            transform: translateY(-4px);
+        }
+    }
+
+    .title,
+    .title a {
+        color: $cwt-text-primary;
+    }
+
+    .desc {
+        color: $cwt-text-secondary !important;
+    }
+}
+
+// Popular Categories block
+.halo_featuredCategory-wrapper,
+.halo_featuredCategory {
+    background-color: $cwt-charcoal !important;
+}
+
+.halo_featuredCategory {
+    border-color: $cwt-border-subtle !important;
+
+    .title a {
+        color: $cwt-text-primary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .subcategory-list .subcategory-item a {
+        color: $cwt-text-secondary;
+
+        .icon {
+            fill: $cwt-text-tertiary;
+        }
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .link {
+        color: $cwt-gold-bright;
+    }
+}
+
+// Recent blog posts
+#recentPosts {
+    .halo-block-header {
+        .title {
+            color: $cwt-text-primary;
+        }
+
+        .desc {
+            color: $cwt-text-secondary;
+        }
+
+        .link a {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .halo-recent-post .item {
+        .item-content {
+            .title a {
+                color: $cwt-text-primary;
+
+                &:hover {
+                    color: $cwt-gold-bright;
+                }
+            }
+
+            .date {
+                color: $cwt-text-tertiary;
+            }
+
+            .summary {
+                color: $cwt-text-secondary;
+            }
+
+            .link {
+                color: $cwt-gold-bright;
+            }
+        }
+    }
+}
+
+// Product-by-category home blocks (halo-prodByCate-2/-3, featured/new/top)
+.halo-block-header {
+    .title {
+        color: $cwt-text-primary;
+    }
+
+    .link,
+    .collection--link {
+        color: $cwt-gold-bright;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Footer
+// -----------------------------------------------------------------------------
+.footer.footer-layout-2 {
+    background-color: $cwt-black !important;
+    border-top: 3px solid $cwt-gold-bright;
+
+    .footer_links li a {
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 12px;
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+}
+
+.footer-bottom {
+    background-color: $cwt-charcoal !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+// =============================================================================
+// Product Detail Page (PDP) + Quick View
+// Quick View (templates/components/products/quick-view.html) reuses the exact
+// same .productView markup as the main PDP, so all of this applies to both —
+// only the modal chrome itself (bottom of this section) needs separate rules.
+// =============================================================================
+.productView,
+.productView--quickView {
+    color: $cwt-text-primary;
+}
+
+// --- Gallery -----------------------------------------------------------------
+.productView-images {
+    .halo-badges {
+        top: 12px;
+
+        &.halo-badges-left {
+            left: 12px;
+        }
+
+        &.halo-badges-right {
+            left: auto;
+            right: 12px;
+        }
+    }
+
+    .halo-badge.new-badge,
+    .halo-badge.custom-badge,
+    .halo-badge.soldOut-badge {
+        border-radius: 20px;
+        padding: 0 10px;
+        letter-spacing: 0.04em;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+}
+
+.productView-img-container {
+    background: $cwt-charcoal;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.productView-nav {
+    .slick-dots li {
+        button {
+            &:before {
+                color: $cwt-text-tertiary;
+                opacity: 1;
+            }
+        }
+
+        &.slick-active button:before {
+            color: $cwt-gold-bright;
+            opacity: 1;
+        }
+    }
+}
+
+.halo-info {
+    .productView-thumbnail-custom {
+        a {
+            color: $cwt-text-secondary;
+
+            .icon,
+            svg {
+                filter: none;
+            }
+
+            &:hover {
+                color: $cwt-gold-bright;
+            }
+        }
+    }
+}
+
+.productView-thumbnail-wrapper {
+    .productView-thumbnail {
+        border: 1px solid $cwt-border-subtle;
+        border-radius: 6px;
+        overflow: hidden;
+        background: $cwt-charcoal;
+        transition: border-color 0.2s ease;
+
+        &.slick-current,
+        &:hover {
+            border-color: $cwt-gold-bright;
+        }
+    }
+}
+
+// --- Brand / title / rating ---------------------------------------------------
+// .productView-brand also carries class="card" (reused only to trigger a JS
+// brand-logo loader) — neutralize the product-card visual treatment here so it
+// doesn't render as a white rounded card around the brand logo.
+.productView-brand.card {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 0 8px !important;
+
+    &:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.productView-title {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: $cwt-text-primary;
+}
+
+.productView-rating {
+    #productReview_link,
+    .no-review {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .productView-reviewLink {
+        color: $cwt-gold-bright;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// --- Price & info table --------------------------------------------------------
+.productView-price {
+    color: $cwt-text-primary;
+
+    .price-section {
+        color: $cwt-text-primary;
+    }
+}
+
+.text.store_credit {
+    color: $cwt-gold-bright !important;
+}
+
+.productView-info {
+    border-top: 1px solid $cwt-border-subtle;
+    padding-top: 12px;
+
+    .productView-info-item {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+
+    .productView-info-name {
+        color: $cwt-text-secondary;
+    }
+
+    .productView-info-value {
+        color: $cwt-text-primary;
+    }
+}
+
+// --- Options / swatches ---------------------------------------------------------
+.productView-options {
+    .form-label {
+        color: $cwt-text-primary;
+
+        &.form-label--alternate {
+            color: $cwt-text-secondary;
+        }
+    }
+
+    .form-select {
+        background-color: $cwt-charcoal;
+        border: 1px solid $cwt-border-strong;
+        color: $cwt-text-primary;
+
+        &:focus {
+            border-color: $cwt-gold-bright;
+        }
+    }
+
+    .form-option {
+        border: 1px solid $cwt-border-strong;
+        background: $cwt-charcoal;
+        color: $cwt-text-primary;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+
+        &:hover {
+            border-color: $cwt-gold-bright;
+        }
+    }
+
+    .form-option-swatch {
+        border-color: $cwt-border-strong;
+    }
+
+    .form-radio:checked + .form-option,
+    .form-radio:checked + .form-option-wrapper .form-option,
+    .form-option-wrapper .form-radio:checked ~ .form-option {
+        border-color: $cwt-gold-bright !important;
+        box-shadow: 0 0 0 1px $cwt-gold-bright;
+    }
+
+    .form-option-variant--none {
+        background: $cwt-charcoal;
+        color: $cwt-text-secondary;
+    }
+}
+
+// --- Quantity + Add to cart ------------------------------------------------------
+.form-field--stock {
+    .form-label {
+        color: $cwt-text-secondary;
+    }
+}
+
+.form-field--increments {
+    .form-label {
+        color: $cwt-text-secondary;
+    }
+
+    .form-increment {
+        border: 1px solid $cwt-border-strong;
+        background: $cwt-charcoal;
+    }
+
+    .form-input--incrementTotal {
+        background: transparent;
+        color: $cwt-text-primary;
+    }
+
+    .button--icon {
+        background: transparent;
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+
+        svg {
+            fill: currentColor;
+            stroke: currentColor;
+        }
+    }
+}
+
+.add-to-cart-wrapper {
+    .alertBox.productAttributes-message {
+        background: $cwt-charcoal;
+        border: 1px solid $cwt-border-subtle;
+        color: $cwt-text-primary;
+    }
+
+    .free-delivery-note {
+        color: $cwt-text-secondary;
+    }
+}
+
+// .button--secondary is force-set to black in custom.scss — keep that, just
+// give it the same gold hover treatment used everywhere else on dark surfaces.
+#form-action-addToCart,
+#form-action-addToCart-2 {
+    &:hover,
+    &:focus {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+    }
+}
+
+// --- Wishlist / share / security --------------------------------------------------
+.dropdown-menu {
+    background: $cwt-elevated !important;
+    border: 1px solid $cwt-border-subtle !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+
+    li .button,
+    li a.button {
+        color: $cwt-text-primary !important;
+        background: transparent !important;
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+}
+
+.form-wishlist .dropdown-menu-button {
+    color: $cwt-text-secondary;
+
+    &:hover {
+        color: $cwt-gold-bright;
+    }
+
+    .icon {
+        fill: currentColor;
+        stroke: currentColor;
+    }
+}
+
+.socialLinks-item .socialLinks__link {
+    color: $cwt-text-secondary;
+
+    svg {
+        fill: currentColor;
+    }
+
+    &:hover {
+        color: $cwt-gold-bright;
+    }
+}
+
+// --- Tabs / description ------------------------------------------------------------
+.productView-tab {
+    .tabs {
+        border-bottom: 1px solid $cwt-border-subtle;
+
+        .tab-title {
+            color: $cwt-text-secondary;
+        }
+
+        .tab.is-active .tab-title {
+            color: $cwt-gold-bright;
+            border-color: $cwt-gold-bright;
+        }
+    }
+}
+
+.toggle-title {
+    .toggleLink {
+        color: $cwt-text-primary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+.tab-content,
+.toggle-content {
+    color: $cwt-text-secondary;
+
+    a {
+        color: $cwt-gold-bright;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.description-showmore {
+    color: $cwt-text-secondary;
+}
+
+// Related / similar products carousel — no gutter existed between slides at
+// all (cards rendered edge-to-edge), since this shared partial has no
+// dedicated spacing rule anywhere in the base theme.
+//
+// Also fixes a real base-theme bug: .productCarousel sets width: 1px as its
+// unconditional default, then width: grid-calc(3, $total-columns) at medium+
+// screens (a no-JS grid fallback that was never actually guarded behind
+// :not(.slick-initialized)) — that constrains the WHOLE carousel wrapper to
+// a fraction of the page even once slick is initialized and working
+// correctly inside it, which is why the section renders far narrower than
+// the hero despite the products themselves displaying fine.
+.productCarousel,
+.halo-productCarousel {
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
+.halo-productCarousel {
+    .halo-productCarousel-slide {
+        padding: 0 10px;
+    }
+
+    .slick-list {
+        margin: 0 -10px;
+    }
+}
+
+.product-warning {
+    color: #ffb84d;
+    border: 1px solid rgba(255, 184, 77, 0.3);
+    background: rgba(255, 184, 77, 0.08);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 12px;
+
+    a {
+        color: #ffb84d;
+        text-decoration: underline;
+    }
+}
+
+// --- Reviews -----------------------------------------------------------------------
+.productReviews {
+    border-top: 1px solid $cwt-border-subtle;
+
+    .toggle-title {
+        color: $cwt-text-primary;
+    }
+}
+
+.productReview {
+    border-bottom: 1px solid $cwt-border-subtle;
+
+    .productReview-title {
+        color: $cwt-text-primary;
+    }
+
+    .productReview-author {
+        color: $cwt-text-tertiary;
+    }
+
+    .productReview-body {
+        color: $cwt-text-secondary;
+    }
+}
+
+// --- Ask an Expert -------------------------------------------------------------------
+.halo_ask-an-experts {
+    .contact {
+        background: $cwt-charcoal;
+        border: 1px solid $cwt-border-subtle;
+        border-radius: 8px;
+
+        .content-contact .text {
+            color: $cwt-text-secondary;
+        }
+
+        .number-phone {
+            color: $cwt-text-primary;
+        }
+
+        .ask-an-expert-link {
+            color: $cwt-gold-bright;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .services .item {
+        .icons {
+            color: $cwt-gold-bright;
+
+            svg {
+                fill: currentColor;
+                stroke: currentColor;
+            }
+        }
+
+        .content .title {
+            color: $cwt-text-primary;
+        }
+
+        .content .description {
+            color: $cwt-text-secondary;
+        }
+    }
+}
+
+// --- Bundle / "Frequently bought together" --------------------------------------------
+.halo-bundle-products {
+    background: $cwt-charcoal;
+    border-radius: 10px;
+    border: 1px solid $cwt-border-subtle;
+
+    .halo-block-header .title {
+        color: $cwt-text-primary;
+    }
+
+    .halo-product-item {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+
+    .halo-detail-name,
+    .halo-detail-label {
+        color: $cwt-text-primary;
+    }
+
+    .halo-detail-price {
+        color: $cwt-gold-bright;
+    }
+
+    .halo-toggle-options {
+        color: $cwt-gold-bright;
+        border-color: $cwt-gold-bright;
+    }
+
+    .halo-detail-options {
+        background: $cwt-elevated;
+        border: 1px solid $cwt-border-subtle;
+
+        .halo-option-title {
+            color: $cwt-text-primary;
+        }
+    }
+}
+
+// --- Sticky add-to-cart bar -----------------------------------------------------------
+#halo_sticky_addToCart {
+    background: $cwt-black !important;
+    border-top: 1px solid rgba($cwt-gold-bright, 0.2);
+
+    .productView-title,
+    .productView-price {
+        color: $cwt-text-primary;
+    }
+
+    .pop-up-option {
+        background: $cwt-elevated;
+
+        .data-product-name .productView-title {
+            color: $cwt-text-primary;
+        }
+    }
+}
+
+// --- Modals (Quick View, Ask an Expert, Write a Review, video/warranty/instruction) ------
+.modal {
+    background: $cwt-elevated !important;
+    color: $cwt-text-primary;
+    border: 1px solid $cwt-border-subtle;
+
+    .modal-header-title {
+        color: $cwt-text-primary;
+    }
+
+    .modal-close {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+.quickView {
+    background: $cwt-elevated;
+}
+
+// -----------------------------------------------------------------------------
+// Ratings
+// -----------------------------------------------------------------------------
+.icon--ratingFull {
+    fill: $cwt-gold-bright !important;
+}
+
+// =============================================================================
+// Category / listing page shell
+// Product cards themselves are already styled (see "Product cards" above) —
+// this covers the page chrome around them: title band, subcategory carousel,
+// toolbar, faceted sidebar, pagination, empty state.
+// =============================================================================
+.page-listing-header {
+    background-color: $cwt-charcoal !important;
+    border-bottom: 1px solid $cwt-border-subtle;
+
+    .page-description {
+        color: $cwt-text-secondary;
+
+        a {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+// Subcategory carousel — base theme hardcodes #323232 (dark gray) text, which
+// is invisible against the new dark page background.
+.haloSubCategories {
+    border-color: $cwt-border-subtle !important;
+
+    &__name {
+        color: $cwt-text-primary;
+
+        .text:before {
+            background-color: $cwt-gold-bright;
+        }
+
+        .count {
+            background-color: $cwt-elevated;
+            color: $cwt-text-secondary;
+        }
+    }
+
+    &__desc {
+        color: $cwt-text-secondary;
+
+        p {
+            color: $cwt-text-secondary;
+        }
+    }
+}
+
+.halo-toolbar {
+    .toolbar-wrapper {
+        border-color: $cwt-border-subtle;
+    }
+
+    .pagination-info,
+    .toolbar-left,
+    .toolbar-right {
+        color: $cwt-text-secondary;
+    }
+
+    .form-select {
+        background-color: $cwt-charcoal;
+        border: 1px solid $cwt-border-strong;
+        color: $cwt-text-primary;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Faceted search sidebar — preserve filters, style to match
+// -----------------------------------------------------------------------------
+.page-sidebar {
+    background-color: $cwt-charcoal !important;
+    border-right: 1px solid $cwt-border-subtle;
+
+    .navBar-action,
+    a {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+.facetedSearch,
+.sidebarBlock {
+    .facetedSearch-toggle,
+    .sidebarBlock-heading {
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+        color: $cwt-text-primary;
+    }
+
+    .facetedSearch-navList,
+    .facetedSearch-navListItem,
+    .navList-item {
+        border-color: $cwt-border-subtle;
+    }
+
+    .facetedSearch-navList a,
+    .navList-action {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .form-checkbox + label,
+    .form-radio + label {
+        color: $cwt-text-secondary;
+    }
+
+    .form-checkbox:checked + label,
+    .form-radio:checked + label {
+        color: $cwt-gold-bright;
+    }
+}
+
+.shopByPrice-slider .noUi-target {
+    background: $cwt-elevated;
+}
+
+// Pagination — appears on category, blog, account, and search results
+.pagination {
+    .pagination-item {
+        .pagination-link {
+            color: $cwt-text-secondary;
+            border-color: $cwt-border-subtle;
+
+            &:hover {
+                color: $cwt-gold-bright;
+                border-color: $cwt-gold-bright;
+            }
+        }
+
+        &.pagination-item--current .pagination-link {
+            background-color: $cwt-gold-bright;
+            border-color: $cwt-gold-bright;
+            color: $cwt-black;
+        }
+    }
+}
+
+.page-no-products {
+    color: $cwt-text-secondary;
+}
+
+// -----------------------------------------------------------------------------
+// Breadcrumbs — appears on category, product, cart, and account pages; the
+// page background is dark everywhere now, so bright gold is correct sitewide.
+// -----------------------------------------------------------------------------
+.breadcrumbs {
+    .breadcrumb-label {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+}
+
+// =============================================================================
+// Alert boxes — sitewide (cart status, PDP out-of-stock, account form errors).
+// Translucent dark tint of the semantic color, keeping the hue recognizable.
+// =============================================================================
+.alertBox {
+    background: $cwt-charcoal;
+    border: 1px solid $cwt-border-subtle;
+    color: $cwt-text-primary;
+    border-radius: 6px;
+
+    &--info {
+        background: rgba(90, 160, 255, 0.1);
+        border-color: rgba(90, 160, 255, 0.3);
+    }
+
+    &--success {
+        background: rgba(70, 200, 130, 0.1);
+        border-color: rgba(70, 200, 130, 0.3);
+    }
+
+    &--error {
+        background: rgba(240, 90, 90, 0.1);
+        border-color: rgba(240, 90, 90, 0.3);
+    }
+
+    .alertBox-message a {
+        color: $cwt-gold-bright;
+    }
+}
+
+// =============================================================================
+// Cart page
+// =============================================================================
+.cart {
+    background: $cwt-charcoal;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .cart-header {
+        background: $cwt-elevated;
+
+        .cart-header-item {
+            color: $cwt-text-secondary;
+        }
+    }
+
+    .cart-item {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+
+    .cart-item-brand {
+        color: $cwt-text-tertiary;
+    }
+
+    .cart-item-name__label {
+        color: $cwt-text-primary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .cart-item-label {
+        color: $cwt-text-tertiary;
+    }
+
+    .cart-item-value {
+        color: $cwt-text-primary;
+    }
+
+    .definitionList-key {
+        color: $cwt-text-tertiary;
+    }
+
+    .definitionList-value {
+        color: $cwt-text-secondary;
+    }
+
+    .form-increment {
+        border: 1px solid $cwt-border-strong;
+        background: $cwt-elevated;
+    }
+
+    .form-input--incrementTotal {
+        background: transparent;
+        color: $cwt-text-primary;
+    }
+
+    .cart-remove {
+        color: $cwt-text-tertiary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+
+        svg {
+            fill: currentColor;
+        }
+    }
+}
+
+.cart-totals {
+    color: $cwt-text-primary;
+
+    .cart-total {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+
+    .cart-total-label {
+        color: $cwt-text-secondary;
+    }
+
+    .cart-total-value {
+        color: $cwt-text-primary;
+    }
+
+    .cart-total-grandTotal {
+        border-top: 1px solid $cwt-border-strong;
+        border-bottom: 0;
+
+        .cart-total-label,
+        .cart-total-value {
+            color: $cwt-text-primary;
+            font-weight: 700;
+        }
+    }
+}
+
+// "Add Product Protection" / "Clear Shopping Cart" / "Continue Shopping" row
+[data-cart-empty] {
+    #add-custom-product-btn {
+        background-color: $cwt-black !important;
+        border-color: $cwt-black !important;
+        color: #ffffff !important;
+
+        &:hover {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+        }
+    }
+}
+
+// Trust badges — reuses the header .cwt-trust-bar icon-badge visual language
+// rather than inventing a new pattern.
+.brand-protective {
+    background: $cwt-charcoal;
+    border: 1px solid $cwt-border-subtle;
+    border-radius: 8px;
+    padding: 20px;
+
+    .halo_securityContent {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            color: $cwt-gold-bright;
+
+            svg {
+                fill: currentColor;
+                stroke: currentColor;
+            }
+        }
+
+        .text {
+            color: $cwt-text-primary;
+            font-weight: 700;
+        }
+    }
+
+    .description {
+        color: $cwt-text-secondary;
+    }
+}
+
+.page-content[data-cart] h3 {
+    color: $cwt-text-primary;
+}
+
+// =============================================================================
+// Generic form inputs — sitewide base (account forms, contact us, login,
+// address/payment forms). PDP/cart options already have their own scoped
+// rules above; this is the fallback for everywhere else.
+// =============================================================================
+.form-label {
+    color: $cwt-text-secondary;
+
+    small {
+        color: $cwt-text-tertiary;
+    }
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    background-color: $cwt-charcoal;
+    border: 1px solid $cwt-border-strong;
+    color: $cwt-text-primary;
+
+    &:focus {
+        border-color: $cwt-gold-bright;
+    }
+
+    &::placeholder {
+        color: $cwt-text-tertiary;
+    }
+}
+
+.form-checkbox + label,
+.form-radio + label {
+    color: $cwt-text-secondary;
+}
+
+.form-fieldset {
+    border-color: $cwt-border-subtle;
+}
+
+.form-legend {
+    color: $cwt-text-primary;
+}
+
+// =============================================================================
+// Account pages
+// =============================================================================
+.navBar--account {
+    border-bottom: 1px solid $cwt-border-subtle;
+
+    .navBar-action {
+        color: $cwt-text-secondary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .navBar-item.is-active .navBar-action {
+        color: $cwt-gold-bright;
+        border-color: $cwt-gold-bright;
+    }
+}
+
+.account-heading {
+    color: $cwt-text-primary;
+}
+
+.account-list {
+    .account-listItem {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+
+    .account-orderStatus-label {
+        color: $cwt-gold-bright;
+    }
+
+    .account-orderStatus-action,
+    .account-product-title a {
+        color: $cwt-text-primary;
+
+        &:hover {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    .account-product-description {
+        color: $cwt-text-secondary;
+    }
+
+    .account-product-detail-heading {
+        color: $cwt-text-tertiary;
+    }
+
+    .account-product-detail span {
+        color: $cwt-text-secondary;
+    }
+}
+
+.panel {
+    background: $cwt-charcoal;
+    border: 1px solid $cwt-border-subtle;
+    border-radius: 8px;
+
+    .address-title {
+        color: $cwt-text-primary;
+    }
+
+    .address-details,
+    .address-description {
+        color: $cwt-text-secondary;
+    }
+
+    .address-label {
+        color: $cwt-text-tertiary;
+    }
+
+    &--newAddress {
+        background: transparent;
+        border-style: dashed;
+
+        .address-symbol,
+        .address-title {
+            color: $cwt-text-secondary;
+        }
+
+        &:hover {
+            border-color: $cwt-gold-bright;
+
+            .address-symbol,
+            .address-title {
+                color: $cwt-gold-bright;
+            }
+        }
+    }
+}
+
+.table {
+    color: $cwt-text-secondary;
+
+    th {
+        color: $cwt-text-primary;
+        border-bottom: 1px solid $cwt-border-strong;
+    }
+
+    td {
+        border-bottom: 1px solid $cwt-border-subtle;
+    }
+}
+
+.definitionList-key {
+    color: $cwt-text-tertiary;
+}
+
+.definitionList-value {
+    color: $cwt-text-secondary;
+}
+
+// =============================================================================
+// Homepage section width — match the hero
+// The base theme reserves a fixed 300px right-hand sidebar column on desktop
+// (.halo-home-section-left becomes calc(100% - 300px)), so Popular Categories,
+// the custom category blocks, etc. render narrower than the hero, which uses
+// the full container. Stack both columns full-width instead of splitting them
+// side by side so every section lines up with the hero's edges.
+// =============================================================================
+.halo-home-section-top {
+    .halo-home-section-left,
+    .halo-home-section-right {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+// Homepage — hide Spark Tools demo "We Carry Top Brands" (placeholder href="#")
+// Keep the second widget with real truck-brand links.
+.page-type-default {
+    [data-widget-id="2ddb8c7e-790d-467d-b781-c0700c901334"],
+    [data-widget-id] > #topBrands:has(.topBrands--item[href="#"]) {
+        display: none !important;
+    }
+}
+
+// =============================================================================
+// Mobile & tablet responsive
+// =============================================================================
+
+// Fix content overlap from legacy negative margin (desktop only)
+@include smin-m {
+    .home-layout-2.page-type-default main#main-content {
+        margin-top: -46px !important;
+    }
+}
+
+@include smax-m {
+    main#main-content {
+        margin-top: 0 !important;
+    }
+
+    // Hero — tablet & mobile
+    .cwt-hero {
+        min-height: 420px;
+
+        @include smax-s {
+            min-height: auto;
+            min-height: 360px;
+        }
+    }
+
+    .cwt-hero__bg {
+        background-position: center center;
+    }
+
+    .cwt-hero__overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.55) 45%,
+            rgba(0, 0, 0, 0.88) 100%
+        ) !important;
+    }
+
+    .cwt-hero__inner {
+        padding-top: 40px;
+        padding-bottom: 28px;
+        align-items: flex-end;
+        justify-content: center;
+
+        @include smax-s {
+            padding-top: 36px;
+            padding-bottom: 24px;
+        }
+    }
+
+    .cwt-hero__panel {
+        max-width: 100%;
+        align-items: stretch;
+        gap: 28px;
+        padding-top: 12px;
+    }
+
+    .cwt-hero__content {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .cwt-hero__subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cwt-hero__actions {
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include smax-s {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+        }
+    }
+
+    .cwt-hero__btn {
+        @include smax-s {
+            width: 100%;
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+    }
+
+    // Shop by truck below hero on tablet/mobile
+    .cwt-hero__filter-below {
+        padding: 32px 12px 24px;
+        margin-top: 8px;
+
+        .halo_MultiCategory {
+            padding: 18px 16px 22px !important;
+        }
+
+        .form-select {
+            font-size: 16px;
+            height: 44px;
+        }
+
+        #halo_select-browse {
+            min-height: 44px;
+            line-height: 42px;
+        }
+    }
+
+    // Mobile slide-out menu — white text, gold icons on black
+    .header.halo_header-layout-2 {
+        .halo_bottomHeader .navPages-container.is-open {
+            .navPages {
+                background-color: $cwt-black !important;
+                padding: 10px 0 30px;
+            }
+
+            .navPages-list {
+                background-color: $cwt-black !important;
+            }
+
+            .navPages-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .navPages-action,
+            .navPages-action .text {
+                color: #ffffff !important;
+                font-size: 14px;
+                padding: 12px 20px;
+                background-color: transparent !important;
+            }
+
+            .navPages-action-moreIcon svg {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+            }
+
+            .navPage-subMenu {
+                background-color: $cwt-charcoal !important;
+            }
+
+            .navPage-subMenu-action,
+            .navPage-subMenu-action .text {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+        }
+    }
+
+    .has-activeNavPages {
+        .halo-menu-sidebar {
+            background-color: $cwt-black !important;
+
+            .halo-sidebar-header {
+                background-color: $cwt-black !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #ffffff !important;
+            }
+
+            .halo-sidebar-close svg,
+            .btn-close svg {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+            }
+
+            .navPages-list {
+                background-color: $cwt-black !important;
+            }
+
+            .navPages-item {
+                border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .navPages-action {
+                color: #ffffff !important;
+                background-color: transparent !important;
+
+                .text {
+                    color: #ffffff !important;
+                }
+
+                .icon,
+                svg {
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
+                    color: $cwt-gold-bright !important;
+                }
+
+                .navPages-action-moreIcon svg {
+                    fill: $cwt-gold-bright !important;
+                }
+            }
+
+            .navPage-subMenu {
+                background-color: $cwt-charcoal !important;
+            }
+
+            .navPage-subMenu-action {
+                color: rgba(255, 255, 255, 0.88) !important;
+
+                .text {
+                    color: rgba(255, 255, 255, 0.88) !important;
+                }
+            }
+        }
+    }
+
+    .halo-menu-sidebar {
+        background-color: $cwt-black !important;
+
+        .navPages-action,
+        .navPages-action .text {
+            color: #ffffff !important;
+        }
+
+        .halo-sidebar-header {
+            background-color: $cwt-black !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    // Homepage sections
+    .home-layout-2 .halo-home-section-top .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    // Product grids
+    .productGrid .product {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    // Footer links stack on small screens
+    .footer.footer-layout-2 ul.footer_links {
+        flex-wrap: wrap;
+        gap: 12px 20px;
+        justify-content: center;
+    }
+}
+
+@include smax-xs {
+    .cwt-top-header .navUser--right {
+        gap: 10px;
+
+        .navUser-action {
+            font-size: 11px !important;
+        }
+    }
+
+    .cwt-header-logo__img {
+        max-width: 120px;
+        max-height: 38px;
+    }
+
+    .cwt-hero__title-line {
+        font-size: clamp(20px, 6.5vw, 28px) !important;
+    }
+
+    .cwt-hero__subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+}
+
+// Tablet landscape: keep hero buttons side-by-side if space allows
+@media (min-width: 551px) and (max-width: 1024px) {
+    .cwt-hero__actions {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .cwt-hero__btn {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 220px;
+    }
+}
+
+// Nav rows — wrap on desktop; no scroll containers
+.halo_bottomHeader {
+    @media (max-width: 800px) {
+        overflow-x: hidden;
+        overflow-y: visible;
+
+        .cwt-nav-wrap {
+            overflow-x: hidden;
+            overflow-y: visible;
+        }
+    }
+
+    @media (min-width: 801px) {
+        overflow: visible;
+        height: auto !important;
+        max-height: none !important;
+
+        .cwt-nav-wrap {
+            overflow: visible;
+            height: auto !important;
+        }
+
+        > .navPages-container {
+            overflow: visible !important;
+            overflow-y: visible !important;
+        }
+    }
+
+    .cwt-nav__category-list,
+    .cwt-nav__page-list {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+// Homepage carousels — prevent overflow
+.home-layout-2 {
+    .slick-list,
+    .productCarousel,
+    .heroCarousel {
+        max-width: 100%;
+    }
+}
+
+// =============================================================================
+// Header & nav — stop vertical scroll on header/nav bar
+// (overflow-x: hidden alone computes overflow-y: auto — always pair explicitly)
+// =============================================================================
+.header.halo_header-layout-2 {
+    &.is-open {
+        @media (min-width: 801px) {
+            height: auto !important;
+            overflow: visible !important;
+        }
+    }
+
+    &.is-sticky {
+        @media (min-width: 801px) {
+            .halo_bottomHeader {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+            }
+        }
+    }
+
+    .has-activeNavPages &.is-sticky .halo_bottomHeader,
+    body.has-activeNavPages &.is-sticky .halo_bottomHeader {
+        @media (min-width: 801px) {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
+    }
+
+    .halo_topHeader,
+    .halo_middleHeader,
+    .halo_bottomHeader {
+        height: auto !important;
+        max-height: none !important;
+        overflow-x: hidden;
+        overflow-y: visible !important;
+    }
+
+    .halo_topHeader,
+    .halo_middleHeader {
+        overflow: visible !important;
+    }
+
+    .halo_bottomHeader .navPages-container.is-open {
+        @media (min-width: 801px) {
+            padding-top: 0 !important;
+            position: relative !important;
+            inset: auto !important;
+        }
+    }
+
+    @media (min-width: 801px) {
+        .navPages-container,
+        #menu.navPages-container {
+            position: relative !important;
+            top: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            right: auto !important;
+            display: block !important;
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+            overflow-y: visible !important;
+            -webkit-overflow-scrolling: auto;
+        }
+
+        .navPages,
+        .navPages-list,
+        .navPages-list-megamenu,
+        .cwt-nav-wrap,
+        .cwt-nav__row,
+        .halo_allCate,
+        .cwt-nav-pages {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+            overflow-y: visible !important;
+        }
+
+        // Keep megamenu panel scroll + column layout from theme defaults
+        .navPages-list-megamenu .has-megamenu > .navPage-subMenu {
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+    }
+}
+
+// =============================================================================
+// About Us page
+// =============================================================================
+.page-type-page .cwt-about {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+    max-width: 100vw;
+}
+
+.cwt-about {
+    color: $cwt-text-primary;
+    overflow-x: hidden;
+
+    .container {
+        @include cwt-content-width;
+    }
+}
+
+.cwt-about-eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $cwt-gold-bright;
+
+    // Every section on this page is now a dark surface, so the bright gold
+    // (previously reserved for dark sections only) is correct everywhere.
+    &--gold {
+        color: $cwt-gold-bright;
+    }
+}
+
+.cwt-about-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: $cwt-gold-bright;
+    color: $cwt-black;
+    flex-shrink: 0;
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    &--dark {
+        background: $cwt-black;
+        color: $cwt-gold-bright;
+    }
+
+    &--gold {
+        background: rgba($cwt-gold-bright, 0.15);
+        color: $cwt-gold-bright;
+        width: 56px;
+        height: 56px;
+
+        svg {
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    &--gold-outline {
+        background: transparent;
+        border: 2px solid $cwt-gold-bright;
+        color: $cwt-gold-bright;
+        width: 40px;
+        height: 40px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.cwt-about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    &--gold {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+        justify-content: center;
+        padding: 14px 28px;
+
+        span {
+            color: $cwt-black !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: darken($cwt-gold-bright, 8%) !important;
+            border-color: darken($cwt-gold-bright, 8%) !important;
+        }
+    }
+}
+
+// Hero
+.cwt-about-hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+
+    @media (min-width: 801px) {
+        min-height: 480px;
+    }
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.35) 100%);
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        padding: 56px 15px 88px;
+    }
+
+    &__title {
+        margin: 0 0 16px;
+        max-width: 640px;
+        font-size: clamp(32px, 4.5vw, 52px);
+        line-height: 1.08;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: none;
+        letter-spacing: 0.01em;
+    }
+
+    &__lead {
+        margin: 0 0 28px;
+        max-width: 560px;
+        font-size: clamp(15px, 1.6vw, 17px);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.88);
+    }
+
+    &__features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px 36px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+}
+
+// Stats bar
+.cwt-about-stats {
+    position: relative;
+    z-index: 3;
+    margin-top: -48px;
+    margin-bottom: 56px;
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: $cwt-elevated;
+        border: 1px solid rgba($cwt-gold-bright, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 28px 20px;
+        text-align: center;
+
+        + .cwt-about-stats__item {
+            border-left: 1px solid $cwt-border-subtle;
+        }
+
+        strong {
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 700;
+            color: $cwt-gold-bright;
+        }
+
+        span:last-child {
+            font-size: 13px;
+            color: $cwt-text-secondary;
+            text-transform: capitalize;
+        }
+    }
+}
+
+// Our Story
+.cwt-about-story {
+    padding: 24px 0 72px;
+    background: $cwt-dark;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+    }
+
+    &__media {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 14px;
+        min-height: 360px;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    }
+
+    &__media-main {
+        grid-row: 1 / span 2;
+    }
+
+    &__media-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        height: 100%;
+
+        img {
+            flex: 1;
+            min-height: 0;
+        }
+    }
+
+    &__title {
+        margin: 0 0 20px;
+        font-size: clamp(26px, 3vw, 36px);
+        line-height: 1.2;
+        font-weight: 700;
+        color: $cwt-text-primary;
+    }
+
+    &__content p {
+        margin: 0 0 16px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: $cwt-text-secondary;
+    }
+}
+
+// Our Work
+.cwt-about-work {
+    padding: 72px 0;
+    background: $cwt-black;
+    color: #ffffff;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+
+    &__title {
+        margin: 0 0 18px;
+        font-size: clamp(26px, 3vw, 36px);
+        line-height: 1.2;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    &__text {
+        margin: 0 0 28px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+    }
+
+    &__media img {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        min-height: 280px;
+    }
+}
+
+// Values
+.cwt-about-values {
+    padding: 72px 0 80px;
+    background: $cwt-dark;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: clamp(28px, 3.2vw, 38px);
+        font-weight: 700;
+        color: $cwt-text-primary;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    &__card {
+        background: $cwt-charcoal;
+        border: 1px solid $cwt-border-subtle;
+        border-radius: 10px;
+        padding: 32px 28px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+        text-align: center;
+
+        h3 {
+            margin: 18px 0 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: $cwt-text-primary;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.65;
+            color: $cwt-text-secondary;
+        }
+    }
+}
+
+// Visit store CTA
+.cwt-about-visit {
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.82);
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        padding: 64px 15px 72px;
+        text-align: center;
+
+        .cwt-about-eyebrow {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__title {
+        margin: 0 0 44px;
+        font-size: clamp(28px, 3.2vw, 38px);
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    &__body {
+        max-width: 920px;
+        margin: 0 auto;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+        gap: 32px 56px;
+        text-align: left;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    &__block {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    &__label {
+        margin: 0 0 4px !important;
+        font-size: 11px !important;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: $cwt-gold-bright !important;
+    }
+
+    &__cta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+        width: 100%;
+        max-width: 380px;
+        margin-left: auto;
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .cwt-about-btn--gold {
+            width: 100%;
+            min-height: 52px;
+            padding: 14px 24px;
+            font-size: 13px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .cwt-about-stats__list {
+        grid-template-columns: 1fr;
+    }
+
+    .cwt-about-stats__item + .cwt-about-stats__item {
+        border-left: 0;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .cwt-about-story__grid,
+    .cwt-about-work__grid,
+    .cwt-about-visit__grid,
+    .cwt-about-values__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cwt-about-story__media {
+        grid-template-columns: 1fr 1fr;
+        min-height: auto;
+    }
+
+    .cwt-about-story__media-main {
+        grid-row: auto;
+    }
+
+    .cwt-about-work {
+        &__media {
+            order: -1;
+        }
+    }
+
+    .cwt-about-visit {
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        &__cta {
+            max-width: none;
+            margin-left: 0;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .cwt-about-hero__inner {
+        padding-bottom: 72px;
+    }
+
+    .cwt-about-stats {
+        margin-top: -32px;
+        margin-bottom: 40px;
+    }
+
+    .cwt-about-story {
+        padding-bottom: 48px;
+
+        &__media {
+            grid-template-columns: 1fr;
+        }
+
+        &__media-stack {
+            flex-direction: row;
+
+            img {
+                min-height: 140px;
+            }
+        }
+    }
+
+    .cwt-about-work,
+    .cwt-about-values,
+    .cwt-about-visit__inner {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .cwt-about-hero__features {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+// =============================================================================
+// Policy pages (Return Policy, Price Match Guarantee, etc.)
+// Wrap pasted Web Page content in <div class="cwt-policy">...</div> — the
+// theme already renders the page title as the H1 above this, so don't
+// include an <h1> in the pasted content.
+// =============================================================================
+.cwt-policy {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4px 0 16px;
+    color: $cwt-text-secondary;
+
+    &__intro {
+        font-size: 16px;
+        line-height: 1.7;
+        color: $cwt-text-primary;
+        margin: 0 0 32px;
+        font-weight: 400;
+    }
+
+    h2 {
+        font-size: 21px;
+        font-weight: 700;
+        color: $cwt-text-primary;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin: 40px 0 16px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    p {
+        font-size: 15px;
+        line-height: 1.75;
+        color: $cwt-text-secondary;
+        margin: 0 0 16px;
+    }
+
+    a {
+        color: $cwt-gold-bright;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: $cwt-text-primary;
+        }
+    }
+
+    ol:not(.cwt-policy-steps),
+    ul:not(.cwt-policy-checklist):not(.cwt-policy-options) {
+        margin: 0 0 20px;
+        padding-left: 20px;
+
+        li {
+            font-size: 15px;
+            line-height: 1.75;
+            color: $cwt-text-secondary;
+            margin-bottom: 8px;
+        }
+    }
+}
+
+// "How it works" — numbered steps
+.cwt-policy-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 24px 0 40px;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        background: $cwt-charcoal;
+        border: 1px solid $cwt-border-subtle;
+        border-radius: 10px;
+        padding: 24px 20px;
+        text-align: center;
+    }
+
+    &__num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: $cwt-black;
+        color: $cwt-gold-bright;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    &__item h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: $cwt-text-primary;
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    &__item p {
+        font-size: 13.5px !important;
+        line-height: 1.6;
+        color: $cwt-text-secondary !important;
+        margin: 0 !important;
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// "Choose one" — 2-up option cards (e.g. store credit vs. refund)
+.cwt-policy-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 24px 0 40px;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        background: $cwt-charcoal;
+        border: 1px solid $cwt-border-subtle;
+        border-radius: 10px;
+        padding: 24px 20px;
+        text-align: center;
+    }
+
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba($cwt-gold-bright, 0.15);
+        margin-bottom: 14px;
+
+        .icon {
+            width: 22px;
+            height: 22px;
+            fill: $cwt-gold-bright;
+            stroke: $cwt-gold-bright;
+        }
+    }
+
+    &__item h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: $cwt-text-primary;
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    &__item p {
+        font-size: 13.5px !important;
+        line-height: 1.6;
+        color: $cwt-text-secondary !important;
+        margin: 0 !important;
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// Conditions / eligibility checklist
+.cwt-policy-checklist {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid $cwt-border-subtle;
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: $cwt-text-secondary;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .icon {
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        fill: $cwt-gold-bright;
+        stroke: $cwt-gold-bright;
+    }
+}
+
+// Contact CTA callout
+.cwt-policy-cta {
+    background: $cwt-black;
+    border-radius: 10px;
+    padding: 26px 30px;
+    margin: 40px 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    p {
+        margin: 0 !important;
+        color: #ffffff !important;
+        font-size: 15px !important;
+    }
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: $cwt-gold-bright;
+        color: $cwt-black !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 12px;
+        padding: 12px 22px;
+        border-radius: 4px;
+        text-decoration: none !important;
+        white-space: nowrap;
+        transition: background-color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background: darken($cwt-gold-bright, 8%);
+            color: $cwt-black !important;
+        }
+    }
+
+    @media (max-width: 550px) {
+        padding: 22px;
+        text-align: center;
+        justify-content: center;
+
+        a {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}

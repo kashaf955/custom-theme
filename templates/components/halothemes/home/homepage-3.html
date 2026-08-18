@@ -1,0 +1,123 @@
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+    {{#and carousel carousel.slides.length}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/and}}
+    {{{region name="home_below_carousel"}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{#each shipping_messages}}
+    {{> components/common/alert/alert-info message}}
+{{/each}}
+
+<div class="main full">
+    {{#if theme_settings.show_hl_multi_level}}
+        <div class="container halo_MultiCategory-wrapper{{#if theme_settings.show_style_hl_multi_level}} special-style{{else}} halo-bgGray{{/if}}" data-halo-load="animation">
+            {{> components/halothemes/category-filter/halo-multilevel-cate-filter-1}}
+        </div>
+    {{/if}}
+    {{#if theme_settings.halo_featuredCate}}
+        {{> components/halothemes/block/home-popular-categories}}
+    {{/if}}
+
+    {{#if theme_settings.halo_cateCustom}}
+        {{> components/halothemes/block/halo-category-block-custom
+            subBanner1=theme_settings.halo_cateCustomB1
+            subDesc1=theme_settings.halo_cateCustomD1
+            subBanner2=theme_settings.halo_cateCustomB2
+            subDesc2=theme_settings.halo_cateCustomD2
+            subBanner3=theme_settings.halo_cateCustomB3
+            subDesc3=theme_settings.halo_cateCustomD3
+            subBanner4=theme_settings.halo_cateCustomB4
+            subDesc4=theme_settings.halo_cateCustomD4
+            subBanner5=theme_settings.halo_cateCustomB5
+            subDesc5=theme_settings.halo_cateCustomD5
+        }}
+    {{/if}}
+    {{{region name="below_halo_catergory_block_custom"}}}
+
+    {{{region name="home_top_brands"}}}
+
+    {{#if theme_settings.halo_prodByCateBlock2}}
+        {{> components/halothemes/product/halo-prodByCate-2
+            section='block-2'
+            productsnew=products.new
+            cateID=theme_settings.halo_prodByCateBlock2ID
+            title=theme_settings.halo_prodByCateBlock2Title
+            colLimit=5
+            link=true
+        }}
+    {{/if}}
+
+    {{{region name="home_popular_cates"}}}
+    
+    {{#if theme_settings.homeProd_1 '==' 'Featured'}}
+        {{> components/products/featured
+            products=products.featured
+            productsnew=products.new
+            title=theme_settings.homeProd_1_title
+            link=theme_settings.homeProd_1_link
+            block_id="halo-product-block-1"
+            block_limit=theme_settings.homeProd_limit
+            block_column=theme_settings.homeProd_col
+            block_layout=theme_settings.homeProd_1_layout
+            block_countdownTitle=theme_settings.homeProd_1_cdTitle
+            block_countdown=theme_settings.homeProd_1_cdown
+            block_img1=theme_settings.homeProd_1_img1
+            block_img2=theme_settings.homeProd_1_img2
+            dots=true
+        }}
+    {{else if theme_settings.homeProd_1 '==' 'New'}}
+        {{> components/products/new
+            products=products.new
+            productsnew=products.new
+            title=theme_settings.homeProd_1_title
+            link=theme_settings.homeProd_1_link
+            block_id="halo-product-block-1"
+            block_limit=theme_settings.homeProd_limit
+            block_column=theme_settings.homeProd_col
+            block_layout=theme_settings.homeProd_1_layout
+            block_countdownTitle=theme_settings.homeProd_1_cdTitle
+            block_countdown=theme_settings.homeProd_1_cdown
+            block_img1=theme_settings.homeProd_1_img1
+            block_img2=theme_settings.homeProd_1_img2
+            dots=true
+        }}
+    {{else if theme_settings.homeProd_1 '==' 'Top'}}
+        {{> components/products/top
+            products=products.top_sellers
+            productsnew=products.new
+            title=theme_settings.homeProd_1_title
+            link=theme_settings.homeProd_1_link
+            block_id="halo-product-block-1"
+            block_limit=theme_settings.homeProd_limit
+            block_column=theme_settings.homeProd_col
+            block_layout=theme_settings.homeProd_1_layout
+            block_countdownTitle=theme_settings.homeProd_1_cdTitle
+            block_countdown=theme_settings.homeProd_1_cdown
+            block_img1=theme_settings.homeProd_1_img1
+            block_img2=theme_settings.homeProd_1_img2
+            dots=true
+        }}
+    {{/if}}
+
+    {{{region name="home_popular_cates_2"}}}
+    
+    {{#if theme_settings.halo_prodByTab}}
+        {{> components/halothemes/product/halo-prodByTab
+            section='tab'
+            productsnew=products.new
+        }}
+    {{/if}}
+
+    {{{region name="home_popular_brands"}}}
+    
+    {{> components/halothemes/blog/halo-recent-posts-2 
+        blogCol=3 
+        post=blog.recent_posts
+    }}
+</div>
+{{/partial}}
+{{> layout/base}}

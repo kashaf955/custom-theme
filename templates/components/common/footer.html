@@ -1,0 +1,24 @@
+{{#if banners.bottom}}
+    <div class="banners" data-banner-location="bottom">
+        {{#each (limit banners.bottom_metadata 1)}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/if}}
+
+{{#if theme_settings.halo_footer_layout '===' 'footer_layout_1'}}
+    {{> components/halothemes/footer/footer-layout-1}}
+    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/uvpdMwYgJDWT53AAyEDBsDwq1UPY0hUe5iBJCMpr" async></script>
+{{/if}}
+{{#if theme_settings.halo_footer_layout '===' 'footer_layout_2'}}
+    {{> components/halothemes/footer/footer-layout-2}}
+    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/uvpdMwYgJDWT53AAyEDBsDwq1UPY0hUe5iBJCMpr" async></script>
+{{/if}}
+{{#if theme_settings.halo_footer_layout '===' 'footer_layout_3'}}
+    {{> components/halothemes/footer/footer-layout-3}}
+    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/uvpdMwYgJDWT53AAyEDBsDwq1UPY0hUe5iBJCMpr" async></script>
+{{/if}}

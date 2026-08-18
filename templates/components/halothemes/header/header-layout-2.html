@@ -1,0 +1,103 @@
+<header class="header halo_header-layout-2 halo-fadeInLoad" data-halo-animate="0" role="banner">
+    {{!-- Top bar always on — phone & email hardcoded in navigation-2 --}}
+    <div class="halo_topHeader cwt-top-header">
+        {{> components/common/navigation-2}}
+    </div>
+
+    {{!-- Trust signals: price match, returns, order tracking, secure checkout --}}
+    {{> components/halothemes/header/cwt-trust-bar}}
+
+    <div class="halo_middleHeader">
+        <div class="middleHeader-container cwt-header-main cwt-site-width">
+            <div class="middleHeader-item left cwt-header-logo">
+                <div class="items item--hamburger">
+                    <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+                        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                    </a>
+                </div>
+                <div class="items item--logo">
+                    {{#if page_type '===' 'default'}}
+                        <h1 class="header-logo">
+                            <a href="{{urls.home}}" class="header-logo__link cwt-header-logo__link" data-header-logo-link>
+                                <img class="cwt-header-logo__img" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                            </a>
+                        </h1>
+                    {{else}}
+                        <div class="header-logo">
+                            <a href="{{urls.home}}" class="header-logo__link cwt-header-logo__link" data-header-logo-link>
+                                <img class="cwt-header-logo__img" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                            </a>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="middleHeader-item center cwt-header-search">
+                <div class="items item--quicksearch">
+                    <div class="dropdown dropdown--quickSearch header-search" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                        {{> components/common/quick-search  name='search_query'}}
+                    </div>
+                </div>
+            </div>
+            <div class="middleHeader-item right cwt-header-actions">
+                <div class="items item--account">
+                    {{#if customer}}
+                        <a class="navUser-action cwt-header-action-row account-name" href="{{urls.account.index}}" data-login-form aria-label="{{customer.name}}">
+                            <div class="navUser-icon">
+                                {{> components/halothemes/header/cwt-account-icon}}
+                            </div>
+                        </a>
+                    {{else}}
+                        <a class="navUser-action cwt-header-action-row" href="{{urls.auth.login}}" data-login-form aria-label="{{lang 'common.login'}}">
+                            <div class="navUser-icon">
+                                {{> components/halothemes/header/cwt-account-icon}}
+                            </div>
+                        </a>
+                    {{/if}}
+                    <a class="navUser-action accountMobile" href="{{#if customer}}{{urls.account.index}}{{else}}{{urls.auth.login}}{{/if}}" data-login-form aria-label="{{lang 'common.account'}}">
+                        <div class="navUser-icon">
+                            {{> components/halothemes/header/cwt-account-icon}}
+                        </div>
+                    </a>
+                </div>
+                <div class="items item--wishlist">
+                    <p class="cwt-header-label">Wish Lists</p>
+                    <a class="navUser-action cwt-header-action-row" href="{{urls.account.wishlists.all}}">
+                        <div class="navUser-icon">
+                            <svg class="icon" title="icon heart"><use xlink:href="#icon-heart"></use></svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="items item--cart header-cart">
+                    <p class="cwt-header-label">My Cart</p>
+                    <a class="navUser-action cwt-header-action-row"
+                        data-cart-preview
+                        data-options="align:right"
+                        href="{{urls.cart}}"
+                        data-label="{{lang 'common.cart'}}">
+                        <div class="navUser-icon navUser-item-cartIcon">
+                            <svg class="icon" role="img" aria-label="{{lang 'cart.cart_preview'}}">
+                                <title>{{lang 'cart.cart_preview'}}</title>
+                                <desc>{{lang 'cart.cart_preview'}}</desc>
+                                <use xlink:href="#icon-cart"></use>
+                            </svg>
+                        </div>
+                        <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="items item--quicksearch mobile_search_custom">
+            <div class="dropdown dropdown--quickSearch header-search" id="quickSearch-mobile" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                {{> components/common/quick-search  name='search_query'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="halo_bottomHeader">
+        <div class="navPages-container" id="menu" data-menu>
+            {{> components/common/navigation-menu-2}}
+        </div>
+    </div>
+
+    {{{region name="header_navigation_bottom--global"}}}
+</header>

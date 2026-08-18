@@ -1,0 +1,45 @@
+<div class="tabs-contents">
+    <div role="tabpanel" 
+         aria-hidden="true" 
+         class="tab-content pos-relative is-active" 
+         id="tab-prodByCateTabs-new-{{id}}" 
+         data-tab-category-id="{{id}}"
+         data-tab-category-url="{{concat url '?sort=newest'}}"
+    >
+        <div class="loadingOverlay"></div>
+        <div class="productTabCarousel"></div>
+    </div>
+
+    <div role="tabpanel" 
+         aria-hidden="false" 
+         class="tab-content pos-relative" 
+         id="tab-prodByCateTabs-bestselling-{{id}}" 
+         data-tab-category-id="{{id}}"
+         data-tab-category-url="{{concat url '?sort=bestselling'}}"
+    >
+        <div class="loadingOverlay"></div>
+        <div class="productTabCarousel"></div>
+    </div>
+
+    <div role="tabpanel" 
+         aria-hidden="true" 
+         class="tab-content pos-relative" 
+         id="tab-prodByCateTabs-featured-{{id}}" 
+         data-tab-category-id="{{id}}"
+         data-tab-category-url="{{concat url '?sort=featured'}}"
+    >
+        <div class="loadingOverlay"></div>
+        <div class="productTabCarousel"></div>
+    </div>
+
+    <div role="tabpanel" 
+         aria-hidden="true" 
+         class="tab-content pos-relative" 
+         id="tab-prodByCateTabs-reviews-{{id}}" 
+         data-tab-category-id="{{id}}"
+         data-tab-category-url="{{concat url '?sort=avgcustomerreview'}}"
+    >
+        <div class="loadingOverlay"></div>
+        <div class="productTabCarousel"></div>
+    </div>
+</div>                

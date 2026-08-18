@@ -1,0 +1,87 @@
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+    var haloMegaMenu = new window.haloMegaMenu();
+
+    function SetItemMegaMenu(){
+        $('.navPages-list-megamenu > li:not(.navPages-item-toggle)').on('mouseover', function (event) {
+            var numberItem = $(event.currentTarget).index() + 1;
+
+            if (!$(event.currentTarget).hasClass('has-megamenu')) {
+                LoadMegaMenu(numberItem);
+            }
+        });
+
+        $('.navPages-list-megamenu > li:not(.navPages-item-toggle)').on('focusin', function (event) {
+            var numberItem = $(event.currentTarget).index() + 1;
+
+            if (!$(event.currentTarget).hasClass('has-megamenu')) {
+                LoadMegaMenu(numberItem);
+            }
+        });
+
+        $(document).on('click','#halo-menu-sidebar .navPages-list:not(.navPages-list--user) > li > .navPages-action' , event => {
+            var numberItem = $(event.currentTarget).parent().index() + 1;
+
+            if (!$(event.currentTarget).parent().hasClass('has-megamenu')) {
+                LoadMegaMenu(numberItem);
+            }
+        });
+    }
+        
+    function getMenuColumnCount(numberItem) {
+        var $item = $('.cwt-nav__category-list > li:nth-child(' + numberItem + ')');
+
+        if (!$item.length) {
+            $item = $('.navPages-list:not(.navPages-list--user) > li:nth-child(' + numberItem + ')');
+        }
+
+        var count = $item.find('> .navPage-subMenu .container > .navPage-subMenu-list > li.navPage-subMenu-item-child').filter(function () {
+            return !$(this).hasClass('navPage-subMenu-title') && !$(this).hasClass('navPage-subMenu-all');
+        }).length;
+
+        if (count >= 9) {
+            return 3;
+        }
+
+        if (count >= 4) {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    function LoadMegaMenu(numberItem){
+        haloMegaMenu.menuItem(numberItem).setMegaMenu({
+            style: 'style 1',
+            imageAreaWidth: '',
+            cateAreaWidth: '100%',
+            cateColumns: getMenuColumnCount(numberItem)
+        });
+    }
+
+    function MegaMenuLabel(){
+        haloMegaMenu.menuItem(1).setMegaMenu({
+            label: 'New',
+            labelType: 'new',
+            disabled: true
+        });
+
+        haloMegaMenu.menuItem(2).setMegaMenu({
+            label: 'Hot',
+            labelType: 'hot',
+            disabled: true
+        });
+
+        haloMegaMenu.menuItem(4).setMegaMenu({
+            label: 'Sale',
+            labelType: 'sale',
+            disabled: true
+        });
+    }
+
+    MegaMenuLabel();
+
+    var setItemMegaMenu = SetItemMegaMenu();
+
+    window.onload = setItemMegaMenu;
+</script>

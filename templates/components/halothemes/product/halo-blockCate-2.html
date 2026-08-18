@@ -1,0 +1,44 @@
+<div class="halo-block halo-block-product halo-home-section halo-product-by-cate-block p-b{{#unless theme_settings.hl_skin_2}} halo-bgGray{{/unless}}" id="halo-product-by-cate-{{section}}" data-halo-load="category-product">
+    <div class="container halo-product-by-cate-{{section}}" data-halo-load="animation">
+        {{#each categories}}
+            {{#if id '==' ../cateID}}
+                {{#or (if ../link) (if ../block_countdown)}}
+                    <div class="halo-block-header halo-fadeInUp" data-halo-animate="0">
+                        {{#if ../theme_settings.hl_skin_1}}
+                            <h3 class="title">{{#if ../title}}{{../title}}{{else}}{{name}}{{/if}}</h3>
+                        {{else}}
+                            <h3 class="page-heading">{{#if ../title}}{{../title}}{{else}}{{name}}{{/if}}</h3>
+                        {{/if}}
+                        {{#if ../block_countdown}}
+                            <div class="productBlock--countdown" data-countdown="{{../block_countdown}}"></div>
+                        {{/if}}
+                        {{#unless ../theme_settings.hl_skin_2}}
+                            {{#if ../link}}
+                                <a class="link" href="{{url}}" aria-label="{{lang 'common.view_more'}}">
+                                    <span>{{lang 'common.view_more'}}</span>
+                                </a>
+                            {{/if}}
+                        {{/unless}}
+                    </div>
+                {{else}}
+                    <div class="halo-block-header halo-fadeInUp" data-halo-animate="0">
+                        {{#if ../theme_settings.hl_skin_1}}
+                            <h3 class="title">{{#if ../title}}{{../title}}{{else}}{{name}}{{/if}}</h3>
+                        {{else}}
+                            <h3 class="page-heading">{{#if ../title}}{{../title}}{{else}}{{name}}{{/if}}</h3>
+                        {{/if}}
+                    </div>
+                {{/or}}
+                <div class="halo_prodByCate pos-relative" id="halo-prodByCate-{{id}}" data-category-url="{{url}}">
+                    <div class="loadingOverlay"></div>
+                    <div class="productCarouselByCate" data-col="{{../colLimit}}"></div>
+                    {{#and (if ../theme_settings.hl_skin_2) (if ../link)}}
+                        <a class="link" href="{{url}}" aria-label="{{lang 'common.view_more'}}">
+                            <span>{{lang 'common.view_more'}}</span>
+                        </a>
+                    {{/and}}
+                </div>
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

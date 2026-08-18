@@ -1,0 +1,11 @@
+{{#partial "page"}}
+    <section class="page page-blog">
+        <div class="breadcrumb-wrapper">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+        <main class="halo-blog-detail">
+            {{> components/blog/post post=blog.post show_tags=true last=true class="blog" settings=settings theme_settings=theme_settings}}
+        </main>
+    </section>
+{{/partial}}
+{{> layout/base}}

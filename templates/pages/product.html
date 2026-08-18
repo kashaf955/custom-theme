@@ -1,0 +1,170 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+    {{#if theme_settings.hl_product_layout '==' 'product_layout_1'}}
+        {{> components/halothemes/product/product-layout-1}}
+    {{/if}}
+    {{#if theme_settings.hl_product_layout '==' 'product_layout_2'}}
+        {{> components/halothemes/product/product-layout-2}}
+    {{/if}} 
+    {{#if theme_settings.hl_product_layout '==' 'product_layout_3'}}
+        {{> components/halothemes/product/product-layout-3}}
+    {{/if}} 
+    {{> components/products/schema}}
+
+    <script>
+        var productId = {{product.id}};
+        function setNativeValueOfElementChange(ele, val) {
+            let lastValue = ele.value;
+            ele.value = val;
+            let event = new Event("change", { target: ele, bubbles: true });
+            // React 15
+            event.simulated = true;
+            // React 16
+            let tracker = ele._valueTracker;
+            if (tracker) {
+                tracker.setValue(lastValue);
+            }
+            ele.dispatchEvent(event);
+        }
+        function setDropDownValue(ele, val){
+            const label = Array.from(document.querySelectorAll('.productView-options label'))
+                .find(label => label.textContent.includes(ele));
+        
+            if (label) {
+                const selectElement = label.nextElementSibling; // Get the next sibling of the label
+                if (selectElement && selectElement.tagName === 'SELECT') {
+                    // Use the provided function to set the value and trigger the change event
+                    setNativeValueOfElementChange(selectElement, val);
+                }
+            }
+        }
+        function customEcbHideOptions() {
+            console.log("Bumper changed");
+            var selectedValue = $('.productView-options label:contains("Bumper Style:")').next('select').find('option:selected').text().trim();
+            var blindSelectedValue = $('.productView-options label:contains("Blind Mount:")').next('select').find('option:selected').text();
+            $('label:contains("Step Holes:")').closest('.form-field').hide();
+            $('label:contains("Two Holes:")').closest('.form-field').hide();
+            $('label:contains("Fog Light Holes:")').closest('.form-field').hide();
+            console.log("selectedValue=>", selectedValue);
+            // Show the appropriate dropdown based on the selected value
+            if (selectedValue.includes("Tapered")) {
+                $('.productView-options label:contains("Blind Mount:")').closest('.form-field').hide();
+                $('label:contains("Step Holes:")').closest('.form-field').show();
+                $('label:contains("Two Holes:")').closest('.form-field').show();
+                $('label:contains("Fog Light Holes:")').closest('.form-field').show();
+        
+                setDropDownValue('Blind Mount:', '447');
+                
+            } else if (!selectedValue.includes("Tapered") && blindSelectedValue == "No") {
+                $('.productView-options label:contains("Blind Mount:")').closest('.form-field').show();
+                $('label:contains("Step Holes:")').closest('.form-field').show();
+                $('label:contains("Two Holes:")').closest('.form-field').show();
+                $('label:contains("Fog Light Holes:")').closest('.form-field').show();
+            }
+            else {
+                $('.productView-options label:contains("Blind Mount:")').closest('.form-field').show();
+                $('label:contains("Step Holes:")').closest('.form-field').hide();
+                $('label:contains("Two Holes:")').closest('.form-field').hide();
+                $('label:contains("Fog Light Holes:")').closest('.form-field').hide();
+                
+                setDropDownValue("Step Holes:", '441');
+                setDropDownValue("Two Holes:", '443');
+                setDropDownValue("Fog Light Holes:", '445');
+            }
+        }
+        var optionInterval = setInterval(function(){
+                console.log("in interval")
+                if(window.jQuery && $('label:contains("Quantity 1-30:")').length > 0){
+                    console.log("clear interval")
+                    clearInterval(optionInterval);    
+                    $('label:contains("Quantity 1-30:")').closest('.form-field').hide();
+                    $('label:contains("Quantity 1-20:")').closest('.form-field').hide();
+                    $('label:contains("Quantity 1-9:")').closest('.form-field').hide();
+                    
+                    $('label:contains("Light Holes:")').filter(function () {
+                        return $(this).contents().get(0).nodeValue.trim() === "Light Holes:";
+                    }).next('select').on('change', function () {
+                        const selectedValue = $(this).find('option:selected').text().trim();
+                        // Hide all quantity dropdowns first
+                        $('label:contains("Quantity 1-30:")').closest('.form-field').hide();
+                        $('label:contains("Quantity 1-20:")').closest('.form-field').hide();
+                        $('label:contains("Quantity 1-9:")').closest('.form-field').hide();
+                        console.log("selectedValue=>",selectedValue);
+                        setDropDownValue("Quantity 1-30:", '');
+                        setDropDownValue("Quantity 1-20:", '');
+                        setDropDownValue("Quantity 1-9:", '');
+                        // Show the appropriate dropdown based on the selected value
+                        if (selectedValue.includes("Bullet Light Holes")) {
+                            $('label:contains("Quantity 1-30:")').closest('.form-field').show();
+                        } else if (selectedValue.includes('2" Light Holes')) {
+                            $('label:contains("Quantity 1-20:")').closest('.form-field').show();
+                        } else if (selectedValue.includes("Oval Light Holes")) {
+                            $('label:contains("Quantity 1-9:")').closest('.form-field').show();
+                        }else{
+                            console.log("none");
+                        }
+                    });
+                    $('label:contains("Bumper Style:")').next('select').on('change', customEcbHideOptions);
+                    $('label:contains("Blind Mount:")').next('select').on('change', customEcbHideOptions);
+                    $('label:contains("Bumper Size:")').next('select').off().on('change', function () {
+                        setDropDownValue("Bumper Style:", '');
+                        var sizeValue = $(this).find('option:selected').text().trim();
+                        var bumperStyleDropdown = $('.productView-options label:contains("Bumper Style:")').next('select');
+                        console.log(sizeValue);
+                        if (sizeValue == '16"') {
+                            // Show only "Tapered" and hide all other options
+                            bumperStyleDropdown.find('option').each(function () {
+                                if ($(this).text().trim() === "Tapered" || $(this).text().trim() === "Choose an Options") {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            });
+                        }
+                        else if (sizeValue == '22"') {
+                            // Show only "Tapered" and hide all other options
+                            bumperStyleDropdown.find('option').each(function () {
+                                if ($(this).text().trim() !== "Tapered" && $(this).text().trim() !== "Rolled End" && $(this).text().trim() !== "Choose an Options") {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            });
+                        }
+                        else {
+                            // Hide "Tapered" and show all other options
+                            bumperStyleDropdown.find('option').each(function () {
+                                if ($(this).text().trim() === "Tapered") {
+                                    $(this).hide();
+                                } else {
+                                    $(this).show();
+                                }
+                            });
+                        }
+                    });
+                }
+            }, 500);
+
+    </script>
+    
+{{/partial}}
+{{> layout/base}}

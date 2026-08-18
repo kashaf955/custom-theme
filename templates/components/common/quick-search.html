@@ -1,0 +1,62 @@
+<form class="form" action="{{urls.search}}" data-quick-search-form>
+    <fieldset class="form-fieldset">
+        <div class="form-field">
+            {{!-- 
+                {{#if theme_settings.hl_header_search_cate}}
+                    <div id="search_category">
+                        <label for="search_cate" style="display: none;">category</label>
+                        <select name="category" id="search_cate" class="select_category">
+                            {{#if theme_settings.hl_header_layout '==' 'header_layout_1'}}
+                                <option value="" selected="">{{lang 'common.all'}}</option>
+                            {{else}}
+                                <option value="" selected="">{{lang 'common.all_categories'}}</option>
+                            {{/if}}
+                            {{#each categories}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{#if children}}
+                                    {{#each children}}
+                                        <option value="{{id}}">&emsp;{{name}}</option>
+                                        {{#if children}}
+                                            {{#each children}}
+                                                <option value="{{id}}">&emsp;&emsp;{{name}}</option>
+                                                {{#if children}}
+                                                    {{#each children}}
+                                                        {{#if children}}
+                                                            <option value="{{id}}">&emsp;&emsp;&emsp;{{name}}</option>
+                                                        {{else}}
+                                                            <option value="{{id}}">&emsp;&emsp;&emsp;{{name}}</option>
+                                                        {{/if}}
+                                                    {{/each}}
+                                                {{/if}}
+                                            {{/each}}
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                            {{/each}}
+                        </select> 
+                        <svg class="icon" title="icon chevron down"><use xlink:href="#icon-chevron-down" /></svg>
+                    </div>
+                {{/if}}
+            --}}
+            <label class="is-srOnly" for="{{name}}">{{lang "search.quick_search.input_label"}}</label>
+            <input class="form-input"
+                    type="text"
+                    data-search-quick
+                    name="{{name}}"
+                    id="{{name}}"
+                    data-error-message="{{lang 'search.error.empty_field'}}"
+                    placeholder="{{lang 'search.quick_search.input_placeholder'}}"
+                    autocomplete="off"
+                >
+            <button type="submit">
+                <svg title="icon search" class="icon"><use xlink:href="#icon-search"></use></svg>
+            </button>
+        </div>
+    </fieldset>
+</form>
+<section class="quickSearchResults haloCustomScrollbar" data-bind="html: results" data-halo-load="animation"></section>
+<p role="status"
+    aria-live="polite"
+    class="aria-description--hidden"
+    data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
+></p>

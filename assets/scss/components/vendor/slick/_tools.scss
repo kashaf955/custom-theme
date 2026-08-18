@@ -1,0 +1,32 @@
+// Slick Carousel Tools
+// -----------------------------------------------------------------------------
+//
+// Purpose: Tools used to style the slick carousel
+//
+// 1. Plugin SASS assumes you want an icon font, to override this and not output
+// that CSS, setting the url value to null
+//
+// 2. Setting opaque background in old browsers
+//
+// 3. Setting color for carousel arrow buttons
+//
+// -----------------------------------------------------------------------------
+
+@function image-url($url) { // 1
+    @return null;
+}
+
+@mixin carouselOpaqueBackgrounds($color: rgba($carousel-bgColor, 0.9)) { // 2
+    background-color: rgba($color, 1);
+    background-color: $color;
+}
+
+@mixin carousel-arrow-color($arrow-color, $arrow-direction) {
+    @if $arrow-direction == "prev" {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 370.814 370.814'%3E%3Cpolygon points='292.92,24.848 268.781,0 77.895,185.401 268.781,370.814 292.92,345.961 127.638,185.401' stroke='#{str-replace(#{$arrow-color}, "#", "%23")}' fill='#{str-replace(#{$arrow-color}, "#", "%23")}' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill-rule='evenodd' /%3E%3C/svg%3E");
+    }
+    @if $arrow-direction == "next" {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 478.448 478.448'%3E%3Cpolygon points='131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232' stroke='#{str-replace(#{$arrow-color}, "#", "%23")}' fill='#{str-replace(#{$arrow-color}, "#", "%23")}' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill-rule='evenodd' /%3E%3C/svg%3E");
+    }
+}
+

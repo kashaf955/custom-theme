@@ -1,0 +1,128 @@
+// PRODUCT CAROUSEL
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles the product carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display product
+//
+// 1. If there's no JS layout the products out based on the grid.
+//
+// -----------------------------------------------------------------------------
+
+.productCarousel {
+    @include grid-row(
+        $behavior: nest
+    ); // 1
+    min-width: 100%;
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0 0;
+    width: 1px;
+
+    .slick-dots {
+        bottom: -15px;
+
+        @include smin-xs {
+            bottom: -58px;
+        }
+
+        .home-layout-3 & {
+            position: absolute;
+            bottom: -35px;
+        }
+    }
+
+    @include smin-m {
+        width: grid-calc(3, $total-columns);
+    }
+
+    &:not(.slick-initialized) {
+        white-space: nowrap;
+
+        .productCarousel-slide {
+            width: 20%;
+            display: inline-block;
+            white-space: normal;
+
+            &:nth-child(n+6) {
+                display: none;
+            }
+
+            @include smax-xl {
+                width: 25%;
+
+                &:nth-child(n+5) {
+                    display: none;
+                }
+            }
+
+            @include smax-m {
+                width: 33.3334%;
+
+                &:nth-child(n+4) {
+                    display: none;
+                }
+            }
+
+            @include smax-s {
+                width: 50%;
+
+                &:nth-child(n+3) {
+                    display: none;
+                }
+            }
+
+            @include smax-xxxs {
+                width: 100%;
+
+                &:nth-child(n+2) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.productCarousel-slide { // 1
+    padding: 0 5px;
+
+    @include grid-column(6);
+
+    @include smax-xs {
+        width: grid-calc(4, $total-columns);
+    }
+
+    @include smin-m {
+        width: grid-calc(3, $total-columns);
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .home-layout-3 & {
+            padding: 35px 25px;
+            border-right: 1px solid #eeeeee;
+
+            &.slick-active {
+                &:last-of-type {
+                    border-right: none;
+                }
+            }
+
+            .card-body {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    }
+
+    @include smin-l {
+        width: 20%;
+    }
+
+    .card {
+        margin-bottom: 0;
+
+        .card-title {
+            overflow-wrap: break-word;
+        }
+    }
+}

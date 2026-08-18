@@ -1,0 +1,141 @@
+// =============================================================================
+// SWATCH SIZES (CSS)
+// =============================================================================
+
+
+// Swatch Size Changes
+// -----------------------------------------------------------------------------
+
+// do some math
+$value_of_swatch_size : stencilString("swatch_option_size");
+$position_of_x : str-index($value_of_swatch_size, "x");
+$first_value : str-slice($value_of_swatch_size, 0, $position_of_x - 1);
+$second_value : str-slice($value_of_swatch_size, $position_of_x + 1);
+
+[data-product-attribute] {
+    .form-option {
+        padding: 0;
+        z-index: 1;
+        min-width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        vertical-align: top;
+        position: relative;
+        border-radius: 3px;
+        margin-right: 7px;
+        border: 1px solid #c8c8c8;
+        color: stencilColor('color-textBase');
+        .form-option-variant {
+            padding: 0;
+            min-width: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            padding: 0 5px;
+            border-radius: 3px;
+            position: relative;
+        }
+        @include breakpoint("small") {
+            margin-right: 10px;
+        }
+    }
+    .form-option-swatch {
+        border: none;
+        overflow: hidden;
+        line-height: 1;
+        border-radius: 3px;
+        .form-option-variant[title="White"] {
+            border: 1px solid #c8c8c8;
+        }
+        &.swatch-pattern {
+            overflow: visible;
+        }
+        &.swatch-two-color {
+            box-shadow: 0 0 1px #c2c2c2;
+            .form-option-variant {
+                width: 50%;
+                border-radius: 0;
+            }
+        }
+        &.swatch-three-color {
+            box-shadow: 0 0 1px #c2c2c2;
+            .form-option-variant {
+                width: 33.33333%;
+                border-radius: 0;
+            }
+        }
+
+    }
+    .form-option.unavailable {
+        opacity: 1;
+        background-color: transparent;
+        &:before {
+            left: -7px;
+            top: 16px;
+            height: 1px;
+            width: calc(140% - 1px);
+            background-color: #f68863;
+        }
+        .form-option-variant {
+            /*opacity: 0.7;*/
+        }
+    }
+    .form-radio:checked + .form-option.unavailable {
+        box-shadow: 0 0 0 1px #505050;
+    }
+    .form-radio:checked + .form-option {
+        border-color: stencilColor('color-textHeading');
+        box-shadow: 0 0 0 1px stencilColor('color-textHeading');
+    }
+    .form-radio:checked + .form-option-swatch {
+        border: none;
+        box-shadow: 0 0 0 2px stencilColor('color-textHeading');
+    }
+}
+
+.form-option-variant--color,
+.form-option-variant--pattern {
+    height: $second_value +"px";
+    width: $first_value +"px";
+}
+
+.form-option-expanded {
+    background-color: stencilColor("body-bg");
+    border: 1px solid stencilColor("input-border-color-active");
+    left: 0;
+    line-height: 1;
+    opacity: 0;
+    padding: 5px;
+    border-radius: 3px;
+    position: absolute;
+    top: calc(100% + 5px);
+    transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    visibility: hidden;
+    .title {
+        font-size: 12px;
+        margin-bottom: 5px;
+        display: block;
+    }
+}
+
+.form-option:hover {
+    @media (min-width: 1025px) {
+        .form-option-expanded {
+            opacity: 1;
+            visibility: visible;
+            z-index: 30;
+        }
+    }
+}
+
+.form-option-image {
+    background: {
+        position: 50%;
+        repeat: no-repeat;
+        size: cover;
+    }
+    display: block;
+    height: 100px;
+    width: 100px;
+}

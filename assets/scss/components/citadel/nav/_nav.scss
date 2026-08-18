@@ -1,0 +1,277 @@
+// =============================================================================
+// NAV (CSS)
+// =============================================================================
+
+
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+//
+// 1. Remove the margin-left we add to default lists.
+//
+// -----------------------------------------------------------------------------
+
+.navList,
+.navBar {
+    margin-left: 0; // 1
+}
+
+.navList {
+    list-style-type: none;
+    margin: 0;
+    padding-top: 2px;
+
+    .navList-item {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 5px 0;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+
+        a {
+            display: inline-block;
+            vertical-align: top;
+            font-size: $fontSize-root;
+            font-weight: $fontWeight-normal;
+            line-height: 20px;
+            letter-spacing: $letterSpacing-base;
+            text-transform: unset;
+            color: $color-textBase;
+            padding: 0;
+            transition: unset;
+            width: auto;
+
+            >.text {
+                line-height: 20px;
+                display: block;
+            }
+
+            &.navList-action--rating {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 0;
+
+                .rating--small {
+                    margin-right: 5px;
+                }
+            }
+
+            &.is-active {
+                color: $color-textLink-hover;
+
+                >.text {
+                    text-decoration: underline;
+                    text-underline-position: under;
+                }
+            }
+        }
+
+        &.navList-reset {
+            a {
+                color: $color-textLink;
+
+                >.text {
+                    text-decoration: underline;
+                    text-underline-position: under;
+                }
+            }
+        }
+    }
+
+    &.haloCustomScrollbar {
+        max-height: 224px;
+        overflow-y: auto;
+        padding-top: 0;
+        margin-top: 25px;
+        margin-right: 20px;
+        opacity: 1;
+
+        .navList-item:first-child {
+            margin-top: -8px;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .navList-item {
+            a {
+                &:hover {
+                    color: $color-textLink-hover;
+
+                    >.text {
+                        text-decoration: underline;
+                        text-underline-position: under;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navList-action,
+.navBar-action {
+    text-decoration: none;
+}
+
+.navList-action.is-active {
+    font-weight: $navList-action-fontWeight--active;
+}
+
+
+// NavList action checkbox
+// -----------------------------------------------------------------------------
+//
+// Purpose: Display a checkbox next to an actionable link, without actually using
+// a checkbox element.
+//
+// 1. Position checkbox so it is vertically centered
+//
+// -----------------------------------------------------------------------------
+
+.navList-action--checkbox {
+    @include checkRadioBase();
+    @include checkBox-base();
+    margin-bottom: 10px;
+    font-weight: $fontWeight-bold;
+
+    &::before,
+    &::after {
+        top: 50%; // 1
+    }
+
+    &::before {
+        margin-top: -$checkRadio-outerSize / 2;
+    }
+
+    &::after {
+        margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
+    }
+
+    &:focus {
+        @include checkRadioBase--focus();
+    }
+
+    &.is-disabled {
+        @include checkRadioBase--disabled();
+    }
+
+    &.is-checked,
+    &.is-selected {
+        @include checkRadioBase--checked();
+    }
+}
+
+
+// NavList action close
+// -----------------------------------------------------------------------------
+//
+.navList-action-close {
+    background: $navList-action-close-background;
+    border-radius: $navList-action-close-borderRadius;
+    display: inline-block;
+    float: right;
+    line-height: 0;
+    opacity: 0;
+    padding: $navList-action-close-padding;
+    transition: $navList-action-close-transition;
+    visibility: hidden;
+
+    .icon {
+        @include square($navList-action-close-iconSize);
+        fill: stencilColor("color-textLink");
+    }
+
+    .navList-action.is-selected:hover & {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+// Page Subnavigation
+// -----------------------------------------------------------------------------
+
+.navBar--sub {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    @include breakpoint("medium") {
+        margin-bottom: 30px;
+    }
+    @include breakpoint("large") {
+        margin-bottom: 40px;
+    }
+}
+
+.navBar-section {
+    float: none;
+    display: block;
+    border-radius: 3px;
+    .navBar-item {
+        float: none;
+        width: 100%;
+        margin-bottom: 15px;
+        > a,
+        .navBar-action {
+            color: #8c8c8c;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            display: block;
+            border-radius: 3px;
+            border: 1px solid #e2e4e8;
+            background-color: #f7f7f7;
+            transition: all 0.3s ease;
+            .toggleLink-text {
+                font-size: inherit;
+                color: inherit;
+                font-weight: inherit;
+            }
+        }
+        .navBar-action-color--active {
+            color: stencilColor('color-textHeading');
+            background-color: #ffffff;
+        }
+        &.is-active {
+            .navBar-action {
+                color: stencilColor('color-textHeading');
+                background-color: #ffffff;
+            }
+        }
+    }
+    @include breakpoint("small") {
+        margin: 0 -8px !important;
+        font-size: 0;
+        .navBar-item {
+            width: 50%;
+            padding: 0 8px;
+            display: inline-block;
+        }
+    }
+    @include breakpoint("medium") {
+        margin: 0 !important;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-flow: row nowrap;
+        border: 1px solid #e2e4e8;
+        justify-content: space-between;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        .navBar-item {
+            width: 50%;
+            padding: 0;
+            margin-bottom: 0;
+            border-right: 1px solid #e2e4e8;
+            > a,
+            .navBar-action {
+                border: none;
+                border-radius: 0px;
+            }
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+}

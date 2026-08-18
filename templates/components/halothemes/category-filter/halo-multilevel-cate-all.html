@@ -1,0 +1,14 @@
+<a href="{{url}}" aria-label="multilevel category all">
+    {{name}}
+</a>
+<ul>        
+    {{#each children}}
+        <li>
+            {{#if children}}
+                {{> components/halothemes/category-filter/halo-multilevel-cate-all}}
+            {{else}}
+                <a href="{{url}}" aria-label="multilevel category">{{name}}</a>
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>

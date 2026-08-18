@@ -1,0 +1,41 @@
+<section class="halo-productCarousel productCarousel{{#if block_arrow_custom}} arrow-custom{{/if}}"
+    id="{{block_id}}"
+    data-halo-load="animation"
+    data-slick='{
+        "rows": 1,
+        "dots": true,
+        "arrows": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "infinite": false,
+        "responsive": [
+        {
+            "breakpoint": 551,
+            "settings": {
+                "rows": 1,
+                "slidesToScroll": 2,
+                "slidesToShow": 2,
+                "dots": true,
+                "arrows": true
+            }
+        },
+        {
+            "breakpoint": 992,
+            "settings": {
+                "rows": {{#if block_row}}2{{else}}1{{/if}},
+                "slidesToScroll": {{block_column}},
+                "slidesToShow": {{block_column}},
+                "dots": true,
+                "arrows": true
+            }
+        }
+    ]}'>
+    {{#each (limit products block_limit)}}
+        <div>
+            <div class="halo-productCarousel-slide">
+                {{> components/products/card productsnew=../productsnew settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+            </div>
+        </div>
+    {{/each}}
+</section>

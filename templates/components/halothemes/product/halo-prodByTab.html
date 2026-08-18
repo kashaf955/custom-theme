@@ -1,0 +1,93 @@
+<div class="halo-block halo-block-product-tabs halo-bgGray" id="halo-product-{{section}}">
+    <div class="container">
+        <div class="productCarousel-tabs">
+            <ul class="tabs" data-tab data-halo-load="animation" role="tablist">
+                <li class="tab is-active halo-fadeInLeft" data-halo-animate="1" role="presentation">
+                    <a class="tab-title text-center" href="#products_featured" role="tab" aria-selected="true" aria-controls="products_featured">
+                        <span>{{theme_settings.homeProd_2_title}}</span>
+                    </a>
+                </li>
+                <li class="tab halo-fadeInRight" data-halo-animate="2" role="presentation">
+                    <a class="tab-title text-center" href="#products_top_sellers" role="tab" aria-selected="false" aria-controls="products_top_sellers">
+                        <span>{{theme_settings.homeProd_3_title}}</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tabs-contents">
+                <div class="tab-content is-active" id="products_featured" role="tabpanel" aria-hidden="false">
+                    {{#if theme_settings.homeProd_2 '==' 'Featured'}}
+                        {{> components/products/featured
+                            products=products.featured
+                            productsnew=productsnew
+                            block_id="halo-product-block-2"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_2_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{else if theme_settings.homeProd_2 '==' 'New'}}
+                        {{> components/products/new
+                            products=productsnew
+                            productsnew=productsnew
+                            block_id="halo-product-block-2"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_2_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{else if theme_settings.homeProd_2 '==' 'Top'}}
+                        {{> components/products/top
+                            products=products.top_sellers
+                            productsnew=productsnew
+                            block_id="halo-product-block-2"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_2_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{/if}}
+                </div>
+                <div class="tab-content" id="products_top_sellers" role="tabpanel" aria-hidden="true">
+                    {{#if theme_settings.homeProd_3 '==' 'Featured'}}
+                        {{> components/products/featured
+                            products=products.featured
+                            productsnew=productsnew
+                            block_id="halo-product-block-3"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_3_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{else if theme_settings.homeProd_3 '==' 'New'}}
+                        {{> components/products/new
+                            products=productsnew
+                            productsnew=productsnew
+                            block_id="halo-product-block-3"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_3_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{else if theme_settings.homeProd_3 '==' 'Top'}}
+                        {{> components/products/top
+                            products=products.top_sellers
+                            productsnew=productsnew
+                            block_id="halo-product-block-3"
+                            block_limit=theme_settings.homeProd_limit
+                            block_column=theme_settings.homeProd_col
+                            block_layout=theme_settings.homeProd_3_layout
+                            borderTop=false
+                            dots=true
+                        }}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{{region name="home_below_products_tab_by_category"}}}

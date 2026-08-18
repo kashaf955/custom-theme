@@ -1,0 +1,19 @@
+{{inject 'carouselPlayPauseButtonPlay' (lang 'carousel.play_pause_button_play')}}
+{{inject 'carouselPlayPauseButtonPause' (lang 'carousel.play_pause_button_pause')}}
+{{inject 'carouselPlayPauseButtonAriaPlay' (lang 'carousel.play_pause_button_aria_play')}}
+{{inject 'carouselPlayPauseButtonAriaPause' (lang 'carousel.play_pause_button_aria_pause')}}
+
+<button
+    data-play-pause-button
+    type="button pos-relative"
+    class="carousel-play-pause-button"
+    aria-label="{{lang 'carousel.play_pause_button_aria_pause'}}"
+>
+    <svg class="icon play"><use href="#icon-play" /></svg>
+    <svg class="icon pause"><use href="#icon-pause" /></svg>
+    <svg height="40" width="40" class="progressBar">
+        <title>Progress Bar</title>
+        <desc>Progress Bar</desc>
+        <circle cx="24" cy="24" r="20" style="animation-duration: {{add carousel.swap_frequency 3000}}ms;"></circle>
+    </svg>
+</button>

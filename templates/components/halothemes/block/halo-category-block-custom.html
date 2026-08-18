@@ -1,0 +1,37 @@
+<div class="halo-home-section" data-halo-load="animation" id="categoryCustom">
+    <div class="categoryCustom-carousel" data-halo-load="init-carousel">
+        {{#each (limit categories 5)}}
+            <div class="item halo-fadeInUp" data-halo-animate="{{@index}}">
+                <div class="categoryCustom-wrapper layout-2">
+                    <div class="image">
+                        {{#if @index '==' 0}}
+                            <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner1}}" alt="{{name}}"></a>
+                        {{else if @index '==' 1}}
+                            <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner2}}" alt="{{name}}"></a>    
+                        {{else if @index '==' 2}}
+                            <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner3}}" alt="{{name}}"></a>
+                        {{else if @index '==' 3}}
+                            <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner4}}" alt="{{name}}"></a>
+                        {{else if @index '==' 4}}
+                            <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner5}}" alt="{{name}}"></a>
+                        {{/if}}
+                    </div>
+                    <div class="content">
+                        <h6 class="title"><a href="#" aria-label="{{name}}">{{name}}</a></h6>
+                        {{#if @index '==' 0}}
+                            <p class="desc">{{../subDesc1}}</p>
+                        {{else if @index '==' 1}}
+                            <p class="desc">{{../subDesc2}}</p>    
+                        {{else if @index '==' 2}}
+                            <p class="desc">{{../subDesc3}}</p>
+                        {{else if @index '==' 3}}
+                            <p class="desc">{{../subDesc4}}</p>
+                        {{else if @index '==' 4}}
+                            <p class="desc">{{../subDesc5}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

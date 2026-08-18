@@ -1,0 +1,35 @@
+<section class="cwt-hero" aria-label="Hero">
+    <div class="cwt-hero__bg" style="background-image: url({{cdn 'img/cwt-home-hero-bg.png'}});"></div>
+    <div class="cwt-hero__overlay"></div>
+
+    <div class="container cwt-hero__inner">
+        <div class="cwt-hero__panel">
+            <div class="cwt-hero__content">
+                <h2 class="cwt-hero__title">
+                    <span class="cwt-hero__title-line">Chrome That</span>
+                    <span class="cwt-hero__title-line cwt-hero__title-line--gold">Commands</span>
+                    <span class="cwt-hero__title-line">The Road</span>
+                </h2>
+                <p class="cwt-hero__subtitle">Premium truck parts &amp; accessories. Built to shine. Built to last.</p>
+                <div class="cwt-hero__actions">
+                    <a href="/shop-all/" class="button button--primary cwt-hero__btn"><span>Shop All Products</span></a>
+                    <a href="/top-deal/" class="button button--secondary cwt-hero__btn cwt-hero__btn--outline"><span>Shop Top Deals</span></a>
+                </div>
+            </div>
+
+            {{#if theme_settings.show_hl_multi_level}}
+                <div class="halo-home-section halo-home-section-fillter cwt-hero__filter" data-halo-load="animation">
+                    <div class="category-filter">
+                        {{> components/halothemes/category-filter/halo-multilevel-cate-filter-2}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</section>
+
+{{#if theme_settings.show_hl_multi_level}}
+    <div class="container halo_MultiCategory-wrapper cwt-hero__filter-below" data-halo-load="animation">
+        <div class="category-filter-mobile"></div>
+    </div>
+{{/if}}

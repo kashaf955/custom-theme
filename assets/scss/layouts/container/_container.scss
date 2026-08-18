@@ -1,0 +1,48 @@
+// =============================================================================
+// GRID (CSS)
+// =============================================================================
+
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1230px;
+    padding: 0 10px;
+    position: relative;
+    width: layout("fixed");
+
+    .container {
+        padding: 0;
+    }
+
+    &.container--full {
+        @include smin-l {
+            max-width: none;
+            width: 100%;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        @include smin-xxl {
+            max-width: 1600px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    .home-layout-2 & {
+        max-width: 1600px;
+    }
+
+    @include smin-s {
+        padding: 0 15px;
+    }
+}
+
+.home-layout-2:not(.page-type-default) {
+    .body {
+        .container {
+            max-width: 1230px;
+        }
+    }
+}

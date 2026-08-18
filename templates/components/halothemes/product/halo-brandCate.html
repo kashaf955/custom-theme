@@ -1,0 +1,5 @@
+{{#each (limit category.products 9)}}
+    {{#and (if brand.name) (if ../theme_settings.halo_card_brand)}}
+        <div class="card" data-product-id="{{id}}"><div class="brand-item card-brand-{{id}}" data-product-id="{{id}}"></div></div>
+    {{/and}}
+{{/each}}

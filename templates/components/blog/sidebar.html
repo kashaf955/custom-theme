@@ -1,0 +1,14 @@
+<nav class="haloCustomScrollbar">
+	{{> components/halothemes/sidebar/halo-recent-post post=post}}
+
+    {{#if theme_settings.halo-sidebar-products}}
+        {{#if products.top_sellers}}
+            {{> components/halothemes/sidebar/halo-product-sidebar products=products.top_sellers title=theme_settings.halo-sidebar-products-title}}
+        {{else}}
+            {{> components/halothemes/sidebar/halo-product-sidebar products=products.featured title=theme_settings.halo-sidebar-products-title}}
+        {{/if}}
+    {{/if}}
+
+    {{> components/halothemes/sidebar/halo-advertisement-image}}
+    {{> components/halothemes/sidebar/halo-advertisement-content}}
+</nav>

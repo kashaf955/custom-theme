@@ -1,0 +1,17 @@
+{{> components/halothemes/product/halo-blockCate-2
+    section=section
+    productsnew=productsnew
+    cateID=cateID
+    title=title
+    block_countdownTitle=block_countdownTitle
+    block_countdown=block_countdown
+    block_img1=block_img1
+    block_img2=block_img2
+    colLimit=colLimit
+    link=link
+}}
+{{#if section '==' 'block-1'}}
+    {{{region name="home_block_product_by_category_1"}}}
+{{else if section '==' 'block-2'}}
+    {{{region name="home_block_product_by_category_2"}}}
+{{/if}}

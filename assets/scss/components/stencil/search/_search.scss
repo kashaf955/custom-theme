@@ -1,0 +1,113 @@
+// =============================================================================
+// SEARCH
+// =============================================================================
+
+.search-suggestion {
+    margin-bottom: spacing("single") + spacing("third");
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.suggestion-title {
+    margin-top: 0;
+    text-transform: inherit;
+}
+
+.advancedSearch-form {
+    margin-bottom: spacing("double");
+
+    .form-row {
+        margin-bottom: -(spacing("single"));
+    }
+}
+
+.quickSearchResults {
+    max-height: calc(100vh - 200px);
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    margin-top: spacing("single");
+
+    @include smin-m {
+        margin-top: 0;
+    }
+
+    .modal-close {
+        display: none;
+    }
+
+    .productGrid {
+        margin: 0;
+    }
+
+    .productGrid-showMore {
+        display: none
+    }
+
+    .card-figcaption-button {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+.advancedSearch-separator {
+    display: none;
+}
+
+.advancedSearch-title {
+    margin: 0 0 spacing("single");
+    text-transform: inherit;
+}
+
+.search-price-range {
+    label {
+        display: inline;
+
+        input {
+            display: block;
+            padding-left: spacing("single");
+
+            @include smax-xs {
+                display: inline;
+                width: 6rem;
+            }
+        }
+
+        span {
+            @include smax-xs {
+                display: inline;
+                padding-left: spacing("single");
+                padding-right: spacing("single");
+            }
+        }
+    }
+}
+
+.category-suggestion-list {
+    @include grid-row($behavior: "nest");
+    list-style-type: none;
+}
+
+.category-suggestion {
+    @include grid-column(4);
+    font-size: fontSize("smaller");
+}
+
+.search-refine {
+    margin-left: spacing("single");
+}
+
+.quickSearchMessage {
+    font-size: fontSize("smaller");
+    margin: 0;
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 30px;
+}
+
+.search-nav {
+    position: relative;
+}

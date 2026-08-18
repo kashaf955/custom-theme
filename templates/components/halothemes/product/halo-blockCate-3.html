@@ -1,0 +1,106 @@
+<div class="halo-block halo-block-product halo-home-section halo-product-by-cate-block p-b{{#if theme_settings.hl_skin_1}} halo-bgGray{{/if}}" id="halo-product-category-{{section}}" data-halo-load="category-product">
+    <div class="container">
+        {{#each categories}}
+            {{#if id '==' ../cateID}}
+                <div class="halo_prodByCate--wrapper" data-halo-load="animation">
+                    <div class="halo_prodByCate--header halo-fadeInUp" data-halo-animate="0">
+                        <h3 class="page-heading"><a href="{{url}}">{{name}}</a></h3>
+                        <a class="link" href="{{url}}">{{lang 'common.view_more'}}</a>
+                    </div>
+                    <div class="halo_prodByCate--content">
+                        {{#if children}}
+                            <div class="halo_subCategory halo-fadeInUp" data-halo-animate="1">
+                                {{#each (limit children 15)}}
+                                    <div class="item">
+                                        <a href="{{url}}">{{name}}</a>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                        <div class="halo_bannerCategory halo-fadeInUp" data-halo-animate="2">
+                            {{#if ../mainBanner}}
+                                <div class="item banner-desktop">
+                                    <a href="{{url}}" class="banner-link" aria-label="banner link 1">
+                                        <img class="banner-image" src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../mainBanner}}" alt="{{name}}">
+                                    </a>
+                                </div>
+                            {{/if}}
+                        </div>
+                        <div class="halo_prodByCate pos-relative" id="halo-prodByCate-{{id}}" data-category-url="{{url}}">
+                            <div class="loadingOverlay"></div>
+                            <div class="productCarouselByCate">
+                                {{#or (if ../subBanner) (if ../subTitle) (if ../subDesc)}}
+                                    <div class="content-wrapper halo-fadeInUp" data-halo-animate="3">
+                                        <div class="content-left">
+                                            {{#if ../subTitle}}
+                                                <h6 class="title">{{{../subTitle}}}</h6>
+                                            {{/if}}
+                                            {{#if ../subDesc}}
+                                                <span class="desc">{{{../subDesc}}}</span>
+                                            {{/if}}
+                                            {{#or (if ../subTitle) (if ../subDesc)}}
+                                                <a class="link" href="{{url}}">
+                                                    <span>{{lang 'common.shop_now'}}</span>
+                                                    <svg class="icon" title="icon chevron right"><use xlink:href="#icon-chevron-right"/></svg>
+                                                </a>
+                                            {{/or}}
+                                        </div>
+                                        <div class="content-right">
+                                            <a href="{{url}}" aria-label="{{name}}">
+                                                <img src="https://cdn11.bigcommerce.com/s-{{../settings.store_hash}}/images/stencil/original/image-manager/{{../subBanner}}" alt="{{name}}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                {{/or}}
+                            </div>
+                        </div>
+                        <div class="halo_brandCategory">
+                            <div class="brandCarouselByCate"></div>
+                        </div>
+                    </div>
+                </div>
+                {{#if children}}
+                    {{#all (if ../subBanner1) (if ../subBanner2) (if ../subBanner3) (if ../subBanner4) (if ../subBanner5)}}
+                        <div class="halo_bannerbycategory" data-halo-load="animation">
+                            <div class="halo_bannerbycategory-carousel" data-halo-load="init-carousel">
+                                {{#each (limit children 5)}}
+                                    <div class="item halo-fadeInUp" data-halo-animate="{{add @index 1}}">
+                                        <div class="bannerbycategory-wrapper banner-effect-zoom">
+                                            <div class="image">
+                                                {{#if @index '==' 0}}
+                                                    <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../../settings.store_hash}}/images/stencil/original/image-manager/{{../../subBanner1}}" alt="{{name}}"></a>
+                                                {{else if @index '==' 1}}
+                                                    <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../../settings.store_hash}}/images/stencil/original/image-manager/{{../../subBanner2}}" alt="{{name}}"></a>    
+                                                {{else if @index '==' 2}}
+                                                    <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../../settings.store_hash}}/images/stencil/original/image-manager/{{../../subBanner3}}" alt="{{name}}"></a>
+                                                {{else if @index '==' 3}}
+                                                    <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../../settings.store_hash}}/images/stencil/original/image-manager/{{../../subBanner4}}" alt="{{name}}"></a>
+                                                {{else if @index '==' 4}}
+                                                    <a href="{{url}}" aria-label="{{name}}"><img src="https://cdn11.bigcommerce.com/s-{{../../settings.store_hash}}/images/stencil/original/image-manager/{{../../subBanner5}}" alt="{{name}}"></a>
+                                                {{/if}}
+                                            </div>
+                                            <div class="content">
+                                                <h6 class="title"><a href="{{url}}" aria-label="{{name}}">{{name}}</a></h6>
+                                                {{#if @index '==' 0}}
+                                                    <p>{{../../subDesc1}}</p>
+                                                {{else if @index '==' 1}}
+                                                    <p>{{../../subDesc2}}</p>    
+                                                {{else if @index '==' 2}}
+                                                    <p>{{../../subDesc3}}</p>
+                                                {{else if @index '==' 3}}
+                                                    <p>{{../../subDesc4}}</p>
+                                                {{else if @index '==' 4}}
+                                                    <p>{{../../subDesc5}}</p>
+                                                {{/if}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/all}}
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

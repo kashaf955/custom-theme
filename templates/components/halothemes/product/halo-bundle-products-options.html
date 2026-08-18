@@ -1,0 +1,25 @@
+{{#all (if product.options) (if product.can_purchase)}}
+    <a class="button {{#if theme_settings.hl_skin_3}}button--secondary{{else}}button--tertiary{{/if}} halo-toggle-options" href="#">
+        <span class="text">{{lang 'products.choose_options'}}</span>
+    </a>
+    <div class="halo-detail-options halo-productOptions" data-fbt-option-change>
+        <div class="halo-option-header">
+            <span class="halo-option-title">{{lang 'products.choose_options'}}</span>
+            <a href="#" class="halo-option-close" aria-label="Close" role="button">
+                <svg class="icon" role="img" aria-label="{{lang 'common.close'}}">
+                    <title>{{lang 'common.close'}}</title>
+                    <desc>{{lang 'common.close'}}</desc>
+                    <use xlink:href="#icon-close"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="halo-option-content haloCustomScrollbar">
+            {{#each product.options}}
+                {{{dynamicComponent 'components/halothemes/fbt-options'}}}
+            {{/each}}
+            <div class="productAttributes-message">
+                <p class="alertBox-message"></p>
+            </div>
+        </div>
+    </div>
+{{/all}}

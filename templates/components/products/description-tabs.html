@@ -1,0 +1,107 @@
+<ul class="tabs" data-tab>
+    {{#if product.description}}
+        <li class="tab is-active">
+            <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+        </li>
+    {{/if}}
+    {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#if theme_settings.show_shipping_tab}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-shipping">{{lang 'products.shipping_tab'}}</a>
+        </li>
+    {{/if}} 
+    {{#if theme_settings.show_custom_tab}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-custom">{{lang 'products.custom_tab'}}</a>
+        </li>
+    {{/if}}
+    {{#if theme_settings.show_faq_tab}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-faq">{{lang 'products.faq_tab'}}</a>
+        </li>
+    {{/if}}
+</ul>
+<div class="tabs-contents">
+    {{#if product.description}}
+        <div class="tab-content" id="tab-description">
+            <div class="toggle-title">
+                <a class="toggleLink is-open" data-collapsible href="#tab-description-mobile">
+                    <span class="text">{{lang 'products.description'}}</span>
+                    <span class="icon-plus">&nbsp;</span>
+                </a>
+            </div>
+            <div class="toggle-content productView-description is-open{{#if theme_settings.show_more_description_tabs_mb}} show_read_more{{/if}}" id="tab-description-mobile">
+                <div class="description-showmore">{{{product.description}}}</div>
+                {{#if theme_settings.show_more_description_tabs_mb}}
+                    {{#if product.description.length '>' 200}}
+                        <div id="tab-descriptionShowmore" class="tab-descriptionShowmore">
+                            <a href="#" class="button button--tertiary button-showmore show" aria-label="{{lang 'products.read_more'}}" data-show-more-text="{{lang 'products.read_more'}}" data-show-less-text="{{lang 'products.read_less'}}"> 
+                                <span class="text">{{lang 'products.read_more'}}</span>
+                                <svg class="icon" title="icon chevron down"><use xlink:href="#icon-chevron-down"></use></svg>
+                            </a>
+                        </div>
+                    {{/if}}
+                {{/if}}
+        <!--    </div>-->
+        <!--    <p>⚠️ WARNING: Cancer and Reproductive Harm – <a href="https://www.p65warnings.ca.gov">www.p65warnings.ca.gov/<a></p>-->
+        <!--</div>-->
+        
+        <div class="product-warning">
+    ⚠️ WARNING: Cancer and Reproductive Harm – 
+    <a href="https://www.p65warnings.ca.gov" target="_blank" rel="noopener noreferrer">www.p65warnings.ca.gov</a>
+</div>
+<div data-fera-widget='product_reviews' data-fera-id='fwid_3CJAbjW' data-product-id='{{ product.id }}'></div>
+<div data-fera-widget='product_questions' data-fera-id='fwid_3Ezms1M' data-product-id='{{ product.id }}'></div>
+
+    {{/if}}
+    {{#if product.warranty}}
+        <div class="tab-content" id="tab-warranty">
+            <div class="toggle-title">
+                <a class="toggleLink is-open" data-collapsible href="#tab-warranty-mobile">
+                    <span class="text">{{lang 'products.warranty'}}</span>
+                    <span class="icon-plus">&nbsp;</span>
+                </a>
+            </div>
+            <div class="toggle-content" id="tab-warranty-mobile">
+                <div class="warranty-text">{{{product.warranty}}}</div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if theme_settings.show_shipping_tab}}
+        <div class="tab-content" id="tab-shipping">
+            <div class="toggle-title">
+                <a class="toggleLink" data-collapsible href="#tab-shipping-mobile">
+                    <span class="text">{{lang 'products.shipping_tab'}}</span>
+                    <span class="icon-plus">&nbsp;</span>
+                </a>
+            </div>
+            <div class="toggle-content" id="tab-shipping-mobile"></div>
+        </div>
+    {{/if}}
+    {{#if theme_settings.show_custom_tab}}
+        <div class="tab-content" id="tab-custom">
+            <div class="toggle-title">
+                <a class="toggleLink" data-collapsible href="#tab-custom-mobile">
+                    <span class="text">{{lang 'products.custom_tab'}}</span>
+                    <span class="icon-plus">&nbsp;</span>
+                </a>
+            </div>
+            <div class="toggle-content" id="tab-custom-mobile"></div>
+        </div>
+    {{/if}}
+    {{#if theme_settings.show_faq_tab}}
+        <div class="tab-content" id="tab-faq">
+            <div class="toggle-title">
+                <a class="toggleLink" data-collapsible href="#tab-faq-mobile">
+                    <span class="text">{{lang 'products.faq_tab'}}</span>
+                    <span class="icon-plus">&nbsp;</span>
+                </a>
+            </div>
+            <div class="toggle-content" id="tab-faq-mobile"></div>
+        </div>
+    {{/if}}
+</div>

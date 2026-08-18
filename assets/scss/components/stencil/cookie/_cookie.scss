@@ -1,0 +1,40 @@
+.cookieMessage {
+    background: color("greys", "lightest");
+    color: color("greys", "darker");
+    display: none;
+
+    .button {
+        width: grid-calc(12, $total-columns);
+
+        @include smin-m {
+            vertical-align: middle;
+            width: grid-calc(3, $total-columns);
+        }
+
+        @include smin-l {
+            vertical-align: top;
+        }
+    }
+}
+
+.cookieMessage-container {
+    margin: 0 auto;
+    padding: spacing("single");
+
+    @include smin-m {
+        width: grid-calc(10, $total-columns);
+    }
+
+    @include smin-l {
+        width: grid-calc(7, $total-columns);
+    }
+}
+
+.cookieMessage-text {
+    @include smin-m {
+        display: inline-block;
+        padding: 0 spacing("half");
+        vertical-align: middle;
+        width: grid-calc(8, $total-columns);
+    }
+}

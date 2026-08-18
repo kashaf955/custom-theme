@@ -1,0 +1,205 @@
+---
+cart: true
+---
+{{inject 'cancelButtonText' (lang 'common.cancel')}}
+{{#partial "page"}}
+{{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+<div class="page">
+
+    <div class="page-content" data-cart>
+        <div class="breadcrumb-wrapper">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+
+        {{> components/cart/page-title}}
+
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+
+        {{#if cart.items.length}}
+            <div class="loadingOverlay"></div>
+
+            <div data-cart-content class="cart-content-padding-right">
+                
+                {{> components/cart/content}}
+            </div>
+
+            <div class="button-group" data-cart-empty data-go-home>
+                <button id="add-custom-product-btn" class="button">Add Product Protection</button>
+                <button class="button button--tertiary" id="emptyCart" data-confirm="Are you sure you want to empty your cart?"><span>Clear Shopping Cart</span></button>
+                <a class="button button--tertiary" href="{{urls.home}}"><span>Continue Shopping</span></a>
+            </div>
+
+            <div data-cart-totals class="cart-content-padding-right">
+                {{> components/cart/totals}}
+            </div>
+
+            <div class="brand-protective">
+                <div class="item">
+                    {{#if theme_settings.halo-cart-secure-image}}
+                        <div class="halo_securityImage">
+                            <ul>
+                                {{#if theme_settings.halo-product-security-image-1}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-1}}" alt="Security 1">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-2}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-2}}" alt="Security 2">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-3}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-3}}" alt="Security 3">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-4}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-4}}" alt="Security 4">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-5}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-5}}" alt="Security 5">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-6}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-6}}" alt="Security 6">
+                                    </li>
+                                {{/if}}
+                                {{#if theme_settings.halo-product-security-image-7}}
+                                    <li>
+                                        <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-security-image-7}}" alt="Security 7">
+                                    </li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="item">
+                    {{#if theme_settings.halo-cart-secure-content}}
+                        <div class="halo_securityContent">
+                            <span class="icon"><svg title="icon user protection"><use xlink:href="#icon-user-protection"></use></svg></span>
+                            <p class="text">Secure Shopping Guarantee. Your information is secure.</p>
+                        </div>
+                        <p class="description">Need Help? Contact us or Get in touch (077)-670-4157</p>
+                    {{/if}}
+                </div>
+            </div>
+
+            {{{region name="cart_below_totals"}}}
+        {{else}}
+            <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+        
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}
+
+<script>
+    (async function () {
+        const GRAPHQL_ENDPOINT = "/graphql";
+        const STOREFRONT_TOKEN = "{{settings.storefront_api.token}}";
+        const HANDLING_FEE_PRODUCT_ID = 12345; // Replace with actual product ID
+
+        async function getCartId() {
+            try {
+                const response = await fetch("/api/storefront/carts", {
+                    method: "GET",
+                    credentials: "same-origin",
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                const carts = await response.json();
+                return carts.length > 0 ? carts[0].id : await createCart();
+            } catch (error) {
+                console.error("Error fetching cart:", error);
+            }
+        }
+
+        async function createCart() {
+            try {
+                const response = await fetch("/api/storefront/carts", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ line_items: [] })
+                });
+
+                const cartData = await response.json();
+                return cartData.id;
+            } catch (error) {
+                console.error("Error creating cart:", error);
+            }
+        }
+
+        async function addHandlingFee(cartId) {
+            const query = `
+                mutation AddFeeToCart {
+                    cartLinesAdd(
+                        cartId: "${cartId}"
+                        lines: [
+                            {
+                                quantity: 1
+                                productId: ${HANDLING_FEE_PRODUCT_ID}
+                            }
+                        ]
+                    ) {
+                        cart {
+                            id
+                            lines {
+                                edges {
+                                    node {
+                                        id
+                                        quantity
+                                        product {
+                                            entityId
+                                            name
+                                            sku
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `;
+
+            try {
+                const response = await fetch(GRAPHQL_ENDPOINT, {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${STOREFRONT_TOKEN}`
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                const result = await response.json();
+                if (result.errors) {
+                    console.error("GraphQL Error:", result.errors);
+                    return;
+                }
+
+                console.log("Updated Cart:", result);
+                alert("Handling Fee added to cart!");
+            } catch (error) {
+                console.error("Error adding handling fee:", error);
+            }
+        }
+
+        document.getElementById("add-custom-product-btn").addEventListener("click", async function () {
+            const cartId = await getCartId();
+            if (cartId) {
+                await addHandlingFee(cartId);
+            } else {
+                alert("Failed to get or create a cart.");
+            }
+        });
+    })();
+</script>

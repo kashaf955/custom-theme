@@ -1,0 +1,462 @@
+.page:after, .page:before {
+    content: " ";
+    display: table;
+}
+
+.page:after {
+    clear: both;
+}
+
+// Contact Us Page
+// -----------------------------------------------------------------------------
+#contact-us-page {
+    float: none;
+
+    .form-actions {
+        .button {
+            height: 40px;
+            line-height: 38px;
+            width: auto;
+            min-width: 190px;
+            // background-color: #5d6673;
+            // border-color: #5d6673;
+        }
+    }
+}
+
+.halo_location {
+    color: #323232;
+}
+
+[data-contact-form] {
+    padding-top: 10px;
+}
+
+.page-contact {
+    .page-content {
+        padding: 10px 0 0;
+    }
+
+    .halo-contact-info {
+        margin: 50px 0 0 0;
+
+        .title {
+            color: stencilColor('color-textHeading');
+            font-size: stencilNumber("fontSize-root") + 2;
+            font-weight: $fontWeight-bold;
+            text-transform: uppercase;
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid $color-custom-grey;
+            font-size: stencilNumber("fontSize-root");
+            font-weight: fontWeight("normal");
+
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+
+                .store-link:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .store-info {
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-bottom: 17px;
+                line-height: 16px;
+
+                .icon {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 15px;
+                    display: inline-block;
+                    vertical-align: middle;
+
+                    &.icon-pen {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                p {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-bottom: 0;
+                    line-height: 20px;
+
+                    span {
+                        display: block;
+
+                        +span {
+                            margin-top: 7px;
+                        }
+                    }
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: $color-textBase;
+
+                span {
+                    background-image: linear-gradient(currentColor, currentColor);
+                    background-position: 0 90%;
+                    background-repeat: no-repeat;
+                    background-size: 0 1px;
+                    transition: background-size .5s;
+                }
+
+                &:hover span {
+                    background-size: 100% 1px;
+                }
+            }
+
+            .store-link {
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .store-address {
+        margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .halo-contact-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .page-content {
+            width: 70%;
+        }
+
+        .halo-contact-info {
+            width: 30%;
+            padding-left: 30px;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .page-content {
+            width: 880px;
+        }
+
+        .halo-contact-info {
+            width: calc(100% - 880px);
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .halo-contact-info {
+            padding-left: 130px;
+        }
+    }
+}
+
+// FAQs Page
+// -----------------------------------------------------------------------------
+.haloFaqs-header {
+    .page-heading {
+        margin-bottom: 25px;
+    }
+}
+
+.page--faqs {
+    padding-bottom: 80px;
+
+    .page-content {
+        float: none;
+    }
+
+    @include smin-m {
+        display: flex;
+
+        .halo-faqs-sidebar {
+            padding-left: 25px;
+            padding-right: 0;
+
+            +.page-content {
+                order: -1;
+                padding-left: 0;
+                padding-right: 25px;
+            }
+        }
+    }
+}
+
+.halo-faqs-content {
+    position: relative;
+
+    .card {
+        +.card {
+            margin-top: 15px;
+        }
+    }
+
+    .icon-arrow {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 46%;
+        right: 20px;
+        transform: translateY(-50%);
+        font-size: 0;
+
+        &:before {
+            content: '';
+            border: solid black;
+            border-width: 0 1px 1px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            transition: transform .3s ease;
+        }
+    }
+
+    .title {
+        margin: 0;
+        display: block;
+        cursor: pointer;
+        font-size: $fontSize-root;
+        line-height: 20px;
+        border-radius: 3px;
+        padding: 13px 50px 13px 20px;
+        background-color: #f7f7f7;
+        color: #323232;
+        font-weight: $fontWeight-bold;
+        width: 100%;
+        transition: all .3s ease;
+
+        &.collapsed {
+            color: #ffffff;
+            background-color: #484b51;
+
+            .icon-arrow {
+                &:before {
+                    transform: rotate(-135deg);
+                    border: solid #ffffff;
+                    border-width: 0 1px 1px 0;
+                }
+            }
+        }
+
+        @include smin-m {
+            &:hover {
+                color: #ffffff;
+                background-color: #484b51;
+
+                .icon-arrow {
+                    &:before {
+                        border-color: #ffffff;
+                        border-width: 0 1px 1px 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .collapse {
+        position: relative;
+        display: none;
+    }
+
+    .faq-content {
+        text-align: right;
+        margin-top: 30px;
+
+        .button {
+            margin-left: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+
+            .home-layout-1 & {
+                background-color: #4563b3;
+                border: none;
+            }
+        }
+    }
+}
+
+.sidebarBlock_custom {
+    border: none;
+    padding: 0 20px;
+
+    >ul,
+    .sidebarBlock-content {
+        padding: 5px 0 0 0;
+    }
+
+    +.sidebarBlock {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .sidebarBlock-heading {
+        border: none;
+        font-size: 16px;
+        padding-left: 0;
+        padding-right: 0;
+        text-transform: capitalize;
+    }
+
+    .sidebarBlock-content {
+        a {
+            color: stencilColor("color-textLink--hover");
+        }
+
+        p.title {
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+
+        p.link {
+            color: stencilColor("color-textLink--hover");
+        }
+
+        >ul {
+            margin-bottom: 25px;
+            margin-left: 15px;
+            list-style-type: disc;
+            list-style-position: outside;
+
+            li {
+                display: list-item;
+                line-height: 24px;
+            }
+        }
+    }
+
+    @include smin-m {
+        padding: 0;
+    }
+}
+
+@media(max-width: 1024px) {
+    .halo-faqs-sidebar {
+        width: 500px;
+
+        +.halo-faqs-content {
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .haloFaqs-header .page-heading {
+        margin-bottom: -13px;
+    }
+
+    .halo-faqs-sidebar {
+        width: 100%;
+
+        +.halo-faqs-content {
+            width: 100%;
+            padding-left: 0;
+            padding-top: 30px;
+        }
+    }
+
+    .halo-faqs-content .faqs-paragraph+.faqs-paragraph {
+        margin-top: 30px;
+    }
+}
+
+// Theme Features
+// -----------------------------------------------------------------------------
+
+h3.heading-dec-sky {
+    font-size: 30px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+h3.heading-dec-sky span {
+    border-bottom: 3px solid #f04723;
+}
+
+.hl-list-content-banner img {
+    width: 100%;
+    height: 100%;
+}
+
+.hl-row {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+    border-bottom: 1px solid #ebeaea;
+    width: 100%;
+}
+
+.hl-row .hl-icon {
+    order: -1;
+}
+
+.hl-row>div {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.hl-content h4 {
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+
+.hl-content h4 span {
+    border-bottom: 2px solid #f04723;
+}
+
+.hl-row .hl-content {
+    padding: 30px 0 0;
+}
+
+.hl-row:nth-child(2n+1) .hl-icon img {
+    float: left;
+}
+
+@media (min-width: 992px) {
+    .hl-row {
+        padding: 50px 0;
+        display: table;
+    }
+
+    .hl-row>div {
+        width: 50%;
+        float: left;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .hl-list-content-item {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .hl-row .hl-content {
+        padding: 30px 30px 0 30px;
+    }
+}

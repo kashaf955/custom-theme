@@ -1,0 +1,65 @@
+{{#if category.subcategories}}
+    <div class="haloSubCategories border-bottom">
+        <div class="container haloSubCategories__container">
+            <div class="haloSubCategories__carousel"
+                data-slick='{
+                "arrows": true,
+        "dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "rows": 2,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3,
+                    "rows": 1
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 2,
+                    "slidesToScroll": 2,
+                    "rows": 2
+                }
+            }
+        ]
+     }'
+     >
+                {{#each category.subcategories}}
+                    <div class="haloSubCategories__item banner-effect-zoom">
+                        <div class="haloSubCategories__content">
+                            <a class="haloSubCategories__name" href="{{url}}">
+                                <span class="text">{{name}}</span>{{!-- {{#if product_count '>=' 0}}<span class="count">{{product_count}}</span>{{/if}} --}}
+                            </a>
+                            <div class="haloSubCategories__desc">
+                                {{#if description}}
+                                    {{{description}}}  
+                                {{else}}
+                                    <p>Please enter the description of the category</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{#if image}}
+                            <div class="haloSubCategories__img">
+                                <a href="{{url}}">
+                                    <img src="{{getImage image '178x125'}}" alt="{{name}}">
+                                </a>
+                            </div>
+                        {{else}}
+                            <div class="haloSubCategories__img halo-bgGray">
+                                <a href="{{url}}">
+                                    <img class="lazyload" src="{{cdn 'img/CategoryDefault.png'}}" alt="{{name}}">
+                                </a>
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+{{/if}}

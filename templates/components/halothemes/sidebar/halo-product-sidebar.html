@@ -1,0 +1,19 @@
+<div class="sidebarBlock" id="featured-products" data-halo-load="animation">
+    <h2 class="sidebarBlock-heading">{{title}}</h2>
+    <div class="sidebarBlock-content">
+        <div class="products-list"
+	        data-slick='{
+		        "dots": true,
+		        "arrows": true,
+		        "infinite": false,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 1,
+		        "adaptiveHeight": true
+		    }'
+		>
+            {{#each (limit products theme_settings.sidebar_products_per_page)}}
+				{{>components/products/card settings=../settings show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event position=(add @index 1)}}
+            {{/each}}
+        </div>
+    </div>
+</div>

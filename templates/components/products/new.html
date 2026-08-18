@@ -1,0 +1,74 @@
+<div class="halo-block halo-block-product{{#unless theme_settings.hl_skin_2}} halo-bgGray{{/unless}}{{#if borderTop}} border-top{{/if}}" data-halo-load="animation">
+    <div class="container">
+        {{#or (if link) (if block_countdown)}}
+            <div class="halo-block-header halo-block-header-wrapper halo-fadeInUp" data-halo-animate="0">
+                {{#if title}}
+                    <h3 class="title">{{title}}</h3>
+                {{/if}}
+                {{#if block_countdown}}
+                    <div class="productBlock--countdown" data-countdown="{{block_countdown}}"></div>
+                {{/if}}
+                {{#if link}}
+                    <a class="link" href="{{link}}" aria-label="{{#if theme_settings.hl_skin_1}}{{lang 'common.view_all'}}{{else if theme_settings.hl_skin_2}}{{lang 'common.view_more'}}{{/if}}">
+                        <span>{{#if theme_settings.hl_skin_1}}{{lang 'common.view_all'}}{{else if theme_settings.hl_skin_2}}{{lang 'common.view_more'}}{{/if}}</span>
+                    </a>
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="halo-block-header halo-fadeInUp" data-halo-animate="1">
+                {{#if title}}
+                    <h3 class="title">{{title}}</h3>
+                {{/if}}
+            </div>
+        {{/or}}
+        {{#if block_layout}}
+            {{> components/products/carousel
+                products=products
+                productsnew=productsnew
+                customArrowClass='js-new-product-arrow'
+                block_id=block_id
+                block_limit=block_limit
+                block_column=block_column
+                dots=dots
+                list="New Products"
+            }}
+        {{else}}
+            {{> components/products/no-carousel
+                products=products
+                productsnew=productsnew
+                block_id=block_id
+                block_limit=block_limit
+                block_column=block_column
+                dots=dots
+                list="New Products"
+            }}
+        {{/if}}
+        {{#or (if block_img1) (if block_img2)}}
+            <div class="halo_bannerCategory c-2">
+                {{#if block_img1}}
+                    <div class="item halo-fadeInLeft" data-halo-animate="1">
+                        <div class="image banner-effect-zoom">
+                            <a class="link" href="#">
+                                <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{block_img1}}" alt="{{block_img1}}">
+                            </a>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#if block_img2}}
+                    <div class="item halo-fadeInRight" data-halo-animate="2">
+                        <div class="image banner-effect-zoom">
+                            <a class="link" href="#">
+                                <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{block_img2}}" alt="{{block_img2}}">
+                            </a>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        {{/or}}
+    </div>
+</div>
+{{#if page_type '==' 'default'}}
+    {{{region name="home_below_new_products"}}}
+{{else}}
+    {{{region name="block_below_new_products"}}}
+{{/if}}

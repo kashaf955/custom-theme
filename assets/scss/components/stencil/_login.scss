@@ -1,0 +1,420 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+//
+// Let press Ctrl + f and type of paste the key, then press Enter to search the content
+//
+//  1.0 Login page
+//
+//  2.0 Account created
+//
+//  3.0 Forgot pass
+//
+//  4.0 New password
+//
+//  RESPONSIVE
+//
+//
+// -----------------------------------------------------------------------------
+
+.login-row {
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+
+    .login-form {
+        width: 100%;
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .new-customer {
+        width: 100%;
+        display: block;
+    }
+
+    @include breakpoint("small") {
+        margin-top: 55px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .login-form {
+            width: 50%;
+            padding-top: 30px;
+            padding-right: 30px;
+            margin-bottom: 0;
+        }
+
+        .new-customer {
+            width: 50%;
+        }
+    }
+
+    @include breakpoint("medium") {
+        .login-form {
+            padding-right: 50px;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .login-form {
+            width: 470px;
+            padding-right: 0px;
+        }
+
+        .new-customer {
+            width: 600px;
+        }
+    }
+}
+
+.login-form {
+    .form-field-login-pass {
+        margin: 0 0 14px;
+    }
+    .form-actions {
+        margin-top: 15px;
+
+        .button {
+            min-width: 160px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #5d6673;
+            border-color: #5d6673;
+            height: 40px;
+            line-height: 38px;
+        }
+
+        .forgot-password {
+            display: block;
+            position: relative;
+            margin-top: 0;
+            color: stencilColor('color-textLink--hover');
+            width: auto;
+            line-height: 38px;
+            margin-bottom: 0;
+
+            @include breakpoint("medium") {
+                margin-top: 0;
+                margin-left: 25px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.new-customer {
+    border-radius: 3px;
+    padding: 25px 20px;
+    background-color: #f7f7f7;
+
+    .panel-header,
+    .panel-body {
+        background-color: transparent;
+    }
+
+    .panel-header {
+        padding: 0;
+
+        .panel-title {
+            font-size: 16px;
+            line-height: 1;
+            margin-bottom: 20px;
+            font-family: $fontFamily-headings;
+            color: stencilColor('color-textHeading');
+            font-weight: stencilFontWeight("headings-font");
+
+            text-transform: capitalize;
+        }
+    }
+
+    .panel-body {
+        padding: 0;
+        margin-bottom: 0;
+
+        .new-customer-intro {
+            margin-bottom: 7px;
+        }
+
+        ul li {
+            line-height: 30px;
+        }
+    }
+
+    .button {
+        margin-top: 5px;
+        min-width: 200px;
+        margin-bottom: 0;
+        height: 40px;
+        line-height: 38px;
+        background-color: #5d6673;
+        border-color: #5d6673;
+    }
+
+    @include breakpoint("medium") {
+        padding: 30px 40px 35px;
+    }
+}
+
+.page-account-created {
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    .alertBox {
+        display: inline-block;
+
+        .alertBox-message {
+            width: auto;
+        }
+    }
+
+    .button {
+        margin: 20px 0 0 0;
+    }
+}
+
+.account-body {
+    .form-actions {
+        .button {
+            background-color: #5d6673;
+            border-color: #5d6673;
+            margin-left: 0;
+        }
+    }
+}
+
+.button[value="Create Account"] {
+    min-width: 250px;
+    max-width: 250px;
+    height: 40px;
+    line-height: 38px;
+}
+
+.page-type-shippingaddressform {
+    form[data-address-form] {
+        .button {
+            min-width: 180px;
+        }
+    }
+}
+
+.forgot-password-form {
+    .form-prefixPostfix {
+        display: block;
+
+        .button {
+            width: auto;
+            display: inline-block;
+            margin-top: 15px;
+            min-width: 200px;
+        }
+
+        @include breakpoint("large") {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .button {
+                margin-top: 0;
+                margin-left: 20px;
+            }
+
+            .form-inlineMessage {
+                position: absolute;
+                bottom: -10px;
+            }
+        }
+    }
+}
+
+.new-password-form {
+    .button[value="Continue"] {
+        min-width: 200px;
+    }
+}
+
+.gift_certificate-page {
+    &.account {
+        margin-top: 0;
+    }
+
+    >ol {
+        li {
+            margin-bottom: 7px;
+        }
+    }
+
+    >h3 {
+        font-size: 16px;
+        margin-top: 0;
+        line-height: 1.3;
+        margin-bottom: 15px;
+
+        @include breakpoint("small") {
+            font-size: 22px;
+        }
+    }
+}
+
+#gift-certificate-balance {
+    .form-prefixPostfix {
+        display: block;
+
+        .button {
+            width: auto;
+            margin-top: 15px;
+            min-width: 200px;
+        }
+
+        @include breakpoint("large") {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .button {
+                margin-top: 0;
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+#gift-certificate-form {
+    @include breakpoint("small") {
+        #gift-certificate-preview {
+            min-width: 120px;
+        }
+
+        #gift-certificate-submit {
+            min-width: 300px;
+        }
+    }
+
+    @include breakpoint("medium") {
+        #gift-certificate-preview {
+            min-width: 160px;
+        }
+
+        #gift-certificate-submit {
+            min-width: 400px;
+        }
+    }
+}
+
+.login-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    top: 100px;
+    width: 300px;
+    border-radius: 3px;
+    position: absolute;
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+    .form-input {
+        padding: 8px 15px;
+        min-height: 36px;
+    }
+
+    .button {
+        padding: 11px 15px 10px 15px;
+    }
+
+    .login-header {
+        display: flex;
+        align-items: center;
+        padding: 15px 25px;
+        justify-content: space-between;
+        border-bottom: 1px solid #eeeeee;
+
+        .login-title {
+            margin: 0;
+            line-height: 1;
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+
+        .login-close {
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            line-height: 15px;
+            font-size: 30px;
+            color: #323232;
+        }
+    }
+
+    .login-content {
+        text-align: left;
+        padding: 15px 25px 25px 25px;
+        text-transform: none;
+
+        .login-intro {
+            color: #8c8c8c;
+            margin-bottom: 15px;
+        }
+
+        .login-form {
+            margin-bottom: 0;
+        }
+
+        .form-field {
+            margin-bottom: 17px;
+        }
+
+        .form-actions {
+            margin-top: 0;
+
+            .forgot-password,
+            .button {
+                margin-left: 0;
+            }
+
+            .forgot-password {
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .button {
+                width: 100%;
+                display: block;
+
+                &:hover {
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .new-customer {
+        padding: 15px 25px 30px 25px;
+        background-color: #f7f7f7;
+        border-radius: 0 0 3px 3px;
+
+        .new-customer-intro {
+            color: #8c8c8c;
+            margin-bottom: 15px;
+            text-transform: none;
+        }
+
+        .button {
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+.login-content {
+    text-align: left;
+}
+
+.is-open+.login-dropdown {
+    top: 44px;
+    opacity: 1;
+    visibility: visible;
+}

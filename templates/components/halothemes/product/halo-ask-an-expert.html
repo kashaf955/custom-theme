@@ -1,0 +1,88 @@
+<div class="halo_ask-an-experts">
+    {{#all (if theme_settings.halo_ask_an_expert) (if theme_settings.halo_ask_an_expert_pagelink)}}
+        <div class="contact">
+            {{#if theme_settings.halo-product-service-img}}
+                <div class="image-contact">
+                    <img src="https://cdn11.bigcommerce.com/s-{{settings.store_hash}}/images/stencil/original/image-manager/{{theme_settings.halo-product-service-img}}" alt="contact image" title="contact image">
+                </div>
+            {{/if}}
+            <div class="content-contact">
+                {{#if theme_settings.halo-ask-an-expert-title}}
+                    <p class="text">{{theme_settings.halo-ask-an-expert-title}}</p>
+                {{/if}}
+                <div class="link">
+                    {{#if settings.phone_number}}
+                        <h4 class="number-phone">{{settings.phone_number}}</h4>
+                    {{/if}}
+                    <a href="#" class="ask-an-expert-link" data-reveal-id="halo-ask-an-expert">
+                        {{theme_settings.halo-product-service-label}} <svg class="icon" title="icon chevron right"><use xlink:href="#icon-chevron-right"></use></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {{/all}}
+    {{#if theme_settings.halo-product-service-enable}}
+        <ul class="services">
+            {{#if theme_settings.halo-product-service-item1-title}}
+                <li class="item">
+                    <div class="service-item">
+                        <div class="icons">
+                            <em class="icon"><svg title="slick checked"><use xlink:href="#icon-checked"></use></svg></em>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">{{theme_settings.halo-product-service-item1-title}}</h4>
+                            {{#if theme_settings.halo-product-service-item1-text}}
+                                <p class="description">{{theme_settings.halo-product-service-item1-text}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if theme_settings.halo-product-service-item2-title}}
+                <li class="item">
+                    <div class="service-item">
+                        <div class="icons">
+                            <em class="icon"><svg title="icon phone"><use xlink:href="#icon-phone-2"></use></svg></em>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">{{theme_settings.halo-product-service-item2-title}}</h4>
+                            {{#if theme_settings.halo-product-service-item2-text}}
+                                <p class="description">{{theme_settings.halo-product-service-item2-text}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if theme_settings.halo-product-service-item3-title}}
+                <li class="item">
+                    <div class="service-item">
+                        <div class="icons">
+                            <em class="icon"><svg title="icon wrench"><use xlink:href="#icon-wrench"></use></svg></em>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">{{theme_settings.halo-product-service-item3-title}}</h4>
+                            {{#if theme_settings.halo-product-service-item3-text}}
+                                <p class="description">{{theme_settings.halo-product-service-item3-text}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if theme_settings.halo-product-service-item4-title}}
+                <li class="item">
+                    <div class="service-item">
+                        <div class="icons">
+                            <em class="icon"><svg title="slick cubes"><use xlink:href="#icon-cubes"></use></svg></em>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">{{theme_settings.halo-product-service-item4-title}}</h4>
+                            {{#if theme_settings.halo-product-service-item4-text}}
+                                <p class="description">{{theme_settings.halo-product-service-item4-text}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+        </ul>
+    {{/if}}
+</div>

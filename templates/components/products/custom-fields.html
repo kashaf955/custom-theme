@@ -1,0 +1,13 @@
+{{#filter product.custom_fields '__free-shipping' property='name'}}
+    <div class="sale-badge halo-badge">
+        <div class="sale-and-free_ship">
+            <span class="text cstm-free-ship">Free Shipping</span>
+        </div>
+    </div>
+{{/filter}}
+
+
+{{#each product.custom_fields}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/each}}

@@ -1,0 +1,32 @@
+<div class="card card-custom" data-product-id="{{id}}">
+    <a class="card-link" href="{{url}}">
+        <div class="card-img-container">
+            {{> components/common/responsive-img
+                image=image
+                class="card-image"
+                fallback_size=theme_settings.product_sidebar_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+            }}
+        </div>
+    </a>
+    <div class="card-content">
+        <h4 class="card-title">
+            {{#if theme_settings.halo_card_title '==' 'ellipsis'}}
+                <a href="{{url}}" class="card-ellipsis" style="-webkit-box-orient: vertical;">{{name}}</a>
+            {{else}}
+                <a href="{{url}}">{{name}}</a>
+            {{/if}}
+        </h4>
+        <div class="card-price" data-test-info-type="price">
+            {{#or customer (unless settings.hide_price_from_guests)}}
+                {{> components/products/price price=price}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+        <a href="{{url}}" class="card-action">
+            <span class="text">{{lang 'products.details_link'}}</span>
+        </a>
+    </div>
+</div>

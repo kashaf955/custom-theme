@@ -1,0 +1,65 @@
+<nav class="navUser">
+    <div class="container">
+        <div class="navUser--left">
+            {{#if theme_settings.hl_header_topText1}}
+                <div class="navUser-item">
+                    <a class="navUser-action" href="{{theme_settings.hl_header_topLink1}}" aria-label="{{theme_settings.hl_header_topText1}}">
+                        <svg class="icon big" title="icon check"><use xlink:href="#icon-check"></use></svg>
+                        <span>{{theme_settings.hl_header_topText1}}</span>
+                    </a>
+                </div>
+            {{/if}}
+            {{#if theme_settings.hl_header_topText2}}
+                <div class="navUser-item">
+                    <a class="navUser-action" href="{{theme_settings.hl_header_topLink2}}" aria-label="{{theme_settings.hl_header_topText2}}">
+                        <svg class="icon big" title="icon check"><use xlink:href="#icon-check"></use></svg>
+                        <span>{{theme_settings.hl_header_topText2}}</span>
+                    </a>
+                </div>
+            {{/if}}
+            {{#if theme_settings.hl_header_topText3}}
+                <div class="navUser-item">
+                    <a class="navUser-action" href="{{theme_settings.hl_header_topLink3}}" aria-label="{{theme_settings.hl_header_topText3}}">
+                        <svg class="icon big" title="icon check"><use xlink:href="#icon-check"></use></svg>
+                        <span>{{theme_settings.hl_header_topText3}}</span>
+                    </a>
+                </div>
+            {{/if}}
+        </div>
+        <div class="navUser--right">
+            {{#if customer}}
+                <div class="navUser-item">
+                    <a class="navUser-action account-name" href="{{urls.account.index}}" data-login-form>{{lang 'common.account'}}</a>
+                </div>
+            {{else}}
+                <div class="navUser-item">
+                    <a class="navUser-action account-name" href="{{urls.auth.login}}">{{lang 'common.account'}}</a>
+                </div>
+            {{/if}}
+            {{#if settings.gift_certificates_enabled}}
+                <div class="navUser-item">
+                    <a class="navUser-action" href="{{urls.gift_certificate.purchase}}" aria-label="{{lang 'common.gift_cert'}}">{{lang 'common.gift_cert'}}</a>
+                </div>
+            {{/if}}
+            {{#if customer}}
+                <div class="navUser-item navUser-item--account">
+                    <a class="navUser-action account-name" href="{{urls.account.index}}">{{customer.name}}.</a>
+                    <a class="navUser-action" href="{{urls.auth.logout}}">
+                        {{lang 'common.logout'}}
+                    </a>
+                </div>
+            {{else}}
+                <div class="navUser-item navUser-item--account">
+                    <a class="navUser-action" href="{{urls.auth.login}}" data-login-form>{{lang 'common.login'}}</a>
+                    {{#if settings.account_creation_enabled}}
+                        <span class="navUser-or">or</span>
+                        <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.create_account'}}</a>
+                    {{/if}}
+                </div>
+            {{/if}}
+            <div class="navUser-item">
+                {{> components/common/currency-selector}}
+            </div>
+        </div>
+    </div>
+</nav>

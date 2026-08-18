@@ -1,0 +1,22 @@
+{{#each categories}}
+    <option value="{{id}}">{{name}}</option>
+    {{#if children}}
+        {{#each children}}
+            <option value="{{id}}">&emsp;{{name}}</option>
+            {{#if children}}
+                {{#each children}}
+                    <option value="{{id}}">&emsp;&emsp;{{name}}</option>
+                    {{#if children}}
+                        {{#each children}}
+                            {{#if children}}
+                                <option value="{{id}}">&emsp;&emsp;&emsp;{{name}}</option>
+                            {{else}}
+                                <option value="{{id}}">&emsp;&emsp;&emsp;{{name}}</option>
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{/each}}
