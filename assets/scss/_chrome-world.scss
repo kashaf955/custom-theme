@@ -2927,20 +2927,12 @@ body {
 // Related / similar products carousel — no gutter existed between slides at
 // all (cards rendered edge-to-edge), since this shared partial has no
 // dedicated spacing rule anywhere in the base theme.
-//
-// Also fixes a real base-theme bug: .productCarousel sets width: 1px as its
-// unconditional default, then width: grid-calc(3, $total-columns) at medium+
-// screens (a no-JS grid fallback that was never actually guarded behind
-// :not(.slick-initialized)) — that constrains the WHOLE carousel wrapper to
-// a fraction of the page even once slick is initialized and working
-// correctly inside it, which is why the section renders far narrower than
-// the hero despite the products themselves displaying fine.
-.productCarousel,
-.halo-productCarousel {
-    width: 100% !important;
-    min-width: 100% !important;
-}
-
+// (The actual width bug in .productCarousel — width: 1px / grid-calc(3,...) —
+// is fixed at the source in assets/scss/components/stencil/productCarousel/
+// _productCarousel.scss, not overridden here. Forcing min-width: 100%
+// !important from this file fought that rule in a way that produced a
+// circular/blown-up computed size once slick initialized, which was worse
+// than the original bug.)
 .halo-productCarousel {
     .halo-productCarousel-slide {
         padding: 0 10px;

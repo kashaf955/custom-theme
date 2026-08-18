@@ -17,7 +17,7 @@
     position: relative;
     padding: 0;
     margin: 0 0;
-    width: 1px;
+    width: 100%;
 
     .slick-dots {
         bottom: -15px;
@@ -32,12 +32,15 @@
         }
     }
 
-    @include smin-m {
-        width: grid-calc(3, $total-columns);
-    }
-
+    // 1: this no-JS grid fallback (including its width override below) must
+    // stay scoped to :not(.slick-initialized) — once slick loads, it should
+    // not still be constraining the carousel's own width; that was the bug.
     &:not(.slick-initialized) {
         white-space: nowrap;
+
+        @include smin-m {
+            width: grid-calc(3, $total-columns);
+        }
 
         .productCarousel-slide {
             width: 20%;
