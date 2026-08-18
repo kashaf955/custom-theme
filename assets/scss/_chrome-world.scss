@@ -2576,6 +2576,18 @@ body {
 .productView,
 .productView--quickView {
     color: $cwt-text-primary;
+
+    // Real base-theme bug, found via DevTools: .productView-images floats
+    // left and .productView-details floats right at >=768px (grid-column(12)
+    // defaults to float, and .productView-details explicitly sets float:
+    // right), but .productView itself has no clearfix. Its box height
+    // collapses, so every section that follows in the DOM — description
+    // tabs, bundle products, and specifically the related-products carousel
+    // — wraps into the leftover space beside the still-floating buy box
+    // instead of flowing below it at full width. This is the actual root
+    // cause of the related-products carousel rendering at roughly half
+    // width; the carousel's own CSS was already correct.
+    @include clearfix;
 }
 
 // --- Gallery -----------------------------------------------------------------
