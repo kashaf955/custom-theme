@@ -4535,6 +4535,171 @@ a.button--tertiary {
     }
 }
 
+// =============================================================================
+// Cart preview sidebar (click cart icon)
+// =============================================================================
+.halo-cart-sidebar {
+    background-color: $cwt-charcoal !important;
+    color: $cwt-text-primary !important;
+    border-left: 1px solid $cwt-border-subtle;
+
+    .halo-sidebar-header {
+        background-color: $cwt-black !important;
+        border-bottom: 1px solid $cwt-border-subtle !important;
+
+        .title {
+            color: #ffffff !important;
+        }
+
+        .close svg,
+        .halo-sidebar-close svg {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+    }
+
+    .halo-sidebar-wrapper {
+        background-color: $cwt-charcoal !important;
+        color: $cwt-text-primary !important;
+    }
+
+    .previewCart {
+        background-color: $cwt-charcoal !important;
+        color: $cwt-text-primary !important;
+    }
+
+    .previewCartList {
+        background-color: $cwt-charcoal !important;
+
+        li {
+            border-bottom-color: $cwt-border-subtle !important;
+        }
+    }
+
+    .previewCartItem {
+        border-top-color: $cwt-border-subtle !important;
+        color: $cwt-text-primary !important;
+    }
+
+    .previewCartItem-image {
+        background-color: #ffffff;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .previewCartItem-brand {
+        color: $cwt-text-tertiary !important;
+    }
+
+    .previewCartItem-name,
+    .previewCartItem-name a,
+    .previewCartItem-name span {
+        color: $cwt-text-primary !important;
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .previewCartItem-variant,
+    .previewCartItem-options,
+    .previewCartItem-options span {
+        color: $cwt-text-secondary !important;
+    }
+
+    .previewCartItem-price,
+    .previewCartItem-price span,
+    .previewCartItem-price .multiply {
+        color: $cwt-gold-bright !important;
+    }
+
+    .previewCartItem-remove {
+        color: $cwt-text-tertiary !important;
+
+        svg {
+            fill: $cwt-text-tertiary !important;
+        }
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+
+            svg {
+                fill: $cwt-gold-bright !important;
+            }
+        }
+    }
+
+    .previewCartItem-qty {
+        .form-increment {
+            border: 1px solid $cwt-border-strong !important;
+            background: $cwt-elevated !important;
+        }
+
+        .form-input--incrementTotal {
+            background: transparent !important;
+            color: $cwt-text-primary !important;
+            border-color: transparent !important;
+        }
+
+        .button--icon {
+            background: transparent !important;
+            color: $cwt-text-secondary !important;
+
+            svg {
+                fill: $cwt-text-secondary !important;
+                stroke: $cwt-text-secondary !important;
+            }
+
+            &:hover {
+                color: $cwt-gold-bright !important;
+
+                svg {
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
+                }
+            }
+        }
+    }
+
+    .previewCartTotalsPrice {
+        background-color: $cwt-elevated !important;
+        border-top: 1px solid $cwt-border-subtle !important;
+    }
+
+    .previewCartTotals-label,
+    .previewCartTotals-value,
+    .previewCartTotals-value span {
+        color: $cwt-text-primary !important;
+    }
+
+    .previewCartTotals.grandTotal {
+        .previewCartTotals-label,
+        .previewCartTotals-value,
+        .previewCartTotals-value span {
+            color: #ffffff !important;
+        }
+    }
+
+    .previewCartAction {
+        background-color: $cwt-elevated !important;
+        border-top: 0 !important;
+    }
+
+    .previewCart-additionalCheckoutButtons,
+    .previewCart-acceleratedCheckoutButtons {
+        background-color: $cwt-elevated !important;
+    }
+
+    .previewCartAction-checkoutMultiple a {
+        color: $cwt-gold-bright !important;
+        border-bottom-color: $cwt-gold-bright !important;
+    }
+
+    .previewCart-emptyBody {
+        color: $cwt-text-secondary !important;
+    }
+}
+
 // "Add Product Protection" / "Clear Shopping Cart" / "Continue Shopping" row
 [data-cart-empty] {
     #add-custom-product-btn {
