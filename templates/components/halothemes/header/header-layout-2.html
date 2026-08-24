@@ -1,12 +1,11 @@
 <header class="header halo_header-layout-2 halo-fadeInLoad" data-halo-animate="0" role="banner">
-    {{!-- Top bar always on — phone & email hardcoded in navigation-2 --}}
+    {{!-- 1. Top bar — phone & email --}}
     <div class="halo_topHeader cwt-top-header">
         {{> components/common/navigation-2}}
     </div>
 
-    {{!-- Trust signals: price match, returns, order tracking, secure checkout --}}
-    {{> components/halothemes/header/cwt-trust-bar}}
-
+    {{!-- 2. Main header — hamburger, logo, account/cart --}}
+    {{!-- 3. Mobile search sits under logo row --}}
     <div class="halo_middleHeader">
         <div class="middleHeader-container cwt-header-main cwt-site-width">
             <div class="middleHeader-item left cwt-header-logo">
@@ -92,6 +91,9 @@
             </div>
         </div>
     </div>
+
+    {{!-- 4. Trust signals under search on mobile (Best Price, Returns, etc.) --}}
+    {{> components/halothemes/header/cwt-trust-bar}}
 
     <div class="halo_bottomHeader">
         <div class="navPages-container" id="menu" data-menu>

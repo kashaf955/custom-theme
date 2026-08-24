@@ -551,6 +551,14 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
         max-height: none !important;
         overflow: visible !important;
     }
+
+    @media (max-width: 1024px) {
+        overflow: visible !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        position: relative;
+        top: 0;
+    }
 }
 
 // Top utility bar (phone, email, help center, about us)
@@ -564,6 +572,9 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     visibility: visible !important;
     opacity: 1 !important;
     width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
 
     .navUser {
         background-color: $cwt-black !important;
@@ -579,7 +590,7 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     .navUser .container {
         display: flex !important;
         align-items: center;
-        min-height: 38px;
+        min-height: 0;
         padding: 6px 15px;
         box-sizing: border-box;
         overflow-x: hidden;
@@ -700,90 +711,112 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     @media (max-width: 1024px) {
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden;
+        overflow: visible !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        .navUser {
+            padding: 0 !important;
+            margin: 0 !important;
+            min-height: 0 !important;
+            height: auto !important;
+        }
 
         .navUser .container {
-            flex-wrap: wrap;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap;
             justify-content: center;
-            gap: 10px;
-            padding: 10px 12px;
-            overflow: visible;
+            align-items: center;
+            gap: 12px;
+            min-height: 0 !important;
+            height: auto !important;
+            padding: 8px 12px !important;
+            margin: 0 !important;
+            overflow: visible !important;
         }
 
-        .navUser--left,
         .navUser--center,
         .navUser--right {
-            flex: 1 1 100%;
-            width: 100%;
-            max-width: 100%;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .navUser--right {
-            display: none !important; // Contact / About / etc. live in hamburger
-        }
-
-        .navUser--left,
-        .cwt-top-contact {
-            gap: 8px 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            .navUser-action {
-                white-space: normal;
-                justify-content: center;
-                text-align: center;
-
-                span {
-                    white-space: normal;
-                    word-break: break-word;
-                }
-            }
-        }
-
-        .text-promotion .text {
-            font-size: 11px;
-            line-height: 1.4;
-        }
-    }
-
-    @media (max-width: 550px) {
-        .navUser--center {
             display: none !important;
         }
 
         .navUser--left,
         .cwt-top-contact {
-            flex-direction: column;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 8px 14px;
             width: 100%;
+            max-width: 100%;
+            flex: 0 0 auto !important; // don't stretch — kills empty gap
+            min-height: 0 !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: center;
 
             .navUser-item {
-                width: 100%;
+                width: auto !important;
                 max-width: 100%;
+                flex: 0 1 auto;
+                margin: 0 !important;
                 justify-content: center;
             }
 
             .navUser-action {
-                width: 100%;
-                max-width: 100%;
+                display: inline-flex !important;
+                align-items: center;
                 justify-content: center;
+                gap: 6px;
+                width: auto;
+                max-width: 100%;
+                padding: 0 !important;
+                margin: 0 !important;
+                line-height: 1.2 !important;
+                white-space: nowrap;
 
                 span {
+                    display: inline !important;
                     font-size: 11px !important;
-                    line-height: 1.35;
+                    line-height: 1.2 !important;
+                    color: #ffffff !important;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 58vw;
+                }
+
+                .icon,
+                svg {
+                    width: 13px !important;
+                    height: 13px !important;
+                    flex-shrink: 0;
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
                 }
             }
         }
+    }
 
+    @media (max-width: 550px) {
         .navUser .container {
-            padding: 10px;
+            padding: 6px 10px !important;
+            gap: 8px;
         }
 
-        .navUser--right .navUser-action {
-            font-size: 11px !important;
+        .navUser--left,
+        .cwt-top-contact {
+            gap: 6px 10px;
+
+            .navUser-action span {
+                font-size: 10px !important;
+                max-width: 46vw;
+            }
         }
     }
 }
@@ -1916,8 +1949,8 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     }
 
     .cwt-header-main {
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 6px;
+        padding-bottom: 6px;
         gap: 8px;
         max-width: 100% !important;
         overflow-x: hidden;
@@ -1928,6 +1961,7 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
         align-items: center;
         width: 100%;
         box-sizing: border-box;
+        margin: 0 !important;
 
         .cwt-header-search {
             display: none !important;
@@ -1993,7 +2027,8 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     .halo_middleHeader .mobile_search_custom {
         display: block !important;
         width: 100%;
-        padding: 0 12px 10px;
+        padding: 0 12px 8px;
+        margin: 0 !important;
         background-color: $cwt-black;
 
         .header-search {
@@ -2376,7 +2411,7 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 
 .cwt-hero__title-line {
     display: block;
-    font-size: clamp(28px, 5vw, 52px);
+    font-size: #{"clamp(28px, 5vw, 52px)"};
     color: #ffffff;
 
     &--gold {
@@ -2386,7 +2421,7 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 
 .cwt-hero__subtitle {
     margin: 0 0 28px;
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: #{"clamp(14px, 2vw, 18px)"};
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.88);
     max-width: 480px;
@@ -5052,7 +5087,7 @@ a.button--tertiary {
     }
 
     .cwt-hero__title-line {
-        font-size: clamp(20px, 6.5vw, 28px) !important;
+        font-size: #{"clamp(20px, 6.5vw, 28px)"} !important;
     }
 
     .cwt-hero__subtitle {
@@ -6262,7 +6297,7 @@ a.button--tertiary {
     &__title {
         margin: 0 0 16px;
         max-width: 640px;
-        font-size: clamp(32px, 4.5vw, 52px);
+        font-size: #{"clamp(32px, 4.5vw, 52px)"};
         line-height: 1.08;
         font-weight: 700;
         color: #ffffff;
@@ -6273,7 +6308,7 @@ a.button--tertiary {
     &__lead {
         margin: 0 0 28px;
         max-width: 560px;
-        font-size: clamp(15px, 1.6vw, 17px);
+        font-size: #{"clamp(15px, 1.6vw, 17px)"};
         line-height: 1.65;
         color: rgba(255, 255, 255, 0.88);
     }
@@ -6391,7 +6426,7 @@ a.button--tertiary {
 
     &__title {
         margin: 0 0 20px;
-        font-size: clamp(26px, 3vw, 36px);
+        font-size: #{"clamp(26px, 3vw, 36px)"};
         line-height: 1.2;
         font-weight: 700;
         color: $cwt-text-primary;
@@ -6420,7 +6455,7 @@ a.button--tertiary {
 
     &__title {
         margin: 0 0 18px;
-        font-size: clamp(26px, 3vw, 36px);
+        font-size: #{"clamp(26px, 3vw, 36px)"};
         line-height: 1.2;
         font-weight: 700;
         color: #ffffff;
@@ -6472,7 +6507,7 @@ a.button--tertiary {
 
     &__title {
         margin: 0;
-        font-size: clamp(28px, 3.2vw, 38px);
+        font-size: #{"clamp(28px, 3.2vw, 38px)"};
         font-weight: 700;
         color: $cwt-text-primary;
     }
@@ -6539,7 +6574,7 @@ a.button--tertiary {
 
     &__title {
         margin: 0 0 44px;
-        font-size: clamp(28px, 3.2vw, 38px);
+        font-size: #{"clamp(28px, 3.2vw, 38px)"};
         font-weight: 700;
         color: #ffffff;
     }
