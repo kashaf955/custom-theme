@@ -426,6 +426,31 @@ table,
     }
 }
 
+// Mobile hamburger drawer: override white-dropdown black text so categories are readable
+body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
+.navPages-container.is-open .halo_allCateDropdown {
+    color: #ffffff !important;
+    background-color: transparent !important;
+
+    a,
+    .text,
+    span:not(.navPages-action-moreIcon):not(.navPages-label),
+    p,
+    li,
+    .navPages-action,
+    .navPages-action .text {
+        color: #ffffff !important;
+    }
+
+    a:hover,
+    a:hover .text,
+    a:hover span,
+    .navPages-action:hover,
+    .navPages-action:hover .text {
+        color: $cwt-gold-bright !important;
+    }
+}
+
 // Category flyouts inside Shop All Categories stay black-on-white
 .halo_allCateDropdown .navPage-subMenu {
     color: $cwt-black !important;
@@ -848,33 +873,47 @@ table,
 
     @media (max-width: 1024px) {
         &__list {
-            justify-content: flex-start;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 9px 15px;
-            scrollbar-width: none;
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 12px;
+            justify-content: stretch;
+            align-items: stretch;
+            overflow: visible;
+            padding: 12px 14px;
+            margin: 0;
         }
 
         &__item {
-            span {
-                font-size: 10.5px;
+            flex: none;
+            min-width: 0;
+            width: 100%;
+
+            a,
+            &--static {
+                width: 100%;
+                white-space: normal;
+                gap: 6px;
+                line-height: 1.25;
             }
 
+            span {
+                font-size: 10px;
+                letter-spacing: 0.03em;
+            }
+
+            // Grid layout — drop side dividers that force overflow
             &:not(:first-child) {
-                padding-left: 18px;
+                padding-left: 0;
+                border-left: 0;
             }
         }
     }
 
     @media (max-width: 550px) {
         &__list {
-            gap: 4px;
-            padding: 8px 12px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 10px;
+            padding: 10px 12px;
         }
 
         &__item {
@@ -884,11 +923,11 @@ table,
             }
 
             span {
-                font-size: 10px;
+                font-size: 9.5px;
             }
 
             &:not(:first-child) {
-                padding-left: 14px;
+                padding-left: 0;
             }
         }
     }
@@ -1372,12 +1411,14 @@ table,
             background-color: $cwt-black !important;
             padding: 0 !important;
             max-width: 100% !important;
+            color: #ffffff !important;
 
             .cwt-nav-wrap {
                 display: block !important;
                 width: 100% !important;
                 max-width: 100% !important;
                 padding: 20px 16px 40px !important;
+                color: #ffffff !important;
             }
 
             .cwt-nav__row {
@@ -1386,6 +1427,103 @@ table,
 
             .cwt-nav-utility-link {
                 display: block !important;
+            }
+
+            // Force readable light text — desktop Shop All Categories is white
+            // with black text; that rule must not win inside the mobile drawer
+            .halo_allCate,
+            .halo_allCateDropdown,
+            .halo_allCateText,
+            .navPages,
+            .navPages-list,
+            .navPages-item,
+            .navPage-subMenu {
+                background-color: transparent !important;
+                color: #ffffff !important;
+            }
+
+            .halo_allCateDropdown {
+                display: block !important;
+                position: static !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .halo_allCateText {
+                color: #ffffff !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+                padding: 12px 8px !important;
+                margin: 0 0 8px !important;
+
+                .text {
+                    color: #ffffff !important;
+                }
+
+                .icon,
+                svg {
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
+                }
+            }
+
+            .navPages-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            a,
+            .navPages-action,
+            .navPage-subMenu-action,
+            .navPages-action .text,
+            .navPage-subMenu-action .text,
+            .halo_allCateDropdown a,
+            .halo_allCateDropdown .text,
+            .halo_allCateDropdown span:not(.navPages-action-moreIcon),
+            .halo_allCateDropdown p,
+            .halo_allCateDropdown li,
+            .cwt-nav-pages a,
+            .cwt-nav-pages .text,
+            .cwt-nav-pages span:not(.navPages-action-moreIcon) {
+                color: #ffffff !important;
+            }
+
+            .navPages-action,
+            .navPage-subMenu-action {
+                background-color: transparent !important;
+                padding: 14px 12px !important;
+                font-size: 15px !important;
+                font-weight: 600 !important;
+
+                &:hover,
+                &:focus,
+                &.is-open,
+                &.activePage {
+                    color: $cwt-gold-bright !important;
+
+                    .text,
+                    span:not(.navPages-action-moreIcon) {
+                        color: $cwt-gold-bright !important;
+                    }
+                }
+            }
+
+            .navPages-action-moreIcon,
+            .navPages-action-moreIcon svg,
+            .icon,
+            svg {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+                color: $cwt-gold-bright !important;
+            }
+
+            .navPage-subMenu {
+                background-color: $cwt-charcoal !important;
+                position: static !important;
+                width: 100% !important;
+                box-shadow: none !important;
             }
         }
     }
@@ -4743,6 +4881,71 @@ a.button--tertiary {
     }
 
     .has-activeNavPages {
+        .halo-menu-sidebar,
+        .navPages-container.is-open,
+        #menu.is-open {
+            background-color: $cwt-black !important;
+            color: #ffffff !important;
+
+            .halo-sidebar-header {
+                background-color: $cwt-black !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+                color: #ffffff !important;
+            }
+
+            .halo-sidebar-close svg,
+            .btn-close svg {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+            }
+
+            .halo_allCateDropdown,
+            .halo_allCateDropdown a,
+            .halo_allCateDropdown .text,
+            .halo_allCateDropdown span:not(.navPages-action-moreIcon),
+            .halo_allCateDropdown p,
+            .halo_allCateDropdown li {
+                color: #ffffff !important;
+                background-color: transparent !important;
+            }
+
+            .navPages-list {
+                background-color: $cwt-black !important;
+            }
+
+            .navPages-item {
+                border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .navPages-action,
+            .navPage-subMenu-action,
+            a.navPages-action,
+            a.navPage-subMenu-action {
+                color: #ffffff !important;
+                background-color: transparent !important;
+
+                .text,
+                span:not(.navPages-action-moreIcon) {
+                    color: #ffffff !important;
+                }
+
+                .icon,
+                svg {
+                    fill: $cwt-gold-bright !important;
+                    stroke: $cwt-gold-bright !important;
+                    color: $cwt-gold-bright !important;
+                }
+
+                .navPages-action-moreIcon svg {
+                    fill: $cwt-gold-bright !important;
+                }
+            }
+
+            .navPage-subMenu {
+                background-color: $cwt-charcoal !important;
+            }
+        }
+
         .halo-menu-sidebar {
             background-color: $cwt-black !important;
 
