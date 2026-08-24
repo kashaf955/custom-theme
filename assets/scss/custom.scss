@@ -220,8 +220,15 @@ main#main-content {
   font-size: 20px;
 }
 @media (min-width: 768px) {
+  /* Only hide Shop By Truck on pages that are not home / category / product */
   .hide-filter {
     display: none;
+  }
+
+  .page-type-default .hide-filter,
+  .page-type-category .hide-filter,
+  .page-type-product .hide-filter {
+    display: block !important;
   }
 }
 @media (max-width: 550px) {

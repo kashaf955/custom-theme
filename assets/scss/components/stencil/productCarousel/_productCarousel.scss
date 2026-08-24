@@ -32,15 +32,14 @@
         }
     }
 
-    // 1: this no-JS grid fallback (including its width override below) must
-    // stay scoped to :not(.slick-initialized) — once slick loads, it should
-    // not still be constraining the carousel's own width; that was the bug.
+    // 1: this no-JS grid fallback must stay scoped to :not(.slick-initialized).
+    // Do NOT set a column-grid width on the carousel itself — that collapsed
+    // Related Products to ~25–50% of the page. Keep full width; only hide
+    // overflow slides via the child rules below.
     &:not(.slick-initialized) {
         white-space: nowrap;
-
-        @include smin-m {
-            width: grid-calc(3, $total-columns);
-        }
+        width: 100%;
+        max-width: 100%;
 
         .productCarousel-slide {
             width: 20%;

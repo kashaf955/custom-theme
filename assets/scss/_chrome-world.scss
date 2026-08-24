@@ -2018,11 +2018,21 @@ body {
     }
 }
 
-// Category page filter — keep visible, match dark style
+// Category / product page — keep Shop By Truck visible + match dark style
 .page-type-category,
 .page-type-product {
-    .halo_MultiCategory-wrapper .halo_MultiCategory {
+    .halo_MultiCategory-wrapper {
+        @include cwt-content-width;
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    .halo_MultiCategory,
+    .halo_MultiCategory.hide-filter {
+        display: block !important;
         background-color: $cwt-dark-overlay !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 
@@ -2078,6 +2088,27 @@ body {
     letter-spacing: 0.06em;
     font-weight: 700;
     color: $cwt-text-primary !important;
+}
+
+// Homepage "Top Deals" / "Featured" / "Top Products" block headings —
+// solid black header bar (base theme has these on a white bar by default),
+// white text, no leftover white space around the heading.
+.home-layout-2 {
+    .halo-block-header,
+    .halo-block-header-wrapper,
+    .custom-ecb {
+        background-color: #000000 !important;
+        border-bottom: none !important;
+    }
+
+    .halo-block-header .title,
+    .halo-block-header h2.title,
+    .halo-block-header h3.title,
+    .halo-block-header-wrapper .title,
+    .custom-ecb .title,
+    .custom-ecb h2 {
+        color: #ffffff !important;
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -2242,7 +2273,7 @@ body {
     }
 
     .card-text[data-test-info-type="brandName"] {
-        color: #8f8f8f;
+        color: #707070;
         font-weight: 700;
         letter-spacing: 0.08em;
     }
@@ -2270,7 +2301,7 @@ body {
         .price-section {
             &.non-sale-price--withoutTax,
             &.non-sale-price--withTax {
-                color: #a8a8a8;
+                color: #7a7a7a;
             }
 
             &.price-none + .price-section--withoutTax,
@@ -2322,7 +2353,7 @@ body {
 
 .card-price .price--non-sale,
 .card-price .price--rrp {
-    color: #999999;
+    color: #7a7a7a;
 }
 
 // -----------------------------------------------------------------------------
@@ -2952,6 +2983,168 @@ body {
 
     .slick-list {
         margin: 0 -10px;
+    }
+}
+
+// Related products — full width of product container, 3 cards
+#halo-related-products.cwt-related-products,
+.cwt-related-products {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    clear: both;
+    float: none !important;
+    padding: 28px 0 48px;
+    margin: 0 !important;
+    font-size: 14px;
+    box-sizing: border-box;
+
+    .cwt-related-products__inner {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        float: none !important;
+        clear: both;
+        padding: 0;
+        margin: 0;
+    }
+
+    .halo-block-header {
+        background: transparent !important;
+        border: 0 !important;
+        text-align: left !important;
+        padding: 0 0 12px !important;
+        width: 100% !important;
+
+        .title {
+            color: $cwt-text-primary !important;
+            text-align: left !important;
+            width: auto !important;
+            display: inline-block;
+        }
+    }
+
+    .halo-productCarousel,
+    .productCarousel,
+    #halo-product-block-1,
+    #halo-product-block-2 {
+        display: block !important;
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 12px 0 0 !important;
+        box-sizing: border-box;
+
+        &:not(.slick-initialized) {
+            width: 100% !important;
+            max-width: 100% !important;
+            white-space: normal !important;
+
+            > div {
+                display: inline-block !important;
+                vertical-align: top;
+                width: 33.3333% !important;
+                max-width: 33.3333% !important;
+                white-space: normal !important;
+                box-sizing: border-box;
+                float: none !important;
+                padding: 0 !important;
+
+                &:nth-child(n+4) {
+                    display: none !important;
+                }
+            }
+        }
+
+        &.slick-initialized {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        .slick-list {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 -12px !important;
+            padding: 0 !important;
+            box-sizing: content-box;
+        }
+
+        .slick-track {
+            display: flex !important;
+            align-items: stretch;
+            margin-left: 0 !important;
+        }
+
+        .slick-slide {
+            float: none !important;
+            height: auto !important;
+            box-sizing: border-box;
+
+            > div {
+                height: 100%;
+            }
+        }
+
+        .halo-productCarousel-slide,
+        .productCarousel-slide {
+            width: 100% !important;
+            max-width: 100% !important;
+            float: none !important;
+            padding: 0 12px !important;
+            margin: 0 !important;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100%;
+            margin: 0 !important;
+            box-sizing: border-box;
+        }
+
+        &.arrow-custom {
+            .slick-prev,
+            .slick-next {
+                top: -40px;
+                z-index: 2;
+            }
+
+            .slick-prev {
+                right: 48px;
+                left: auto;
+            }
+
+            .slick-next {
+                right: 0;
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        .halo-productCarousel:not(.slick-initialized) > div,
+        .productCarousel:not(.slick-initialized) > div {
+            width: 50% !important;
+            max-width: 50% !important;
+
+            &:nth-child(n+3) {
+                display: none !important;
+            }
+        }
+    }
+
+    @media (max-width: 550px) {
+        .halo-productCarousel:not(.slick-initialized) > div,
+        .productCarousel:not(.slick-initialized) > div {
+            width: 100% !important;
+            max-width: 100% !important;
+
+            &:nth-child(n+2) {
+                display: none !important;
+            }
+        }
     }
 }
 
