@@ -56,11 +56,13 @@
                     }}
                 {{else if theme_settings.homeProd_1 '==' 'New'}}
                     <section class="custom-beast-sellers best-selll halo-block halo-block-product border-top animate-loaded animated">
-                        <div class="halo-block-header halo-block-header-wrapper custom-ecb">
-                            <h2 class="title">Top Deals</h2><a class="collection--link link" href="/top-deal/">view more</a>
+                        <div class="container">
+                            <div class="halo-block-header halo-block-header-wrapper custom-ecb">
+                                <h2 class="title">Top Deals</h2><a class="collection--link link" href="/top-deal/">view more</a>
+                            </div>
+                            <ul class="halo-productCarousel productCarousel arrow-custom" data-product-type="featured" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}} data-categoryUrl="/top-deal/?sort=newest&limit=25">  
+                            </ul>
                         </div>
-                        <ul class="halo-productCarousel productCarousel arrow-custom" data-product-type="featured" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}} data-categoryUrl="/top-deal/?sort=newest&limit=25">  
-                        </ul>
                     </section>
                     {{!> components/products/new
                         products=products.new
@@ -347,7 +349,7 @@
                     link=theme_settings.homeProd_3_link
                     block_id="halo-product-block-3"
                     block_limit=theme_settings.homeProd_limit
-                    block_column=(add theme_settings.homeProd_col 1)
+                    block_column=theme_settings.homeProd_col
                     block_layout=theme_settings.homeProd_3_layout
                     borderTop=false
                     dots=false
@@ -360,7 +362,7 @@
                     link=theme_settings.homeProd_3_link
                     block_id="halo-product-block-3"
                     block_limit=theme_settings.homeProd_limit
-                    block_column=(add theme_settings.homeProd_col 1)
+                    block_column=theme_settings.homeProd_col
                     block_layout=theme_settings.homeProd_3_layout
                     borderTop=false
                     dots=false
@@ -373,7 +375,7 @@
                     link=theme_settings.homeProd_3_link
                     block_id="halo-product-block-3"
                     block_limit=theme_settings.homeProd_limit
-                    block_column=(add theme_settings.homeProd_col 1)
+                    block_column=theme_settings.homeProd_col
                     block_layout=theme_settings.homeProd_3_layout
                     borderTop=false
                     dots=false
