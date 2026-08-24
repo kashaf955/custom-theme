@@ -39,14 +39,14 @@ function getPorductsFromCategoy() {
                     $this.slick('unslick'); // Destroy existing instance
                 }
 
-                // Reinitialize Slick
+                // Reinitialize Slick — 2-up on mobile to match live product sections
                 $this.slick({
                     rows: 1,
                     dots: false,
                     arrows: true,
                     mobileFirst: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                     infinite: false,
                     responsive: [
                         {
@@ -77,9 +77,9 @@ function getPorductsFromCategoy() {
                             },
                         },
                         {
-                            breakpoint: 320,
+                            breakpoint: 550,
                             settings: {
-                                slidesToScroll:2,
+                                slidesToScroll: 2,
                                 slidesToShow: 2,
                                 dots: false,
                                 arrows: true,
