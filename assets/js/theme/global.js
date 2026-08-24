@@ -77,7 +77,8 @@ function getPorductsFromCategoy() {
                             },
                         },
                         {
-                            breakpoint: 550,
+                            // Keep 2-up through phone + large-phone widths
+                            breakpoint: 551,
                             settings: {
                                 slidesToScroll: 2,
                                 slidesToShow: 2,

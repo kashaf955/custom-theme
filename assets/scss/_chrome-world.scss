@@ -202,11 +202,15 @@ a {
     .card .price,
     .card span,
     .card p {
-        color: $cwt-black !important;
+        color: $cwt-text-primary !important;
     }
 
     .card .card-title a:hover {
-        color: $cwt-gold-text !important;
+        color: $cwt-gold-bright !important;
+    }
+
+    .card .card-figure {
+        background: #ffffff !important;
     }
 }
 
@@ -296,10 +300,11 @@ table,
     color: $cwt-text-primary !important;
 }
 
-// WHITE SURFACES — keep dark readable text (cards, white menus)
-// Buttons are excluded — they have their own yellow/black styles below.
+// PRODUCT CARDS — black theme; white image panel only
 .card {
-    color: $cwt-black !important;
+    color: $cwt-text-primary !important;
+    background: $cwt-charcoal !important;
+    border-color: $cwt-border-strong !important;
 
     .card-title,
     .card-title a,
@@ -307,7 +312,6 @@ table,
     .card-text a,
     .card-body,
     .card-body p,
-    .card-body span:not(.button):not(.button *),
     .card-price,
     .card-price .price,
     .card-price p,
@@ -315,25 +319,33 @@ table,
     .price--withoutTax,
     .price--withTax,
     .brand {
-        color: $cwt-black !important;
+        color: $cwt-text-primary !important;
+    }
+
+    .card-body span:not(.button) {
+        color: $cwt-text-primary !important;
     }
 
     .card-title a:hover {
-        color: $cwt-gold-text !important;
+        color: $cwt-gold-bright !important;
     }
 
     .card-text[data-test-info-type="brandName"] {
-        color: #555555 !important;
+        color: $cwt-text-tertiary !important;
     }
 
     .card-price .price--non-sale,
     .card-price .price--rrp,
     .price--non-sale,
     .price--rrp {
-        color: #777777 !important;
+        color: $cwt-text-tertiary !important;
     }
 
-    // Card action buttons — yellow/black, never inherit black body text
+    .card-figure {
+        background: #ffffff !important;
+    }
+
+    // Card action buttons — gold/black, never inherit body text
     .button,
     .button--primary,
     .button--secondary,
@@ -2524,21 +2536,21 @@ table,
     .card {
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
-        border-bottom: 1px solid #ececec !important;
+        border-bottom: 1px solid $cwt-border-subtle !important;
     }
 }
 
 .card {
-    background: #ffffff;
-    border: 1px solid #ececec;
+    background: $cwt-charcoal;
+    border: 1px solid $cwt-border-strong;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 
-    // Rounded top corners on the photo — .card-figure already clips overflow.
+    // Image panel stays white; rest of card is dark
     .card-figure {
         border-radius: 9px 9px 0 0;
-        background: #f7f7f7;
+        background: #ffffff;
     }
 
     @media (min-width: 801px) {
@@ -2674,53 +2686,51 @@ table,
 
     .card-body {
         padding: 16px 18px 20px;
+        background: $cwt-charcoal;
     }
 
     .card-text[data-test-info-type="brandName"] {
-        color: #707070;
+        color: $cwt-text-tertiary;
         font-weight: 700;
         letter-spacing: 0.08em;
     }
 
     .card-title a {
-        color: $cwt-black;
+        color: $cwt-text-primary;
         font-weight: 600;
         letter-spacing: 0.01em;
 
         &:hover {
-            color: $cwt-gold-text;
+            color: $cwt-gold-bright;
         }
     }
 
-    // Cards stay on a white surface by design, but their price/rating text
-    // uses the sitewide color-textSecondary token, which is now light (for
-    // the dark page background) — restore dark text here specifically.
     .card-price {
-        color: #555555;
+        color: $cwt-text-secondary;
 
         p {
-            color: #555555;
+            color: $cwt-text-secondary;
         }
 
         .price-section {
             &.non-sale-price--withoutTax,
             &.non-sale-price--withTax {
-                color: #7a7a7a;
+                color: $cwt-text-tertiary;
             }
 
             &.price-none + .price-section--withoutTax,
             &.price-none + .price-section--withTax {
-                color: #555555;
+                color: $cwt-text-secondary;
             }
         }
     }
 
     .rating--small .rating--count {
-        color: #777777;
+        color: $cwt-text-tertiary;
     }
 
     .card-countDown {
-        color: #333333;
+        color: $cwt-gold-bright;
     }
 
     .card-figcaption-button.quickview {
@@ -2768,7 +2778,15 @@ table,
 
 .card-price .price--non-sale,
 .card-price .price--rrp {
-    color: #7a7a7a;
+    color: $cwt-text-tertiary;
+}
+
+// Sale / current price on dark product cards
+.card-price .price--withoutTax,
+.card-price .price--withTax,
+.card-price .price-section--withoutTax .price,
+.card-price .price-section--withTax .price {
+    color: $cwt-gold-bright;
 }
 
 // -----------------------------------------------------------------------------
@@ -3619,12 +3637,15 @@ a.button--tertiary {
             display: flex !important;
             align-items: stretch;
             margin-left: 0 !important;
+            max-width: none !important;
         }
 
         .slick-slide {
             float: none !important;
             height: auto !important;
             box-sizing: border-box;
+            flex-shrink: 0 !important;
+            flex-grow: 0 !important;
 
             > div {
                 height: 100%;
@@ -4652,6 +4673,8 @@ a.button--tertiary {
 // =============================================================================
 @media (max-width: 1024px) {
     // Global safety — kill horizontal scroll / oversized children
+    // Do NOT clamp .slick-track — Slick needs it wider than the viewport
+    // or every slide compresses into view (looks like 4+ cards on mobile).
     html,
     body,
     .body,
@@ -4661,10 +4684,13 @@ a.button--tertiary {
     .halo-block,
     .productView,
     .productGrid,
-    .halo-productCarousel,
-    .slick-list,
-    .slick-track {
+    .halo-productCarousel {
         max-width: 100% !important;
+    }
+
+    .slick-list {
+        max-width: 100% !important;
+        overflow: hidden !important;
     }
 
     img,
@@ -4826,7 +4852,7 @@ a.button--tertiary {
             padding: 8px 0 20px !important;
             width: 100% !important;
             max-width: 100% !important;
-            background: #ffffff !important;
+            background: transparent !important;
             list-style: none !important;
 
             &:not(.slick-initialized) {
@@ -4856,17 +4882,22 @@ a.button--tertiary {
             .slick-list {
                 margin: 0 -6px !important;
                 padding: 0 !important;
-                width: auto !important;
+                overflow: hidden !important;
             }
 
             .slick-track {
+                // Equal-height cards without collapsing Slick widths
                 display: flex !important;
                 align-items: stretch;
+                max-width: none !important;
+                width: auto !important;
             }
 
             .slick-slide {
                 height: auto !important;
                 float: none !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
 
                 > div {
                     height: 100%;
@@ -4934,16 +4965,17 @@ a.button--tertiary {
                 flex-direction: column;
                 margin: 0 0 4px !important;
                 padding: 0 !important;
-                border-radius: 0 !important;
-                overflow: visible;
-                background: #ffffff !important;
-                border: 0 !important;
+                border-radius: 6px !important;
+                overflow: hidden;
+                background: $cwt-charcoal !important;
+                border: 1px solid $cwt-border-strong !important;
                 box-shadow: none !important;
 
                 .card-figure {
                     border-radius: 0 !important;
-                    margin: 0 0 8px;
-                    padding: 4px;
+                    margin: 0;
+                    padding: 8px;
+                    background: #ffffff !important;
 
                     // Avoid duplicate ATC under image — keep CTA under price
                     > .card-figcaption .card-figcaption-bottom {
@@ -4955,8 +4987,9 @@ a.button--tertiary {
                     flex: 1 1 auto;
                     display: flex;
                     flex-direction: column;
-                    padding: 0 6px 10px !important;
+                    padding: 10px 8px 12px !important;
                     text-align: left !important;
+                    background: $cwt-charcoal !important;
                 }
 
                 .card-desc {
@@ -4972,7 +5005,7 @@ a.button--tertiary {
                     overflow: hidden;
 
                     a {
-                        color: #111111 !important;
+                        color: $cwt-text-primary !important;
                         font-weight: 600 !important;
                     }
                 }
@@ -4980,7 +5013,7 @@ a.button--tertiary {
                 .card-text[data-test-info-type="brandName"] {
                     font-size: 10px !important;
                     margin-bottom: 4px !important;
-                    color: #666666 !important;
+                    color: $cwt-text-tertiary !important;
                 }
 
                 .card-price {
@@ -4990,10 +5023,11 @@ a.button--tertiary {
                     flex-wrap: wrap;
                     align-items: baseline;
                     gap: 6px;
+                    color: $cwt-text-secondary !important;
 
                     .price--non-sale,
                     .price--rrp {
-                        color: #999999 !important;
+                        color: $cwt-text-tertiary !important;
                         font-size: 11px !important;
                         text-decoration: line-through;
                     }
@@ -5002,7 +5036,7 @@ a.button--tertiary {
                     .price--withTax,
                     .price-section--withoutTax .price,
                     .price-section--withTax .price {
-                        color: #e53935 !important;
+                        color: $cwt-gold-bright !important;
                         font-weight: 700 !important;
                         font-size: 14px !important;
                     }
@@ -5027,8 +5061,8 @@ a.button--tertiary {
                     min-height: 36px !important;
                     margin: 0 !important;
                     padding: 8px 4px !important;
-                    background-color: #000000 !important;
-                    border: 1px solid #000000 !important;
+                    background-color: $cwt-black !important;
+                    border: 2px solid $cwt-gold-bright !important;
                     border-radius: 2px !important;
                     color: #ffffff !important;
                     font-size: 10px !important;
@@ -5560,12 +5594,30 @@ a.button--tertiary {
     }
 }
 
-// Homepage carousels — prevent overflow
+// Homepage product carousels — transparent so black cards sit on page bg
+.home-layout-2,
+.halo-block-product {
+    .productCarousel,
+    .halo-productCarousel {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+}
+
+// Homepage carousels — prevent overflow (list only; track must stay wide for Slick)
 .home-layout-2 {
     .slick-list,
     .productCarousel,
     .heroCarousel {
         max-width: 100%;
+    }
+
+    .slick-track {
+        max-width: none !important;
+    }
+
+    .slick-slide {
+        flex-shrink: 0 !important;
     }
 }
 
@@ -6495,3 +6547,5 @@ a.button--tertiary {
         }
     }
 }
+
+
