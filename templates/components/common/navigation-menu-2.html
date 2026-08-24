@@ -37,21 +37,39 @@
                         <span class="text">{{lang 'home.heading'}}</span>
                     </a>
                 </li>
+
+                {{!-- Utility links: shown in hamburger on mobile; hidden from desktop nav bar (desktop uses top bar) --}}
+                <li class="navPages-item navPages-item-page cwt-nav-utility-link">
+                    <a class="navPages-action navPages-action-lv1 no-subMenu" href="{{#if theme_settings.hl_header_topLink4}}{{theme_settings.hl_header_topLink4}}{{else}}/contact-us{{/if}}" aria-label="Contact Us">
+                        <span class="text">{{#if theme_settings.hl_header_topText4}}{{theme_settings.hl_header_topText4}}{{else}}Contact Us{{/if}}</span>
+                    </a>
+                </li>
+                <li class="navPages-item navPages-item-page cwt-nav-utility-link">
+                    <a class="navPages-action navPages-action-lv1 no-subMenu" href="{{#if theme_settings.hl_header_topLink5}}{{theme_settings.hl_header_topLink5}}{{else}}/about-us{{/if}}" aria-label="About Us">
+                        <span class="text">{{#if theme_settings.hl_header_topText5}}{{theme_settings.hl_header_topText5}}{{else}}About Us{{/if}}</span>
+                    </a>
+                </li>
+                <li class="navPages-item navPages-item-page cwt-nav-utility-link">
+                    <a class="navPages-action navPages-action-lv1 no-subMenu" href="/price-match-guarantee/" aria-label="Price Match Guarantee">
+                        <span class="text">Price Match Guarantee</span>
+                    </a>
+                </li>
+                <li class="navPages-item navPages-item-page cwt-nav-utility-link">
+                    <a class="navPages-action navPages-action-lv1 no-subMenu" href="/easy-returns/" aria-label="Easy Returns">
+                        <span class="text">Easy Returns</span>
+                    </a>
+                </li>
+                {{#if settings.gift_certificates_enabled}}
+                    <li class="navPages-item navPages-item-page cwt-nav-utility-link">
+                        <a class="navPages-action navPages-action-lv1 no-subMenu" href="{{urls.gift_certificate.purchase}}" aria-label="{{lang 'common.gift_cert'}}">
+                            <span class="text">{{lang 'common.gift_cert'}}</span>
+                        </a>
+                    </li>
+                {{/if}}
+
                 {{#unless theme_settings.hide_content_navigation}}
                     {{#each pages}}
-                        {{#if name '===' 'About Us'}}
-                            <li class="navPages-item navPages-item-page navPages-item-toggle{{#if children}} has-dropdown{{/if}}">
-                                {{> components/common/navigation-list-alternate page = ../page type = 'page'}}
-                            </li>
-                        {{else if name '===' 'Contact Us'}}
-                            <li class="navPages-item navPages-item-page navPages-item-toggle{{#if children}} has-dropdown{{/if}}">
-                                {{> components/common/navigation-list-alternate page = ../page type = 'page'}}
-                            </li>
-                        {{else if name '===' 'Easy Returns'}}
-                            <li class="navPages-item navPages-item-page navPages-item-toggle{{#if children}} has-dropdown{{/if}}">
-                                {{> components/common/navigation-list-alternate page = ../page type = 'page'}}
-                            </li>
-                        {{else if name '===' 'Privacy Policy'}}
+                        {{#if name '===' 'Privacy Policy'}}
                             <li class="navPages-item navPages-item-page navPages-item-toggle{{#if children}} has-dropdown{{/if}}">
                                 {{> components/common/navigation-list-alternate page = ../page type = 'page'}}
                             </li>
