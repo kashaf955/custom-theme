@@ -1,7 +1,7 @@
 {{#if theme_settings.halo_recent_post}}
-    <div class="halo-block halo-home-section{{#if blogBG}} halo-bgGray{{/if}}" id="recentPosts" data-halo-load="animation">
+    <div class="halo-block halo-home-section cwt-blog-section{{#if blogBG}} halo-bgGray{{/if}}" id="recentPosts" data-halo-load="animation">
         <div class="container">
-            <div class="halo-block-header halo-fadeInUp" data-halo-animate="0">
+            <div class="halo-block-header cwt-blog-section__header">
                 {{#if theme_settings.halo_recent_post_title}}
                     <div class="content">
                         <h3 class="title">{{theme_settings.halo_recent_post_title}}</h3>
@@ -12,71 +12,52 @@
                         <p>{{{theme_settings.halo_recent_post_desc}}}</p>
                     </div>
                 {{/if}}
-                {{#if theme_settings.halo_recent_post_linkViewAll}}
+                {{!-- Show View All when more than 4 posts exist (5th post fetched) --}}
+                {{#or theme_settings.halo_recent_post_linkViewAll post.[4]}}
                     <div class="link">
-                        <a href="{{theme_settings.halo_recent_post_linkViewAll}}" aria-label="{{lang 'blog.view_all_posts'}}">
+                        <a href="{{#if theme_settings.halo_recent_post_linkViewAll}}{{theme_settings.halo_recent_post_linkViewAll}}{{else}}/blog/{{/if}}" aria-label="{{lang 'blog.view_all_posts'}}">
                             <span>{{lang 'blog.view_all_posts'}}</span>
-                            <svg>
-                                <title>Headlights</title>
-                                <desc>Headlights</desc>
+                            <svg aria-hidden="true">
                                 <use xlink:href="#icon-chevron-right" />
                             </svg>
                         </a>
                     </div>
-                {{/if}}
+                {{/or}}
             </div>
-            <div class="halo-recent-post c-3" data-col="{{blogCol}}" data-halo-load="init-carousel">
-                {{#if headerCustom}}
-                    <div class="item halo-block-header text-left halo-fadeInUp" data-halo-animate="0">
-                        {{#if theme_settings.halo_recent_post_title}}
-                            <div class="content">
-                                <h3 class="title">{{theme_settings.halo_recent_post_title}}</h3>
-                            </div>
-                        {{/if}}
-                        {{#if theme_settings.halo_recent_post_desc}}
-                            <div class="desc">
-                                <p>{{{theme_settings.halo_recent_post_desc}}}</p>
-                            </div>
-                        {{/if}}
-                        {{#if theme_settings.halo_recent_post_linkViewAll}}
-                            <div class="link">
-                                <a href="{{theme_settings.halo_recent_post_linkViewAll}}" aria-label="{{lang 'blog.view_all_posts'}}">
-                                    <span>{{lang 'blog.view_all_posts'}}</span>
-                                    <svg>
-                                        <title>Headlights</title>
-                                        <desc>Headlights</desc>
-                                        <use xlink:href="#icon-chevron-right" />
-                                    </svg>
-                                </a>
-                            </div>
-                        {{/if}}
-                    </div>
-                {{/if}}
-                {{#each post}}
-                    <div class="item halo-fadeInUp" data-halo-animate="{{add @index 1}}">
+
+            <div class="halo-recent-post cwt-blog-section__grid" data-col="4">
+                {{#each (limit post 4)}}
+                    <article class="item cwt-blog-card">
                         <div class="item-image">
-                            <a class="image-with-overlay" href="{{url}}">
-                                <img src="{{getImage thumbnail 'theme_settings.recent_blog_size'}}" alt="{{title}}">
+                            <a class="image-with-overlay" href="{{url}}" aria-label="{{title}}">
+                                {{#if thumbnail}}
+                                    <img
+                                        src="{{getImage thumbnail 'recent_blog_size'}}"
+                                        alt="{{title}}"
+                                        loading="lazy"
+                                        width="380"
+                                        height="250"
+                                    >
+                                {{else}}
+                                    <span class="cwt-blog-card__placeholder" aria-hidden="true"></span>
+                                {{/if}}
                             </a>
                         </div>
                         <div class="item-content">
                             <h3 class="title">
                                 <a href="{{url}}" aria-label="{{title}}">{{title}}</a>
                             </h3>
-                            <p class="date">{{#if author}}{{lang 'blog.posted_by' name=author}} on {{/if}}{{date_published}}</p>
+                            <p class="date">{{date_published}}</p>
                             {{#if summary}}
                                 <div class="summary">
-                                    {{{summary}}}&hellip;{{#if ../headerCustom}}<a class="link" href="{{url}}" aria-label="{{title}}">{{lang 'blog.read_more'}}</a>{{/if}}
+                                    {{{summary}}}&hellip;
                                 </div>
                             {{/if}}
-                            {{#unless ../headerCustom}}
-                                <a class="link" href="{{url}}" aria-label="{{title}}">{{lang 'blog.read_more'}}</a>
-                            {{/unless}}
+                            <a class="link" href="{{url}}" aria-label="{{title}}">{{lang 'blog.read_more'}}</a>
                         </div>
-                    </div>
+                    </article>
                 {{/each}}
             </div>
-            
         </div>
     </div>
     {{{region name="home_below_recent_posts"}}}
