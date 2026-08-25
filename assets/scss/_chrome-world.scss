@@ -421,7 +421,13 @@ table,
 
     a:hover,
     a:hover .text,
-    a:hover span {
+    a:hover span,
+    .navPages-action:hover,
+    .navPages-action:hover .text,
+    .navPages-action:hover span:not(.navPages-action-moreIcon):not(.navPages-label),
+    .navPage-subMenu-action:hover,
+    .navPage-subMenu-action:hover .text,
+    .navPage-subMenu-action:hover span:not(.navPages-action-moreIcon):not(.navPages-label) {
         color: $cwt-gold-bright !important;
     }
 }
@@ -462,7 +468,11 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
     }
 
     a:hover,
-    a:hover .text {
+    a:hover .text,
+    a:hover span,
+    .navPage-subMenu-action:hover,
+    .navPage-subMenu-action:hover .text,
+    .navPage-subMenu-action:hover span:not(.navPages-action-moreIcon):not(.navPages-label) {
         color: $cwt-gold-bright !important;
     }
 }
@@ -1139,6 +1149,14 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
             &:hover,
             &:focus {
                 color: $cwt-gold-bright !important;
+
+                .text,
+                .text span,
+                a,
+                a span,
+                span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                    color: $cwt-gold-bright !important;
+                }
             }
         }
 
@@ -1180,8 +1198,15 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
             &:focus-within {
                 > .navPages-action {
                     background-color: $cwt-black !important;
+                    color: $cwt-gold-bright !important;
 
-                    .text {
+                    // Labels are often <a class="text"><span>Name</span></a> —
+                    // force nested spans too (global black !important otherwise wins)
+                    .text,
+                    .text span,
+                    a,
+                    a span,
+                    span:not(.navPages-action-moreIcon):not(.navPages-label) {
                         color: $cwt-gold-bright !important;
                     }
 
@@ -1262,8 +1287,13 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
             &:focus-within {
                 > .navPage-subMenu-action {
                     background-color: $cwt-black !important;
+                    color: $cwt-gold-bright !important;
 
-                    .text {
+                    .text,
+                    .text span,
+                    a,
+                    a span,
+                    span:not(.navPages-action-moreIcon):not(.navPages-label) {
                         color: $cwt-gold-bright !important;
                     }
 
