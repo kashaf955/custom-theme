@@ -41,7 +41,7 @@ main#main-content {
 }
 
 .home-layout-2 .footer-bottom {
-  padding: 20px 0;
+  padding: 20px 0 !important;
 }
 
 .home-layout-2 .footer-bottom .footer-bottom__left.halo-fadeInLeft {
@@ -50,7 +50,7 @@ main#main-content {
 
 @media (max-width: 767px) {
   .home-layout-2 .footer-bottom {
-    padding: 24px 0 88px !important;
+    padding: 20px 0 24px !important;
   }
 
   .home-layout-2 .footer-bottom .footer-bottom__left.halo-fadeInLeft {
@@ -64,6 +64,18 @@ main#main-content {
     text-align: center !important;
     padding: 0 !important;
   }
+}
+
+.home-layout-2 .footer-bottom .footer-bottom__container,
+.footer .footer-bottom__container {
+  text-align: center !important;
+}
+
+.home-layout-2 .footer-bottom .footer-bottom__left,
+.home-layout-2 .footer-bottom .footer-bottom__right,
+.footer .footer-bottom__left,
+.footer .footer-bottom__right {
+  text-align: center !important;
 }
 
 div#halo-product-category-block-1 .halo_bannerCategory.halo-fadeInUp {

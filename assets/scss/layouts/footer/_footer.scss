@@ -384,14 +384,14 @@
 
 .footer-bottom {
     background-color: stencilColor("footer-bgBottom-color");
-    padding: 25px 0 76px;
+    padding: 25px 0 24px;
 
     .home-layout-2 & {
-        padding: 38px 0 42px;
+        padding: 24px 0;
     }
 
     .home-layout-3 & {
-        padding: 30px 0 42px;
+        padding: 24px 0;
     }
 
     .footer-copyright {

@@ -3892,6 +3892,10 @@ a.button--tertiary {
         }
     }
 
+    .footer-bottom {
+        padding: 24px 0 !important;
+    }
+
     .footer-bottom,
     .footer-bottom__container {
         width: 100% !important;
@@ -3899,17 +3903,15 @@ a.button--tertiary {
         box-sizing: border-box;
     }
 
-    .footer-bottom {
-        padding: 28px 0 40px !important;
-    }
-
     .footer-bottom__container {
         @include cwt-content-width;
         display: flex !important;
+        flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        gap: 20px;
+        text-align: center;
+        gap: 16px;
         padding-left: 20px !important;
         padding-right: 20px !important;
 
@@ -3925,19 +3927,19 @@ a.button--tertiary {
         display: block !important;
         float: none !important;
         vertical-align: top;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 1 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: center !important;
     }
 
     .footer-bottom__left {
-        flex: 1 1 auto;
-        width: auto !important;
-        max-width: 100%;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-align: left !important;
-
         .footer-copyright {
             display: block !important;
             margin: 0 0 6px;
+            text-align: center !important;
 
             &:last-child {
                 margin-bottom: 0;
@@ -3949,25 +3951,19 @@ a.button--tertiary {
                 line-height: 1.45;
                 color: $cwt-text-secondary;
                 font-size: 13px;
+                text-align: center !important;
             }
         }
     }
 
     .footer-bottom__right {
-        flex: 0 1 auto;
-        width: auto !important;
-        max-width: 100%;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-align: right !important;
-
         .footer-payment-icons {
             display: flex !important;
             flex-wrap: wrap;
-            justify-content: flex-end;
+            justify-content: center !important;
             align-items: center;
             gap: 8px;
-            margin: 0 !important;
+            margin: 0 auto !important;
             list-style: none;
             padding: 0;
 
@@ -3987,28 +3983,16 @@ a.button--tertiary {
         }
     }
 
-    // Mobile / small tablet — stack copyright above payment icons
+    // Mobile — keep centered stack; no extra blank strip under footer
     @media (max-width: 767px) {
         .footer-bottom {
-            padding: 24px 0 88px !important; // room for chat widget
+            padding: 20px 0 24px !important;
         }
 
         .footer-bottom__container {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            justify-content: flex-start !important;
             gap: 18px !important;
             padding-left: 16px !important;
             padding-right: 16px !important;
-        }
-
-        .footer-bottom__left,
-        .footer-bottom__center,
-        .footer-bottom__right {
-            width: 100% !important;
-            max-width: 100% !important;
-            flex: 1 1 100% !important;
-            text-align: center !important;
         }
 
         .footer-bottom__left {
@@ -4021,7 +4005,6 @@ a.button--tertiary {
 
         .footer-bottom__right {
             .footer-payment-icons {
-                justify-content: center !important;
                 gap: 10px;
 
                 img {
@@ -4073,6 +4056,35 @@ a.button--tertiary {
 .footer-bottom {
     background-color: $cwt-charcoal !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 0 !important;
+}
+
+// Kill theme/halo blank strip under the lower footer (all pages)
+.footer,
+.footer.footer-layout-1,
+.footer.footer-layout-2,
+.footer.footer-layout-3 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+
+    .footer-bottom {
+        margin-bottom: 0 !important;
+        padding-bottom: 24px !important;
+    }
+}
+
+body,
+html {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.body,
+main#main-content,
+.main {
+    margin-bottom: 0 !important;
 }
 
 // =============================================================================
