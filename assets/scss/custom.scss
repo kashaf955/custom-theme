@@ -48,6 +48,24 @@ main#main-content {
   margin-bottom: 0 !important;
 }
 
+@media (max-width: 767px) {
+  .home-layout-2 .footer-bottom {
+    padding: 24px 0 88px !important;
+  }
+
+  .home-layout-2 .footer-bottom .footer-bottom__left.halo-fadeInLeft {
+    margin-bottom: 12px !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .home-layout-2 .footer-bottom .footer-bottom__right {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+}
+
 div#halo-product-category-block-1 .halo_bannerCategory.halo-fadeInUp {
   background-image: url(https://cdn11.bigcommerce.com/s-rq7pvrrofg/images/stencil/original/image-manager/halo-banner-by-category-1.jpg?t=1732113507);
   background-size: contain;
