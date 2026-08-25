@@ -531,8 +531,28 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
 .home-layout-2 .container,
 .body .container,
-.footer .container {
+.footer .container,
+.footer > .container,
+.footer-bottom .container,
+.footer-bottom__container {
     @include cwt-content-width;
+}
+
+// Footer must not inherit the theme's 1230/1600px container cap
+.footer .container,
+.footer > .container,
+.home-layout-2 .footer .container,
+.home-layout-2.page-type-default .footer .container,
+body .footer .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    @media (min-width: $cwt-breakpoint-desktop) {
+        width: 90% !important;
+        max-width: 90% !important;
+    }
 }
 
 // Keep top header visible (theme hides it below 801px)
@@ -3770,10 +3790,157 @@ a.button--tertiary {
 // -----------------------------------------------------------------------------
 // Footer
 // -----------------------------------------------------------------------------
-.footer.footer-layout-2 {
+.footer,
+.footer.footer-layout-1,
+.footer.footer-layout-2,
+.footer.footer-layout-3 {
     background-color: $cwt-black !important;
     border-top: 3px solid $cwt-gold-bright;
+    width: 100% !important;
+    max-width: 100% !important;
 
+    > .container,
+    .container {
+        @include cwt-content-width;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-sizing: border-box;
+
+        @media (min-width: $cwt-breakpoint-desktop) {
+            width: 90% !important;
+            max-width: 90% !important;
+        }
+    }
+
+    .footer-info {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 28px 24px;
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: inherit !important;
+        padding: 56px 0 48px !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .footer-info-col,
+    .footer-info-col--small {
+        float: none !important;
+        display: block !important;
+        flex: 1 1 0;
+        min-width: 150px;
+        width: auto !important;
+        max-width: none !important;
+        margin-bottom: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 12px !important;
+        vertical-align: top;
+        box-sizing: border-box;
+
+        &[data-section-type="newsletterSubscription"] {
+            flex: 1.4 1 220px;
+            min-width: 240px;
+            max-width: 360px !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding-right: 0 !important;
+
+            .form {
+                margin-bottom: 0 !important;
+            }
+
+            .footer-info-col--social {
+                margin-bottom: 20px !important;
+                text-align: left;
+            }
+        }
+    }
+
+    .footer-info-heading {
+        color: #ffffff !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 14px !important;
+    }
+
+    .footer-info-list {
+        a,
+        a span {
+            color: $cwt-text-secondary !important;
+
+            &:hover {
+                color: $cwt-gold-bright !important;
+            }
+        }
+    }
+
+    .footer_links li a {
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 12px;
+
+        &:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .footer-bottom,
+    .footer-bottom__container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .footer-bottom__container {
+        @include cwt-content-width;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+
+        @media (min-width: $cwt-breakpoint-desktop) {
+            width: 90% !important;
+            max-width: 90% !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .footer-info-col,
+        .footer-info-col--small {
+            flex: 1 1 calc(50% - 16px);
+            min-width: calc(50% - 16px);
+            max-width: calc(50% - 12px) !important;
+
+            &[data-section-type="newsletterSubscription"] {
+                flex: 1 1 100%;
+                min-width: 100%;
+                max-width: 100% !important;
+            }
+        }
+    }
+
+    @media (max-width: 640px) {
+        .footer-info-col,
+        .footer-info-col--small {
+            flex: 1 1 100%;
+            min-width: 100%;
+            max-width: 100% !important;
+            padding-right: 0 !important;
+        }
+    }
+}
+
+.footer.footer-layout-2 {
     .footer_links li a {
         text-transform: uppercase;
         letter-spacing: 0.04em;
