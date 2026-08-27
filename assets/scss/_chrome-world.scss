@@ -23,6 +23,42 @@ $cwt-text-tertiary: rgba(255, 255, 255, 0.55);
 $cwt-dark-overlay: rgba(10, 10, 10, 0.92);
 $cwt-breakpoint-desktop: 1400px; // laptop < 1400px = 100%, desktop ≥ 1400px = 90%
 
+// Runtime theme tokens — flipped by html[data-theme="light|dark"]
+:root,
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --cwt-page-bg: #{$cwt-dark};
+    --cwt-surface: #{$cwt-charcoal};
+    --cwt-elevated-bg: #{$cwt-elevated};
+    --cwt-ink: #{$cwt-text-primary};
+    --cwt-ink-muted: #{$cwt-text-secondary};
+    --cwt-ink-faint: #{$cwt-text-tertiary};
+    --cwt-line: #{$cwt-border-subtle};
+    --cwt-line-strong: #{$cwt-border-strong};
+    --cwt-heading: #ffffff;
+    --cwt-card-bg: #{$cwt-charcoal};
+    --cwt-input-bg: #{$cwt-charcoal};
+    --cwt-section-bg: #{$cwt-dark};
+    --cwt-price: #{$cwt-gold-bright};
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+    --cwt-page-bg: #f3f3f3;
+    --cwt-surface: #ffffff;
+    --cwt-elevated-bg: #f7f7f7;
+    --cwt-ink: #1a1a1a;
+    --cwt-ink-muted: #555555;
+    --cwt-ink-faint: #777777;
+    --cwt-line: rgba(0, 0, 0, 0.08);
+    --cwt-line-strong: rgba(0, 0, 0, 0.16);
+    --cwt-heading: #111111;
+    --cwt-card-bg: #ffffff;
+    --cwt-input-bg: #ffffff;
+    --cwt-section-bg: #f3f3f3;
+    --cwt-price: #{$cwt-gold-text};
+}
+
 @mixin cwt-content-width {
     width: 100%;
     max-width: 100% !important;
@@ -71,17 +107,15 @@ body,
 .body,
 main#main-content,
 .page {
-    background-color: $cwt-dark !important;
+    background-color: var(--cwt-page-bg) !important;
 }
 
 body {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 // =============================================================================
-// GLOBAL TEXT VISIBILITY — dark theme
-// Force readable light text on dark page surfaces. Keep black text only on
-// intentionally white panels (product cards, white dropdowns, inputs on white).
+// GLOBAL TEXT VISIBILITY — follows active theme tokens
 // =============================================================================
 .body,
 main#main-content,
@@ -105,7 +139,7 @@ main#main-content,
 .toggle-content,
 .modal-body,
 .alertBox {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -115,7 +149,7 @@ h1, h2, h3, h4, h5, h6,
 .title,
 .halo-block-header .title,
 .footer-info-heading {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-heading) !important;
 }
 
 p, li, dt, dd, td, th, label, span, small, strong, em, b, i,
@@ -141,9 +175,9 @@ p, li, dt, dd, td, th, label, span, small, strong, em, b, i,
     color: inherit;
 }
 
-// Default links on dark surfaces
+// Default links follow theme ink
 a {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 
     &:hover,
     &:focus {
@@ -151,7 +185,7 @@ a {
     }
 }
 
-// Secondary / muted copy still readable (not near-black)
+// Secondary / muted copy
 .body .text--muted,
 .body .is-loading,
 .body .empty,
@@ -163,17 +197,18 @@ a {
 .productView-rating,
 .cart-item-brand,
 .cart-item-label {
-    color: $cwt-text-secondary !important;
+    color: var(--cwt-ink-muted) !important;
 }
 
-// Sidebar categories / brands / featured — must stay light on charcoal panel
+// Sidebar categories / brands / featured
 .page-sidebar {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
+    background-color: var(--cwt-surface);
 
     .sidebarBlock-heading,
     .sidebarBlock-heading span,
     h2, h3, h4 {
-        color: #ffffff !important;
+        color: var(--cwt-heading) !important;
     }
 
     a,
@@ -185,7 +220,7 @@ a {
     li,
     span,
     p {
-        color: rgba(255, 255, 255, 0.82) !important;
+        color: var(--cwt-ink-muted) !important;
 
         &:hover,
         &:focus {
@@ -202,7 +237,7 @@ a {
     .card .price,
     .card span,
     .card p {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     .card .card-title a:hover {
@@ -221,7 +256,7 @@ a {
 .toggle-title .toggleLink,
 .toggle-title .toggleLink-text,
 .productView-tab .tab-title {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
 
     &:hover,
     &:focus,
@@ -265,10 +300,10 @@ table,
 .search-results,
 .page-content--centered,
 .page-content--textCenter {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
 
     h1, h2, h3, h4, p, li, label, span, a {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     a:hover {
@@ -281,14 +316,14 @@ table,
 .blog-post,
 .page-content .cms-page,
 .page .page-content {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 
     h1, h2, h3, h4, h5, h6, p, li {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 }
 
-// Catch theme defaults that paint near-black text on dark page
+// Catch hardcoded dark text — map to theme ink
 .body [style*="color:#000"],
 .body [style*="color: #000"],
 .body [style*="color:#333"],
@@ -297,14 +332,14 @@ table,
 .body [style*="color: #666"],
 .body [style*="color:rgb(0"],
 .body [style*="color: rgb(0"] {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
 }
 
-// PRODUCT CARDS — black theme; white image panel only
+// PRODUCT CARDS — theme-aware surfaces; white image panel only
 .card {
-    color: $cwt-text-primary !important;
-    background: $cwt-charcoal !important;
-    border-color: $cwt-border-strong !important;
+    color: var(--cwt-ink) !important;
+    background: var(--cwt-card-bg) !important;
+    border-color: var(--cwt-line-strong) !important;
 
     .card-title,
     .card-title a,
@@ -313,11 +348,11 @@ table,
     .card-body,
     .card-body p,
     .brand {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     .card-body span:not(.button):not(.price):not([class*="price"]) {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     .card-title a:hover {
@@ -339,7 +374,7 @@ table,
         text-decoration: line-through !important;
     }
 
-    // Regular price — yellow
+    // Regular price — yellow / theme price token
     .card-price,
     .card-price .price,
     .card-price p,
@@ -351,7 +386,7 @@ table,
     .card-price .price-none + .price-section--withTax,
     .price--withoutTax,
     .price--withTax {
-        color: $cwt-gold-bright !important;
+        color: var(--cwt-price) !important;
         font-size: 18px !important;
         font-weight: 700 !important;
         line-height: 1.25 !important;
@@ -2769,7 +2804,7 @@ body .footer .container {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 700;
-    color: $cwt-text-primary !important;
+    color: var(--cwt-heading) !important;
 }
 
 // Homepage "Top Deals" / "Featured" / "Top Products" block headings —
@@ -2779,7 +2814,7 @@ body .footer .container {
     .halo-block-header,
     .halo-block-header-wrapper,
     .custom-ecb {
-        background-color: #000000 !important;
+        background-color: var(--cwt-surface) !important;
         border-bottom: none !important;
     }
 
@@ -2789,7 +2824,7 @@ body .footer .container {
     .halo-block-header-wrapper .title,
     .custom-ecb .title,
     .custom-ecb h2 {
-        color: #ffffff !important;
+        color: var(--cwt-heading) !important;
     }
 
     // Same section width for Top Deals / Featured / Top Products
@@ -2979,8 +3014,8 @@ body .footer .container {
 }
 
 .card {
-    background: $cwt-charcoal;
-    border: 1px solid $cwt-border-strong;
+    background: var(--cwt-card-bg);
+    border: 1px solid var(--cwt-line-strong);
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
@@ -3133,7 +3168,7 @@ body .footer .container {
 
     .card-body {
         padding: 16px 18px 20px;
-        background: $cwt-charcoal;
+        background: var(--cwt-card-bg);
     }
 
     .card-text[data-test-info-type="brandName"] {
@@ -3143,7 +3178,7 @@ body .footer .container {
     }
 
     .card-title a {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         font-weight: 600;
         letter-spacing: 0.01em;
 
@@ -3248,7 +3283,7 @@ body .footer .container {
 .card-price .price-none + .price-section--withTax,
 .card-price .price-none + .price-section--withoutTax .price,
 .card-price .price-none + .price-section--withTax .price {
-    color: $cwt-gold-bright !important;
+    color: var(--cwt-price) !important;
     font-size: 18px !important;
     font-weight: 700 !important;
 }
@@ -5441,26 +5476,26 @@ main#main-content,
 // rules above; this is the fallback for everywhere else.
 // =============================================================================
 .form-label {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     small {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 }
 
 .form-input,
 .form-textarea,
 .form-select {
-    background-color: $cwt-charcoal;
-    border: 1px solid $cwt-border-strong;
-    color: $cwt-text-primary;
+    background-color: var(--cwt-input-bg);
+    border: 1px solid var(--cwt-line-strong);
+    color: var(--cwt-ink);
 
     &:focus {
         border-color: $cwt-gold-bright;
     }
 
     &::placeholder {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 }
 
@@ -6194,7 +6229,7 @@ main#main-content,
                 padding: 0 !important;
                 text-align: center !important;
                 width: 100% !important;
-                color: $cwt-text-primary !important;
+                color: var(--cwt-heading) !important;
                 font-weight: 700 !important;
             }
 
@@ -6203,7 +6238,7 @@ main#main-content,
                 display: inline-block !important;
                 margin-top: 6px;
                 font-size: 12px !important;
-                color: $cwt-text-secondary !important;
+                color: var(--cwt-ink-muted) !important;
             }
         }
 
@@ -6330,8 +6365,8 @@ main#main-content,
                 padding: 0 !important;
                 border-radius: 6px !important;
                 overflow: hidden;
-                background: $cwt-charcoal !important;
-                border: 1px solid $cwt-border-strong !important;
+                background: var(--cwt-card-bg) !important;
+                border: 1px solid var(--cwt-line-strong) !important;
                 box-shadow: none !important;
 
                 .card-figure {
@@ -6352,7 +6387,7 @@ main#main-content,
                     flex-direction: column;
                     padding: 10px 8px 12px !important;
                     text-align: left !important;
-                    background: $cwt-charcoal !important;
+                    background: var(--cwt-card-bg) !important;
                 }
 
                 .card-desc {
@@ -6368,7 +6403,7 @@ main#main-content,
                     overflow: hidden;
 
                     a {
-                        color: $cwt-text-primary !important;
+                        color: var(--cwt-ink) !important;
                         font-weight: 600 !important;
                     }
                 }
@@ -6376,7 +6411,7 @@ main#main-content,
                 .card-text[data-test-info-type="brandName"] {
                     font-size: 10px !important;
                     margin-bottom: 4px !important;
-                    color: $cwt-text-tertiary !important;
+                    color: var(--cwt-ink-faint) !important;
                 }
 
                 .card-price {
@@ -6386,7 +6421,7 @@ main#main-content,
                     flex-wrap: wrap;
                     align-items: baseline;
                     gap: 6px;
-                    color: $cwt-gold-bright !important;
+                    color: var(--cwt-price) !important;
 
                     .price--non-sale,
                     .price--rrp {
@@ -6405,7 +6440,7 @@ main#main-content,
                     .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax),
                     .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax) .price,
                     .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax) .price {
-                        color: $cwt-gold-bright !important;
+                        color: var(--cwt-price) !important;
                         font-weight: 700 !important;
                         font-size: 17px !important;
                     }
@@ -8089,21 +8124,21 @@ main#main-content,
 .page-type-wishlists {
     .page-heading,
     h1.page-heading {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-heading) !important;
         margin-bottom: 20px;
     }
 }
 
 .login-form {
     .form-label {
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
         font-weight: 600;
     }
 
     .form-input {
-        background-color: $cwt-charcoal !important;
-        border: 1px solid $cwt-border-strong !important;
-        color: $cwt-text-primary !important;
+        background-color: var(--cwt-input-bg) !important;
+        border: 1px solid var(--cwt-line-strong) !important;
+        color: var(--cwt-ink) !important;
         min-height: 44px;
 
         &:focus {
@@ -8570,8 +8605,124 @@ html[data-theme="light"] .cwt-theme-toggle {
 
 // =============================================================================
 // LIGHT THEME — html[data-theme="light"]
-// Header stays dark for brand/logo; page content + footer switch to light.
+// Tokens above flip page/card/text. Extra overrides beat leftover !important dark rules.
 // =============================================================================
+html[data-theme="light"],
+html.cwt-theme-light {
+    body,
+    .body,
+    main#main-content,
+    .page,
+    .page-content,
+    .container,
+    .main,
+    .halo-home-section-top,
+    .halo-home-section-bottom,
+    .halo-home-section-left,
+    .halo-block,
+    .halo-block-product,
+    .custom-beast-sellers,
+    .best-selll,
+    .cwt-testimonials,
+    .cwt-blog-section,
+    #recentPosts,
+    .productGrid,
+    .page-sidebar {
+        background-color: var(--cwt-page-bg) !important;
+        color: var(--cwt-ink) !important;
+    }
+
+    .card,
+    .card .card-body,
+    .panel,
+    .login .new-customer .panel,
+    .new-customer .panel {
+        background: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
+        border-color: var(--cwt-line-strong) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .halo-block-header,
+    .halo-block-header-wrapper,
+    .custom-ecb,
+    .home-layout-2 .halo-block-header,
+    .home-layout-2 .halo-block-header-wrapper,
+    .home-layout-2 .custom-ecb {
+        background-color: var(--cwt-surface) !important;
+    }
+
+    .halo-block-header .title,
+    .custom-ecb .title,
+    .home-layout-2 .halo-block-header .title,
+    .home-layout-2 .custom-ecb .title,
+    h1, h2, h3, h4, h5, h6,
+    .page-heading,
+    .title {
+        color: var(--cwt-heading) !important;
+    }
+
+    .card .card-title,
+    .card .card-title a,
+    .card .card-text,
+    .card .card-body,
+    .card .card-body p,
+    .card .brand {
+        color: var(--cwt-ink) !important;
+    }
+
+    .card-price,
+    .card-price .price--withoutTax,
+    .card-price .price--withTax,
+    .card-price .price-none + .price-section--withoutTax,
+    .card-price .price-none + .price-section--withTax,
+    .card-price .price {
+        color: $cwt-gold-text !important;
+    }
+
+    .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+    .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+        color: #e10600 !important;
+    }
+
+    .form-label {
+        color: var(--cwt-ink-muted) !important;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+        background-color: var(--cwt-input-bg) !important;
+        border-color: var(--cwt-line-strong) !important;
+        color: var(--cwt-ink) !important;
+    }
+
+    .footer,
+    .footer.footer-layout-1,
+    .footer.footer-layout-2,
+    .footer.footer-layout-3 {
+        background-color: #ffffff !important;
+        color: var(--cwt-ink) !important;
+
+        .footer-info-heading,
+        .footer-info-list a,
+        .footer_links a,
+        .footer-copyright p,
+        p, li, span, a {
+            color: #333333 !important;
+        }
+
+        a:hover {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    .footer-bottom {
+        background-color: #f0f0f0 !important;
+        border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+}
+
 html[data-theme="light"] {
     body,
     .body,
@@ -9047,6 +9198,164 @@ html[data-theme="light"] {
     .body [style*="color:#000"],
     .body [style*="color: #000"] {
         color: #1a1a1a !important;
+    }
+}
+
+// =============================================================================
+// LIGHT THEME — force dark text sitewide (except dark header / hero / visit)
+// =============================================================================
+html[data-theme="light"],
+html.cwt-theme-light {
+    body,
+    .body,
+    main#main-content,
+    .page,
+    .page-content,
+    .container,
+    .halo-block,
+    .halo-block-product,
+    .custom-beast-sellers,
+    .best-selll,
+    .productView,
+    .productView-details,
+    .productView-product,
+    .productView-info,
+    .cart,
+    .account,
+    .login,
+    .blog,
+    .search,
+    .page-sidebar,
+    .facetedSearch,
+    .sidebarBlock,
+    .tab-content,
+    .toggle-content,
+    .halo-description,
+    .cwt-blog-section,
+    .cwt-testimonials,
+    #recentPosts {
+        color: #1a1a1a !important;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .page-heading,
+    .title,
+    .halo-block-header .title,
+    .halo-block-header h2.title,
+    .halo-block-header h3.title,
+    .halo-block-header-wrapper .title,
+    .custom-ecb .title,
+    .custom-ecb h2,
+    .sidebarBlock-heading,
+    .productView-title,
+    .account-heading,
+    .panel-title,
+    .definitionList-key,
+    .footer-info-heading {
+        color: #111111 !important;
+    }
+
+    p, li, dt, dd, td, th, label, span, small, strong,
+    .form-label,
+    .card-text,
+    .card-title,
+    .card-title a,
+    .card-body,
+    .card-body p,
+    .card-body span:not(.button):not(.price):not([class*="price"]),
+    .brand,
+    .productView-brand,
+    .productView-info-name,
+    .productView-info-value,
+    .productReview-author,
+    .productReview-title,
+    .tab-title,
+    .toggleLink,
+    .navList-action,
+    .navBar-action,
+    .all-categories-list a,
+    .all-categories-list .text,
+    .brandList a,
+    .breadcrumb,
+    .breadcrumbs,
+    .breadcrumbs a,
+    .pagination-link,
+    .toolbar-info,
+    .account-listItem a,
+    .account-product-title a,
+    .account-product-description,
+    .definitionList-value,
+    .link,
+    .collection--link {
+        color: #1a1a1a !important;
+    }
+
+    a:not(.button):not(.card-figcaption-button) {
+        color: #222222 !important;
+
+        &:hover,
+        &:focus {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    .text--muted,
+    .rating--count,
+    .card-text[data-test-info-type="brandName"],
+    .productView-rating,
+    .account-product-detail-heading,
+    .form-label small {
+        color: #666666 !important;
+    }
+
+    // Keep header / hero / dark banners light-on-dark
+    .header,
+    .halo_topHeader,
+    .halo_middleHeader,
+    .halo_bottomHeader,
+    .cwt-hero,
+    .cwt-about-hero,
+    .cwt-about-visit,
+    .cwt-trust-bar,
+    .navPages-container.is-open {
+        color: rgba(255, 255, 255, 0.9) !important;
+
+        h1, h2, h3, h4, h5, h6, .title, p, span, a, li, label {
+            color: inherit;
+        }
+
+        a:not(.button) {
+            color: rgba(255, 255, 255, 0.9) !important;
+
+            &:hover {
+                color: $cwt-gold-bright !important;
+            }
+        }
+    }
+
+    .cwt-hero__title-line {
+        color: #ffffff !important;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+
+        &--gold {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .cwt-hero__subtitle {
+        color: rgba(255, 255, 255, 0.88) !important;
+    }
+
+    .cwt-about-visit,
+    .cwt-about-hero {
+        .cwt-about-eyebrow,
+        .cwt-about-visit__label {
+            color: $cwt-gold-bright !important;
+        }
+
+        h1, h2, h3, p, span, li {
+            color: #ffffff !important;
+        }
     }
 }
 

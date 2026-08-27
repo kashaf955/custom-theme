@@ -23,6 +23,12 @@ export default function cwtThemeToggle() {
     function setTheme(theme) {
         const next = theme === 'light' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
+        root.classList.toggle('cwt-theme-light', next === 'light');
+        root.classList.toggle('cwt-theme-dark', next === 'dark');
+        if (document.body) {
+            document.body.classList.toggle('cwt-theme-light', next === 'light');
+            document.body.classList.toggle('cwt-theme-dark', next === 'dark');
+        }
         try {
             localStorage.setItem(storageKey, next);
         } catch (e) { /* ignore */ }

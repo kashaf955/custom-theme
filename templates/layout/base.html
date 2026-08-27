@@ -23,8 +23,10 @@
                         ? stored
                         : 'dark';
                     document.documentElement.setAttribute('data-theme', theme);
+                    document.documentElement.classList.add(theme === 'light' ? 'cwt-theme-light' : 'cwt-theme-dark');
                 } catch (e) {
                     document.documentElement.setAttribute('data-theme', 'dark');
+                    document.documentElement.classList.add('cwt-theme-dark');
                 }
             })();
         </script>
