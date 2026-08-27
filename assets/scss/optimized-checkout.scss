@@ -393,7 +393,7 @@ a {
         border-color: #eeeeee;
 
         .cart-section-heading {
-            color: #e6e6e6 !important;
+            color: stencilColor("optimizedCheckout-contentPrimary-color") !important;
             line-height: 1;
             font-size: 12px;
             margin-bottom: 20px;
@@ -1272,12 +1272,37 @@ a[data-test="forgot-password-link"] {
 // =============================================================================
 // CWT theme toggle — light mode (reads data-theme from localStorage via empty.html)
 // Dark mode keeps stencilColor config values (dark checkout).
+// Do NOT blanket-style `span` here — it washes out button labels.
 // =============================================================================
 html[data-theme="light"],
 html.cwt-theme-light {
-    body {
+    body,
+    .ng-checkout-container {
         background-color: #f3f3f3 !important;
         color: #1a1a1a !important;
+    }
+
+    // Header — white bar, dark logo/text (config header-textColor is light-on-dark)
+    .optimizedCheckout-header,
+    .checkoutHeader {
+        background-color: #ffffff !important;
+        color: #111111 !important;
+        border-bottom-color: #ffbb00 !important;
+
+        .checkoutHeader-link,
+        .checkoutHeader-heading,
+        .header-logo-text,
+        a,
+        span,
+        p {
+            color: #111111 !important;
+        }
+
+        .checkoutHeader-link img,
+        .checkoutHeader-logo {
+            filter: none !important;
+            opacity: 1 !important;
+        }
     }
 
     .optimizedCheckout-headingPrimary,
@@ -1290,48 +1315,80 @@ html.cwt-theme-light {
     .optimizedCheckout-contentSecondary,
     .optimizedCheckout-form-label,
     .optimizedCheckout-form-text,
-    p, li, label, span, td, th, small {
+    .optimizedCheckout-overlay,
+    .optimizedCheckout-overlay p,
+    p, li, label, td, th, small,
+    .form-label,
+    .form-inlineMessage,
+    .shippingOptions-panel-message {
         color: #1a1a1a !important;
     }
 
     .optimizedCheckout-contentSecondary,
-    .optimizedCheckout-form-label {
+    .optimizedCheckout-form-label,
+    .optimizedCheckout-form-label small {
         color: #555555 !important;
     }
 
-    .optimizedCheckout-orderSummary,
-    .optimizedCheckout-formChecklist,
-    .optimizedCheckout-step,
-    .checkout-step,
-    .checkout-form,
-    .checkoutView-content,
-    .layout-cart,
-    .cart-section {
+    .optimizedCheckout-overlay {
         background-color: #ffffff !important;
-        color: #1a1a1a !important;
         border-color: rgba(0, 0, 0, 0.12) !important;
     }
 
-    .optimizedCheckout-formField,
-    input,
-    select,
-    textarea,
-    .form-input,
-    .form-select,
+    // Steps
+    .optimizedCheckout-checkoutStep {
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .optimizedCheckout-step {
+        background-color: #111111 !important;
+
+        &::before {
+            color: #ffffff !important;
+        }
+
+        svg {
+            fill: #ffffff !important;
+        }
+    }
+
+    // Forms
+    .optimizedCheckout-form-input,
+    .optimizedCheckout-form-select,
+    input.form-input,
+    select.form-select,
+    textarea.form-input,
     .form-field input,
     .form-field select,
     .form-field textarea {
         background-color: #ffffff !important;
         color: #1a1a1a !important;
-        border-color: rgba(0, 0, 0, 0.2) !important;
+        border-color: rgba(0, 0, 0, 0.22) !important;
     }
 
-    .optimizedCheckout-formField::placeholder,
+    .optimizedCheckout-form-input::placeholder,
+    .optimizedCheckout-form-select::placeholder,
     input::placeholder,
     textarea::placeholder {
         color: #777777 !important;
     }
 
+    .optimizedCheckout-form-input:focus,
+    .optimizedCheckout-form-select:focus,
+    .optimizedCheckout-form-select:hover {
+        background-color: #ffffff !important;
+        border-color: #ffbb00 !important;
+    }
+
+    // Shipping / payment method list
+    .optimizedCheckout-form-checklist,
+    .optimizedCheckout-formChecklist {
+        background-color: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.14) !important;
+        color: #1a1a1a !important;
+    }
+
+    .optimizedCheckout-form-checklist-item,
     .optimizedCheckout-formChecklist-item,
     .form-checklist-item {
         background-color: #ffffff !important;
@@ -1339,33 +1396,194 @@ html.cwt-theme-light {
         border-color: rgba(0, 0, 0, 0.12) !important;
     }
 
+    .optimizedCheckout-form-checklist-item--selected,
     .optimizedCheckout-formChecklist-item--selected,
     .form-checklist-item--selected {
         background-color: #f7f7f7 !important;
+        border-color: #ffbb00 !important;
     }
 
-    .product-title,
-    .product-title a,
-    .cart-priceItem-label,
-    .cart-priceItem-value,
-    .cart-total-label,
-    .cart-total-value,
-    .cart-priceItem {
+    // Order summary + cart drawer
+    .optimizedCheckout-orderSummary {
+        background-color: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+        color: #1a1a1a !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+
+        .cart-header {
+            background-color: #111111 !important;
+            border-bottom-color: #2a2a2a !important;
+
+            .cart-title {
+                color: #ffffff !important;
+            }
+
+            .cart-header-link {
+                color: #ffbb00 !important;
+            }
+        }
+
+        .cart-section {
+            background-color: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+
+            .cart-section-heading {
+                color: #111111 !important;
+            }
+
+            .product-title,
+            .product-title a,
+            .product-price,
+            .product-option,
+            .product-description,
+            .cart-priceItem,
+            .cart-priceItem-label,
+            .cart-priceItem-value,
+            .cart-total,
+            .cart-total-label,
+            .cart-total-value,
+            .cart-priceItem--total .cart-priceItem-label,
+            .cart-priceItem--total .cart-priceItem-value {
+                color: #1a1a1a !important;
+            }
+
+            .product-option,
+            .cart-priceItem-label {
+                color: #555555 !important;
+            }
+        }
+    }
+
+    .optimizedCheckout-orderSummary-cartSection {
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .layout-main,
+    .layout-cart,
+    .checkout-form,
+    .checkoutView-content,
+    .checkout-step {
         color: #1a1a1a !important;
     }
 
-    a:not(.button):not(.button--primary):not(.button--secondary) {
+    // Links (not buttons)
+    a:not(.button):not(.optimizedCheckout-buttonPrimary):not(.optimizedCheckout-buttonSecondary):not([class*="button"]) {
         color: #8a6a12 !important;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: #6e550e !important;
         }
     }
 
-    // Header bar stays white for logo contrast
-    .optimizedCheckout-header {
-        background-color: #ffffff !important;
+    // Primary CONTINUE / PAY — gold bg, black label
+    .optimizedCheckout-buttonPrimary,
+    button.optimizedCheckout-buttonPrimary,
+    .button.optimizedCheckout-buttonPrimary {
+        background-color: #ffbb00 !important;
+        border-color: #ffbb00 !important;
         color: #000000 !important;
+
+        span,
+        .text {
+            color: #000000 !important;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #000000 !important;
+            border-color: #000000 !important;
+            color: #ffffff !important;
+
+            span,
+            .text {
+                color: #ffffff !important;
+            }
+        }
+
+        &[disabled],
+        &[disabled]:hover {
+            background-color: #d0d0d0 !important;
+            border-color: #d0d0d0 !important;
+            color: #666666 !important;
+
+            span,
+            .text {
+                color: #666666 !important;
+            }
+        }
+    }
+
+    // Secondary EDIT — outlined dark on light
+    .optimizedCheckout-buttonSecondary,
+    button.optimizedCheckout-buttonSecondary,
+    .button.optimizedCheckout-buttonSecondary {
+        background-color: #ffffff !important;
+        border: 1px solid #111111 !important;
+        color: #111111 !important;
+
+        span,
+        .text {
+            color: #111111 !important;
+        }
+
+        svg {
+            fill: #111111 !important;
+            stroke: #111111 !important;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #ffbb00 !important;
+            border-color: #ffbb00 !important;
+            color: #000000 !important;
+
+            span,
+            .text {
+                color: #000000 !important;
+            }
+
+            svg {
+                fill: #000000 !important;
+                stroke: #000000 !important;
+            }
+        }
+    }
+
+    // Generic .button fallbacks used by checkout widgets
+    .button:not(.optimizedCheckout-buttonPrimary):not(.optimizedCheckout-buttonSecondary) {
+        color: #111111 !important;
+
+        span {
+            color: inherit !important;
+        }
+    }
+
+    .button--primary,
+    button.button--primary {
+        background-color: #ffbb00 !important;
+        border-color: #ffbb00 !important;
+        color: #000000 !important;
+
+        span {
+            color: #000000 !important;
+        }
+    }
+
+    .dropdown-toggle--select,
+    .button.dropdown-toggle--select {
+        background-color: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.22) !important;
+        color: #1a1a1a !important;
+    }
+
+    // Discount / coupon banner
+    .optimizedCheckout-discountBanner,
+    .redeemable-entry {
+        background-color: #f7f7f7 !important;
+        color: #1a1a1a !important;
     }
 }
 

@@ -9383,6 +9383,7 @@ html.cwt-theme-light {
     }
 
     // Keep header / hero / dark banners light-on-dark
+    // Use !important on every text node — earlier light rules force dark ink.
     .header,
     .halo_topHeader,
     .halo_middleHeader,
@@ -9392,20 +9393,49 @@ html.cwt-theme-light {
     .cwt-about-visit,
     .cwt-trust-bar,
     .navPages-container.is-open,
-    .cwt-policy-cta {
-        color: rgba(255, 255, 255, 0.9) !important;
+    .cwt-policy-cta,
+    .middleHeader-container {
+        color: rgba(255, 255, 255, 0.92) !important;
 
-        h1, h2, h3, h4, h5, h6, .title, p, span, a, li, label {
-            color: inherit;
+        h1, h2, h3, h4, h5, h6,
+        .title,
+        p, span, a, li, label, small, strong,
+        .navUser-action,
+        .navUser-action span,
+        .navUser-text,
+        .navPages-action,
+        .navPages-action .text,
+        .navBar-action,
+        .navList-action,
+        .cwt-header-label,
+        .my-account,
+        .my-account-link,
+        .my-account-link .navUser-action,
+        .item--account .my-account,
+        .breadcrumb,
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.92) !important;
         }
 
-        a:not(.button) {
-            color: rgba(255, 255, 255, 0.9) !important;
-
-            &:hover {
-                color: $cwt-gold-bright !important;
-            }
+        a:not(.button):hover,
+        a:not(.button):focus,
+        .navUser-action:hover,
+        .navPages-action:hover {
+            color: $cwt-gold-bright !important;
         }
+
+        svg {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+    }
+
+    .header .navPages-action.is-active,
+    .header .navPages-action.has-active,
+    .cwt-trust-bar__label,
+    .cwt-trust-bar span,
+    .cwt-trust-bar p {
+        color: rgba(255, 255, 255, 0.92) !important;
     }
 
     .cwt-hero__title-line {
