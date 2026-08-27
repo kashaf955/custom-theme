@@ -339,12 +339,16 @@ table,
         text-decoration: line-through !important;
     }
 
-    // Current / sale price — larger + gold (sale accent below)
+    // Regular price — yellow
     .card-price,
     .card-price .price,
     .card-price p,
     .card-price .price--withoutTax,
     .card-price .price--withTax,
+    .card-price .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax),
+    .card-price .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax),
+    .card-price .price-none + .price-section--withoutTax,
+    .card-price .price-none + .price-section--withTax,
     .price--withoutTax,
     .price--withTax {
         color: $cwt-gold-bright !important;
@@ -353,14 +357,12 @@ table,
         line-height: 1.25 !important;
     }
 
-    // When an original price is shown, current price uses sale red
-    .card-price:has(.price--non-sale) .price--withoutTax,
-    .card-price:has(.price--non-sale) .price--withTax,
-    .card-price:has(.price--rrp) .price--withoutTax,
-    .card-price:has(.price--rrp) .price--withTax,
-    .card-price:has(.non-sale-price--withoutTax) .price-section--withoutTax:not(.non-sale-price--withoutTax) .price,
-    .card-price:has(.non-sale-price--withTax) .price-section--withTax:not(.non-sale-price--withTax) .price {
-        color: #ff4d2e !important;
+    // Sale price — red (only when non-sale block is active, not .price-none)
+    .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax,
+    .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax,
+    .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+    .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+        color: #e10600 !important;
         font-size: 20px !important;
         font-weight: 800 !important;
     }
@@ -2408,20 +2410,24 @@ body .footer .container {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.45) 0%,
-        rgba(0, 0, 0, 0.25) 40%,
-        rgba(0, 0, 0, 0.65) 100%
-    );
+    pointer-events: none;
+    // Darken image so gold/white hero copy stays readable
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.62) 0%,
+            rgba(0, 0, 0, 0.48) 38%,
+            rgba(0, 0, 0, 0.88) 100%
+        );
 
     @media (min-width: 1201px) {
-        background: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.35) 0%,
-            rgba(0, 0, 0, 0.2) 35%,
-            rgba(0, 0, 0, 0.75) 100%
-        );
+        background:
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.55) 0%,
+                rgba(0, 0, 0, 0.42) 32%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
     }
 }
 
@@ -2487,6 +2493,7 @@ body .footer .container {
     display: block;
     font-size: #{"clamp(28px, 5vw, 52px)"};
     color: #ffffff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
 
     &--gold {
         color: $cwt-gold-bright;
@@ -3144,21 +3151,21 @@ body .footer .container {
     }
 
     .card-price {
-        color: $cwt-text-secondary;
+        color: $cwt-gold-bright !important;
 
         p {
-            color: $cwt-text-secondary;
+            color: $cwt-gold-bright !important;
         }
 
         .price-section {
             &.non-sale-price--withoutTax,
             &.non-sale-price--withTax {
-                color: $cwt-text-tertiary;
+                color: $cwt-text-tertiary !important;
             }
 
             &.price-none + .price-section--withoutTax,
             &.price-none + .price-section--withTax {
-                color: $cwt-text-secondary;
+                color: $cwt-gold-bright !important;
             }
         }
     }
@@ -3222,30 +3229,34 @@ body .footer .container {
     text-decoration: line-through !important;
 }
 
-// Regular / current price on dark product cards
+// Regular price — yellow (section + span; BC puts color on .price-section)
 .card-price {
     font-size: 18px !important;
     line-height: 1.3 !important;
+    color: $cwt-gold-bright !important;
 }
 
 .card-price .price--withoutTax,
 .card-price .price--withTax,
-.card-price .price-section--withoutTax .price,
-.card-price .price-section--withTax .price {
+.card-price .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax),
+.card-price .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax),
+.card-price .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax) .price,
+.card-price .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax) .price,
+.card-price .price-none + .price-section--withoutTax,
+.card-price .price-none + .price-section--withTax,
+.card-price .price-none + .price-section--withoutTax .price,
+.card-price .price-none + .price-section--withTax .price {
     color: $cwt-gold-bright !important;
     font-size: 18px !important;
     font-weight: 700 !important;
 }
 
-// Sale price — distinct red-orange when a struck price is present
-.card-price:has(.price--non-sale) .price--withoutTax,
-.card-price:has(.price--non-sale) .price--withTax,
-.card-price:has(.price--rrp) .price--withoutTax,
-.card-price:has(.price--rrp) .price--withTax,
-.card-price .price-section--saving + .price-section .price,
-.card-price .non-sale-price--withoutTax + .price-section--withoutTax .price,
-.card-price .non-sale-price--withTax + .price-section--withTax .price {
-    color: #ff4d2e !important;
+// Sale price — red
+.card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax,
+.card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax,
+.card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+.card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+    color: #e10600 !important;
     font-size: 20px !important;
     font-weight: 800 !important;
 }
@@ -4298,21 +4309,20 @@ main#main-content,
         text-decoration: line-through !important;
     }
 
+    // Regular price — yellow
+    .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax) .price--withoutTax,
+    .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax) .price--withTax,
     .price--withoutTax,
-    .price--withTax,
-    .price {
+    .price--withTax {
         color: $cwt-gold-bright !important;
         font-size: 26px !important;
         font-weight: 700 !important;
     }
 
-    &:has(.price--non-sale) .price--withoutTax,
-    &:has(.price--non-sale) .price--withTax,
-    &:has(.price--rrp) .price--withoutTax,
-    &:has(.price--rrp) .price--withTax,
-    .non-sale-price--withoutTax + .price-section--withoutTax .price,
-    .non-sale-price--withTax + .price-section--withTax .price {
-        color: #ff4d2e !important;
+    // Sale price — red
+    .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+    .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+        color: #e10600 !important;
         font-size: 28px !important;
         font-weight: 800 !important;
     }
@@ -5619,9 +5629,9 @@ main#main-content,
     .cwt-hero__overlay {
         background: linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.25) 0%,
-            rgba(0, 0, 0, 0.55) 45%,
-            rgba(0, 0, 0, 0.88) 100%
+            rgba(0, 0, 0, 0.5) 0%,
+            rgba(0, 0, 0, 0.72) 42%,
+            rgba(0, 0, 0, 0.92) 100%
         ) !important;
     }
 
@@ -6291,18 +6301,23 @@ main#main-content,
 
                     .price--withoutTax,
                     .price--withTax,
-                    .price-section--withoutTax .price,
-                    .price-section--withTax .price {
+                    .price,
+                    .price-none + .price-section--withoutTax,
+                    .price-none + .price-section--withTax,
+                    .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax),
+                    .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax),
+                    .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax) .price,
+                    .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax) .price {
                         color: $cwt-gold-bright !important;
                         font-weight: 700 !important;
                         font-size: 17px !important;
                     }
 
-                    &:has(.price--non-sale) .price--withoutTax,
-                    &:has(.price--non-sale) .price--withTax,
-                    &:has(.price--rrp) .price--withoutTax,
-                    &:has(.price--rrp) .price--withTax {
-                        color: #ff4d2e !important;
+                    .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax,
+                    .non-sale-price--withTax:not(.price-none) + .price-section--withTax,
+                    .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+                    .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+                        color: #e10600 !important;
                         font-size: 18px !important;
                         font-weight: 800 !important;
                     }
@@ -6716,6 +6731,53 @@ main#main-content,
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
+    // Regular price yellow on mobile (theme sets sale/secondary on .price-section)
+    .card-price,
+    .productGrid .card-price,
+    .productCarousel .card-price,
+    .halo-productCarousel .card-price,
+    .card-price .price-none + .price-section--withoutTax,
+    .card-price .price-none + .price-section--withTax,
+    .card-price .price-none + .price-section--withoutTax .price,
+    .card-price .price-none + .price-section--withTax .price,
+    .card-price .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax),
+    .card-price .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax),
+    .card-price .price-section--withoutTax:not(.non-sale-price--withoutTax):not(.rrp-price--withoutTax) .price,
+    .card-price .price-section--withTax:not(.non-sale-price--withTax):not(.rrp-price--withTax) .price,
+    .card-price .price--withoutTax,
+    .card-price .price--withTax,
+    .card-price .price {
+        color: $cwt-gold-bright !important;
+    }
+
+    .card-price .price--non-sale,
+    .card-price .price--rrp,
+    .card-price .non-sale-price--withoutTax,
+    .card-price .non-sale-price--withTax,
+    .card-price .rrp-price--withoutTax,
+    .card-price .rrp-price--withTax {
+        color: $cwt-text-tertiary !important;
+    }
+
+    .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax,
+    .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax,
+    .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+    .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+        color: #e10600 !important;
+    }
+
+    .productView-price .price--withoutTax,
+    .productView-price .price--withTax,
+    .productView-price .price-none + .price-section--withoutTax .price,
+    .productView-price .price-none + .price-section--withTax .price {
+        color: $cwt-gold-bright !important;
+    }
+
+    .productView-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+    .productView-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+        color: #e10600 !important;
+    }
 }
 
 // Phones — single-column product cards & tighter spacing
@@ -7113,7 +7175,7 @@ main#main-content,
     &__overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.35) 100%);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.7) 45%, rgba(0, 0, 0, 0.55) 100%);
     }
 
     &__inner {
@@ -7370,30 +7432,45 @@ main#main-content,
     }
 }
 
-// Visit store CTA
+// Visit store CTA — pad the SECTION (not .container) so theme container
+// `padding: 0 15px` cannot collapse top/bottom spacing.
 .cwt-about-visit {
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 88px 0 96px !important;
     color: #ffffff;
     overflow: hidden;
-
-    &__bg {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-    }
+    box-sizing: border-box;
+    background-color: #0a0a0a;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 
     &__overlay {
         position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.82);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.78);
+        z-index: 1;
+        pointer-events: none;
     }
 
     &__inner {
         position: relative;
         z-index: 2;
-        padding: 64px 15px 72px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
         text-align: center;
+        box-sizing: border-box;
 
         .cwt-about-eyebrow {
             margin-bottom: 10px;
@@ -7401,43 +7478,51 @@ main#main-content,
     }
 
     &__title {
-        margin: 0 0 36px;
-        font-size: #{"clamp(28px, 3.2vw, 38px)"};
+        margin: 0 0 32px;
+        font-size: #{"clamp(26px, 3.2vw, 38px)"};
         font-weight: 700;
         color: #ffffff;
+        word-wrap: break-word;
     }
 
     &__body {
-        max-width: 740px;
+        width: 100%;
+        max-width: 720px;
         margin: 0 auto;
+        box-sizing: border-box;
     }
 
     &__grid {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
-        gap: 28px 48px;
+        justify-content: center;
+        gap: 28px 40px;
         text-align: left;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     &__info {
         display: flex;
         flex-direction: column;
-        gap: 22px;
-        flex: 1 1 260px;
+        gap: 20px;
+        flex: 1 1 240px;
         min-width: 0;
+        max-width: 100%;
     }
 
     &__block {
         display: flex;
         gap: 14px;
         align-items: flex-start;
+        min-width: 0;
 
         .cwt-about-icon--gold {
             width: 46px;
             height: 46px;
             border: 1.5px solid $cwt-gold-bright;
+            flex-shrink: 0;
 
             svg {
                 width: 22px;
@@ -7445,11 +7530,18 @@ main#main-content,
             }
         }
 
+        > div {
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
         p {
             margin: 0;
             font-size: 15px;
             line-height: 1.55;
             color: rgba(255, 255, 255, 0.92);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
     }
 
@@ -7467,26 +7559,45 @@ main#main-content,
         flex-direction: column;
         justify-content: center;
         gap: 16px;
-        flex: 0 1 280px;
+        flex: 1 1 240px;
         width: 100%;
         max-width: 280px;
         margin: 0;
-        padding-left: 28px;
-        border-left: 1px solid rgba($cwt-gold-bright, 0.35);
+        padding-left: 0;
+        border-left: 0;
+        min-width: 0;
+        box-sizing: border-box;
 
         p {
             margin: 0;
             font-size: 15px;
             line-height: 1.5;
             color: rgba(255, 255, 255, 0.9);
+            word-wrap: break-word;
         }
 
         .cwt-about-btn--gold {
             width: 100%;
+            max-width: 100%;
             min-height: 48px;
-            padding: 12px 20px;
+            padding: 12px 16px;
             font-size: 13px;
-            white-space: nowrap;
+            white-space: normal;
+            box-sizing: border-box;
+        }
+    }
+
+    @media (min-width: 768px) {
+        padding: 100px 0 108px !important;
+
+        &__cta {
+            padding-left: 28px;
+            border-left: 1px solid rgba($cwt-gold-bright, 0.35);
+            flex: 0 1 280px;
+        }
+
+        &__grid {
+            justify-content: space-between;
         }
     }
 }
@@ -7527,7 +7638,7 @@ main#main-content,
         &__grid {
             flex-direction: column;
             align-items: stretch;
-            gap: 28px;
+            gap: 24px;
         }
 
         &__cta {
@@ -7535,7 +7646,7 @@ main#main-content,
             flex: 1 1 auto;
             padding-left: 0;
             border-left: 0;
-            padding-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid rgba($cwt-gold-bright, 0.35);
             text-align: center;
             align-items: center;
@@ -7574,10 +7685,22 @@ main#main-content,
     }
 
     .cwt-about-work,
-    .cwt-about-values,
-    .cwt-about-visit__inner {
+    .cwt-about-values {
         padding-top: 48px;
         padding-bottom: 48px;
+    }
+
+    .cwt-about-visit {
+        padding: 72px 0 80px !important;
+
+        &__inner {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        &__body {
+            max-width: 100%;
+        }
     }
 
     .cwt-about-hero__features {
