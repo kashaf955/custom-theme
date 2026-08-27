@@ -1268,3 +1268,104 @@ a[data-test="forgot-password-link"] {
 #checkoutBillingAddress .dynamic-form-field.dynamic-form-field--field_26{
     display: none;
 }
+
+// =============================================================================
+// CWT theme toggle — light mode (reads data-theme from localStorage via empty.html)
+// Dark mode keeps stencilColor config values (dark checkout).
+// =============================================================================
+html[data-theme="light"],
+html.cwt-theme-light {
+    body {
+        background-color: #f3f3f3 !important;
+        color: #1a1a1a !important;
+    }
+
+    .optimizedCheckout-headingPrimary,
+    .optimizedCheckout-headingSecondary,
+    h1, h2, h3, h4, h5, h6 {
+        color: #111111 !important;
+    }
+
+    .optimizedCheckout-contentPrimary,
+    .optimizedCheckout-contentSecondary,
+    .optimizedCheckout-form-label,
+    .optimizedCheckout-form-text,
+    p, li, label, span, td, th, small {
+        color: #1a1a1a !important;
+    }
+
+    .optimizedCheckout-contentSecondary,
+    .optimizedCheckout-form-label {
+        color: #555555 !important;
+    }
+
+    .optimizedCheckout-orderSummary,
+    .optimizedCheckout-formChecklist,
+    .optimizedCheckout-step,
+    .checkout-step,
+    .checkout-form,
+    .checkoutView-content,
+    .layout-cart,
+    .cart-section {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .optimizedCheckout-formField,
+    input,
+    select,
+    textarea,
+    .form-input,
+    .form-select,
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .optimizedCheckout-formField::placeholder,
+    input::placeholder,
+    textarea::placeholder {
+        color: #777777 !important;
+    }
+
+    .optimizedCheckout-formChecklist-item,
+    .form-checklist-item {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .optimizedCheckout-formChecklist-item--selected,
+    .form-checklist-item--selected {
+        background-color: #f7f7f7 !important;
+    }
+
+    .product-title,
+    .product-title a,
+    .cart-priceItem-label,
+    .cart-priceItem-value,
+    .cart-total-label,
+    .cart-total-value,
+    .cart-priceItem {
+        color: #1a1a1a !important;
+    }
+
+    a:not(.button):not(.button--primary):not(.button--secondary) {
+        color: #8a6a12 !important;
+
+        &:hover {
+            color: #6e550e !important;
+        }
+    }
+
+    // Header bar stays white for logo contrast
+    .optimizedCheckout-header {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+}
+

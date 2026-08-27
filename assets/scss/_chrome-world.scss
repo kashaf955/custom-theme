@@ -272,18 +272,18 @@ a {
 .productView-description p,
 .productView-description li,
 .productView-description span {
-    color: $cwt-text-secondary !important;
+    color: var(--cwt-ink-muted) !important;
 }
 
 // Tables on dark backgrounds (compare, account, order details)
 table,
 .table {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 
     th,
     td,
     a {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     a:hover {
@@ -360,7 +360,7 @@ table,
     }
 
     .card-text[data-test-info-type="brandName"] {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
     }
 
     // Original / RRP — muted + struck through
@@ -368,7 +368,7 @@ table,
     .card-price .price--rrp,
     .price--non-sale,
     .price--rrp {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
         font-size: 14px !important;
         font-weight: 500 !important;
         text-decoration: line-through !important;
@@ -542,14 +542,14 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 .halo_sticky_addToCart,
 #halo_sticky_addToCart,
 .halo_sticky_addToCart_mb {
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
 
     .productView-title,
     .price,
     label,
     span,
     a {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 }
 
@@ -557,14 +557,14 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 .lst-seen-widget,
 .lst-social-media,
 .wrap-icons {
-    background: $cwt-charcoal !important;
-    color: $cwt-text-primary !important;
+    background: var(--cwt-card-bg) !important;
+    color: var(--cwt-ink) !important;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid $cwt-border-subtle;
+    border: 1px solid var(--cwt-line);
 
     .in-content .product-info {
-        background: $cwt-charcoal !important;
-        border-color: $cwt-border-subtle !important;
+        background: var(--cwt-card-bg) !important;
+        border-color: var(--cwt-line) !important;
     }
 }
 
@@ -2291,15 +2291,15 @@ body .footer .container {
 // an elevated dark surface. Product cards inside it stay white, same as
 // everywhere else in the catalog.
 .quickSearchResults {
-    background-color: $cwt-elevated !important;
+    background-color: var(--cwt-elevated-bg) !important;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
 
     .suggestion-title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .category-suggestion a {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -2308,8 +2308,8 @@ body .footer .container {
 }
 
 .quickSearchMessage {
-    background-color: $cwt-elevated !important;
-    color: $cwt-text-secondary;
+    background-color: var(--cwt-elevated-bg) !important;
+    color: var(--cwt-ink-muted);
 }
 
 // -----------------------------------------------------------------------------
@@ -2317,7 +2317,7 @@ body .footer .container {
 // -----------------------------------------------------------------------------
 .halo_MultiCategory,
 .halo_MultiCategory.layout-2 {
-    background-color: $cwt-dark-overlay !important;
+    background-color: var(--cwt-page-bg)-overlay !important;
     border: 1px solid rgba($cwt-gold-bright, 0.25) !important;
     border-radius: 4px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
@@ -2395,7 +2395,7 @@ body .footer .container {
 }
 
 .page-type-default.home-layout-2 .halo_MultiCategory {
-    background-color: $cwt-dark-overlay !important;
+    background-color: var(--cwt-page-bg)-overlay !important;
 }
 
 .halo-home-section-fillter {
@@ -2747,7 +2747,7 @@ body .footer .container {
     .halo_MultiCategory,
     .halo_MultiCategory.hide-filter {
         display: block !important;
-        background-color: $cwt-dark-overlay !important;
+        background-color: var(--cwt-page-bg)-overlay !important;
         visibility: visible !important;
         opacity: 1 !important;
     }
@@ -2966,9 +2966,9 @@ body .footer .container {
 // -----------------------------------------------------------------------------
 .cwt-testimonials {
     padding: 48px 0 56px;
-    background-color: $cwt-charcoal;
-    border-top: 1px solid $cwt-border-subtle;
-    border-bottom: 1px solid $cwt-border-subtle;
+    background-color: var(--cwt-card-bg);
+    border-top: 1px solid var(--cwt-line);
+    border-bottom: 1px solid var(--cwt-line);
 
     &__header {
         margin-bottom: 28px;
@@ -2977,7 +2977,7 @@ body .footer .container {
         .title {
             margin: 0;
             font-size: 24px;
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
     }
 
@@ -3009,7 +3009,7 @@ body .footer .container {
     .card {
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
-        border-bottom: 1px solid $cwt-border-subtle !important;
+        border-bottom: 1px solid var(--cwt-line) !important;
     }
 }
 
@@ -3172,7 +3172,7 @@ body .footer .container {
     }
 
     .card-text[data-test-info-type="brandName"] {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
         font-weight: 700;
         letter-spacing: 0.08em;
     }
@@ -3197,7 +3197,7 @@ body .footer .container {
         .price-section {
             &.non-sale-price--withoutTax,
             &.non-sale-price--withTax {
-                color: $cwt-text-tertiary !important;
+                color: var(--cwt-ink-faint) !important;
             }
 
             &.price-none + .price-section--withoutTax,
@@ -3208,7 +3208,7 @@ body .footer .container {
     }
 
     .rating--small .rating--count {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .card-countDown {
@@ -3260,7 +3260,7 @@ body .footer .container {
 
 .card-price .price--non-sale,
 .card-price .price--rrp {
-    color: $cwt-text-tertiary !important;
+    color: var(--cwt-ink-faint) !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     text-decoration: line-through !important;
@@ -3505,7 +3505,7 @@ a.button--tertiary {
 // Categories, recent posts, several product-by-category blocks, and the
 // category page header). One override converts all of it to Surface 1.
 .halo-bgGray {
-    background-color: $cwt-charcoal !important;
+    background-color: var(--cwt-card-bg) !important;
 }
 
 #categoryCustom {
@@ -3527,7 +3527,7 @@ a.button--tertiary {
         margin: 0 auto 4px;
         border-radius: 50%;
         overflow: hidden;
-        background: $cwt-charcoal;
+        background: var(--cwt-card-bg);
         border: 2px solid rgba($cwt-gold-bright, 0.35);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
         transition: border-color 0.25s ease, transform 0.25s ease;
@@ -3552,25 +3552,25 @@ a.button--tertiary {
 
     .title,
     .title a {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .desc {
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
     }
 }
 
 // Popular Categories block
 .halo_featuredCategory-wrapper,
 .halo_featuredCategory {
-    background-color: $cwt-charcoal !important;
+    background-color: var(--cwt-card-bg) !important;
 }
 
 .halo_featuredCategory {
-    border-color: $cwt-border-subtle !important;
+    border-color: var(--cwt-line) !important;
 
     .title a {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -3578,10 +3578,10 @@ a.button--tertiary {
     }
 
     .subcategory-list .subcategory-item a {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         .icon {
-            fill: $cwt-text-tertiary;
+            fill: var(--cwt-ink-faint);
         }
 
         &:hover {
@@ -3599,7 +3599,7 @@ a.button--tertiary {
 .cwt-blog-section#recentPosts {
     padding: 48px 0 56px !important;
     border-bottom: 0 !important;
-    background-color: $cwt-dark !important;
+    background-color: var(--cwt-page-bg) !important;
 
     .container {
         padding-left: 15px !important;
@@ -3717,8 +3717,8 @@ a.button--tertiary {
             padding: 0 !important;
             float: none !important;
             white-space: normal !important;
-            background-color: $cwt-charcoal;
-            border: 1px solid $cwt-border-subtle;
+            background-color: var(--cwt-card-bg);
+            border: 1px solid var(--cwt-line);
             border-radius: 4px;
             overflow: hidden;
             height: 100%;
@@ -3731,7 +3731,7 @@ a.button--tertiary {
                 position: relative;
                 width: 100%;
                 aspect-ratio: 16 / 10;
-                background-color: $cwt-elevated;
+                background-color: var(--cwt-elevated-bg);
                 overflow: hidden;
 
                 a {
@@ -3783,14 +3783,14 @@ a.button--tertiary {
 
                 .date {
                     margin: 0 0 12px !important;
-                    color: $cwt-text-tertiary !important;
+                    color: var(--cwt-ink-faint) !important;
                     font-size: 13px !important;
                     font-weight: 400 !important;
                 }
 
                 .summary {
                     margin: 0 0 16px !important;
-                    color: $cwt-text-secondary !important;
+                    color: var(--cwt-ink-muted) !important;
                     font-size: 14px !important;
                     line-height: 1.5 !important;
                     font-weight: 400 !important;
@@ -3847,11 +3847,11 @@ a.button--tertiary {
 #recentPosts:not(.cwt-blog-section) {
     .halo-block-header {
         .title {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
 
         .desc {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
 
         .link a {
@@ -3862,7 +3862,7 @@ a.button--tertiary {
     .halo-recent-post .item {
         .item-content {
             .title a {
-                color: $cwt-text-primary;
+                color: var(--cwt-ink);
 
                 &:hover {
                     color: $cwt-gold-bright;
@@ -3870,11 +3870,11 @@ a.button--tertiary {
             }
 
             .date {
-                color: $cwt-text-tertiary;
+                color: var(--cwt-ink-faint);
             }
 
             .summary {
-                color: $cwt-text-secondary;
+                color: var(--cwt-ink-muted);
             }
 
             .link {
@@ -3887,7 +3887,7 @@ a.button--tertiary {
 // Product-by-category home blocks (halo-prodByCate-2/-3, featured/new/top)
 .halo-block-header {
     .title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .link,
@@ -3987,7 +3987,7 @@ a.button--tertiary {
     .footer-info-list {
         a,
         a span {
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
 
             &:hover {
                 color: $cwt-gold-bright !important;
@@ -4062,7 +4062,7 @@ a.button--tertiary {
             .powered-by {
                 margin: 0;
                 line-height: 1.45;
-                color: $cwt-text-secondary;
+                color: var(--cwt-ink-muted);
                 font-size: 13px;
                 text-align: center !important;
             }
@@ -4167,7 +4167,7 @@ a.button--tertiary {
 }
 
 .footer-bottom {
-    background-color: $cwt-charcoal !important;
+    background-color: var(--cwt-card-bg) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 24px !important;
     padding-bottom: 24px !important;
@@ -4208,7 +4208,7 @@ main#main-content,
 // =============================================================================
 .productView,
 .productView--quickView {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 
     // Real base-theme bug, found via DevTools: .productView-images floats
     // left and .productView-details floats right at >=768px (grid-column(12)
@@ -4249,7 +4249,7 @@ main#main-content,
 }
 
 .productView-img-container {
-    background: $cwt-charcoal;
+    background: var(--cwt-card-bg);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -4258,7 +4258,7 @@ main#main-content,
     .slick-dots li {
         button {
             &:before {
-                color: $cwt-text-tertiary;
+                color: var(--cwt-ink-faint);
                 opacity: 1;
             }
         }
@@ -4273,7 +4273,7 @@ main#main-content,
 .halo-info {
     .productView-thumbnail-custom {
         a {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
 
             .icon,
             svg {
@@ -4289,10 +4289,10 @@ main#main-content,
 
 .productView-thumbnail-wrapper {
     .productView-thumbnail {
-        border: 1px solid $cwt-border-subtle;
+        border: 1px solid var(--cwt-line);
         border-radius: 6px;
         overflow: hidden;
-        background: $cwt-charcoal;
+        background: var(--cwt-card-bg);
         transition: border-color 0.2s ease;
 
         &.slick-current,
@@ -4323,13 +4323,13 @@ main#main-content,
 .productView-title {
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 .productView-rating {
     #productReview_link,
     .no-review {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -4347,18 +4347,18 @@ main#main-content,
 
 // --- Price & info table --------------------------------------------------------
 .productView-price {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
     font-size: 22px !important;
     line-height: 1.3 !important;
 
     .price-section {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         margin-bottom: 4px;
     }
 
     .price--non-sale,
     .price--rrp {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
         font-size: 16px !important;
         font-weight: 500 !important;
         text-decoration: line-through !important;
@@ -4388,36 +4388,36 @@ main#main-content,
 }
 
 .productView-info {
-    border-top: 1px solid $cwt-border-subtle;
+    border-top: 1px solid var(--cwt-line);
     padding-top: 12px;
 
     .productView-info-item {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 
     .productView-info-name {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .productView-info-value {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 }
 
 // --- Options / swatches ---------------------------------------------------------
 .productView-options {
     .form-label {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         &.form-label--alternate {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
     }
 
     .form-select {
-        background-color: $cwt-charcoal;
-        border: 1px solid $cwt-border-strong;
-        color: $cwt-text-primary;
+        background-color: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line-strong);
+        color: var(--cwt-ink);
 
         &:focus {
             border-color: $cwt-gold-bright;
@@ -4425,9 +4425,9 @@ main#main-content,
     }
 
     .form-option {
-        border: 1px solid $cwt-border-strong;
-        background: $cwt-charcoal;
-        color: $cwt-text-primary;
+        border: 1px solid var(--cwt-line-strong);
+        background: var(--cwt-card-bg);
+        color: var(--cwt-ink);
         transition: border-color 0.2s ease, background-color 0.2s ease;
 
         &:hover {
@@ -4436,7 +4436,7 @@ main#main-content,
     }
 
     .form-option-swatch {
-        border-color: $cwt-border-strong;
+        border-color: var(--cwt-line-strong);
     }
 
     .form-radio:checked + .form-option,
@@ -4447,36 +4447,36 @@ main#main-content,
     }
 
     .form-option-variant--none {
-        background: $cwt-charcoal;
-        color: $cwt-text-secondary;
+        background: var(--cwt-card-bg);
+        color: var(--cwt-ink-muted);
     }
 }
 
 // --- Quantity + Add to cart ------------------------------------------------------
 .form-field--stock {
     .form-label {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
 .form-field--increments {
     .form-label {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .form-increment {
-        border: 1px solid $cwt-border-strong;
-        background: $cwt-charcoal;
+        border: 1px solid var(--cwt-line-strong);
+        background: var(--cwt-card-bg);
     }
 
     .form-input--incrementTotal {
         background: transparent;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .button--icon {
         background: transparent;
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -4491,13 +4491,13 @@ main#main-content,
 
 .add-to-cart-wrapper {
     .alertBox.productAttributes-message {
-        background: $cwt-charcoal;
-        border: 1px solid $cwt-border-subtle;
-        color: $cwt-text-primary;
+        background: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line);
+        color: var(--cwt-ink);
     }
 
     .free-delivery-note {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
@@ -4528,13 +4528,13 @@ main#main-content,
 
 // --- Wishlist / share / security --------------------------------------------------
 .dropdown-menu {
-    background: $cwt-elevated !important;
-    border: 1px solid $cwt-border-subtle !important;
+    background: var(--cwt-elevated-bg) !important;
+    border: 1px solid var(--cwt-line) !important;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
 
     li .button,
     li a.button {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
         background: transparent !important;
 
         &:hover {
@@ -4544,7 +4544,7 @@ main#main-content,
 }
 
 .form-wishlist .dropdown-menu-button {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     &:hover {
         color: $cwt-gold-bright;
@@ -4557,7 +4557,7 @@ main#main-content,
 }
 
 .socialLinks-item .socialLinks__link {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     svg {
         fill: currentColor;
@@ -4571,10 +4571,10 @@ main#main-content,
 // --- Tabs / description ------------------------------------------------------------
 .productView-tab {
     .tabs {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
 
         .tab-title {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
 
         .tab.is-active .tab-title {
@@ -4586,7 +4586,7 @@ main#main-content,
 
 .toggle-title {
     .toggleLink {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -4596,7 +4596,7 @@ main#main-content,
 
 .tab-content,
 .toggle-content {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     a {
         color: $cwt-gold-bright;
@@ -4608,7 +4608,7 @@ main#main-content,
 }
 
 .description-showmore {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 }
 
 // Related / similar products carousel — no gutter existed between slides at
@@ -4661,7 +4661,7 @@ main#main-content,
         width: 100% !important;
 
         .title {
-            color: $cwt-text-primary !important;
+            color: var(--cwt-ink) !important;
             text-align: left !important;
             width: auto !important;
             display: inline-block;
@@ -4811,42 +4811,42 @@ main#main-content,
 
 // --- Reviews -----------------------------------------------------------------------
 .productReviews {
-    border-top: 1px solid $cwt-border-subtle;
+    border-top: 1px solid var(--cwt-line);
 
     .toggle-title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 }
 
 .productReview {
-    border-bottom: 1px solid $cwt-border-subtle;
+    border-bottom: 1px solid var(--cwt-line);
 
     .productReview-title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .productReview-author {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .productReview-body {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
 // --- Ask an Expert -------------------------------------------------------------------
 .halo_ask-an-experts {
     .contact {
-        background: $cwt-charcoal;
-        border: 1px solid $cwt-border-subtle;
+        background: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line);
         border-radius: 8px;
 
         .content-contact .text {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
 
         .number-phone {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
 
         .ask-an-expert-link {
@@ -4869,32 +4869,32 @@ main#main-content,
         }
 
         .content .title {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
 
         .content .description {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
     }
 }
 
 // --- Bundle / "Frequently bought together" --------------------------------------------
 .halo-bundle-products {
-    background: $cwt-charcoal;
+    background: var(--cwt-card-bg);
     border-radius: 10px;
-    border: 1px solid $cwt-border-subtle;
+    border: 1px solid var(--cwt-line);
 
     .halo-block-header .title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .halo-product-item {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 
     .halo-detail-name,
     .halo-detail-label {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .halo-detail-price {
@@ -4907,11 +4907,11 @@ main#main-content,
     }
 
     .halo-detail-options {
-        background: $cwt-elevated;
-        border: 1px solid $cwt-border-subtle;
+        background: var(--cwt-elevated-bg);
+        border: 1px solid var(--cwt-line);
 
         .halo-option-title {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
     }
 }
@@ -4923,30 +4923,30 @@ main#main-content,
 
     .productView-title,
     .productView-price {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .pop-up-option {
-        background: $cwt-elevated;
+        background: var(--cwt-elevated-bg);
 
         .data-product-name .productView-title {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
     }
 }
 
 // --- Modals (Quick View, Ask an Expert, Write a Review, video/warranty/instruction) ------
 .modal {
-    background: $cwt-elevated !important;
-    color: $cwt-text-primary;
-    border: 1px solid $cwt-border-subtle;
+    background: var(--cwt-elevated-bg) !important;
+    color: var(--cwt-ink);
+    border: 1px solid var(--cwt-line);
 
     .modal-header-title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .modal-close {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -4955,7 +4955,7 @@ main#main-content,
 }
 
 .quickView {
-    background: $cwt-elevated;
+    background: var(--cwt-elevated-bg);
 }
 
 // -----------------------------------------------------------------------------
@@ -4972,11 +4972,11 @@ main#main-content,
 // toolbar, faceted sidebar, pagination, empty state.
 // =============================================================================
 .page-listing-header {
-    background-color: $cwt-charcoal !important;
-    border-bottom: 1px solid $cwt-border-subtle;
+    background-color: var(--cwt-card-bg) !important;
+    border-bottom: 1px solid var(--cwt-line);
 
     .page-description {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         a {
             color: $cwt-gold-bright;
@@ -4987,45 +4987,45 @@ main#main-content,
 // Subcategory carousel — base theme hardcodes #323232 (dark gray) text, which
 // is invisible against the new dark page background.
 .haloSubCategories {
-    border-color: $cwt-border-subtle !important;
+    border-color: var(--cwt-line) !important;
 
     &__name {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         .text:before {
             background-color: $cwt-gold-bright;
         }
 
         .count {
-            background-color: $cwt-elevated;
-            color: $cwt-text-secondary;
+            background-color: var(--cwt-elevated-bg);
+            color: var(--cwt-ink-muted);
         }
     }
 
     &__desc {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         p {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
     }
 }
 
 .halo-toolbar {
     .toolbar-wrapper {
-        border-color: $cwt-border-subtle;
+        border-color: var(--cwt-line);
     }
 
     .pagination-info,
     .toolbar-left,
     .toolbar-right {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .form-select {
-        background-color: $cwt-charcoal;
-        border: 1px solid $cwt-border-strong;
-        color: $cwt-text-primary;
+        background-color: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line-strong);
+        color: var(--cwt-ink);
     }
 }
 
@@ -5033,12 +5033,12 @@ main#main-content,
 // Faceted search sidebar — preserve filters, style to match
 // -----------------------------------------------------------------------------
 .page-sidebar {
-    background-color: $cwt-charcoal !important;
+    background-color: var(--cwt-card-bg) !important;
     border-right: 1px solid $cwt-border-subtle;
 
     .navBar-action,
     a {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5053,18 +5053,18 @@ main#main-content,
         text-transform: uppercase;
         letter-spacing: 0.04em;
         font-weight: 700;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .facetedSearch-navList,
     .facetedSearch-navListItem,
     .navList-item {
-        border-color: $cwt-border-subtle;
+        border-color: var(--cwt-line);
     }
 
     .facetedSearch-navList a,
     .navList-action {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5073,7 +5073,7 @@ main#main-content,
 
     .form-checkbox + label,
     .form-radio + label {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .form-checkbox:checked + label,
@@ -5083,15 +5083,15 @@ main#main-content,
 }
 
 .shopByPrice-slider .noUi-target {
-    background: $cwt-elevated;
+    background: var(--cwt-elevated-bg);
 }
 
 // Pagination — appears on category, blog, account, and search results
 .pagination {
     .pagination-item {
         .pagination-link {
-            color: $cwt-text-secondary;
-            border-color: $cwt-border-subtle;
+            color: var(--cwt-ink-muted);
+            border-color: var(--cwt-line);
 
             &:hover {
                 color: $cwt-gold-bright;
@@ -5108,7 +5108,7 @@ main#main-content,
 }
 
 .page-no-products {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 }
 
 // -----------------------------------------------------------------------------
@@ -5117,7 +5117,7 @@ main#main-content,
 // -----------------------------------------------------------------------------
 .breadcrumbs {
     .breadcrumb-label {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5130,9 +5130,9 @@ main#main-content,
 // Translucent dark tint of the semantic color, keeping the hue recognizable.
 // =============================================================================
 .alertBox {
-    background: $cwt-charcoal;
-    border: 1px solid $cwt-border-subtle;
-    color: $cwt-text-primary;
+    background: var(--cwt-card-bg);
+    border: 1px solid var(--cwt-line);
+    color: var(--cwt-ink);
     border-radius: 6px;
 
     &--info {
@@ -5159,28 +5159,28 @@ main#main-content,
 // Cart page
 // =============================================================================
 .cart {
-    background: $cwt-charcoal;
+    background: var(--cwt-card-bg);
     border-radius: 8px;
     overflow: hidden;
 
     .cart-header {
-        background: $cwt-elevated;
+        background: var(--cwt-elevated-bg);
 
         .cart-header-item {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
     }
 
     .cart-item {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 
     .cart-item-brand {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .cart-item-name__label {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5188,33 +5188,33 @@ main#main-content,
     }
 
     .cart-item-label {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .cart-item-value {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .definitionList-key {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .definitionList-value {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .form-increment {
-        border: 1px solid $cwt-border-strong;
-        background: $cwt-elevated;
+        border: 1px solid var(--cwt-line-strong);
+        background: var(--cwt-elevated-bg);
     }
 
     .form-input--incrementTotal {
         background: transparent;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .cart-remove {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5227,27 +5227,27 @@ main#main-content,
 }
 
 .cart-totals {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 
     .cart-total {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 
     .cart-total-label {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .cart-total-value {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .cart-total-grandTotal {
-        border-top: 1px solid $cwt-border-strong;
+        border-top: 1px solid var(--cwt-line-strong);
         border-bottom: 0;
 
         .cart-total-label,
         .cart-total-value {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
             font-weight: 700;
         }
     }
@@ -5257,13 +5257,13 @@ main#main-content,
 // Cart preview sidebar (click cart icon)
 // =============================================================================
 .halo-cart-sidebar {
-    background-color: $cwt-charcoal !important;
-    color: $cwt-text-primary !important;
-    border-left: 1px solid $cwt-border-subtle;
+    background-color: var(--cwt-card-bg) !important;
+    color: var(--cwt-ink) !important;
+    border-left: 1px solid var(--cwt-line);
 
     .halo-sidebar-header {
         background-color: $cwt-black !important;
-        border-bottom: 1px solid $cwt-border-subtle !important;
+        border-bottom: 1px solid var(--cwt-line) !important;
 
         .title {
             color: #ffffff !important;
@@ -5277,26 +5277,26 @@ main#main-content,
     }
 
     .halo-sidebar-wrapper {
-        background-color: $cwt-charcoal !important;
-        color: $cwt-text-primary !important;
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
     }
 
     .previewCart {
-        background-color: $cwt-charcoal !important;
-        color: $cwt-text-primary !important;
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
     }
 
     .previewCartList {
-        background-color: $cwt-charcoal !important;
+        background-color: var(--cwt-card-bg) !important;
 
         li {
-            border-bottom-color: $cwt-border-subtle !important;
+            border-bottom-color: var(--cwt-line) !important;
         }
     }
 
     .previewCartItem {
-        border-top-color: $cwt-border-subtle !important;
-        color: $cwt-text-primary !important;
+        border-top-color: var(--cwt-line) !important;
+        color: var(--cwt-ink) !important;
     }
 
     .previewCartItem-image {
@@ -5306,13 +5306,13 @@ main#main-content,
     }
 
     .previewCartItem-brand {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
     }
 
     .previewCartItem-name,
     .previewCartItem-name a,
     .previewCartItem-name span {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
 
         &:hover {
             color: $cwt-gold-bright !important;
@@ -5322,20 +5322,20 @@ main#main-content,
     .previewCartItem-variant,
     .previewCartItem-options,
     .previewCartItem-options span {
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
     }
 
     .previewCartItem-price,
     .previewCartItem-price span,
     .previewCartItem-price .multiply {
-        color: $cwt-gold-bright !important;
+        color: var(--cwt-price) !important;
     }
 
     .previewCartItem-remove {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
 
         svg {
-            fill: $cwt-text-tertiary !important;
+            fill: var(--cwt-ink-faint) !important;
         }
 
         &:hover {
@@ -5349,23 +5349,23 @@ main#main-content,
 
     .previewCartItem-qty {
         .form-increment {
-            border: 1px solid $cwt-border-strong !important;
-            background: $cwt-elevated !important;
+            border: 1px solid var(--cwt-line-strong) !important;
+            background: var(--cwt-elevated-bg) !important;
         }
 
         .form-input--incrementTotal {
             background: transparent !important;
-            color: $cwt-text-primary !important;
+            color: var(--cwt-ink) !important;
             border-color: transparent !important;
         }
 
         .button--icon {
             background: transparent !important;
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
 
             svg {
-                fill: $cwt-text-secondary !important;
-                stroke: $cwt-text-secondary !important;
+                fill: var(--cwt-ink-muted) !important;
+                stroke: var(--cwt-ink-muted) !important;
             }
 
             &:hover {
@@ -5380,32 +5380,32 @@ main#main-content,
     }
 
     .previewCartTotalsPrice {
-        background-color: $cwt-elevated !important;
-        border-top: 1px solid $cwt-border-subtle !important;
+        background-color: var(--cwt-elevated-bg) !important;
+        border-top: 1px solid var(--cwt-line) !important;
     }
 
     .previewCartTotals-label,
     .previewCartTotals-value,
     .previewCartTotals-value span {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
     }
 
     .previewCartTotals.grandTotal {
         .previewCartTotals-label,
         .previewCartTotals-value,
         .previewCartTotals-value span {
-            color: #ffffff !important;
+            color: var(--cwt-heading) !important;
         }
     }
 
     .previewCartAction {
-        background-color: $cwt-elevated !important;
+        background-color: var(--cwt-elevated-bg) !important;
         border-top: 0 !important;
     }
 
     .previewCart-additionalCheckoutButtons,
     .previewCart-acceleratedCheckoutButtons {
-        background-color: $cwt-elevated !important;
+        background-color: var(--cwt-elevated-bg) !important;
     }
 
     .previewCartAction-checkoutMultiple a {
@@ -5414,7 +5414,7 @@ main#main-content,
     }
 
     .previewCart-emptyBody {
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
     }
 }
 
@@ -5436,8 +5436,8 @@ main#main-content,
 // Trust badges — reuses the header .cwt-trust-bar icon-badge visual language
 // rather than inventing a new pattern.
 .brand-protective {
-    background: $cwt-charcoal;
-    border: 1px solid $cwt-border-subtle;
+    background: var(--cwt-card-bg);
+    border: 1px solid var(--cwt-line);
     border-radius: 8px;
     padding: 20px;
 
@@ -5456,18 +5456,18 @@ main#main-content,
         }
 
         .text {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
             font-weight: 700;
         }
     }
 
     .description {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
 .page-content[data-cart] h3 {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 // =============================================================================
@@ -5501,25 +5501,25 @@ main#main-content,
 
 .form-checkbox + label,
 .form-radio + label {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 }
 
 .form-fieldset {
-    border-color: $cwt-border-subtle;
+    border-color: var(--cwt-line);
 }
 
 .form-legend {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 // =============================================================================
 // Account pages
 // =============================================================================
 .navBar--account {
-    border-bottom: 1px solid $cwt-border-subtle;
+    border-bottom: 1px solid var(--cwt-line);
 
     .navBar-action {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5533,12 +5533,12 @@ main#main-content,
 }
 
 .account-heading {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
 }
 
 .account-list {
     .account-listItem {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 
     .account-orderStatus-label {
@@ -5547,7 +5547,7 @@ main#main-content,
 
     .account-orderStatus-action,
     .account-product-title a {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
 
         &:hover {
             color: $cwt-gold-bright;
@@ -5555,34 +5555,34 @@ main#main-content,
     }
 
     .account-product-description {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .account-product-detail-heading {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     .account-product-detail span {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
 .panel {
-    background: $cwt-charcoal;
-    border: 1px solid $cwt-border-subtle;
+    background: var(--cwt-card-bg);
+    border: 1px solid var(--cwt-line);
     border-radius: 8px;
 
     .address-title {
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     .address-details,
     .address-description {
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 
     .address-label {
-        color: $cwt-text-tertiary;
+        color: var(--cwt-ink-faint);
     }
 
     &--newAddress {
@@ -5591,7 +5591,7 @@ main#main-content,
 
         .address-symbol,
         .address-title {
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
 
         &:hover {
@@ -5606,24 +5606,24 @@ main#main-content,
 }
 
 .table {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     th {
-        color: $cwt-text-primary;
-        border-bottom: 1px solid $cwt-border-strong;
+        color: var(--cwt-ink);
+        border-bottom: 1px solid var(--cwt-line-strong);
     }
 
     td {
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
     }
 }
 
 .definitionList-key {
-    color: $cwt-text-tertiary;
+    color: var(--cwt-ink-faint);
 }
 
 .definitionList-value {
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 }
 
 // =============================================================================
@@ -5662,19 +5662,19 @@ main#main-content,
     .halo-block.border-top,
     .custom-beast-sellers.border-top,
     .best-selll.border-top {
-        border-top: 1px solid $cwt-border-subtle !important;
+        border-top: 1px solid var(--cwt-line) !important;
     }
 
     // Only one divider between stacked product sections
     .halo-block-product + .halo-block-product.border-top,
     .custom-beast-sellers + .halo-block-product.border-top,
     .halo-block-product + .custom-beast-sellers.border-top {
-        border-top: 1px solid $cwt-border-subtle !important;
+        border-top: 1px solid var(--cwt-line) !important;
     }
 
     .halo-home-section-bottom {
         > .container > .halo-block-product:first-child {
-            border-top: 1px solid $cwt-border-subtle !important;
+            border-top: 1px solid var(--cwt-line) !important;
         }
     }
 }
@@ -5897,7 +5897,7 @@ main#main-content,
             }
 
             .navPage-subMenu {
-                background-color: $cwt-charcoal !important;
+                background-color: var(--cwt-card-bg) !important;
             }
         }
 
@@ -5945,7 +5945,7 @@ main#main-content,
             }
 
             .navPage-subMenu {
-                background-color: $cwt-charcoal !important;
+                background-color: var(--cwt-card-bg) !important;
             }
 
             .navPage-subMenu-action {
@@ -6425,7 +6425,7 @@ main#main-content,
 
                     .price--non-sale,
                     .price--rrp {
-                        color: $cwt-text-tertiary !important;
+                        color: var(--cwt-ink-faint) !important;
                         font-size: 13px !important;
                         font-weight: 500 !important;
                         text-decoration: line-through !important;
@@ -6897,7 +6897,7 @@ main#main-content,
     .card-price .non-sale-price--withTax,
     .card-price .rrp-price--withoutTax,
     .card-price .rrp-price--withTax {
-        color: $cwt-text-tertiary !important;
+        color: var(--cwt-ink-faint) !important;
     }
 
     .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax,
@@ -7191,7 +7191,7 @@ main#main-content,
 }
 
 .cwt-about {
-    color: $cwt-text-primary;
+    color: var(--cwt-ink);
     overflow-x: hidden;
 
     .container {
@@ -7376,7 +7376,7 @@ main#main-content,
         margin: 0;
         padding: 0;
         list-style: none;
-        background: $cwt-elevated;
+        background: var(--cwt-elevated-bg);
         border: 1px solid rgba($cwt-gold-bright, 0.2);
         border-radius: 12px;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
@@ -7393,7 +7393,7 @@ main#main-content,
         text-align: center;
 
         + .cwt-about-stats__item {
-            border-left: 1px solid $cwt-border-subtle;
+            border-left: 1px solid var(--cwt-line);
         }
 
         strong {
@@ -7405,7 +7405,7 @@ main#main-content,
 
         span:last-child {
             font-size: 13px;
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
             text-transform: capitalize;
         }
     }
@@ -7414,7 +7414,7 @@ main#main-content,
 // Our Story
 .cwt-about-story {
     padding: 24px 0 72px;
-    background: $cwt-dark;
+    background: var(--cwt-page-bg);
 
     &__grid {
         display: grid;
@@ -7459,14 +7459,14 @@ main#main-content,
         font-size: #{"clamp(26px, 3vw, 36px)"};
         line-height: 1.2;
         font-weight: 700;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     &__content p {
         margin: 0 0 16px;
         font-size: 15px;
         line-height: 1.7;
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
     }
 }
 
@@ -7528,7 +7528,7 @@ main#main-content,
 // Values
 .cwt-about-values {
     padding: 72px 0 80px;
-    background: $cwt-dark;
+    background: var(--cwt-page-bg);
 
     &__header {
         text-align: center;
@@ -7539,7 +7539,7 @@ main#main-content,
         margin: 0;
         font-size: #{"clamp(28px, 3.2vw, 38px)"};
         font-weight: 700;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
     }
 
     &__grid {
@@ -7549,8 +7549,8 @@ main#main-content,
     }
 
     &__card {
-        background: $cwt-charcoal;
-        border: 1px solid $cwt-border-subtle;
+        background: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line);
         border-radius: 10px;
         padding: 32px 28px;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
@@ -7560,14 +7560,14 @@ main#main-content,
             margin: 18px 0 12px;
             font-size: 18px;
             font-weight: 700;
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
 
         p {
             margin: 0;
             font-size: 14px;
             line-height: 1.65;
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
         }
     }
 }
@@ -7859,12 +7859,12 @@ main#main-content,
     max-width: 780px;
     margin: 0 auto;
     padding: 4px 0 16px;
-    color: $cwt-text-secondary;
+    color: var(--cwt-ink-muted);
 
     &__intro {
         font-size: 16px;
         line-height: 1.7;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         margin: 0 0 32px;
         font-weight: 400;
     }
@@ -7872,7 +7872,7 @@ main#main-content,
     h2 {
         font-size: 21px;
         font-weight: 700;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         text-transform: uppercase;
         letter-spacing: 0.02em;
         margin: 40px 0 16px;
@@ -7885,7 +7885,7 @@ main#main-content,
     p {
         font-size: 15px;
         line-height: 1.75;
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
         margin: 0 0 16px;
     }
 
@@ -7895,7 +7895,7 @@ main#main-content,
 
         &:hover,
         &:focus {
-            color: $cwt-text-primary;
+            color: var(--cwt-ink);
         }
     }
 
@@ -7907,7 +7907,7 @@ main#main-content,
         li {
             font-size: 15px;
             line-height: 1.75;
-            color: $cwt-text-secondary;
+            color: var(--cwt-ink-muted);
             margin-bottom: 8px;
         }
     }
@@ -7923,8 +7923,8 @@ main#main-content,
     list-style: none;
 
     &__item {
-        background: $cwt-charcoal;
-        border: 1px solid $cwt-border-subtle;
+        background: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line);
         border-radius: 10px;
         padding: 24px 20px;
         text-align: center;
@@ -7948,7 +7948,7 @@ main#main-content,
         font-size: 15px;
         font-weight: 700;
         margin: 0 0 8px;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         text-transform: none;
         letter-spacing: normal;
     }
@@ -7956,7 +7956,7 @@ main#main-content,
     &__item p {
         font-size: 13.5px !important;
         line-height: 1.6;
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
         margin: 0 !important;
     }
 
@@ -7975,8 +7975,8 @@ main#main-content,
     list-style: none;
 
     &__item {
-        background: $cwt-charcoal;
-        border: 1px solid $cwt-border-subtle;
+        background: var(--cwt-card-bg);
+        border: 1px solid var(--cwt-line);
         border-radius: 10px;
         padding: 24px 20px;
         text-align: center;
@@ -8004,7 +8004,7 @@ main#main-content,
         font-size: 15px;
         font-weight: 700;
         margin: 0 0 8px;
-        color: $cwt-text-primary;
+        color: var(--cwt-ink);
         text-transform: none;
         letter-spacing: normal;
     }
@@ -8012,7 +8012,7 @@ main#main-content,
     &__item p {
         font-size: 13.5px !important;
         line-height: 1.6;
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
         margin: 0 !important;
     }
 
@@ -8032,10 +8032,10 @@ main#main-content,
         align-items: flex-start;
         gap: 12px;
         padding: 10px 0;
-        border-bottom: 1px solid $cwt-border-subtle;
+        border-bottom: 1px solid var(--cwt-line);
         font-size: 14.5px;
         line-height: 1.6;
-        color: $cwt-text-secondary;
+        color: var(--cwt-ink-muted);
 
         &:last-child {
             border-bottom: 0;
@@ -8171,7 +8171,7 @@ main#main-content,
         }
 
         .forgot-password {
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
             margin-top: 12px !important;
 
             &:hover {
@@ -8188,8 +8188,8 @@ main#main-content,
     border: 0 !important;
 
     .panel {
-        background: $cwt-charcoal !important;
-        border: 1px solid $cwt-border-strong !important;
+        background: var(--cwt-card-bg) !important;
+        border: 1px solid var(--cwt-line-strong) !important;
         border-radius: 10px !important;
         overflow: hidden;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
@@ -8208,7 +8208,7 @@ main#main-content,
     }
 
     .panel-title {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
         font-size: 22px !important;
         font-weight: 700 !important;
         margin: 0 !important;
@@ -8218,7 +8218,7 @@ main#main-content,
     .new-customer-fact,
     .panel-body p,
     .panel-body li {
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
     }
 
     .new-customer-fact-list {
@@ -8268,13 +8268,13 @@ main#main-content,
 #halo-auth-sidebar,
 .halo-auth-sidebar,
 .login-form-sidebar {
-    background-color: $cwt-charcoal !important;
-    color: $cwt-text-primary !important;
-    border-left: 1px solid $cwt-border-subtle;
+    background-color: var(--cwt-card-bg) !important;
+    color: var(--cwt-ink) !important;
+    border-left: 1px solid var(--cwt-line);
 
     .halo-sidebar-header {
         background-color: $cwt-black !important;
-        border-bottom: 1px solid $cwt-border-subtle !important;
+        border-bottom: 1px solid var(--cwt-line) !important;
 
         .title {
             color: #ffffff !important;
@@ -8291,21 +8291,21 @@ main#main-content,
     }
 
     .halo-sidebar-wrapper {
-        background-color: $cwt-charcoal !important;
-        color: $cwt-text-primary !important;
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
         padding: 20px 20px 28px !important;
     }
 
     .desc {
         display: block;
-        color: $cwt-text-secondary !important;
+        color: var(--cwt-ink-muted) !important;
         font-size: 14px;
         line-height: 1.5;
         margin: 0 0 16px !important;
     }
 
     .form-label {
-        color: $cwt-text-primary !important;
+        color: var(--cwt-ink) !important;
         font-weight: 700 !important;
 
         small {
@@ -8314,13 +8314,13 @@ main#main-content,
     }
 
     .form-input {
-        background-color: $cwt-elevated !important;
-        border: 1px solid $cwt-border-strong !important;
-        color: $cwt-text-primary !important;
+        background-color: var(--cwt-elevated-bg) !important;
+        border: 1px solid var(--cwt-line-strong) !important;
+        color: var(--cwt-ink) !important;
         min-height: 44px !important;
 
         &::placeholder {
-            color: $cwt-text-tertiary !important;
+            color: var(--cwt-ink-faint) !important;
         }
 
         &:focus {
@@ -8374,13 +8374,13 @@ main#main-content,
     .form-actions-2 {
         margin-top: 28px !important;
         padding: 22px 18px !important;
-        background: $cwt-elevated !important;
-        border: 1px solid $cwt-border-subtle !important;
+        background: var(--cwt-elevated-bg) !important;
+        border: 1px solid var(--cwt-line) !important;
         border-radius: 8px;
 
         .desc {
             margin-bottom: 14px !important;
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
         }
 
         .create-account,
@@ -8410,13 +8410,13 @@ main#main-content,
 }
 
 .login-dropdown {
-    background-color: $cwt-charcoal !important;
-    border: 1px solid $cwt-border-strong !important;
+    background-color: var(--cwt-card-bg) !important;
+    border: 1px solid var(--cwt-line-strong) !important;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
-    color: $cwt-text-primary !important;
+    color: var(--cwt-ink) !important;
 
     .login-header {
-        border-bottom: 1px solid $cwt-border-subtle !important;
+        border-bottom: 1px solid var(--cwt-line) !important;
         background: $cwt-black !important;
 
         .login-title {
@@ -8429,20 +8429,20 @@ main#main-content,
     }
 
     .login-content {
-        background: $cwt-charcoal !important;
+        background: var(--cwt-card-bg) !important;
 
         .login-intro {
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
         }
 
         .form-label {
-            color: $cwt-text-primary !important;
+            color: var(--cwt-ink) !important;
         }
 
         .form-input {
-            background: $cwt-elevated !important;
-            border: 1px solid $cwt-border-strong !important;
-            color: $cwt-text-primary !important;
+            background: var(--cwt-elevated-bg) !important;
+            border: 1px solid var(--cwt-line-strong) !important;
+            color: var(--cwt-ink) !important;
         }
 
         .button,
@@ -8462,11 +8462,11 @@ main#main-content,
     }
 
     .new-customer {
-        background: $cwt-elevated !important;
-        border-top: 1px solid $cwt-border-subtle !important;
+        background: var(--cwt-elevated-bg) !important;
+        border-top: 1px solid var(--cwt-line) !important;
 
         .new-customer-intro {
-            color: $cwt-text-secondary !important;
+            color: var(--cwt-ink-muted) !important;
         }
 
         .button,
@@ -9202,7 +9202,7 @@ html[data-theme="light"] {
 }
 
 // =============================================================================
-// LIGHT THEME — force dark text sitewide (except dark header / hero / visit)
+// LIGHT THEME — force dark text sitewide (except dark header / hero / visit / buttons)
 // =============================================================================
 html[data-theme="light"],
 html.cwt-theme-light {
@@ -9221,6 +9221,8 @@ html.cwt-theme-light {
     .productView-product,
     .productView-info,
     .cart,
+    .cart-totals,
+    .cart-content,
     .account,
     .login,
     .blog,
@@ -9233,7 +9235,22 @@ html.cwt-theme-light {
     .halo-description,
     .cwt-blog-section,
     .cwt-testimonials,
-    #recentPosts {
+    #recentPosts,
+    .halo-cart-sidebar,
+    .halo-cart-sidebar .previewCart,
+    .halo-cart-sidebar .previewCartItem,
+    .halo-auth-sidebar,
+    .login-form-sidebar,
+    .login-dropdown,
+    .modal,
+    .modal-body,
+    .quickView,
+    .page-content[data-cart],
+    .brand-protective,
+    .compare,
+    .wishlist,
+    .writeReview,
+    .giftcertificate {
         color: #1a1a1a !important;
     }
 
@@ -9251,11 +9268,25 @@ html.cwt-theme-light {
     .account-heading,
     .panel-title,
     .definitionList-key,
-    .footer-info-heading {
+    .footer-info-heading,
+    .cart-header-item,
+    .cart-total-label,
+    .cart-total-value,
+    .previewCartTotals-label,
+    .previewCartTotals-value,
+    .previewCartItem-name,
+    .previewCartItem-name a,
+    .halo-sidebar-header .title {
         color: #111111 !important;
     }
 
-    p, li, dt, dd, td, th, label, span, small, strong,
+    // Cart drawer header stays dark bar — keep white title
+    .halo-cart-sidebar .halo-sidebar-header .title,
+    #halo-auth-sidebar .halo-sidebar-header .title {
+        color: #ffffff !important;
+    }
+
+    p, li, dt, dd, td, th, label, small, strong,
     .form-label,
     .card-text,
     .card-title,
@@ -9286,11 +9317,21 @@ html.cwt-theme-light {
     .account-product-description,
     .definitionList-value,
     .link,
-    .collection--link {
+    .collection--link,
+    .cart-item-name__label,
+    .cart-item-value,
+    .cart-item-brand,
+    .cart-item-label,
+    .previewCartItem-brand,
+    .previewCartItem-variant,
+    .previewCartItem-options,
+    .previewCart-emptyBody,
+    .brand-protective .text,
+    .brand-protective .description {
         color: #1a1a1a !important;
     }
 
-    a:not(.button):not(.card-figcaption-button) {
+    a:not(.button):not(.card-figcaption-button):not(.button--primary):not(.button--secondary):not(.button--tertiary) {
         color: #222222 !important;
 
         &:hover,
@@ -9304,8 +9345,41 @@ html.cwt-theme-light {
     .card-text[data-test-info-type="brandName"],
     .productView-rating,
     .account-product-detail-heading,
-    .form-label small {
+    .form-label small,
+    .cart-item-brand,
+    .cart-item-label {
         color: #666666 !important;
+    }
+
+    .card-price .price,
+    .card-price .price--withoutTax,
+    .card-price .price--withTax,
+    .productView-price .price--withoutTax,
+    .productView-price .price--withTax,
+    .previewCartItem-price,
+    .previewCartItem-price span {
+        color: $cwt-gold-text !important;
+    }
+
+    .cart,
+    .cart-totals,
+    .halo-cart-sidebar .previewCart,
+    .halo-cart-sidebar .halo-sidebar-wrapper,
+    .halo-cart-sidebar .previewCartList,
+    .halo-cart-sidebar .previewCartTotalsPrice,
+    .halo-cart-sidebar .previewCartAction,
+    .modal,
+    .quickView,
+    .brand-protective {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .cart-header,
+    .halo-cart-sidebar .previewCartTotalsPrice,
+    .halo-cart-sidebar .previewCartAction {
+        background-color: #f7f7f7 !important;
     }
 
     // Keep header / hero / dark banners light-on-dark
@@ -9317,7 +9391,8 @@ html.cwt-theme-light {
     .cwt-about-hero,
     .cwt-about-visit,
     .cwt-trust-bar,
-    .navPages-container.is-open {
+    .navPages-container.is-open,
+    .cwt-policy-cta {
         color: rgba(255, 255, 255, 0.9) !important;
 
         h1, h2, h3, h4, h5, h6, .title, p, span, a, li, label {
@@ -9355,6 +9430,51 @@ html.cwt-theme-light {
 
         h1, h2, h3, p, span, li {
             color: #ffffff !important;
+        }
+    }
+
+    // Buttons keep designed contrast (do not inherit light ink)
+    .button,
+    .button--primary,
+    .button--secondary,
+    .button--tertiary,
+    .card-figcaption-button,
+    a.button,
+    button.button {
+        span,
+        .text {
+            color: inherit !important;
+        }
+    }
+
+    .button--primary,
+    a.button--primary,
+    button.button--primary {
+        color: $cwt-black !important;
+
+        span, .text {
+            color: $cwt-black !important;
+        }
+    }
+
+    .button--secondary,
+    a.button--secondary,
+    button.button--secondary,
+    .card-figcaption-button,
+    .card-figcaption-bottom .button {
+        color: #ffffff !important;
+
+        span, .text {
+            color: #ffffff !important;
+        }
+
+        &:hover,
+        &:focus {
+            color: $cwt-black !important;
+
+            span, .text {
+                color: $cwt-black !important;
+            }
         }
     }
 }
