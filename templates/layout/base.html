@@ -14,6 +14,20 @@
             {{!-- Change document class from no-js to js so we can detect this in css --}}
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
+        <script>
+            {{!-- Apply saved theme before paint to avoid flash --}}
+            (function () {
+                try {
+                    var stored = localStorage.getItem('cwt-theme');
+                    var theme = (stored === 'light' || stored === 'dark')
+                        ? stored
+                        : 'dark';
+                    document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            })();
+        </script>
 
         {{> components/common/polyfill-script }}
         <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>

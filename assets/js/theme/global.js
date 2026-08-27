@@ -11,6 +11,7 @@ import carousel from './common/carousel';
 import svgInjector from './global/svg-injector';
 import utils from '@bigcommerce/stencil-utils'
 import haloGlobal from './halothemes/haloGlobal';
+import cwtThemeToggle from './halothemes/cwtThemeToggle';
 
 function getPorductsFromCategoy() {
     $('[data-categoryUrl]').each((index, el) => {
@@ -105,6 +106,7 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         svgInjector();
         haloGlobal(this.context);
+        cwtThemeToggle();
         getPorductsFromCategoy();
     }
 }

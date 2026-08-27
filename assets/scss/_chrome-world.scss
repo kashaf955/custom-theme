@@ -1024,7 +1024,7 @@ body .footer .container {
 
 .halo_middleHeader {
     background-color: $cwt-black !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .halo_bottomHeader {
@@ -1032,7 +1032,9 @@ body .footer .container {
 
     .navPages-container,
     #menu.navPages-container {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        // Single divider only — middleHeader already has border-bottom.
+        // A second border-top here stacked into two parallel lines.
+        border-top: 0 !important;
         background-color: $cwt-black;
         justify-content: center !important;
 
@@ -5603,6 +5605,43 @@ main#main-content,
         width: 100% !important;
         display: block !important;
     }
+
+    // Theme paints border-top + border-bottom + padding on the right column
+    // at ≤1200px. When that column is empty it shows as two parallel lines
+    // above Top Products — kill the borders and hide the empty shell.
+    .halo-home-section-right {
+        border-top: 0 !important;
+        border-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+
+        &:empty {
+            display: none !important;
+        }
+    }
+}
+
+.home-layout-2 {
+    .halo-block-product.border-top,
+    .halo-block.border-top,
+    .custom-beast-sellers.border-top,
+    .best-selll.border-top {
+        border-top: 1px solid $cwt-border-subtle !important;
+    }
+
+    // Only one divider between stacked product sections
+    .halo-block-product + .halo-block-product.border-top,
+    .custom-beast-sellers + .halo-block-product.border-top,
+    .halo-block-product + .custom-beast-sellers.border-top {
+        border-top: 1px solid $cwt-border-subtle !important;
+    }
+
+    .halo-home-section-bottom {
+        > .container > .halo-block-product:first-child {
+            border-top: 1px solid $cwt-border-subtle !important;
+        }
+    }
 }
 
 // Homepage — hide Spark Tools demo "We Carry Top Brands" (placeholder href="#")
@@ -8031,4 +8070,983 @@ main#main-content,
     }
 }
 
+// =============================================================================
+// Login / auth / account pages — fix gray Sign In + nested white panel
+// =============================================================================
+.login,
+.page-type-login,
+.page-type-createaccount,
+.page-type-forgotpassword,
+.page-type-getnewpassword,
+.page-type-account_orderstatus,
+.page-type-account_order,
+.page-type-account_addressbook,
+.page-type-editaccount,
+.page-type-account_inbox,
+.page-type-account_returns,
+.page-type-account_paymentmethods,
+.page-type-wishlist,
+.page-type-wishlists {
+    .page-heading,
+    h1.page-heading {
+        color: $cwt-text-primary !important;
+        margin-bottom: 20px;
+    }
+}
+
+.login-form {
+    .form-label {
+        color: $cwt-text-secondary !important;
+        font-weight: 600;
+    }
+
+    .form-input {
+        background-color: $cwt-charcoal !important;
+        border: 1px solid $cwt-border-strong !important;
+        color: $cwt-text-primary !important;
+        min-height: 44px;
+
+        &:focus {
+            border-color: $cwt-gold-bright !important;
+        }
+    }
+
+    .form-actions {
+        .button,
+        .button--primary,
+        input.button,
+        input[type="submit"].button {
+            background-color: $cwt-gold-bright !important;
+            border: 2px solid $cwt-gold-bright !important;
+            color: $cwt-black !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            min-height: 44px !important;
+            height: auto !important;
+            line-height: 1.2 !important;
+            padding: 12px 28px !important;
+
+            &:hover,
+            &:focus {
+                background-color: $cwt-black !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-gold-bright !important;
+            }
+        }
+
+        .forgot-password {
+            color: $cwt-text-secondary !important;
+            margin-top: 12px !important;
+
+            &:hover {
+                color: $cwt-gold-bright !important;
+            }
+        }
+    }
+}
+
+.login .new-customer,
+.new-customer {
+    background: transparent !important;
+    padding: 0 !important;
+    border: 0 !important;
+
+    .panel {
+        background: $cwt-charcoal !important;
+        border: 1px solid $cwt-border-strong !important;
+        border-radius: 10px !important;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel-header,
+    .panel-body {
+        background: transparent !important;
+        border: 0 !important;
+        padding: 24px 28px !important;
+    }
+
+    .panel-header {
+        padding-bottom: 0 !important;
+        border-bottom: 0 !important;
+    }
+
+    .panel-title {
+        color: $cwt-text-primary !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+    }
+
+    .new-customer-intro,
+    .new-customer-fact,
+    .panel-body p,
+    .panel-body li {
+        color: $cwt-text-secondary !important;
+    }
+
+    .new-customer-fact-list {
+        margin: 16px 0 24px;
+        padding-left: 18px;
+
+        .new-customer-fact {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+    }
+
+    .button--primary,
+    a .button--primary {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+        width: 100%;
+        text-align: center;
+        min-height: 48px;
+
+        span {
+            color: $cwt-black !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $cwt-black !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-gold-bright !important;
+
+            span {
+                color: $cwt-gold-bright !important;
+            }
+        }
+    }
+}
+
+.alertBox,
+.alertBox--error {
+    border-radius: 8px;
+}
+
+// =============================================================================
+// Auth login sidebar + login dropdown — dark (default) + light theme
+// =============================================================================
+#halo-auth-sidebar,
+.halo-auth-sidebar,
+.login-form-sidebar {
+    background-color: $cwt-charcoal !important;
+    color: $cwt-text-primary !important;
+    border-left: 1px solid $cwt-border-subtle;
+
+    .halo-sidebar-header {
+        background-color: $cwt-black !important;
+        border-bottom: 1px solid $cwt-border-subtle !important;
+
+        .title {
+            color: #ffffff !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .close svg,
+        .halo-sidebar-close svg {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+    }
+
+    .halo-sidebar-wrapper {
+        background-color: $cwt-charcoal !important;
+        color: $cwt-text-primary !important;
+        padding: 20px 20px 28px !important;
+    }
+
+    .desc {
+        display: block;
+        color: $cwt-text-secondary !important;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 16px !important;
+    }
+
+    .form-label {
+        color: $cwt-text-primary !important;
+        font-weight: 700 !important;
+
+        small {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .form-input {
+        background-color: $cwt-elevated !important;
+        border: 1px solid $cwt-border-strong !important;
+        color: $cwt-text-primary !important;
+        min-height: 44px !important;
+
+        &::placeholder {
+            color: $cwt-text-tertiary !important;
+        }
+
+        &:focus {
+            border-color: $cwt-gold-bright !important;
+        }
+    }
+
+    .forgot-password,
+    .forgot-password span {
+        color: $cwt-gold-bright !important;
+        text-decoration: none !important;
+
+        &:hover {
+            color: #ffffff !important;
+        }
+    }
+
+    .form-actions {
+        .button,
+        .button--primary,
+        .button--tertiary,
+        .button--secondary,
+        .button--gray,
+        button.button {
+            width: 100% !important;
+            min-height: 46px !important;
+            background-color: $cwt-gold-bright !important;
+            border: 2px solid $cwt-gold-bright !important;
+            color: $cwt-black !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+
+            span {
+                color: $cwt-black !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: $cwt-black !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-gold-bright !important;
+
+                span {
+                    color: $cwt-gold-bright !important;
+                }
+            }
+        }
+    }
+
+    .form-actions-2 {
+        margin-top: 28px !important;
+        padding: 22px 18px !important;
+        background: $cwt-elevated !important;
+        border: 1px solid $cwt-border-subtle !important;
+        border-radius: 8px;
+
+        .desc {
+            margin-bottom: 14px !important;
+            color: $cwt-text-secondary !important;
+        }
+
+        .create-account,
+        .button,
+        .button--primary,
+        .button--gray {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span {
+                color: $cwt-black !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: $cwt-black !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-gold-bright !important;
+
+                span {
+                    color: $cwt-gold-bright !important;
+                }
+            }
+        }
+    }
+}
+
+.login-dropdown {
+    background-color: $cwt-charcoal !important;
+    border: 1px solid $cwt-border-strong !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+    color: $cwt-text-primary !important;
+
+    .login-header {
+        border-bottom: 1px solid $cwt-border-subtle !important;
+        background: $cwt-black !important;
+
+        .login-title {
+            color: #ffffff !important;
+        }
+
+        .login-close {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .login-content {
+        background: $cwt-charcoal !important;
+
+        .login-intro {
+            color: $cwt-text-secondary !important;
+        }
+
+        .form-label {
+            color: $cwt-text-primary !important;
+        }
+
+        .form-input {
+            background: $cwt-elevated !important;
+            border: 1px solid $cwt-border-strong !important;
+            color: $cwt-text-primary !important;
+        }
+
+        .button,
+        .button--primary {
+            background: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span {
+                color: $cwt-black !important;
+            }
+        }
+
+        .forgot-password {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .new-customer {
+        background: $cwt-elevated !important;
+        border-top: 1px solid $cwt-border-subtle !important;
+
+        .new-customer-intro {
+            color: $cwt-text-secondary !important;
+        }
+
+        .button,
+        .button--primary,
+        .button--gray {
+            background: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span {
+                color: $cwt-black !important;
+            }
+        }
+    }
+}
+
+// Theme toggle control (header)
+.cwt-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 52px;
+    height: 28px;
+    padding: 0;
+    margin: 0 6px 0 0;
+    border: 1px solid rgba($cwt-gold-bright, 0.45);
+    border-radius: 999px;
+    background: $cwt-charcoal;
+    color: $cwt-gold-bright;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    flex-shrink: 0;
+
+    &:hover,
+    &:focus {
+        border-color: $cwt-gold-bright;
+        outline: none;
+    }
+
+    &__track {
+        position: absolute;
+        inset: 3px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    &__thumb {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: $cwt-gold-bright;
+        transition: transform 0.22s ease;
+        z-index: 1;
+    }
+
+    &__icon {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.55);
+        pointer-events: none;
+
+        svg {
+            display: block;
+        }
+    }
+
+    &__icon--sun {
+        color: $cwt-black;
+    }
+
+    &__icon--moon {
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+html[data-theme="light"] .cwt-theme-toggle {
+    background: #eeeeee;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: $cwt-black;
+
+    .cwt-theme-toggle__track {
+        background: rgba(0, 0, 0, 0.06);
+    }
+
+    .cwt-theme-toggle__thumb {
+        transform: translateX(24px);
+        background: $cwt-black;
+    }
+
+    .cwt-theme-toggle__icon--sun {
+        color: rgba(0, 0, 0, 0.45);
+    }
+
+    .cwt-theme-toggle__icon--moon {
+        color: #ffffff;
+    }
+}
+
+.item--theme-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    margin: 0 4px 0 0 !important;
+}
+
+@media (max-width: 1024px) {
+    .cwt-header-actions .item--theme-toggle {
+        display: inline-flex !important;
+    }
+
+    .cwt-theme-toggle {
+        width: 46px;
+        height: 26px;
+        margin-right: 2px;
+
+        .cwt-theme-toggle__thumb {
+            width: 18px;
+            height: 18px;
+            top: 3px;
+            left: 3px;
+        }
+    }
+
+    html[data-theme="light"] .cwt-theme-toggle .cwt-theme-toggle__thumb {
+        transform: translateX(20px);
+    }
+}
+
+// =============================================================================
+// LIGHT THEME — html[data-theme="light"]
+// Header stays dark for brand/logo; page content + footer switch to light.
+// =============================================================================
+html[data-theme="light"] {
+    body,
+    .body,
+    main#main-content,
+    .page,
+    .page-content {
+        background-color: #f3f3f3 !important;
+        color: #1a1a1a !important;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .page-heading,
+    .sidebarBlock-heading,
+    .title,
+    .halo-block-header .title {
+        color: #111111 !important;
+    }
+
+    .breadcrumbs,
+    .breadcrumb a,
+    .breadcrumb,
+    .breadcrumbs a {
+        color: #555555 !important;
+
+        &:hover {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    // Cards
+    .card {
+        background: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+        color: #1a1a1a !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+        .card-title,
+        .card-title a,
+        .card-text,
+        .card-text a,
+        .card-body,
+        .card-body p,
+        .brand {
+            color: #1a1a1a !important;
+        }
+
+        .card-price,
+        .card-price .price--withoutTax,
+        .card-price .price--withTax,
+        .card-price .price-none + .price-section--withoutTax,
+        .card-price .price-none + .price-section--withTax,
+        .card-price .price {
+            color: $cwt-gold-text !important;
+        }
+
+        .card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+        .card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+            color: #e10600 !important;
+        }
+    }
+
+    // Forms
+    .form-label {
+        color: #333333 !important;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+        background-color: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.18) !important;
+        color: #1a1a1a !important;
+
+        &:focus {
+            border-color: $cwt-gold-text !important;
+        }
+
+        &::placeholder {
+            color: #888888 !important;
+        }
+    }
+
+    // Login / account
+    .login,
+    .login-form,
+    .account,
+    .create-account,
+    .forgot-password,
+    .page-contact {
+        color: #1a1a1a !important;
+
+        h1, h2, h3, h4, p, li, label, span {
+            color: #1a1a1a !important;
+        }
+
+        a {
+            color: #333333 !important;
+
+            &:hover {
+                color: $cwt-gold-text !important;
+            }
+        }
+    }
+
+    .login-form {
+        .form-label {
+            color: #333333 !important;
+        }
+
+        .form-input {
+            background: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.18) !important;
+            color: #1a1a1a !important;
+        }
+
+        .forgot-password {
+            color: #444444 !important;
+        }
+    }
+
+    // Auth sidebar + login dropdown — light
+    #halo-auth-sidebar,
+    .halo-auth-sidebar,
+    .login-form-sidebar {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+        .halo-sidebar-header {
+            background-color: #ffffff !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+
+            .title {
+                color: #111111 !important;
+            }
+
+            .close svg,
+            .halo-sidebar-close svg {
+                fill: #333333 !important;
+                stroke: #333333 !important;
+            }
+        }
+
+        .halo-sidebar-wrapper {
+            background-color: #ffffff !important;
+            color: #1a1a1a !important;
+        }
+
+        .desc {
+            color: #555555 !important;
+        }
+
+        .form-label {
+            color: #1a1a1a !important;
+
+            small {
+                color: $cwt-gold-text !important;
+            }
+        }
+
+        .form-input {
+            background-color: #ffffff !important;
+            border: 1px solid rgba(0, 0, 0, 0.18) !important;
+            color: #1a1a1a !important;
+
+            &::placeholder {
+                color: #888888 !important;
+            }
+
+            &:focus {
+                border-color: $cwt-gold-text !important;
+            }
+        }
+
+        .forgot-password,
+        .forgot-password span {
+            color: $cwt-gold-text !important;
+
+            &:hover {
+                color: #111111 !important;
+            }
+        }
+
+        .form-actions {
+            .button,
+            .button--primary,
+            .button--tertiary,
+            .button--secondary,
+            .button--gray,
+            button.button {
+                background-color: $cwt-gold-bright !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-black !important;
+
+                span {
+                    color: $cwt-black !important;
+                }
+
+                &:hover,
+                &:focus {
+                    background-color: $cwt-black !important;
+                    border-color: $cwt-black !important;
+                    color: $cwt-gold-bright !important;
+
+                    span {
+                        color: $cwt-gold-bright !important;
+                    }
+                }
+            }
+        }
+
+        .form-actions-2 {
+            background: #f5f5f5 !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+
+            .desc {
+                color: #555555 !important;
+            }
+        }
+    }
+
+    .login-dropdown {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.12) !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+        color: #1a1a1a !important;
+
+        .login-header {
+            background: #ffffff !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+
+            .login-title {
+                color: #111111 !important;
+            }
+
+            .login-close {
+                color: #333333 !important;
+            }
+        }
+
+        .login-content {
+            background: #ffffff !important;
+
+            .login-intro {
+                color: #666666 !important;
+            }
+
+            .form-label {
+                color: #1a1a1a !important;
+            }
+
+            .form-input {
+                background: #ffffff !important;
+                border: 1px solid rgba(0, 0, 0, 0.18) !important;
+                color: #1a1a1a !important;
+            }
+
+            .button,
+            .button--primary {
+                background: $cwt-gold-bright !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-black !important;
+
+                span {
+                    color: $cwt-black !important;
+                }
+            }
+
+            .forgot-password {
+                color: $cwt-gold-text !important;
+            }
+        }
+
+        .new-customer {
+            background: #f5f5f5 !important;
+            border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+
+            .new-customer-intro {
+                color: #666666 !important;
+            }
+
+            .button,
+            .button--primary,
+            .button--gray {
+                background: $cwt-gold-bright !important;
+                border-color: $cwt-gold-bright !important;
+                color: $cwt-black !important;
+
+                span {
+                    color: $cwt-black !important;
+                }
+            }
+        }
+    }
+
+    .login .new-customer .panel,
+    .new-customer .panel,
+    .panel {
+        background: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .new-customer {
+        .panel-title,
+        .new-customer-intro,
+        .new-customer-fact,
+        .panel-body p,
+        .panel-body li {
+            color: #1a1a1a !important;
+        }
+    }
+
+    .navBar--account {
+        border-bottom-color: rgba(0, 0, 0, 0.1);
+
+        .navBar-action {
+            color: #444444 !important;
+
+            &:hover {
+                color: $cwt-gold-text !important;
+            }
+        }
+
+        .navBar-item.is-active .navBar-action {
+            color: $cwt-gold-text !important;
+            border-color: $cwt-gold-text !important;
+        }
+    }
+
+    .account-list .account-listItem {
+        border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .account-heading,
+    .account-list .account-product-title a {
+        color: #1a1a1a !important;
+    }
+
+    // Homepage / sections on light
+    .halo-block,
+    .halo-block-product,
+    .custom-beast-sellers,
+    .best-selll,
+    .cwt-testimonials,
+    .cwt-blog-section,
+    #recentPosts {
+        background-color: #f3f3f3 !important;
+    }
+
+    .halo-block-header .title,
+    .custom-ecb .title {
+        color: #111111 !important;
+    }
+
+    // Footer light
+    .footer,
+    .footer.footer-layout-1,
+    .footer.footer-layout-2,
+    .footer.footer-layout-3 {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-top-color: $cwt-gold-bright !important;
+
+        .footer-info-heading,
+        .footer-info-list a,
+        .footer_links a,
+        .footer-copyright p,
+        .footer-copyright .powered-by,
+        p, li, span, a {
+            color: #333333 !important;
+        }
+
+        a:hover {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    .footer-bottom {
+        background-color: #f0f0f0 !important;
+        border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+
+    // Sidebar / faceted search
+    .page-sidebar,
+    .facetedSearch,
+    .sidebarBlock {
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+
+        a, span, p, li, .navList-action {
+            color: #333333 !important;
+
+            &:hover {
+                color: $cwt-gold-text !important;
+            }
+        }
+
+        .sidebarBlock-heading {
+            color: #111111 !important;
+        }
+    }
+
+    // Product detail
+    .productView,
+    .productView-details,
+    .productView-product,
+    .productView-info {
+        color: #1a1a1a !important;
+
+        .productView-title {
+            color: #111111 !important;
+        }
+
+        .productView-price .price--withoutTax,
+        .productView-price .price--withTax {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    // Cart
+    .cart,
+    .cart-item,
+    .cart-content {
+        color: #1a1a1a !important;
+        background: transparent !important;
+    }
+
+    // Trust bar under header — keep readable on light pages
+    .cwt-trust-bar {
+        background-color: #1a1a1a !important;
+        border-bottom-color: rgba($cwt-gold-bright, 0.25);
+    }
+
+    // Blog cards / generic panels
+    .blog .blog-post-figure,
+    .blog-post,
+    .writeReview-productDetails {
+        color: #1a1a1a !important;
+    }
+
+    // Alert on light
+    .alertBox--error {
+        background: #fde8e8 !important;
+        color: #7a1f1f !important;
+        border-color: #e8b4b4 !important;
+
+        .alertBox-message,
+        p, span {
+            color: #7a1f1f !important;
+        }
+    }
+
+    // About page light surfaces
+    .cwt-about-values,
+    .cwt-about-stats,
+    .cwt-about-story,
+    .cwt-about-work {
+        background: #f3f3f3 !important;
+        color: #1a1a1a !important;
+
+        h2, h3, p, .cwt-about-eyebrow {
+            color: inherit;
+        }
+
+        .cwt-about-values__card {
+            background: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+    }
+
+    // Catch forced light text from dark theme rules
+    .body [style*="color:#000"],
+    .body [style*="color: #000"] {
+        color: #1a1a1a !important;
+    }
+}
 

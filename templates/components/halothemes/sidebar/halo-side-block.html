@@ -175,14 +175,14 @@
 							<a class="forgot-password" href="{{urls.auth.forgot_password}}">
 		                    	<span>{{lang 'login.forgot_password'}}</span>
 		                    </a>
-		                    <button type="button" class="button button--tertiary"><span>{{lang 'login.submit_value'}}</span></button>
+		                    <button type="submit" class="button button--primary"><span>{{lang 'login.submit_value'}}</span></button>
 		                </div>
 		            </div>
 		        </form>
 				{{#if settings.account_creation_enabled}}
 					<div class="form-actions form-actions-2">
 						<span class="desc">{{lang 'login.infor_2'}}</span>
-						<a class="create-account button button--gray" href="{{urls.auth.create_account}}"><span>{{lang 'login.new_customer.create_account'}}</span></a>
+						<a class="create-account button button--primary" href="{{urls.auth.create_account}}"><span>{{lang 'login.new_customer.create_account'}}</span></a>
 					</div>
 				{{/if}}
 		    </div>
