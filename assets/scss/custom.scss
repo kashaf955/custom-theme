@@ -524,3 +524,33 @@ main#main-content {
 
 @import "chrome-world";
 
+// Light theme — fixes in custom.scss that load after chrome-world
+html[data-theme="light"],
+html.cwt-theme-light {
+    ul.footer_links li a {
+        color: #333333 !important;
+
+        &:hover {
+            color: #8a6a12 !important;
+        }
+    }
+
+    .custom-ecb h2,
+    .custom-ecb .title {
+        color: #111111 !important;
+    }
+
+    .custom-ecb a {
+        color: #8a6a12 !important;
+    }
+
+    .haloSubCategories__name {
+        color: #1a1a1a !important;
+    }
+
+    .product-warning,
+    .product-warning a {
+        color: #b00000 !important;
+    }
+}
+

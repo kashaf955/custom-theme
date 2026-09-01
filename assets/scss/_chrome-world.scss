@@ -40,6 +40,10 @@ html[data-theme="dark"] {
     --cwt-input-bg: #{$cwt-charcoal};
     --cwt-section-bg: #{$cwt-dark};
     --cwt-price: #{$cwt-gold-bright};
+    --cwt-invert-bg: #{$cwt-black};
+    --cwt-invert-ink: #ffffff;
+    --cwt-invert-ink-muted: rgba(255, 255, 255, 0.82);
+    --cwt-footer-bg: #{$cwt-black};
 }
 
 html[data-theme="light"] {
@@ -57,6 +61,10 @@ html[data-theme="light"] {
     --cwt-input-bg: #ffffff;
     --cwt-section-bg: #f3f3f3;
     --cwt-price: #{$cwt-gold-text};
+    --cwt-invert-bg: #e8e8e8;
+    --cwt-invert-ink: #1a1a1a;
+    --cwt-invert-ink-muted: #555555;
+    --cwt-footer-bg: #ffffff;
 }
 
 @mixin cwt-content-width {
@@ -3627,7 +3635,7 @@ a.button--tertiary {
         .title {
             margin: 0 !important;
             padding: 0 !important;
-            color: #ffffff !important;
+            color: var(--cwt-heading) !important;
             font-size: 28px !important;
             font-weight: 700 !important;
             letter-spacing: 0.04em;
@@ -3668,17 +3676,17 @@ a.button--tertiary {
                     height: 16px;
                 }
 
-                &:hover {
-                    color: #ffffff !important;
+                    &:hover {
+                        color: var(--cwt-heading) !important;
 
-                    span {
-                        color: #ffffff !important;
-                    }
+                        span {
+                            color: var(--cwt-heading) !important;
+                        }
 
-                    svg {
-                        fill: #ffffff !important;
+                        svg {
+                            fill: var(--cwt-heading) !important;
+                        }
                     }
-                }
             }
         }
     }
@@ -3772,11 +3780,11 @@ a.button--tertiary {
                     font-weight: 700 !important;
 
                     a {
-                        color: #ffffff !important;
+                        color: var(--cwt-ink) !important;
                         text-decoration: none !important;
 
                         &:hover {
-                            color: $cwt-gold-bright !important;
+                            color: $cwt-gold-text !important;
                         }
                     }
                 }
@@ -3907,7 +3915,7 @@ a.button--tertiary {
 .footer.footer-layout-1,
 .footer.footer-layout-2,
 .footer.footer-layout-3 {
-    background-color: $cwt-black !important;
+    background-color: var(--cwt-footer-bg) !important;
     border-top: 3px solid $cwt-gold-bright;
     width: 100% !important;
     max-width: 100% !important;
@@ -3977,7 +3985,7 @@ a.button--tertiary {
     }
 
     .footer-info-heading {
-        color: #ffffff !important;
+        color: var(--cwt-heading) !important;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.04em;
@@ -7205,12 +7213,10 @@ main#main-content,
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: $cwt-gold-bright;
+    color: var(--cwt-price);
 
-    // Every section on this page is now a dark surface, so the bright gold
-    // (previously reserved for dark sections only) is correct everywhere.
     &--gold {
-        color: $cwt-gold-bright;
+        color: var(--cwt-price);
     }
 }
 
@@ -7400,7 +7406,7 @@ main#main-content,
             font-size: 28px;
             line-height: 1;
             font-weight: 700;
-            color: $cwt-gold-bright;
+            color: var(--cwt-price);
         }
 
         span:last-child {
@@ -7473,8 +7479,8 @@ main#main-content,
 // Our Work
 .cwt-about-work {
     padding: 72px 0;
-    background: $cwt-black;
-    color: #ffffff;
+    background: var(--cwt-invert-bg);
+    color: var(--cwt-invert-ink);
 
     &__grid {
         display: grid;
@@ -7488,14 +7494,14 @@ main#main-content,
         font-size: #{"clamp(26px, 3vw, 36px)"};
         line-height: 1.2;
         font-weight: 700;
-        color: #ffffff;
+        color: var(--cwt-invert-ink);
     }
 
     &__text {
         margin: 0 0 28px;
         font-size: 15px;
         line-height: 1.7;
-        color: rgba(255, 255, 255, 0.82);
+        color: var(--cwt-invert-ink-muted);
     }
 
     &__list {
@@ -7512,7 +7518,7 @@ main#main-content,
             gap: 14px;
             font-size: 14px;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--cwt-invert-ink);
         }
     }
 
@@ -9177,21 +9183,99 @@ html[data-theme="light"] {
     }
 
     // About page light surfaces
-    .cwt-about-values,
+    .cwt-about,
     .cwt-about-stats,
     .cwt-about-story,
+    .cwt-about-values,
     .cwt-about-work {
-        background: #f3f3f3 !important;
-        color: #1a1a1a !important;
+        background: var(--cwt-page-bg) !important;
+        color: var(--cwt-ink) !important;
 
-        h2, h3, p, .cwt-about-eyebrow {
-            color: inherit;
+        h1, h2, h3, h4, h5, h6,
+        p, li, span, strong, label {
+            color: var(--cwt-ink) !important;
+        }
+
+        .cwt-about-eyebrow {
+            color: $cwt-gold-text !important;
+        }
+
+        .cwt-about-story__title,
+        .cwt-about-work__title,
+        .cwt-about-values__title {
+            color: var(--cwt-heading) !important;
+        }
+
+        .cwt-about-story__content p,
+        .cwt-about-work__text,
+        .cwt-about-values__card p {
+            color: var(--cwt-ink-muted) !important;
+        }
+
+        .cwt-about-stats__item strong {
+            color: $cwt-gold-text !important;
+        }
+
+        .cwt-about-stats__list {
+            background: var(--cwt-card-bg) !important;
+            border-color: rgba(0, 0, 0, 0.12) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
         }
 
         .cwt-about-values__card {
-            background: #ffffff !important;
+            background: var(--cwt-card-bg) !important;
             border-color: rgba(0, 0, 0, 0.1) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
         }
+    }
+
+    .cwt-about-work {
+        background: var(--cwt-invert-bg) !important;
+        color: var(--cwt-invert-ink) !important;
+
+        .cwt-about-work__title,
+        .cwt-about-work__list li {
+            color: var(--cwt-invert-ink) !important;
+        }
+
+        .cwt-about-work__text {
+            color: var(--cwt-invert-ink-muted) !important;
+        }
+    }
+
+    // Blog section — beat leftover white title rules
+    #recentPosts.cwt-blog-section,
+    .cwt-blog-section#recentPosts {
+        .cwt-blog-section__header .title,
+        .halo-block-header .title {
+            color: var(--cwt-heading) !important;
+        }
+
+        .item-content .title a {
+            color: var(--cwt-ink) !important;
+
+            &:hover {
+                color: $cwt-gold-text !important;
+            }
+        }
+    }
+
+    // Footer links from custom.scss
+    ul.footer_links li a {
+        color: #333333 !important;
+
+        &:hover {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    .custom-ecb h2,
+    .custom-ecb .title {
+        color: var(--cwt-heading) !important;
+    }
+
+    .custom-ecb a {
+        color: $cwt-gold-text !important;
     }
 
     // Catch forced light text from dark theme rules
