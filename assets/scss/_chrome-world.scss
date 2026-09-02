@@ -3461,13 +3461,14 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         }
     }
 
-    // Same section width for Top Deals / Featured / Top Products
+    // Same section width for Top Deals / Featured / Top Products / brand grid
     .halo-block-product,
     .custom-beast-sellers,
     .best-selll,
     #halo-product-block-1,
     #halo-product-block-2,
-    #halo-product-block-3 {
+    #halo-product-block-3,
+    .cwt-shop-brands {
         width: 100% !important;
         max-width: 100% !important;
         margin-left: 0 !important;
