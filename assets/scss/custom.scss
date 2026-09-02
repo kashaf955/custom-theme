@@ -256,21 +256,22 @@ main#main-content {
   }
 }
 .productView-price .price-section {
-  font-size: 22px !important;
+  font-size: inherit !important;
   text-align: left !important;
+  line-height: 1.3 !important;
 }
 .custom-ecb {
   display: inline-flex;
   align-items: center;
-  margin: 12px;
+  margin: 0;
 }
 .custom-ecb a:not(.collection--link):not(.link) {
   margin-left: 10px;
 }
-.custom-ecb h2 {
+.custom-ecb h2.title,
+.custom-ecb .title {
   margin: 0;
-  padding: 8px 0;
-  font-size: 20px;
+  padding: 0;
 }
 @media (min-width: 768px) {
   /* Only hide Shop By Truck on pages that are not home / category / product */
@@ -327,9 +328,9 @@ main#main-content {
 .productView-ecb-price {
   display: flex;
   width: 100%;
-  gap: 40px;
+  gap: 12px 24px;
   align-items: center;
-  margin: 0 0 10px 0;
+  margin: 0 0 14px 0;
 }
 .productView-info .sku-label {
   min-width: auto !important;
