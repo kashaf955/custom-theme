@@ -4452,9 +4452,15 @@ main#main-content,
 }
 
 .productView-title {
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+    margin: 10px 0 12px !important;
+    letter-spacing: 0.01em;
+    text-transform: capitalize !important;
     color: var(--cwt-ink);
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .productView-rating {
@@ -9730,7 +9736,8 @@ small, .text--muted, .rating--count, .card-text[data-test-info-type="brandName"]
     font-size: 13px;
 }
 
-h1, .page-heading--large {
+h1:not(.productView-title),
+.page-heading--large {
     font-size: clamp(28px, 4vw, 36px) !important;
 }
 
@@ -9738,7 +9745,7 @@ h2, .page-heading {
     font-size: clamp(24px, 3vw, 30px) !important;
 }
 
-h3 {
+h3:not(.productView-title) {
     font-size: clamp(20px, 2.5vw, 24px) !important;
 }
 
@@ -9750,6 +9757,35 @@ h4, h5, h6 {
 .card .card-title a {
     font-size: 16px !important;
     line-height: 1.4 !important;
+}
+
+// Sticky add-to-cart — compact title (global h1/h3 scale was blowing this up)
+.halo_sticky_addToCart,
+#halo_sticky_addToCart,
+.halo_sticky_addToCart_mb {
+    .productView-title {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        margin: 0 0 4px !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.quickView .productView-title {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+}
+
+@media (max-width: 767px) {
+    .productView-product > .productView-title {
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+    }
 }
 
 // =============================================================================
