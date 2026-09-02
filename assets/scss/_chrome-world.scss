@@ -625,7 +625,6 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 .header.halo_header-layout-2 .halo_topHeader .navUser .container,
 .header.halo_header-layout-2 .cwt-header-main,
 .header.halo_header-layout-2 .cwt-nav-wrap,
-.header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
 .home-layout-2 .container,
 .body .container,
 .footer .container,
@@ -633,6 +632,17 @@ body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
 .footer-bottom .container,
 .footer-bottom__container {
     @include cwt-content-width;
+}
+
+// Category bar background is full-width; inner wrap matches other header rows
+.header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
+.header.halo_header-layout-2 #menu.navPages-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
 }
 
 // Footer must not inherit the theme's 1230/1600px container cap
@@ -1139,6 +1149,8 @@ body .footer .container {
 
     .cwt-nav-wrap {
         width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .cwt-nav__row {
@@ -1321,6 +1333,12 @@ body .footer .container {
                     white-space: nowrap;
                     text-align: center;
 
+                    .text {
+                        width: auto !important;
+                        flex: 0 1 auto;
+                        max-width: 100%;
+                    }
+
                     .text,
                     .text span,
                     span:not(.navPages-action-moreIcon):not(.navPages-label) {
@@ -1331,20 +1349,36 @@ body .footer .container {
                     }
 
                     .navPages-action-moreIcon {
-                        order: -1;
+                        display: inline-flex !important;
+                        align-items: center;
+                        justify-content: center;
+                        order: 1;
                         position: static !important;
-                        transform: rotate(-90deg) !important;
-                        width: 9px;
-                        height: 9px;
+                        transform: none !important;
+                        visibility: visible !important;
+                        opacity: 1 !important;
+                        width: 10px;
+                        height: 10px;
                         flex-shrink: 0;
-                        margin: 0;
+                        margin: 0 0 0 4px;
+                        overflow: visible !important;
+                        font-size: 0;
+                        pointer-events: none;
 
                         svg,
                         .icon {
-                            width: 9px;
-                            height: 9px;
-                            fill: $cwt-black !important;
-                            stroke: $cwt-black !important;
+                            display: none !important;
+                        }
+
+                        // CSS arrow — theme hides the sprite chevron on desktop
+                        &::before {
+                            content: "";
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            border-top: 5px solid transparent;
+                            border-bottom: 5px solid transparent;
+                            border-left: 6px solid $cwt-black;
                         }
                     }
 
@@ -2432,7 +2466,6 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     .header.halo_header-layout-2 .halo_topHeader .navUser .container,
     .header.halo_header-layout-2 .cwt-header-main,
     .header.halo_header-layout-2 .cwt-nav-wrap,
-    .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
     .home-layout-2 .container,
     .body .container,
     .footer .container {
@@ -10781,6 +10814,7 @@ html.cwt-theme-light {
 
 @media (min-width: $cwt-breakpoint-desktop) {
     .cwt-site-width,
+    .header.halo_header-layout-2 .cwt-nav-wrap,
     .body .container,
     .home-layout-2 .container,
     .footer .container,
