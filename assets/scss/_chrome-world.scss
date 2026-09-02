@@ -22,6 +22,8 @@ $cwt-text-secondary: rgba(255, 255, 255, 0.75);
 $cwt-text-tertiary: rgba(255, 255, 255, 0.55);
 $cwt-dark-overlay: rgba(10, 10, 10, 0.92);
 $cwt-breakpoint-desktop: 1400px; // laptop < 1400px = 100%, desktop ≥ 1400px = 90%
+$cwt-blue-accent: #2563eb;
+$cwt-blue-glow: rgba(37, 99, 235, 0.38);
 
 // Runtime theme tokens — flipped by html[data-theme="light|dark"]
 :root,
@@ -44,6 +46,9 @@ html[data-theme="dark"] {
     --cwt-invert-ink: #ffffff;
     --cwt-invert-ink-muted: rgba(255, 255, 255, 0.82);
     --cwt-footer-bg: #{$cwt-black};
+    --cwt-filter-bg: rgba(10, 10, 10, 0.9);
+    --cwt-filter-ink: #ffffff;
+    --cwt-filter-ink-muted: rgba(255, 255, 255, 0.78);
 }
 
 html[data-theme="light"] {
@@ -65,6 +70,9 @@ html[data-theme="light"] {
     --cwt-invert-ink: #1a1a1a;
     --cwt-invert-ink-muted: #555555;
     --cwt-footer-bg: #ffffff;
+    --cwt-filter-bg: rgba(255, 255, 255, 0.97);
+    --cwt-filter-ink: #1a1a1a;
+    --cwt-filter-ink-muted: #555555;
 }
 
 @mixin cwt-content-width {
@@ -120,6 +128,8 @@ main#main-content,
 
 body {
     color: var(--cwt-ink);
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 // =============================================================================
@@ -687,6 +697,10 @@ body .footer .container {
     }
 
     .navUser .container {
+        background-color: transparent !important;
+    }
+
+    .navUser .container {
         display: flex !important;
         align-items: center;
         min-height: 0;
@@ -930,6 +944,10 @@ body .footer .container {
     z-index: 100;
     width: 100%;
 
+    .container {
+        background-color: transparent !important;
+    }
+
     // Collapse along with the top utility bar when the header goes sticky
     // (theme's existing .is-sticky behavior hides .halo_topHeader the same way)
     // so the pinned header stays a slim, unobtrusive strip while scrolling.
@@ -985,6 +1003,7 @@ body .footer .container {
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .icon {
@@ -2325,17 +2344,17 @@ body .footer .container {
 // -----------------------------------------------------------------------------
 .halo_MultiCategory,
 .halo_MultiCategory.layout-2 {
-    background-color: var(--cwt-page-bg)-overlay !important;
-    border: 1px solid rgba($cwt-gold-bright, 0.25) !important;
+    background-color: var(--cwt-filter-bg) !important;
+    border: 1px solid rgba($cwt-blue-accent, 0.45) !important;
     border-radius: 4px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 18px $cwt-blue-glow, 0 8px 32px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(4px);
 
     .halo_multilevel-category-filter {
         > .form-label,
         > .form-label .title,
         > .form-label .desc {
-            color: #ffffff !important;
+            color: var(--cwt-filter-ink) !important;
         }
 
         .title {
@@ -2345,7 +2364,7 @@ body .footer .container {
         }
 
         .desc {
-            color: rgba(255, 255, 255, 0.75) !important;
+            color: var(--cwt-filter-ink-muted) !important;
             font-weight: 400;
         }
 
@@ -2376,17 +2395,17 @@ body .footer .container {
         }
 
         #halo_clear-select {
-            color: rgba(255, 255, 255, 0.85) !important;
+            color: var(--cwt-filter-ink-muted) !important;
             background: transparent !important;
             border-color: transparent !important;
 
             svg {
-                fill: rgba(255, 255, 255, 0.85) !important;
+                fill: var(--cwt-filter-ink-muted) !important;
             }
 
             span {
-                color: rgba(255, 255, 255, 0.85) !important;
-                text-decoration-color: rgba(255, 255, 255, 0.5);
+                color: var(--cwt-filter-ink-muted) !important;
+                text-decoration-color: rgba(0, 0, 0, 0.25);
             }
 
             &:hover {
@@ -2403,7 +2422,7 @@ body .footer .container {
 }
 
 .page-type-default.home-layout-2 .halo_MultiCategory {
-    background-color: var(--cwt-page-bg)-overlay !important;
+    background-color: var(--cwt-filter-bg) !important;
 }
 
 .halo-home-section-fillter {
@@ -2812,6 +2831,8 @@ body .footer .container {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 700;
+    font-size: 24px !important;
+    line-height: 1.25 !important;
     color: var(--cwt-heading) !important;
 }
 
@@ -2822,8 +2843,16 @@ body .footer .container {
     .halo-block-header,
     .halo-block-header-wrapper,
     .custom-ecb {
-        background-color: var(--cwt-surface) !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        background-color: transparent !important;
         border-bottom: none !important;
+        padding: 0 0 20px !important;
+        margin: 0 0 8px !important;
+        text-align: left !important;
     }
 
     .halo-block-header .title,
@@ -2832,7 +2861,52 @@ body .footer .container {
     .halo-block-header-wrapper .title,
     .custom-ecb .title,
     .custom-ecb h2 {
+        flex: 1 1 auto;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 24px !important;
         color: var(--cwt-heading) !important;
+    }
+
+    .halo-block-header .link,
+    .halo-block-header-wrapper .link,
+    .halo-block-header .collection--link,
+    .custom-ecb .collection--link,
+    .custom-ecb .link {
+        flex: 0 0 auto;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        margin: 0 !important;
+        padding: 10px 18px !important;
+        min-height: 40px;
+        background-color: $cwt-black !important;
+        border: 2px solid $cwt-gold-bright !important;
+        border-radius: 4px;
+        color: #ffffff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none !important;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+        span {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span {
+                color: $cwt-black !important;
+            }
+        }
     }
 
     // Same section width for Top Deals / Featured / Top Products
@@ -3023,9 +3097,9 @@ body .footer .container {
 
 .card {
     background: var(--cwt-card-bg);
-    border: 1px solid var(--cwt-line-strong);
+    border: 2px solid rgba($cwt-gold-bright, 0.55) !important;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 14px rgba($cwt-gold-bright, 0.28), 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 
     // Image panel stays white; rest of card is dark
@@ -3037,8 +3111,8 @@ body .footer .container {
     @media (min-width: 801px) {
         &:hover {
             transform: translateY(-5px);
-            border-color: rgba($cwt-gold-bright, 0.45);
-            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.14);
+            border-color: rgba($cwt-gold-bright, 0.9) !important;
+            box-shadow: 0 0 22px rgba($cwt-gold-bright, 0.45), 0 18px 34px rgba(0, 0, 0, 0.18);
         }
     }
 
@@ -3655,38 +3729,44 @@ a.button--tertiary {
                 position: static !important;
                 display: inline-flex;
                 align-items: center;
-                gap: 4px;
-                color: $cwt-gold-bright !important;
-                font-size: 13px !important;
+                justify-content: center;
+                gap: 6px;
+                min-height: 40px;
+                padding: 10px 18px !important;
+                color: #ffffff !important;
+                font-size: 11px !important;
                 font-weight: 700 !important;
                 text-transform: uppercase;
-                letter-spacing: 0.04em;
+                letter-spacing: 0.06em;
                 text-decoration: none !important;
-                background: transparent !important;
+                background: $cwt-black !important;
+                border: 2px solid $cwt-gold-bright !important;
+                border-radius: 4px;
 
                 span {
-                    text-decoration: underline;
-                    text-underline-offset: 3px;
-                    color: $cwt-gold-bright !important;
+                    text-decoration: none !important;
+                    text-underline-offset: 0;
+                    color: inherit !important;
                 }
 
                 svg {
-                    fill: $cwt-gold-bright !important;
-                    width: 16px;
-                    height: 16px;
+                    fill: currentColor !important;
+                    width: 14px;
+                    height: 14px;
                 }
 
-                    &:hover {
-                        color: var(--cwt-heading) !important;
+                &:hover {
+                    background: $cwt-gold-bright !important;
+                    color: $cwt-black !important;
 
-                        span {
-                            color: var(--cwt-heading) !important;
-                        }
-
-                        svg {
-                            fill: var(--cwt-heading) !important;
-                        }
+                    span {
+                        color: $cwt-black !important;
                     }
+
+                    svg {
+                        fill: $cwt-black !important;
+                    }
+                }
             }
         }
     }
@@ -3726,10 +3806,18 @@ a.button--tertiary {
             float: none !important;
             white-space: normal !important;
             background-color: var(--cwt-card-bg);
-            border: 1px solid var(--cwt-line);
-            border-radius: 4px;
+            border: 2px solid rgba($cwt-gold-bright, 0.55) !important;
+            border-radius: 8px;
+            box-shadow: 0 0 14px rgba($cwt-gold-bright, 0.28), 0 4px 12px rgba(0, 0, 0, 0.12);
             overflow: hidden;
             height: 100%;
+            transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+
+            &:hover {
+                border-color: rgba($cwt-gold-bright, 0.9) !important;
+                box-shadow: 0 0 20px rgba($cwt-gold-bright, 0.42), 0 10px 24px rgba(0, 0, 0, 0.14);
+                transform: translateY(-3px);
+            }
 
             &:nth-child(n+5) {
                 display: none !important;
@@ -3775,12 +3863,12 @@ a.button--tertiary {
 
                 .title {
                     margin: 0 0 8px !important;
-                    font-size: 18px !important;
+                    font-size: 19px !important;
                     line-height: 1.35 !important;
                     font-weight: 700 !important;
 
                     a {
-                        color: var(--cwt-ink) !important;
+                        color: var(--cwt-heading) !important;
                         text-decoration: none !important;
 
                         &:hover {
@@ -3792,15 +3880,15 @@ a.button--tertiary {
                 .date {
                     margin: 0 0 12px !important;
                     color: var(--cwt-ink-faint) !important;
-                    font-size: 13px !important;
+                    font-size: 14px !important;
                     font-weight: 400 !important;
                 }
 
                 .summary {
                     margin: 0 0 16px !important;
                     color: var(--cwt-ink-muted) !important;
-                    font-size: 14px !important;
-                    line-height: 1.5 !important;
+                    font-size: 15px !important;
+                    line-height: 1.55 !important;
                     font-weight: 400 !important;
                     flex: 1 1 auto;
                 }
@@ -3808,7 +3896,7 @@ a.button--tertiary {
                 .link {
                     margin-top: auto;
                     align-self: flex-start;
-                    color: $cwt-gold-bright !important;
+                    color: $cwt-gold-text !important;
                     font-size: 13px !important;
                     font-weight: 700 !important;
                     text-transform: uppercase;
@@ -3817,7 +3905,7 @@ a.button--tertiary {
                     text-underline-offset: 3px;
 
                     &:hover {
-                        color: #ffffff !important;
+                        color: var(--cwt-heading) !important;
                     }
                 }
             }
@@ -3890,6 +3978,21 @@ a.button--tertiary {
             }
         }
     }
+}
+
+// Override base theme white heading bars — use page background
+.halo-block-product,
+.halo-home-section,
+.halo-block {
+    .halo-block-header,
+    .halo-block-header-wrapper {
+        background-color: transparent !important;
+        border-bottom: none !important;
+    }
+}
+
+.halo-bgGray {
+    background-color: var(--cwt-page-bg) !important;
 }
 
 // Product-by-category home blocks (halo-prodByCate-2/-3, featured/new/top)
@@ -8620,7 +8723,6 @@ html.cwt-theme-light {
     main#main-content,
     .page,
     .page-content,
-    .container,
     .main,
     .halo-home-section-top,
     .halo-home-section-bottom,
@@ -8636,6 +8738,18 @@ html.cwt-theme-light {
     .page-sidebar {
         background-color: var(--cwt-page-bg) !important;
         color: var(--cwt-ink) !important;
+    }
+
+    // Header / trust bar inner containers must stay transparent (not page gray)
+    .header .container,
+    .halo_topHeader .container,
+    .halo_topHeader .navUser .container,
+    .halo_middleHeader .container,
+    .halo_bottomHeader .container,
+    .cwt-trust-bar .container,
+    .cwt-header-main,
+    .cwt-nav-wrap {
+        background-color: transparent !important;
     }
 
     .card,
@@ -9589,6 +9703,167 @@ html.cwt-theme-light {
             span, .text {
                 color: $cwt-black !important;
             }
+        }
+    }
+}
+
+// =============================================================================
+// Typography scale — slightly larger body copy, headings stay dominant
+// =============================================================================
+p, li, dd, dt, label, .form-label,
+.card-text, .card-body, .card-body p,
+.productView-info-value, .productView-description,
+.tab-content, .toggle-content, .halo-description,
+.facetedSearch, .sidebarBlock,
+.cart-item-value, .account-product-description {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+small, .text--muted, .rating--count, .card-text[data-test-info-type="brandName"] {
+    font-size: 13px;
+}
+
+h1, .page-heading--large {
+    font-size: clamp(28px, 4vw, 36px) !important;
+}
+
+h2, .page-heading {
+    font-size: clamp(24px, 3vw, 30px) !important;
+}
+
+h3 {
+    font-size: clamp(20px, 2.5vw, 24px) !important;
+}
+
+h4, h5, h6 {
+    font-size: clamp(17px, 2vw, 20px) !important;
+}
+
+.card .card-title,
+.card .card-title a {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+}
+
+// =============================================================================
+// Light theme — header bars stay dark; shop filter + section chrome readable
+// =============================================================================
+html[data-theme="light"],
+html.cwt-theme-light {
+    .header.halo_header-layout-2,
+    .cwt-top-header,
+    .halo_topHeader,
+    .halo_middleHeader,
+    .halo_bottomHeader,
+    .header.halo_header-layout-2 .navUser {
+        background-color: $cwt-black !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+    }
+
+    .cwt-trust-bar {
+        background-color: #1a1a1a !important;
+
+        &__item span,
+        &__item a,
+        &__item--static {
+            color: rgba(255, 255, 255, 0.92) !important;
+        }
+    }
+
+    .halo-block-product .halo-block-header,
+    .halo-block-product .halo-block-header-wrapper,
+    .halo-home-section .halo-block-header,
+    .custom-ecb {
+        background-color: transparent !important;
+    }
+
+    .home-layout-2 .halo-block-header .link,
+    .home-layout-2 .halo-block-header .collection--link,
+    .cwt-blog-section__header .link a {
+        background-color: $cwt-black !important;
+        color: #ffffff !important;
+        border-color: $cwt-gold-bright !important;
+
+        span {
+            color: #ffffff !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span {
+                color: $cwt-black !important;
+            }
+        }
+    }
+
+    #recentPosts.cwt-blog-section .item-content .title,
+    #recentPosts.cwt-blog-section .item-content .title a,
+    .cwt-blog-section .item-content .title a {
+        color: #111111 !important;
+
+        &:hover {
+            color: $cwt-gold-text !important;
+        }
+    }
+
+    .halo_MultiCategory,
+    .halo_MultiCategory.layout-2 {
+        border-color: rgba($cwt-blue-accent, 0.55) !important;
+        box-shadow: 0 0 16px rgba($cwt-blue-accent, 0.28), 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .card,
+    .cwt-blog-card {
+        border-color: rgba($cwt-gold-bright, 0.55) !important;
+        box-shadow: 0 0 14px rgba($cwt-gold-bright, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    // Top utility bar + trust bar — dark strip, light text (container bg fix above)
+    .header.halo_header-layout-2 .halo_topHeader,
+    .header.halo_header-layout-2 .halo_topHeader.cwt-top-header,
+    .header.halo_header-layout-2 .halo_topHeader .navUser {
+        background-color: $cwt-black !important;
+    }
+
+    .header.halo_header-layout-2 .halo_topHeader {
+        .cwt-top-contact .navUser-action,
+        .cwt-top-contact .navUser-action span,
+        .navUser--left .navUser-action,
+        .navUser--left .navUser-action span,
+        .navUser--center .text-promotion,
+        .navUser--center .text-promotion .text,
+        .navUser--right .navUser-action {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .cwt-top-contact .icon,
+        .navUser--left .navUser-action svg {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+
+        .navUser--right .navUser-action:hover {
+            color: $cwt-gold-bright !important;
+        }
+    }
+
+    .header.halo_header-layout-2 .cwt-trust-bar {
+        background-color: #1a1a1a !important;
+
+        .cwt-trust-bar__item a,
+        .cwt-trust-bar__item--static,
+        .cwt-trust-bar__item span,
+        .cwt-trust-bar__item a span {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .cwt-trust-bar__item .icon {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
         }
     }
 }

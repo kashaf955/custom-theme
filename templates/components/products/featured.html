@@ -8,11 +8,11 @@
                 {{#if block_countdown}}
                     <div class="productBlock--countdown" data-countdown="{{block_countdown}}"></div>
                 {{/if}}
-                {{!-- #if link}}
+                {{#if link}}
                     <a class="link" href="{{link}}" aria-label="{{#if theme_settings.hl_skin_1}}{{lang 'common.view_all'}}{{else if theme_settings.hl_skin_2}}{{lang 'common.view_more'}}{{/if}}">
                         <span>{{#if theme_settings.hl_skin_1}}{{lang 'common.view_all'}}{{else if theme_settings.hl_skin_2}}{{lang 'common.view_more'}}{{/if}}</span>
                     </a>
-                {{/if --}}
+                {{/if}}
             </div>
         {{else}}
             <div class="halo-block-header halo-fadeInUp" data-halo-animate="1">
