@@ -18,13 +18,15 @@
                     {{#if page_type '===' 'default'}}
                         <h1 class="header-logo">
                             <a href="{{urls.home}}" class="header-logo__link cwt-header-logo__link" data-header-logo-link>
-                                <img class="cwt-header-logo__img" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                                <img class="cwt-header-logo__img cwt-header-logo__img--dark" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                                <img class="cwt-header-logo__img cwt-header-logo__img--light" src="{{cdn 'img/cwt-logo-light.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
                             </a>
                         </h1>
                     {{else}}
                         <div class="header-logo">
                             <a href="{{urls.home}}" class="header-logo__link cwt-header-logo__link" data-header-logo-link>
-                                <img class="cwt-header-logo__img" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                                <img class="cwt-header-logo__img cwt-header-logo__img--dark" src="{{cdn 'img/cwt-logo.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                                <img class="cwt-header-logo__img cwt-header-logo__img--light" src="{{cdn 'img/cwt-logo-light.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
                             </a>
                         </div>
                     {{/if}}

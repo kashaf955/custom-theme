@@ -264,9 +264,8 @@ main#main-content {
   align-items: center;
   margin: 12px;
 }
-.custom-ecb a {
+.custom-ecb a:not(.collection--link):not(.link) {
   margin-left: 10px;
-  color: blue;
 }
 .custom-ecb h2 {
   margin: 0;
@@ -537,8 +536,46 @@ html.cwt-theme-light {
         color: #111111 !important;
     }
 
-    .custom-ecb a {
-        color: #8a6a12 !important;
+    // Top Deals / Featured "View More" — black + gold button (must load after chrome-world catch-alls)
+    .home-layout-2 .halo-block-header .link,
+    .home-layout-2 .halo-block-header .collection--link,
+    .home-layout-2 .halo-block-header-wrapper .link,
+    .home-layout-2 .halo-block-header-wrapper .collection--link,
+    .home-layout-2 .custom-ecb > .link,
+    .home-layout-2 .custom-ecb > .collection--link {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        padding: 10px 18px !important;
+        min-height: 40px !important;
+        background-color: #000000 !important;
+        border: 2px solid #ffbb00 !important;
+        border-radius: 4px !important;
+        color: #ffffff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+
+        span {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: #ffbb00 !important;
+            border-color: #ffbb00 !important;
+            color: #000000 !important;
+
+            span {
+                color: #000000 !important;
+            }
+        }
     }
 
     .haloSubCategories__name {
