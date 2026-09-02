@@ -5057,8 +5057,16 @@ h2.productView-brand {
     }
 }
 
-// --- Ask an Expert -------------------------------------------------------------------
+// --- Ask an Expert / product service points -----------------------------------
 .halo_ask-an-experts {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 16px !important;
+    padding: 12px 0 !important;
+    clear: both;
+    float: none !important;
+    border-top: 1px solid var(--cwt-line);
+
     .contact {
         background: var(--cwt-card-bg);
         border: 1px solid var(--cwt-line);
@@ -5081,22 +5089,91 @@ h2.productView-brand {
         }
     }
 
-    .services .item {
+    .services {
+        display: flex !important;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 8px 12px;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none;
+        overflow: visible;
+        white-space: normal;
+        font-size: inherit;
+
+        .item {
+            flex: 1 1 0;
+            width: auto !important;
+            min-width: 0;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+            vertical-align: top;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
         .icons {
+            flex: 0 0 auto;
+            width: 40px;
             color: $cwt-gold-bright;
 
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                border-radius: 50%;
+                border: 1px solid var(--cwt-line);
+                background: var(--cwt-surface);
+            }
+
             svg {
-                fill: currentColor;
-                stroke: currentColor;
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+                width: 16px;
+                height: 16px;
             }
         }
 
-        .content .title {
-            color: var(--cwt-ink);
-        }
+        .content {
+            min-width: 0;
+            padding: 0 !important;
 
-        .content .description {
-            color: var(--cwt-ink-muted);
+            .title {
+                font-size: 12px !important;
+                line-height: 1.3 !important;
+                margin: 0 0 2px !important;
+                font-weight: 700;
+                color: var(--cwt-heading) !important;
+                text-transform: none;
+            }
+
+            .description {
+                font-size: 12px !important;
+                line-height: 1.3 !important;
+                margin: 0 !important;
+                color: var(--cwt-ink-muted) !important;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .services {
+            flex-wrap: wrap;
+
+            .item {
+                flex: 1 1 calc(50% - 8px);
+                max-width: calc(50% - 8px);
+            }
         }
     }
 }
