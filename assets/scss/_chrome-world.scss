@@ -2728,8 +2728,172 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 }
 
 // -----------------------------------------------------------------------------
-// Shop By Truck filter — dark glass panel (functionality unchanged)
+// Search results page — tabs, category suggestions, sort, advanced search
 // -----------------------------------------------------------------------------
+.page-type-search {
+    .breadcrumb-wrapper,
+    section.nav,
+    section.page,
+    .page-content {
+        background-color: transparent;
+        color: var(--cwt-ink);
+    }
+
+    .page-heading,
+    #search-results-heading .page-heading {
+        color: var(--cwt-heading) !important;
+    }
+
+    .search-nav,
+    .navBar--sub.search-nav {
+        .navBar-section {
+            background-color: var(--cwt-card-bg) !important;
+            border: 1px solid var(--cwt-line-strong) !important;
+            box-shadow: none !important;
+        }
+
+        .navBar-item {
+            border-color: var(--cwt-line-strong) !important;
+
+            > a,
+            .navBar-action {
+                background-color: transparent !important;
+                border-color: var(--cwt-line-strong) !important;
+                color: var(--cwt-ink) !important;
+
+                span,
+                .toggleLink-text {
+                    color: inherit !important;
+                }
+
+                &:hover,
+                &:focus {
+                    color: var(--cwt-price) !important;
+                    background-color: var(--cwt-elevated-bg) !important;
+                }
+            }
+
+            &.is-active > a,
+            &.is-active .navBar-action,
+            .navBar-action-color--active {
+                background-color: $cwt-gold-bright !important;
+                color: $cwt-black !important;
+                border-color: $cwt-gold-bright !important;
+
+                span,
+                .toggleLink-text {
+                    color: $cwt-black !important;
+                }
+
+                &:hover,
+                &:focus {
+                    background-color: $cwt-gold-bright !important;
+                    color: $cwt-black !important;
+                }
+            }
+        }
+    }
+
+    .panel,
+    .panel--large,
+    .panel .panel-body {
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
+        border: 1px solid var(--cwt-line-strong) !important;
+        box-shadow: none;
+    }
+
+    .panel--large .panel-body {
+        margin-bottom: 0;
+    }
+
+    .search-suggestion,
+    .suggestion-title,
+    .search-suggestion p,
+    .search-suggestion li,
+    .search-suggestion strong {
+        color: var(--cwt-ink) !important;
+    }
+
+    .suggestion-title {
+        color: var(--cwt-heading) !important;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .search-suggestion a,
+    .category-suggestion a,
+    .search-refine {
+        color: var(--cwt-ink) !important;
+
+        &:hover,
+        &:focus {
+            color: var(--cwt-price) !important;
+        }
+    }
+
+    .actionBar,
+    .actionBar-section {
+        color: var(--cwt-ink);
+
+        .form-label {
+            color: var(--cwt-ink-muted) !important;
+        }
+
+        .form-field {
+            background-color: var(--cwt-input-bg) !important;
+            border: 1px solid var(--cwt-line-strong) !important;
+        }
+
+        .form-select {
+            background-color: var(--cwt-input-bg) !important;
+            color: var(--cwt-price) !important;
+            border: 0 !important;
+        }
+    }
+
+    .advancedSearch-form,
+    #advanced-search-content {
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
+        border: 1px solid var(--cwt-line-strong);
+        border-radius: 8px;
+        padding: 20px 24px;
+
+        .advancedSearch-title,
+        .form-label,
+        p,
+        span,
+        label {
+            color: var(--cwt-ink) !important;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            background-color: var(--cwt-input-bg) !important;
+            border-color: var(--cwt-line-strong) !important;
+            color: var(--cwt-ink) !important;
+        }
+
+        hr {
+            border-color: var(--cwt-line) !important;
+        }
+    }
+
+    .jstree,
+    .jstree-default,
+    .jstree-anchor {
+        color: var(--cwt-ink) !important;
+        background: transparent !important;
+    }
+
+    .page-sidebar,
+    .facetedSearch {
+        background-color: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
+    }
+}
 .halo_MultiCategory,
 .halo_MultiCategory.layout-2 {
     background-color: var(--cwt-filter-bg) !important;
@@ -3726,6 +3890,53 @@ html.cwt-theme-light .cwt-header-logo__img--light {
                 color: $cwt-black !important;
             }
         }
+    }
+}
+
+// Product list / search list view — title, summary, price stay readable
+.productList .card,
+.productList .listItem,
+.listItem {
+    background: var(--cwt-card-bg) !important;
+    color: var(--cwt-ink) !important;
+
+    .card-body,
+    .listItem-body,
+    .listItem-details,
+    .listItem-content,
+    .listItem-actions {
+        background: var(--cwt-card-bg) !important;
+        color: var(--cwt-ink) !important;
+    }
+
+    .card-title,
+    .card-title a,
+    .card-title a span,
+    .card-text,
+    .card-text a,
+    .card-brand,
+    .card-desc,
+    .card-desc p,
+    .card-desc span,
+    .listItem-title,
+    .listItem-title a,
+    .listItem-brand,
+    .listItem-details p {
+        color: var(--cwt-ink) !important;
+    }
+
+    .card-title a:hover,
+    .listItem-title a:hover {
+        color: var(--cwt-price) !important;
+    }
+
+    .card-price,
+    .card-price .price,
+    .card-price .price--withoutTax,
+    .card-price .price--withTax,
+    .listItem-price,
+    .listItem-price .price {
+        color: var(--cwt-price) !important;
     }
 }
 
@@ -9491,6 +9702,37 @@ html[data-theme="light"] {
         }
     }
 
+    .productList .card,
+    .productList .card-body,
+    .productList .listItem,
+    .listItem,
+    .listItem-body {
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+    }
+
+    .productList .card-title,
+    .productList .card-title a,
+    .productList .card-title a span,
+    .productList .card-text,
+    .productList .card-brand,
+    .productList .card-desc,
+    .productList .card-desc p,
+    .productList .card-desc span,
+    .listItem-title,
+    .listItem-title a,
+    .listItem-brand,
+    .listItem-details p {
+        color: #1a1a1a !important;
+    }
+
+    .productList .card-price,
+    .productList .card-price .price,
+    .productList .listItem-price,
+    .productList .listItem-price .price {
+        color: $cwt-gold-text !important;
+    }
+
     // Forms
     .form-label {
         color: #333333 !important;
@@ -9731,6 +9973,75 @@ html[data-theme="light"] {
         background: #ffffff !important;
         border-color: rgba(0, 0, 0, 0.12) !important;
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .page-type-search {
+        .search-nav .navBar-section {
+            background-color: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .search-nav .navBar-item > a,
+        .search-nav .navBar-item .navBar-action {
+            color: #1a1a1a !important;
+            background-color: transparent !important;
+
+            span,
+            .toggleLink-text {
+                color: inherit !important;
+            }
+
+            &:hover,
+            &:focus {
+                color: $cwt-gold-text !important;
+                background-color: #f3f3f3 !important;
+            }
+        }
+
+        .search-nav .navBar-item.is-active > a,
+        .search-nav .navBar-item.is-active .navBar-action,
+        .search-nav .navBar-action-color--active {
+            background-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+
+            span,
+            .toggleLink-text {
+                color: $cwt-black !important;
+            }
+        }
+
+        .panel,
+        .panel--large,
+        .panel .panel-body {
+            background-color: #ffffff !important;
+            color: #1a1a1a !important;
+        }
+
+        .suggestion-title,
+        .search-suggestion,
+        .search-suggestion p,
+        .search-suggestion li,
+        .search-suggestion strong,
+        .search-suggestion a,
+        .category-suggestion a {
+            color: #1a1a1a !important;
+        }
+
+        .search-suggestion a:hover,
+        .category-suggestion a:hover {
+            color: $cwt-gold-text !important;
+        }
+
+        .actionBar .form-label {
+            color: #555555 !important;
+        }
+
+        .actionBar .form-field,
+        .actionBar .form-select {
+            background-color: #ffffff !important;
+            color: $cwt-gold-text !important;
+            border-color: rgba(0, 0, 0, 0.16) !important;
+        }
     }
 
     .new-customer {
