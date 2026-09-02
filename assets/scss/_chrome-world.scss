@@ -6825,9 +6825,10 @@ h2.productView-brand {
         .page-content {
             width: 100% !important;
             max-width: 100% !important;
-            padding-left: 0 !important;
-            padding-right: 0 !important;
+            padding-left: var(--cwt-gutter) !important;
+            padding-right: var(--cwt-gutter) !important;
             float: none !important;
+            box-sizing: border-box !important;
         }
 
         .page-sidebar-mobile-wrapper {
@@ -6923,13 +6924,16 @@ h2.productView-brand {
         }
     }
 
-    // Description / reviews / Q&A
+    // Description / reviews / Q&A — keep side gutters (do not flush to edge)
     .productView-tab,
     .halo-description,
     .productView-bottom {
         width: 100% !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: auto;
 
         .tabs {
             overflow-x: auto;
@@ -6946,7 +6950,7 @@ h2.productView-brand {
     // Related products — 1 card on phone, 2 on larger tablets handled below
     #halo-related-products,
     .cwt-related-products {
-        padding: 20px 0 32px !important;
+        padding: 16px 0 20px !important;
 
         .halo-block-header .title {
             font-size: 18px !important;
@@ -10366,6 +10370,202 @@ html.cwt-theme-light {
             padding-left: calc(var(--cwt-gutter) * 0.5) !important;
             padding-right: calc(var(--cwt-gutter) * 0.5) !important;
         }
+    }
+}
+
+// =============================================================================
+// Overflow lock + even, compact vertical rhythm (mobile + desktop)
+// =============================================================================
+.page,
+.page-content,
+.productView,
+.halo-productView {
+    max-width: 100%;
+}
+
+.page-content,
+.productView,
+.halo-productView,
+.productView-details,
+.productView-product,
+.productView-images,
+.productView-bottom,
+.productView-tab,
+.halo-description,
+.tab-content,
+.description-showmore,
+#tab-description-mobile,
+#halo-related-products,
+.cwt-related-products,
+.footer .container {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+// WYSIWYG description — tables/images often have 1200px widths that overflow
+.productView-description,
+.description-showmore,
+.tab-content,
+.halo-description {
+    overflow-x: auto;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+
+    img,
+    video,
+    iframe,
+    svg,
+    object,
+    embed,
+    figure,
+    .image {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        position: static !important;
+        float: none !important;
+        left: auto !important;
+        right: auto !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        table-layout: fixed !important;
+        border-collapse: collapse;
+    }
+
+    td,
+    th {
+        max-width: 100% !important;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+        box-sizing: border-box;
+        padding: 8px 10px !important;
+    }
+
+    p, h1, h2, h3, h4, h5, h6, ul, ol, li, div, span, section, article {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+// Compact, even stacking on the buy box (title / price / options)
+.productView-product {
+    > .productView-brand,
+    > h2.productView-brand {
+        margin: 0 0 8px !important;
+    }
+
+    > .productView-title {
+        margin: 0 0 8px !important;
+    }
+
+    > .productView-rating,
+    > .productView-soldProduct,
+    > .productView-countDown-wrapper {
+        margin: 0 0 8px !important;
+    }
+
+    > .productView-ecb-price,
+    > .productView-price {
+        margin: 0 0 8px !important;
+    }
+
+    > .productView-info {
+        margin: 0 0 8px !important;
+        padding-top: 8px;
+    }
+}
+
+.productView-title {
+    margin: 0 0 8px !important;
+}
+
+.productView-price {
+    margin: 0 0 8px !important;
+}
+
+.productView-options {
+    .form-field {
+        margin-bottom: 8px !important;
+    }
+}
+
+.productView-options .form-action,
+.add-to-cart-buttons,
+.add-to-cart-wrapper {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+#halo-related-products.cwt-related-products,
+.cwt-related-products {
+    padding: 16px 0 20px !important;
+    overflow: hidden;
+
+    .halo-block-header {
+        padding: 0 0 8px !important;
+        margin: 0 !important;
+    }
+}
+
+.footer {
+    .footer-info {
+        padding: 28px 0 20px !important;
+        gap: 16px !important;
+    }
+
+    .footer-info-heading {
+        margin-bottom: 8px !important;
+    }
+}
+
+.footer-bottom {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+@media (max-width: 1024px) {
+    .header.halo_header-layout-2 .cwt-header-main,
+    .halo_middleHeader .mobile_search_custom,
+    .halo_topHeader .navUser .container {
+        padding-left: var(--cwt-gutter) !important;
+        padding-right: var(--cwt-gutter) !important;
+        box-sizing: border-box !important;
+    }
+
+    .halo_middleHeader .mobile_search_custom {
+        padding-bottom: 8px !important;
+    }
+
+    .productView-images,
+    .productView-details,
+    .halo-productView-left,
+    .halo-productView-right {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .breadcrumbs-product {
+        margin: 8px 0 !important;
+        padding: 0 !important;
+    }
+
+    .productView-title {
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+        margin: 0 0 8px !important;
+    }
+
+    .productView-price {
+        margin: 0 0 8px !important;
     }
 }
 

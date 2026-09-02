@@ -210,8 +210,9 @@ body.page-type-product
     font-size: 12px;
   }
   div#tab-description-mobile .description-showmore table {
-    min-width: auto !important;
-    width: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .halo-home-section-top
     .halo-home-section-left
