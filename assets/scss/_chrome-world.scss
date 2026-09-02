@@ -73,6 +73,11 @@ html[data-theme="light"] {
     --cwt-filter-bg: rgba(255, 255, 255, 0.97);
     --cwt-filter-ink: #1a1a1a;
     --cwt-filter-ink-muted: #555555;
+    --cwt-header-bg: #ffffff;
+    --cwt-header-ink: #1a1a1a;
+    --cwt-header-ink-muted: #444444;
+    --cwt-header-accent: #{$cwt-gold-text};
+    --cwt-header-line: rgba(0, 0, 0, 0.1);
 }
 
 @mixin cwt-content-width {
@@ -9271,10 +9276,10 @@ html[data-theme="light"] {
         background: transparent !important;
     }
 
-    // Trust bar under header — keep readable on light pages
+    // Trust bar — white in light theme (full rules at end of file)
     .cwt-trust-bar {
-        background-color: #1a1a1a !important;
-        border-bottom-color: rgba($cwt-gold-bright, 0.25);
+        background-color: var(--cwt-header-bg) !important;
+        border-bottom-color: var(--cwt-header-line);
     }
 
     // Blog cards / generic panels
@@ -9580,45 +9585,21 @@ html.cwt-theme-light {
         background-color: #f7f7f7 !important;
     }
 
-    // Keep header / hero / dark banners light-on-dark
-    // Use !important on every text node — earlier light rules force dark ink.
-    .header,
-    .halo_topHeader,
-    .halo_middleHeader,
-    .halo_bottomHeader,
+    // Keep hero / dark banners light-on-dark (header uses white bar — see end of file)
     .cwt-hero,
     .cwt-about-hero,
     .cwt-about-visit,
-    .cwt-trust-bar,
-    .navPages-container.is-open,
-    .cwt-policy-cta,
-    .middleHeader-container {
+    .cwt-policy-cta {
         color: rgba(255, 255, 255, 0.92) !important;
 
         h1, h2, h3, h4, h5, h6,
         .title,
-        p, span, a, li, label, small, strong,
-        .navUser-action,
-        .navUser-action span,
-        .navUser-text,
-        .navPages-action,
-        .navPages-action .text,
-        .navBar-action,
-        .navList-action,
-        .cwt-header-label,
-        .my-account,
-        .my-account-link,
-        .my-account-link .navUser-action,
-        .item--account .my-account,
-        .breadcrumb,
-        .breadcrumb a {
+        p, span, a, li, label, small, strong {
             color: rgba(255, 255, 255, 0.92) !important;
         }
 
         a:not(.button):hover,
-        a:not(.button):focus,
-        .navUser-action:hover,
-        .navPages-action:hover {
+        a:not(.button):focus {
             color: $cwt-gold-bright !important;
         }
 
@@ -9626,14 +9607,6 @@ html.cwt-theme-light {
             fill: $cwt-gold-bright !important;
             stroke: $cwt-gold-bright !important;
         }
-    }
-
-    .header .navPages-action.is-active,
-    .header .navPages-action.has-active,
-    .cwt-trust-bar__label,
-    .cwt-trust-bar span,
-    .cwt-trust-bar p {
-        color: rgba(255, 255, 255, 0.92) !important;
     }
 
     .cwt-hero__title-line {
@@ -9747,27 +9720,297 @@ h4, h5, h6 {
 }
 
 // =============================================================================
-// Light theme — header bars stay dark; shop filter + section chrome readable
+// Light theme — white header stack, black + gold text, white category menus
 // =============================================================================
 html[data-theme="light"],
 html.cwt-theme-light {
     .header.halo_header-layout-2,
+    .header.halo_header-layout-2 .halo_topHeader,
+    .header.halo_header-layout-2 .halo_topHeader.cwt-top-header,
+    .header.halo_header-layout-2 .halo_topHeader .navUser,
     .cwt-top-header,
     .halo_topHeader,
     .halo_middleHeader,
     .halo_bottomHeader,
-    .header.halo_header-layout-2 .navUser {
-        background-color: $cwt-black !important;
-        color: rgba(255, 255, 255, 0.92) !important;
+    .header.halo_header-layout-2 .navUser,
+    .cwt-trust-bar,
+    .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
+    .header.halo_header-layout-2 #menu.navPages-container,
+    .halo_middleHeader .mobile_search_custom {
+        background-color: var(--cwt-header-bg) !important;
+        color: var(--cwt-header-ink) !important;
+        border-color: var(--cwt-header-line) !important;
     }
 
-    .cwt-trust-bar {
-        background-color: #1a1a1a !important;
+    .header.halo_header-layout-2 {
+        border-bottom-color: var(--cwt-header-line) !important;
+    }
 
-        &__item span,
-        &__item a,
-        &__item--static {
-            color: rgba(255, 255, 255, 0.92) !important;
+    // Top utility bar — phone, email, links, promo
+    .halo_topHeader,
+    .header.halo_header-layout-2 .halo_topHeader {
+        border-bottom: 1px solid var(--cwt-header-line) !important;
+
+        .navUser-action,
+        .navUser-action span,
+        .navUser--right .navUser-action {
+            color: var(--cwt-header-ink) !important;
+
+            &:hover,
+            &:focus {
+                color: var(--cwt-header-accent) !important;
+            }
+        }
+
+        .navUser--center .text-promotion,
+        .navUser--center .text-promotion .text {
+            color: var(--cwt-header-accent) !important;
+            font-weight: 700;
+        }
+
+        .cwt-top-contact .icon,
+        .navUser--left .navUser-action svg,
+        .navUser-action svg {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+    }
+
+    // Trust bar — four service points
+    .cwt-trust-bar,
+    .header.halo_header-layout-2 .cwt-trust-bar {
+        border-bottom: 1px solid var(--cwt-header-line) !important;
+
+        &__item {
+            &:not(:first-child) {
+                border-left-color: var(--cwt-header-line) !important;
+            }
+
+            a,
+            &--static,
+            span,
+            a span {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            a:hover,
+            a:focus {
+                color: var(--cwt-header-accent) !important;
+            }
+
+            .icon {
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+            }
+        }
+    }
+
+    // Logo row — labels + action text
+    .cwt-header-label {
+        color: var(--cwt-header-ink-muted) !important;
+    }
+
+    .cwt-header-action-text,
+    .cwt-header-actions .navUser-text {
+        color: var(--cwt-header-ink) !important;
+    }
+
+    .cwt-header-actions {
+        .icon:not(.icon--account-outline) {
+            fill: $cwt-gold-bright !important;
+            stroke: $cwt-gold-bright !important;
+        }
+    }
+
+    // Main nav row — page links
+    .halo_bottomHeader {
+        .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action {
+            color: var(--cwt-header-ink) !important;
+
+            .text,
+            span:not(.navPages-label):not(.navPages-action-moreIcon) {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:focus-within,
+            &.is-open,
+            &.activePage {
+                color: var(--cwt-header-accent) !important;
+                background-color: rgba($cwt-gold-bright, 0.12) !important;
+
+                .text,
+                span:not(.navPages-label):not(.navPages-action-moreIcon) {
+                    color: var(--cwt-header-accent) !important;
+                }
+            }
+        }
+
+        .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action svg {
+            fill: var(--cwt-header-ink) !important;
+            stroke: var(--cwt-header-ink) !important;
+        }
+
+        // Shop All Categories trigger
+        .halo_allCate {
+            border-left-color: var(--cwt-header-line) !important;
+            border-right-color: var(--cwt-header-line) !important;
+
+            .halo_allCateText .text {
+                color: var(--cwt-header-ink) !important;
+            }
+        }
+
+        // Category + subcategory flyouts — white panels, black text
+        .halo_allCateDropdown,
+        .halo_allCateDropdown .navPage-subMenu,
+        .navPage-subMenu .navPage-subMenu {
+            background-color: #ffffff !important;
+            border-color: var(--cwt-header-line) !important;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .halo_allCateDropdown {
+            .navPages-action,
+            .navPage-subMenu-action,
+            .navPage-subMenu-action .text,
+            .text,
+            span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            .navPages-list > .navPages-item:hover > .navPages-action,
+            .navPages-list > .navPages-item:focus-within > .navPages-action,
+            .navPage-subMenu-item-child:hover > .navPage-subMenu-action,
+            .navPage-subMenu-item-child:focus-within > .navPage-subMenu-action {
+                background-color: rgba($cwt-gold-bright, 0.12) !important;
+                color: var(--cwt-header-accent) !important;
+
+                .text,
+                .text span,
+                a,
+                a span,
+                span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                    color: var(--cwt-header-accent) !important;
+                }
+            }
+        }
+
+        // Page-link dropdowns (not Shop All Categories)
+        .cwt-nav-pages {
+            .navPage-subMenu,
+            .navPages-item .navPage-subMenu {
+                background-color: #ffffff !important;
+                border: 1px solid var(--cwt-header-line) !important;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+            }
+
+            .navPage-subMenu-action,
+            .navPages-action-lv2,
+            .navPages-action-lv3 {
+                span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                    color: var(--cwt-header-ink) !important;
+                }
+
+                &:hover,
+                &:focus {
+                    background-color: rgba($cwt-gold-bright, 0.12) !important;
+
+                    span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                        color: var(--cwt-header-accent) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Mobile hamburger drawer — white bg, black text, white submenus
+    @media (max-width: 1024px) {
+        .halo_bottomHeader .navPages-container.is-open,
+        body.has-activeNavPages .navPages-container.is-open {
+            background-color: #ffffff !important;
+            color: var(--cwt-header-ink) !important;
+
+            .cwt-nav-wrap {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            .halo_allCate,
+            .halo_allCateDropdown,
+            .halo_allCateText,
+            .navPages,
+            .navPages-list,
+            .navPages-item,
+            .navPage-subMenu {
+                background-color: transparent !important;
+                color: var(--cwt-header-ink) !important;
+            }
+
+            .halo_allCateText {
+                border-bottom-color: var(--cwt-header-line) !important;
+
+                .text {
+                    color: var(--cwt-header-ink) !important;
+                }
+            }
+
+            .navPages-item {
+                border-bottom-color: var(--cwt-header-line) !important;
+            }
+
+            a,
+            .navPages-action,
+            .navPage-subMenu-action,
+            .navPages-action .text,
+            .navPage-subMenu-action .text,
+            .halo_allCateDropdown a,
+            .halo_allCateDropdown .text,
+            .halo_allCateDropdown span:not(.navPages-action-moreIcon),
+            .cwt-nav-pages a,
+            .cwt-nav-pages .text,
+            .cwt-nav-pages span:not(.navPages-action-moreIcon) {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            .navPages-action,
+            .navPage-subMenu-action {
+                &:hover,
+                &:focus,
+                &.is-open,
+                &.activePage {
+                    color: var(--cwt-header-accent) !important;
+
+                    .text,
+                    span:not(.navPages-action-moreIcon) {
+                        color: var(--cwt-header-accent) !important;
+                    }
+                }
+            }
+
+            .navPage-subMenu {
+                background-color: #f7f7f7 !important;
+            }
+        }
+
+        // Override global mobile-drawer white-text rule
+        body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
+        .navPages-container.is-open .halo_allCateDropdown {
+            color: var(--cwt-header-ink) !important;
+
+            a,
+            .text,
+            span:not(.navPages-action-moreIcon):not(.navPages-label),
+            .navPages-action,
+            .navPages-action .text {
+                color: var(--cwt-header-ink) !important;
+            }
+
+            a:hover,
+            .navPages-action:hover,
+            .navPages-action:hover .text {
+                color: var(--cwt-header-accent) !important;
+            }
         }
     }
 
@@ -9820,51 +10063,6 @@ html.cwt-theme-light {
     .cwt-blog-card {
         border-color: rgba($cwt-gold-bright, 0.55) !important;
         box-shadow: 0 0 14px rgba($cwt-gold-bright, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-    }
-
-    // Top utility bar + trust bar — dark strip, light text (container bg fix above)
-    .header.halo_header-layout-2 .halo_topHeader,
-    .header.halo_header-layout-2 .halo_topHeader.cwt-top-header,
-    .header.halo_header-layout-2 .halo_topHeader .navUser {
-        background-color: $cwt-black !important;
-    }
-
-    .header.halo_header-layout-2 .halo_topHeader {
-        .cwt-top-contact .navUser-action,
-        .cwt-top-contact .navUser-action span,
-        .navUser--left .navUser-action,
-        .navUser--left .navUser-action span,
-        .navUser--center .text-promotion,
-        .navUser--center .text-promotion .text,
-        .navUser--right .navUser-action {
-            color: rgba(255, 255, 255, 0.95) !important;
-        }
-
-        .cwt-top-contact .icon,
-        .navUser--left .navUser-action svg {
-            fill: $cwt-gold-bright !important;
-            stroke: $cwt-gold-bright !important;
-        }
-
-        .navUser--right .navUser-action:hover {
-            color: $cwt-gold-bright !important;
-        }
-    }
-
-    .header.halo_header-layout-2 .cwt-trust-bar {
-        background-color: #1a1a1a !important;
-
-        .cwt-trust-bar__item a,
-        .cwt-trust-bar__item--static,
-        .cwt-trust-bar__item span,
-        .cwt-trust-bar__item a span {
-            color: rgba(255, 255, 255, 0.95) !important;
-        }
-
-        .cwt-trust-bar__item .icon {
-            fill: $cwt-gold-bright !important;
-            stroke: $cwt-gold-bright !important;
-        }
     }
 }
 
