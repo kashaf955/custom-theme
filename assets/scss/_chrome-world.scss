@@ -859,7 +859,7 @@ body .footer .container {
             display: flex !important;
             flex-direction: row !important;
             flex-wrap: nowrap;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             gap: 12px;
             min-height: 0 !important;
@@ -869,9 +869,17 @@ body .footer .container {
             overflow: visible !important;
         }
 
-        .navUser--center,
-        .navUser--right {
+        .navUser--center {
             display: none !important;
+        }
+
+        .navUser--right,
+        .cwt-top-icons {
+            display: flex !important;
+            flex: 0 0 auto !important;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
         }
 
         .navUser--left,
@@ -880,11 +888,11 @@ body .footer .container {
             flex-direction: row !important;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 8px 14px;
-            width: 100%;
-            max-width: 100%;
-            flex: 0 0 auto !important; // don't stretch — kills empty gap
+            width: auto;
+            max-width: 62%;
+            flex: 1 1 auto !important;
             min-height: 0 !important;
             height: auto !important;
             margin: 0 !important;
@@ -897,6 +905,10 @@ body .footer .container {
                 flex: 0 1 auto;
                 margin: 0 !important;
                 justify-content: center;
+            }
+
+            .navUser-item:nth-child(2) {
+                display: none !important;
             }
 
             .navUser-action {
@@ -955,7 +967,9 @@ body .footer .container {
 // -----------------------------------------------------------------------------
 // Trust bar — price match, returns, order tracking, secure checkout
 // -----------------------------------------------------------------------------
+// Trust bar — removed from header (page links live in the top bar)
 .cwt-trust-bar {
+    display: none !important;
     background-color: $cwt-charcoal;
     border-bottom: 1px solid rgba($cwt-gold-bright, 0.18);
     position: relative;
@@ -1108,14 +1122,12 @@ body .footer .container {
 }
 
 .halo_bottomHeader {
-    background-color: $cwt-black;
+    background-color: $cwt-gold-bright;
 
     .navPages-container,
     #menu.navPages-container {
-        // Single divider only — middleHeader already has border-bottom.
-        // A second border-top here stacked into two parallel lines.
         border-top: 0 !important;
-        background-color: $cwt-black;
+        background-color: $cwt-gold-bright;
         justify-content: center !important;
 
         @media (min-width: 801px) {
@@ -1138,7 +1150,7 @@ body .footer .container {
             justify-content: flex-start;
             font-size: 0;
             width: 100%;
-            padding: 4px 0 10px;
+            padding: 0;
             overflow: visible !important;
         }
     }
@@ -1258,8 +1270,122 @@ body .footer .container {
         margin-left: 0;
     }
 
-    .cwt-nav-categories {
+    .halo_allCate {
         display: none !important;
+    }
+
+    .cwt-nav-categories {
+        display: block !important;
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+        background: transparent;
+        overflow: visible !important;
+
+        .cwt-nav__category-list {
+            display: flex !important;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 12px;
+
+            > .navPages-item {
+                display: flex !important;
+                flex: 1 1 0;
+                position: relative;
+                float: none;
+                margin: 0;
+                min-width: 0;
+                overflow: visible !important;
+
+                > .navPages-action {
+                    display: flex !important;
+                    flex-direction: row !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    gap: 5px;
+                    width: 100%;
+                    padding: 6px 8px !important;
+                    margin: 0;
+                    color: $cwt-black !important;
+                    background: transparent !important;
+                    text-transform: uppercase !important;
+                    font-weight: 700 !important;
+                    font-size: 11px !important;
+                    letter-spacing: 0.04em;
+                    line-height: 1.2 !important;
+                    white-space: nowrap;
+                    text-align: center;
+
+                    .text,
+                    .text span,
+                    span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                        color: $cwt-black !important;
+                        font-size: inherit !important;
+                        font-weight: inherit !important;
+                        text-transform: uppercase;
+                    }
+
+                    .navPages-action-moreIcon {
+                        order: -1;
+                        position: static !important;
+                        transform: rotate(-90deg) !important;
+                        width: 9px;
+                        height: 9px;
+                        flex-shrink: 0;
+                        margin: 0;
+
+                        svg,
+                        .icon {
+                            width: 9px;
+                            height: 9px;
+                            fill: $cwt-black !important;
+                            stroke: $cwt-black !important;
+                        }
+                    }
+
+                    &:hover,
+                    &:focus,
+                    &:focus-within,
+                    &.is-open,
+                    &.activePage {
+                        background-color: rgba(0, 0, 0, 0.1) !important;
+                        color: $cwt-black !important;
+
+                        .text,
+                        span:not(.navPages-action-moreIcon) {
+                            color: $cwt-black !important;
+                        }
+                    }
+                }
+
+                &:hover > .navPages-action,
+                &:focus-within > .navPages-action {
+                    background-color: rgba(0, 0, 0, 0.1) !important;
+                }
+
+                > .navPage-subMenu {
+                    position: absolute !important;
+                    top: 100% !important;
+                    left: 0 !important;
+                    min-width: 220px;
+                    width: max-content;
+                    max-width: 280px;
+                    margin: 0;
+                    padding: 8px 0 !important;
+                    background-color: #ffffff !important;
+                    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+                    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
+                    z-index: 60 !important;
+                    text-align: left;
+                    white-space: normal;
+                }
+            }
+        }
     }
 
     .halo_allCateDropdown {
@@ -1580,9 +1706,10 @@ body .footer .container {
         }
     }
 
-    // Desktop nav bar: utility links stay in top bar only
+    // Desktop nav bar: page links live in the top bar
     @media (min-width: 1025px) {
-        .cwt-nav-wrap .cwt-nav-utility-link {
+        .cwt-nav-wrap .cwt-nav-utility-link,
+        .cwt-nav-pages {
             display: none !important;
         }
     }
@@ -1591,6 +1718,11 @@ body .footer .container {
         // Hide desktop horizontal nav strip; show full menu only when hamburger opens
         .halo_bottomHeader > .navPages-container:not(.is-open) {
             display: none !important;
+        }
+
+        .halo_bottomHeader .navPages-container.is-open,
+        .halo_bottomHeader #menu.navPages-container.is-open {
+            background-color: $cwt-black !important;
         }
 
         .navPages-container.is-open {
@@ -1618,6 +1750,41 @@ body .footer .container {
 
             .cwt-nav-utility-link {
                 display: block !important;
+            }
+
+            .cwt-nav-pages {
+                display: block !important;
+                margin-top: 12px;
+            }
+
+            .cwt-nav-categories {
+                background: transparent !important;
+
+                .cwt-nav__category-list {
+                    flex-direction: column !important;
+                    flex-wrap: wrap !important;
+
+                    > .navPages-item {
+                        flex: 1 1 100% !important;
+                        width: 100% !important;
+
+                        > .navPages-action {
+                            justify-content: flex-start !important;
+                            padding: 14px 12px !important;
+                            white-space: normal;
+                        }
+
+                        > .navPage-subMenu {
+                            position: static !important;
+                            width: 100% !important;
+                            max-width: 100% !important;
+                            min-width: 0 !important;
+                            box-shadow: none !important;
+                            border: 0 !important;
+                            background: $cwt-charcoal !important;
+                        }
+                    }
+                }
             }
 
             // Force readable light text — desktop Shop All Categories is white
@@ -1679,6 +1846,23 @@ body .footer .container {
             .cwt-nav-pages .text,
             .cwt-nav-pages span:not(.navPages-action-moreIcon) {
                 color: #ffffff !important;
+            }
+
+            .cwt-nav-categories .cwt-nav__category-list > .navPages-item > .navPages-action {
+                justify-content: flex-start !important;
+                color: #ffffff !important;
+
+                .text,
+                .text span,
+                span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                    color: #ffffff !important;
+                }
+
+                .navPages-action-moreIcon {
+                    order: 1;
+                    margin-left: auto;
+                    transform: none !important;
+                }
             }
 
             .navPages-action,
@@ -1889,14 +2073,14 @@ body .footer .container {
 }
 
 // -----------------------------------------------------------------------------
-// CWT header layout — logo left | search center | icons right
+// CWT header layout — logo | page links | search (25% desktop)
 // -----------------------------------------------------------------------------
 .cwt-header-main {
     gap: 20px;
 
-    @media (min-width: 801px) {
+    @media (min-width: 1025px) {
         display: grid !important;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr 25%;
         align-items: center;
     }
 
@@ -1904,10 +2088,16 @@ body .footer .container {
         &.left,
         &.center,
         &.right {
-            @media (min-width: 801px) {
+            @media (min-width: 1025px) {
                 display: flex !important;
-                width: auto !important;
                 padding: 0 !important;
+            }
+        }
+
+        &.left,
+        &.center {
+            @media (min-width: 1025px) {
+                width: auto !important;
             }
         }
 
@@ -1938,18 +2128,34 @@ body .footer .container {
             }
         }
 
-        &.center.cwt-header-search {
-            @media (min-width: 801px) {
-                flex: 1;
+        &.center.cwt-header-pages {
+            @media (max-width: 1024px) {
+                display: none !important;
+            }
+
+            @media (min-width: 1025px) {
                 justify-content: center;
+                min-width: 0;
+            }
+        }
+
+        &.right.cwt-header-search {
+            @media (min-width: 1025px) {
+                justify-content: flex-end;
+                width: 100% !important;
                 min-width: 0;
             }
 
             .item--quicksearch {
                 display: block !important;
                 width: 100%;
-                max-width: 720px;
-                margin: 0 auto;
+                max-width: none !important;
+                margin: 0;
+            }
+
+            .dropdown--quickSearch,
+            .header-search {
+                width: 100%;
             }
         }
 
@@ -1966,6 +2172,121 @@ body .footer .container {
                 + .items {
                     margin-left: 0 !important;
                 }
+            }
+        }
+    }
+}
+
+.cwt-header-pages__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+
+    > li {
+        display: inline-flex;
+        flex: 0 0 auto;
+    }
+
+    a {
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        line-height: 1.2;
+
+        &:hover,
+        &:focus {
+            color: $cwt-gold-bright;
+        }
+    }
+
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        gap: 4px 14px;
+
+        a {
+            font-size: 11px;
+        }
+    }
+}
+
+.cwt-top-icons {
+    .cwt-header-icons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 14px;
+    }
+
+    .items {
+        display: flex;
+        align-items: center;
+        margin: 0 !important;
+    }
+
+    .cwt-header-action-row {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 !important;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+
+            &.icon--account-outline {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    }
+
+    .item--cart .countPill {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        min-width: 16px;
+        height: 16px;
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .cwt-theme-toggle {
+        margin: 0;
+    }
+
+    .navUser-action svg:not(.icon--account-outline),
+    .navUser-icon svg:not(.icon--account-outline),
+    .icon:not(.icon--account-outline) {
+        fill: $cwt-gold-bright !important;
+        stroke: $cwt-gold-bright !important;
+    }
+
+    .icon--account-outline {
+        fill: none !important;
+        stroke: $cwt-gold-bright !important;
+        color: $cwt-gold-bright !important;
+    }
+
+    @media (max-width: 1024px) {
+        .cwt-header-icons {
+            gap: 8px;
+        }
+
+        .cwt-header-action-row .icon {
+            width: 18px;
+            height: 18px;
+
+            &.icon--account-outline {
+                width: 20px;
+                height: 20px;
             }
         }
     }
@@ -2146,7 +2467,7 @@ html.cwt-theme-light .cwt-header-logo__img--light {
             width: auto;
             flex: 1 1 auto;
             min-width: 0;
-            max-width: calc(100% - 130px);
+            max-width: 100%;
             justify-content: flex-start;
             align-items: center;
             gap: 10px;
@@ -3436,6 +3757,24 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    height: auto;
+    min-height: 42px;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box;
+
+    span,
+    .text {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .button--primary,
@@ -9923,11 +10262,15 @@ h2:not(.productView-brand),
 }
 
 h3:not(.productView-title) {
-    font-size: clamp(20px, 2.5vw, 24px) !important;
+    font-size: 22px !important;
+    line-height: 1.3 !important;
 }
 
-h4, h5, h6 {
-    font-size: clamp(17px, 2vw, 20px) !important;
+h4:not(.title),
+h5,
+h6 {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
 }
 
 .card .card-title,
@@ -10009,15 +10352,19 @@ html.cwt-theme-light {
     .cwt-top-header,
     .halo_topHeader,
     .halo_middleHeader,
-    .halo_bottomHeader,
     .header.halo_header-layout-2 .navUser,
-    .cwt-trust-bar,
-    .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
-    .header.halo_header-layout-2 #menu.navPages-container,
     .halo_middleHeader .mobile_search_custom {
         background-color: var(--cwt-header-bg) !important;
         color: var(--cwt-header-ink) !important;
         border-color: var(--cwt-header-line) !important;
+    }
+
+    .halo_bottomHeader,
+    .header.halo_header-layout-2 .halo_bottomHeader,
+    .header.halo_header-layout-2 .halo_bottomHeader .navPages-container,
+    .header.halo_header-layout-2 #menu.navPages-container {
+        background-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
     }
 
     .header.halo_header-layout-2 {
@@ -10093,14 +10440,53 @@ html.cwt-theme-light {
         color: var(--cwt-header-ink) !important;
     }
 
-    .cwt-header-actions {
+    .cwt-header-pages__list a {
+        color: var(--cwt-header-ink) !important;
+
+        &:hover,
+        &:focus {
+            color: var(--cwt-header-accent) !important;
+        }
+    }
+
+    .cwt-header-actions,
+    .cwt-top-icons {
         .icon:not(.icon--account-outline) {
             fill: $cwt-gold-bright !important;
             stroke: $cwt-gold-bright !important;
         }
     }
 
-    // Main nav row — page links
+    // Category bar — yellow strip, black labels
+    .halo_bottomHeader .cwt-nav-categories {
+        .cwt-nav__category-list > .navPages-item > .navPages-action {
+            color: $cwt-black !important;
+
+            .text,
+            .text span,
+            span:not(.navPages-action-moreIcon):not(.navPages-label) {
+                color: $cwt-black !important;
+            }
+
+            .navPages-action-moreIcon svg,
+            .navPages-action-moreIcon .icon {
+                fill: $cwt-black !important;
+                stroke: $cwt-black !important;
+            }
+        }
+
+        .navPage-subMenu {
+            background-color: #ffffff !important;
+
+            .navPages-action,
+            .navPage-subMenu-action,
+            .text,
+            span:not(.navPages-action-moreIcon) {
+                color: #1a1a1a !important;
+            }
+        }
+    }
+
     .halo_bottomHeader {
         .cwt-nav-pages .cwt-nav__page-list > .navPages-item > .navPages-action {
             color: var(--cwt-header-ink) !important;
@@ -10206,6 +10592,8 @@ html.cwt-theme-light {
     // Mobile hamburger drawer — white bg, black text, white submenus
     @media (max-width: 1024px) {
         .halo_bottomHeader .navPages-container.is-open,
+        .halo_bottomHeader #menu.navPages-container.is-open,
+        .header.halo_header-layout-2 .halo_bottomHeader #menu.navPages-container.is-open,
         body.has-activeNavPages .navPages-container.is-open {
             background-color: #ffffff !important;
             color: var(--cwt-header-ink) !important;
@@ -10643,6 +11031,235 @@ html.cwt-theme-light {
 
     .productView-price {
         margin: 0 0 8px !important;
+    }
+}
+
+// =============================================================================
+// Sitewide consistency — one type scale, one spacing rhythm, shared colors
+// =============================================================================
+body,
+.body,
+.page,
+.page-content {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    color: var(--cwt-ink);
+}
+
+p, li, dd, dt, label, td, th,
+.form-label,
+.card-text,
+.card-body,
+.card-body p,
+.productView-info-value,
+.productView-description,
+.tab-content,
+.toggle-content,
+.halo-description,
+.facetedSearch,
+.sidebarBlock,
+.cart-item-value,
+.account-product-description {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+}
+
+small,
+.text--muted,
+.rating--count,
+.breadcrumb,
+.breadcrumbs,
+.breadcrumbs a,
+.productView-brand,
+.productView-brand a,
+.card-text[data-test-info-type="brandName"] {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+}
+
+// Page / section titles — same size on home, category, PDP related, blog
+.page-heading,
+.page-heading--large,
+.halo-block-header .title,
+.halo-block-header h2.title,
+.halo-block-header h3.title,
+.halo-block-header-wrapper .title,
+.custom-ecb .title,
+.custom-ecb h2,
+.cwt-related-products .halo-block-header .title,
+.cwt-blog-section .title,
+.account-heading,
+.sidebarBlock-heading {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em;
+    margin: 0 0 12px !important;
+    color: var(--cwt-heading) !important;
+}
+
+h1:not(.productView-title):not(.cwt-hero__title-line) {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+}
+
+.productView-title {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+}
+
+.card .card-title,
+.card .card-title a {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+}
+
+.halo_ask-an-experts .services .content .title {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+}
+
+.footer-info-heading {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+// Prices — same on cards, PDP, cart
+.card-price,
+.productView-price {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+}
+
+.card-price .price--withoutTax,
+.card-price .price--withTax,
+.productView-price .price--withoutTax,
+.productView-price .price--withTax {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+.card-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+.card-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price,
+.productView-price .non-sale-price--withoutTax:not(.price-none) + .price-section--withoutTax .price,
+.productView-price .non-sale-price--withTax:not(.price-none) + .price-section--withTax .price {
+    font-size: 18px !important;
+}
+
+// Even section rhythm
+.halo-block,
+.halo-block-product,
+.custom-beast-sellers,
+.best-selll,
+.cwt-blog-section,
+.cwt-testimonials,
+.halo-description,
+.productView-bottom,
+.productView-tab,
+.halo_ask-an-experts {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+.home-layout-2 .halo-block-header,
+.home-layout-2 .halo-block-header-wrapper,
+.home-layout-2 .custom-ecb,
+.cwt-related-products .halo-block-header {
+    padding: 0 0 12px !important;
+    margin: 0 0 8px !important;
+    gap: 8px 12px;
+}
+
+.card {
+    .card-body {
+        padding: 10px 12px 12px !important;
+    }
+}
+
+.home-layout-2 .card .card-title,
+.home-layout-2 .halo-block-product .card .card-title,
+.custom-beast-sellers .card .card-title,
+.best-selll .card .card-title {
+    margin: 8px 0 !important;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.button,
+a.button,
+button.button,
+.button--primary,
+.button--secondary,
+.button--tertiary,
+.card-figcaption-bottom .button,
+.form-action .button,
+.add-to-cart-buttons .button,
+#form-action-addToCart,
+#form-action-addToCart-2,
+.home-layout-2 .halo-block-header .link,
+.home-layout-2 .custom-ecb > .collection--link,
+.cwt-hero__btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle;
+    height: auto !important;
+    min-height: 42px;
+    line-height: 1 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+
+    span,
+    .text {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: middle;
+        position: relative;
+        top: 0 !important;
+        transform: none !important;
+    }
+}
+
+// Icon-only circles / qty steppers keep a fixed square — don't stretch with min-height
+.button.button--icon,
+.button.quickview,
+.button.wishlist,
+.card-figcaption-top .button,
+.form-increment .button,
+.form-increment .button--icon {
+    min-height: 0 !important;
+    height: 36px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+@media (max-width: 767px) {
+    h1:not(.productView-title):not(.cwt-hero__title-line),
+    .page-heading,
+    .halo-block-header .title,
+    .custom-ecb .title,
+    .custom-ecb h2,
+    .cwt-related-products .halo-block-header .title {
+        font-size: 20px !important;
+    }
+
+    .productView-title {
+        font-size: 18px !important;
+    }
+
+    .card .card-title,
+    .card .card-title a {
+        font-size: 14px !important;
     }
 }
 
