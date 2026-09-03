@@ -46,7 +46,7 @@ html[data-theme="dark"] {
     --cwt-invert-ink: #ffffff;
     --cwt-invert-ink-muted: rgba(255, 255, 255, 0.82);
     --cwt-footer-bg: #{$cwt-black};
-    --cwt-filter-bg: rgba(10, 10, 10, 0.9);
+    --cwt-filter-bg: #{$cwt-black};
     --cwt-filter-ink: #ffffff;
     --cwt-filter-ink-muted: rgba(255, 255, 255, 0.78);
     --cwt-gutter: 16px;
@@ -73,7 +73,7 @@ html[data-theme="light"] {
     --cwt-invert-ink: #1a1a1a;
     --cwt-invert-ink-muted: #555555;
     --cwt-footer-bg: #ffffff;
-    --cwt-filter-bg: rgba(255, 255, 255, 0.97);
+    --cwt-filter-bg: #ffffff;
     --cwt-filter-ink: #1a1a1a;
     --cwt-filter-ink-muted: #555555;
     --cwt-header-bg: #ffffff;
@@ -2950,7 +2950,7 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     border: 2px solid rgba($cwt-gold-bright, 0.55) !important;
     border-radius: 4px !important;
     box-shadow: 0 0 18px rgba($cwt-gold-bright, 0.28), 0 8px 32px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(4px);
+    backdrop-filter: none;
 
     .halo_multilevel-category-filter {
         > .form-label,
@@ -3063,28 +3063,41 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     width: 100%;
     height: auto;
     min-height: 0;
-    aspect-ratio: 1920 / 580;
-    display: flex;
-    align-items: stretch;
-    overflow: hidden;
-    background-color: $cwt-black;
+    overflow: visible;
+    background-color: var(--cwt-page-bg);
+}
 
-    @media (max-width: 1024px) {
-        aspect-ratio: 750 / 720;
+.cwt-hero__row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
     }
 }
 
 .cwt-hero__slider {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    min-height: 0;
     overflow: hidden;
+    background-color: $cwt-black;
 
     .heroCarousel,
     .heroCarousel.slick-slider {
-        height: 100% !important;
+        height: auto !important;
         width: 100% !important;
-        min-height: 100% !important;
+        min-height: 0 !important;
         max-height: none !important;
         margin: 0 !important;
     }
@@ -3092,17 +3105,25 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     .slick-list,
     .slick-track,
     .heroCarousel-slide {
-        height: 100% !important;
-        min-height: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
     }
 
+    .heroCarousel.slick-initialized .heroCarousel-slide.slick-current,
+    .heroCarousel.slick-initialized .heroCarousel-slide.slick-active {
+        position: relative !important;
+    }
+
+    // Image keeps its own ratio and only scales with column width — no cover-crop zoom
     .heroCarousel-image-wrapper {
         position: relative !important;
-        height: 100% !important;
-        min-height: 100% !important;
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
         padding: 0 !important;
-        padding-bottom: 0 !important;
-        --pb: 0 !important;
+        overflow: visible !important;
 
         &::after {
             display: none !important;
@@ -3112,17 +3133,39 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 
     .slick-slide.is-square-image-type .heroCarousel-image-wrapper,
     .slick-slide.is-vertical-image-type .heroCarousel-image-wrapper {
-        height: 100% !important;
+        height: auto !important;
+        max-height: none !important;
     }
 
     .heroCarousel-image,
-    .heroCarousel-image picture,
-    .heroCarousel-image img,
     a.heroCarousel-image {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        inset: auto !important;
         display: block !important;
         width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
+        height: auto !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .heroCarousel-image picture,
+    .heroCarousel-image img {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        inset: auto !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        object-fit: unset !important;
         object-position: center center !important;
     }
 
@@ -3150,11 +3193,14 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 }
 
 .cwt-hero__bg {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    aspect-ratio: 1920 / 580;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-color: $cwt-black;
     z-index: 0;
 }
 
@@ -3163,44 +3209,31 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 }
 
 .cwt-hero__inner {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding-top: 56px;
-    padding-bottom: 44px;
-    justify-content: flex-start;
-    align-items: center;
-    pointer-events: none;
-
-    @media (min-width: 1201px) {
-        justify-content: flex-end;
-        padding-top: 64px;
-        padding-bottom: 50px;
-    }
-
-    .cwt-hero__panel {
-        pointer-events: auto;
-    }
+    display: none;
 }
 
 .cwt-hero__panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    width: 100%;
+    display: none;
+    flex: 0 0 340px;
+    width: 340px;
     max-width: 340px;
-    padding-top: 8px;
+    align-self: stretch;
+    padding: 0 16px 0 0;
+    box-sizing: content-box;
 
     @media (min-width: 1201px) {
+        display: flex;
+        flex-direction: column;
         align-items: stretch;
-        justify-content: flex-end;
-        max-width: 340px;
-        width: 340px;
-        padding-top: 12px;
+        justify-content: center;
+    }
+
+    @media (max-width: 1200px) {
+        display: none !important;
+        width: 0 !important;
+        max-width: 0 !important;
+        flex: none !important;
+        padding: 0 !important;
     }
 }
 
@@ -3312,26 +3345,24 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     flex: 0 0 auto;
     width: 100%;
     max-width: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
-    margin-top: 4px;
 
     @media (min-width: 1201px) {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
         display: block !important;
-        margin-top: 0;
-        padding-top: 0;
     }
 
     @media (max-width: 1200px) {
         display: none !important;
     }
 
+    .category-filter,
     .halo_MultiCategory.layout-2 {
+        height: auto;
         margin-bottom: 0 !important;
         padding: 22px 24px 26px !important;
+        box-sizing: border-box;
     }
 
     .halo_multilevel-category-filter > .form-label {
@@ -6921,33 +6952,9 @@ h2.productView-brand {
         margin-top: 0 !important;
     }
 
-    // Hero — tablet & mobile (aspect-ratio is set on .cwt-hero)
     .cwt-hero__bg {
         background-position: center center;
-        background-size: cover;
-    }
-
-    .cwt-hero__overlay {
-        display: none !important;
-    }
-
-    .cwt-hero__inner {
-        padding-top: 40px;
-        padding-bottom: 28px;
-        align-items: flex-end;
-        justify-content: center;
-
-        @include smax-s {
-            padding-top: 36px;
-            padding-bottom: 24px;
-        }
-    }
-
-    .cwt-hero__panel {
-        max-width: 100%;
-        align-items: stretch;
-        gap: 28px;
-        padding-top: 12px;
+        background-size: contain;
     }
 
     .cwt-hero__content {
@@ -10966,8 +10973,8 @@ html.cwt-theme-light {
         background-color: #f7f7f7 !important;
     }
 
-    // Keep hero / dark banners light-on-dark (header uses white bar — see end of file)
-    .cwt-hero,
+    // Keep slider banners light-on-dark; Shop by Truck uses theme tokens
+    .cwt-hero__slider,
     .cwt-about-hero,
     .cwt-about-visit,
     .cwt-policy-cta {
