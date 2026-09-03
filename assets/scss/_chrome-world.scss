@@ -863,10 +863,10 @@ body .footer .container {
             flex-wrap: nowrap;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             min-height: 0 !important;
             height: auto !important;
-            padding: 8px 12px !important;
+            padding: 2px 10px !important;
             margin: 0 !important;
             overflow: visible !important;
         }
@@ -881,7 +881,11 @@ body .footer .container {
             flex: 0 0 auto !important;
             justify-content: flex-end;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+
+            .navUser-item-currency {
+                display: none !important;
+            }
         }
 
         .navUser--left,
@@ -917,18 +921,19 @@ body .footer .container {
                 display: inline-flex !important;
                 align-items: center;
                 justify-content: center;
-                gap: 6px;
+                gap: 4px;
                 width: auto;
                 max-width: 100%;
                 padding: 0 !important;
                 margin: 0 !important;
-                line-height: 1.2 !important;
+                line-height: 1 !important;
                 white-space: nowrap;
+                min-height: 0 !important;
 
                 span {
                     display: inline !important;
                     font-size: 11px !important;
-                    line-height: 1.2 !important;
+                    line-height: 1 !important;
                     color: #ffffff !important;
                     white-space: nowrap;
                     overflow: hidden;
@@ -2448,7 +2453,8 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         display: none !important;
     }
 
-    .cwt-header-main .item--hamburger {
+    .cwt-header-main .item--hamburger,
+    .cwt-header-menu-toggle {
         display: none !important;
     }
 }
@@ -4675,8 +4681,28 @@ a.button--tertiary {
     @media (max-width: 640px) {
         padding: 36px 0 40px !important;
 
-        .cwt-blog-section__header .title {
-            font-size: 22px !important;
+        .cwt-blog-section__header,
+        .halo-block-header {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 8px !important;
+
+            .content {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .title {
+                font-size: 18px !important;
+                text-align: left !important;
+            }
+
+            .link {
+                flex: 0 0 auto;
+            }
         }
 
         .cwt-blog-section__grid,
@@ -7380,21 +7406,29 @@ h2.productView-brand {
         .halo-block-header,
         .halo-block-header-wrapper,
         .custom-ecb {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
             margin: 0 0 8px !important;
             padding: 0 0 12px !important;
-            text-align: center !important;
+            text-align: left !important;
             background: transparent !important;
             border: 0 !important;
+            gap: 8px !important;
 
             .title,
             h2.title,
             h3.title {
-                font-size: 22px !important;
+                flex: 1 1 auto !important;
+                width: auto !important;
+                min-width: 0 !important;
+                font-size: 18px !important;
                 line-height: 1.25 !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                text-align: center !important;
-                width: 100% !important;
+                text-align: left !important;
                 color: var(--cwt-heading) !important;
                 font-weight: 700 !important;
             }
@@ -10700,8 +10734,6 @@ html.cwt-theme-light {
     .account-product-title a,
     .account-product-description,
     .definitionList-value,
-    .link,
-    .collection--link,
     .cart-item-name__label,
     .cart-item-value,
     .cart-item-brand,
@@ -10724,7 +10756,7 @@ html.cwt-theme-light {
         color: $cwt-gold-bright !important;
     }
 
-    a:not(.button):not(.card-figcaption-button):not(.button--primary):not(.button--secondary):not(.button--tertiary):not(.cwt-shop-brands__card) {
+    a:not(.button):not(.card-figcaption-button):not(.button--primary):not(.button--secondary):not(.button--tertiary):not(.cwt-shop-brands__card):not(.collection--link):not(.cwt-hero__btn) {
         color: #222222 !important;
 
         &:hover,
@@ -12293,5 +12325,113 @@ html[data-theme="light"] .card .card-figcaption-bottom a.button:hover span {
 .card .card-title a span {
     display: inline !important;
     background-image: none !important;
+}
+
+// Free Shipping + Sale badges: stack, never overlap
+.card .halo-badges {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    top: 8px !important;
+    left: 8px !important;
+}
+
+.card .halo-badge,
+.card .halo-badge.sale-badge {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    overflow: visible;
+}
+
+.card .sale-and-free_ship {
+    display: block !important;
+    margin: 0 !important;
+}
+
+.card .sale-and-free_ship .text,
+.card .halo-badge .text {
+    display: inline-block !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.card .sale-and-free_ship .text.cstm-free-ship {
+    background-color: $cwt-gold-bright !important;
+    color: $cwt-black !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    padding: 3px 8px !important;
+    border-radius: 3px;
+}
+
+.card .halo-badge.sale-badge .sale-and-free_ship .text:not(.cstm-free-ship),
+.card .halo-badge.sale-badge > .text {
+    background-color: #e10600 !important;
+    color: #ffffff !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    padding: 3px 8px !important;
+    border-radius: 3px;
+}
+
+@media (max-width: 767px) {
+    .card .halo-badges {
+        gap: 4px !important;
+        max-width: calc(100% - 48px);
+    }
+
+    .card .sale-and-free_ship .text.cstm-free-ship,
+    .card .halo-badge.sale-badge .sale-and-free_ship .text:not(.cstm-free-ship),
+    .card .halo-badge.sale-badge > .text {
+        font-size: 8px !important;
+        padding: 2px 6px !important;
+    }
+}
+
+// View more — white label on black, same row as heading
+.home-layout-2 .halo-block-header a.collection--link,
+.home-layout-2 .halo-block-header-wrapper a.collection--link,
+.home-layout-2 .custom-ecb a.collection--link,
+.cwt-blog-section__header a.collection--link,
+#recentPosts .cwt-blog-section__header a.collection--link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    background-color: $cwt-black !important;
+    border: 2px solid $cwt-gold-bright !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    span {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+        -webkit-text-fill-color: $cwt-black !important;
+
+        span {
+            color: $cwt-black !important;
+            -webkit-text-fill-color: $cwt-black !important;
+        }
+    }
+}
+
+html[data-theme="light"] .home-layout-2 a.collection--link,
+html[data-theme="light"] .home-layout-2 a.collection--link span,
+html[data-theme="light"] .cwt-blog-section__header a.collection--link,
+html[data-theme="light"] .cwt-blog-section__header a.collection--link span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 

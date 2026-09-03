@@ -297,7 +297,7 @@ main#main-content {
 .sale-and-free_ship {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-start;
   gap: 5px;
   .text {
     background-color: red;
@@ -305,8 +305,8 @@ main#main-content {
   }
   .text.cstm-free-ship {
     background-color: #ffbb00;
-    color: white;
-    margin: 0 0 5px 0;
+    color: #000000;
+    margin: 0;
   }
 }
 

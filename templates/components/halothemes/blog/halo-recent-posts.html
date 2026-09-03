@@ -15,7 +15,7 @@
                 {{!-- Show View All when more than 4 posts exist (5th post fetched) --}}
                 {{#or theme_settings.halo_recent_post_linkViewAll post.[4]}}
                     <div class="link">
-                        <a href="{{#if theme_settings.halo_recent_post_linkViewAll}}{{theme_settings.halo_recent_post_linkViewAll}}{{else}}/blog/{{/if}}" aria-label="{{lang 'blog.view_all_posts'}}">
+                        <a class="collection--link" href="{{#if theme_settings.halo_recent_post_linkViewAll}}{{theme_settings.halo_recent_post_linkViewAll}}{{else}}/blog/{{/if}}" aria-label="{{lang 'blog.view_all_posts'}}">
                             <span>{{lang 'blog.view_all_posts'}}</span>
                             <svg aria-hidden="true">
                                 <use xlink:href="#icon-chevron-right" />
