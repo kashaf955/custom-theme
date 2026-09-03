@@ -7,20 +7,23 @@
     "slidesToShow": 1,
     "slidesToScroll": 1,
     "autoplay": true,
-    "adaptiveHeight": true,
+    "adaptiveHeight": false,
     "autoplaySpeed": {{carousel.swap_frequency}},
     "slide": "[data-hero-slide]",
     "responsive": [
     {
         "breakpoint": 1024,
         "settings": {
-            "arrows": true
+            "arrows": true,
+            "fade": true,
+            "adaptiveHeight": false
         }
     },
     {
         "breakpoint": 1200,
         "settings": {
             "arrows": true,
+            "fade": true,
             "adaptiveHeight": false
         }
     }]

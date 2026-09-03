@@ -396,32 +396,32 @@ main#main-content {
 @media (max-width: 768px) and (min-width:601px) {
   .halo-home-section-left .heroCarousel.slick-slider {
     height: 100%;
-    max-height: 200px
+    max-height: 200px;
   }
-  .halo-home-section-left .heroCarousel.slick-slider  .slick-list.draggable,
-  .halo-home-section-left .heroCarousel.slick-slider  .slick-list.draggable .slick-track
-  .heroCarousel-slide.heroCarousel-slide--first.slick-slide.slick-current,
-  .heroCarousel-image-wrapper.pos-relative{
+  .halo-home-section-left .heroCarousel.slick-slider .slick-list.draggable,
+  .halo-home-section-left .heroCarousel.slick-slider .slick-list.draggable .slick-track,
+  .halo-home-section-left .heroCarousel-slide.heroCarousel-slide--first.slick-slide.slick-current,
+  .halo-home-section-left .heroCarousel-image-wrapper.pos-relative {
     height: 100%;
-    max-height: 200px
+    max-height: 200px;
   }
-  .halo-home-section-left .heroCarousel.slick-slider  button.carousel-play-pause-button{
+  .halo-home-section-left .heroCarousel.slick-slider button.carousel-play-pause-button {
     display: none !important;
   }
 }
 @media (max-width: 600px) {
   .halo-home-section-left .heroCarousel.slick-slider {
     height: 100%;
-    max-height: 150px
+    max-height: 150px;
   }
-  .halo-home-section-left .heroCarousel.slick-slider  .slick-list.draggable,
-  .halo-home-section-left .heroCarousel.slick-slider  .slick-list.draggable .slick-track
-  .heroCarousel-slide.heroCarousel-slide--first.slick-slide.slick-current,
-  .heroCarousel-image-wrapper.pos-relative{
+  .halo-home-section-left .heroCarousel.slick-slider .slick-list.draggable,
+  .halo-home-section-left .heroCarousel.slick-slider .slick-list.draggable .slick-track,
+  .halo-home-section-left .heroCarousel-slide.heroCarousel-slide--first.slick-slide.slick-current,
+  .halo-home-section-left .heroCarousel-image-wrapper.pos-relative {
     height: 100%;
-    max-height: 150px
+    max-height: 150px;
   }
-  .halo-home-section-left .heroCarousel.slick-slider  button.carousel-play-pause-button{
+  .halo-home-section-left .heroCarousel.slick-slider button.carousel-play-pause-button {
     display: none !important;
   }
 }

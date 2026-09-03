@@ -449,21 +449,16 @@ export default function(context) {
 
     function haloStickyHeader(tScroll) {
         if (settings.halo_headerSticky) {
-
-            if (tScroll > height_top && tScroll < scroll_position) {
-                if (!$('.header-height').length) {
-                    $header.before('<div class="header-height" style="height: '+height_header+'px"></div>');
-                }
+            // Pin while scrolled. Do not unstick on scroll-down (CSS sticky
+            // keeps the header in flow, so no .header-height spacer).
+            if (tScroll > 4) {
                 $header.addClass('is-sticky');
-                $header.css('animation-name','halo-fadeInDown');
             } else {
-                if($('.halo-search-main').length) {
+                if ($('.halo-search-main').length) {
                     $('.halo-search-sticky #quickSearch').appendTo('.halo-search-main');
                 }
                 $header.removeClass('is-sticky');
-                $('.header-height').remove();
-                
-                $header.css('animation-name','');
+                $header.css('animation-name', '');
             }
 
             scroll_position = tScroll;

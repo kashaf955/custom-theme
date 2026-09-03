@@ -108,15 +108,15 @@ html[data-theme="light"] {
     }
 }
 
-// Prevent horizontal page scroll (overflow-x: hidden alone forces overflow-y: auto on children)
+// clip (not hidden) so position:sticky on the header still works
 html {
-    overflow-x: hidden;
-    overflow-y: scroll; // keep page scroll on viewport, not nested boxes
+    overflow-x: clip;
+    overflow-y: scroll;
     max-width: 100%;
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
 }
 
@@ -676,8 +676,11 @@ body .footer .container {
     background-color: $cwt-black;
     border-bottom: 1px solid rgba($cwt-gold-bright, 0.15);
     max-width: 100%;
-    overflow-x: hidden;
-    overflow-y: visible !important;
+    overflow: visible !important;
+    position: sticky;
+    top: 0;
+    z-index: 1400;
+    width: 100%;
 
     @media (min-width: 801px) {
         display: flex;
@@ -691,8 +694,28 @@ body .footer .container {
         overflow: visible !important;
         margin-top: 0 !important;
         padding-top: 0 !important;
-        position: relative;
-        top: 0;
+        position: sticky !important;
+        top: 0 !important;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1400 !important;
+    }
+
+    &.is-sticky {
+        position: sticky !important;
+        top: 0 !important;
+        width: 100%;
+        z-index: 1400 !important;
+        animation: none !important;
+
+        .halo_bottomHeader {
+            opacity: 1 !important;
+            visibility: visible !important;
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
     }
 }
 
@@ -717,6 +740,7 @@ body .footer .container {
         position: relative;
         top: auto;
         right: auto;
+        transform: none;
         padding: 0;
         width: 100%;
         z-index: 1;
@@ -730,7 +754,7 @@ body .footer .container {
         display: flex !important;
         align-items: center;
         min-height: 0;
-        padding: 6px 15px;
+        padding: 4px 15px;
         box-sizing: border-box;
         overflow-x: hidden;
         overflow-y: visible;
@@ -850,11 +874,12 @@ body .footer .container {
     @media (max-width: 1024px) {
         width: 100%;
         max-width: 100%;
-        overflow: visible !important;
+        overflow: hidden !important;
         min-height: 0 !important;
         height: auto !important;
-        padding: 0 !important;
+        padding: 0 12px !important;
         margin: 0 !important;
+        box-sizing: border-box !important;
 
         .navUser {
             padding: 0 !important;
@@ -870,11 +895,14 @@ body .footer .container {
             justify-content: space-between;
             align-items: center;
             gap: 8px;
-            min-height: 36px !important;
+            min-height: 0 !important;
             height: auto !important;
-            padding: 8px 12px !important;
+            padding: 13px 0 10px !important;
             margin: 0 !important;
-            overflow: visible !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
         }
 
         .navUser--center {
@@ -939,8 +967,10 @@ body .footer .container {
             justify-content: flex-start;
             gap: 8px 14px;
             width: auto;
-            max-width: 62%;
+            max-width: 48%;
             flex: 1 1 auto !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
             min-height: 0 !important;
             height: auto !important;
             margin: 0 !important;
@@ -980,7 +1010,7 @@ body .footer .container {
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    max-width: 58vw;
+                    max-width: 42vw;
                 }
 
                 .icon,
@@ -997,9 +1027,9 @@ body .footer .container {
 
     @media (max-width: 550px) {
         .navUser .container {
-            padding: 6px 8px !important;
+            padding: 2px 0 !important;
             gap: 6px;
-            min-height: 34px !important;
+            min-height: 0 !important;
         }
 
         .navUser--left,
@@ -1008,7 +1038,7 @@ body .footer .container {
 
             .navUser-action span {
                 font-size: 10px !important;
-                max-width: 46vw;
+                max-width: 38vw;
             }
         }
     }
@@ -2543,8 +2573,8 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     }
 
     .cwt-header-main {
-        padding-top: 6px;
-        padding-bottom: 6px;
+        padding-top: 2px;
+        padding-bottom: 4px;
         gap: 8px;
         max-width: 100% !important;
         overflow-x: hidden;
@@ -2593,15 +2623,19 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         }
     }
 
+    .cwt-header-logo .header-logo {
+        height: auto !important;
+    }
+
     .cwt-header-logo__img {
-        max-width: 132px;
-        max-height: 36px;
+        max-width: 168px;
+        max-height: 48px;
     }
 
     .halo_middleHeader .mobile_search_custom {
         display: block !important;
         width: 100%;
-        padding: 0 12px 8px;
+        padding: 0 12px 4px;
         margin: 0 !important;
         background-color: $cwt-black;
 
@@ -2682,7 +2716,11 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     .header.halo_header-layout-2.is-sticky,
     .header.halo_header-layout-2.is-open {
         z-index: 1400 !important;
-        position: relative;
+        position: sticky !important;
+        top: 0 !important;
+        left: 0;
+        right: 0;
+        width: 100%;
 
         .halo_topHeader,
         .cwt-top-header,
@@ -2693,14 +2731,6 @@ html.cwt-theme-light .cwt-header-logo__img--light {
             height: auto !important;
             max-height: none !important;
         }
-    }
-
-    .header.halo_header-layout-2.is-sticky {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
     }
 }
 
@@ -3140,30 +3170,26 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         max-height: calc(100vh - 172px);
     }
 
+    // Mobile/tablet — one 16:9 banner. Do not set width on .slick-track
+    // (that stacks every slide and creates a giant empty block).
     @media (max-width: 1200px) {
-        flex: 0 0 auto;
+        display: block;
+        flex: none;
         width: 100%;
         max-width: 100%;
         height: auto;
-        min-height: 200px;
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: #{"16 / 9"};
         overflow: hidden;
+        background-color: $cwt-black;
     }
 
     .heroCarousel,
     .heroCarousel.slick-slider {
-        height: auto !important;
         width: 100% !important;
         max-width: 100% !important;
-        min-height: 0 !important;
         margin: 0 !important;
-    }
-
-    .slick-list,
-    .slick-track,
-    .heroCarousel-slide {
-        height: auto !important;
-        min-height: 0 !important;
-        max-width: 100% !important;
     }
 
     .heroCarousel.slick-initialized .heroCarousel-slide.slick-current,
@@ -3174,8 +3200,6 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     .heroCarousel-image-wrapper {
         position: relative !important;
         display: block !important;
-        height: auto !important;
-        min-height: 0 !important;
         padding: 0 !important;
         overflow: hidden !important;
 
@@ -3185,90 +3209,101 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         }
     }
 
-    .slick-slide.is-square-image-type .heroCarousel-image-wrapper,
-    .slick-slide.is-vertical-image-type .heroCarousel-image-wrapper {
-        height: auto !important;
-        max-height: none !important;
-    }
-
-    .heroCarousel-image,
-    a.heroCarousel-image {
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        left: auto !important;
-        inset: auto !important;
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-    }
-
-    .heroCarousel-image picture,
-    .heroCarousel-image img {
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        left: auto !important;
-        inset: auto !important;
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        object-fit: contain !important;
-        object-position: center center !important;
-        max-height: none !important;
-    }
-
     @media (max-width: 1200px) {
         .heroCarousel,
-        .heroCarousel.slick-slider,
-        .slick-list,
-        .slick-track,
-        .heroCarousel-slide {
-            height: auto !important;
+        .heroCarousel.slick-slider {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+        }
+
+        .slick-list {
+            height: 100% !important;
+            min-height: 0 !important;
+            width: 100% !important;
+            overflow: hidden !important;
+        }
+
+        .slick-track {
+            height: 100% !important;
+            min-height: 0 !important;
+            max-width: none !important;
+        }
+
+        .heroCarousel-slide,
+        .heroCarousel.slick-initialized .heroCarousel-slide.slick-current,
+        .heroCarousel.slick-initialized .heroCarousel-slide.slick-active {
+            position: relative !important;
+            height: 100% !important;
             min-height: 0 !important;
         }
 
-        .heroCarousel-image-wrapper {
-            height: 0 !important;
-            min-height: 0 !important;
-
-            &::after {
-                content: "" !important;
-                display: block !important;
-                height: 0 !important;
-                width: 100% !important;
-                padding-bottom: var(--pb, 56.25%) !important;
-            }
-        }
-
+        .heroCarousel-image-wrapper,
         .slick-slide.is-square-image-type .heroCarousel-image-wrapper,
         .slick-slide.is-vertical-image-type .heroCarousel-image-wrapper {
-            height: 0 !important;
+            position: relative !important;
+            height: 100% !important;
+            min-height: 100% !important;
             max-height: none !important;
+            width: 100% !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background-color: $cwt-black !important;
+
+            &::after {
+                content: none !important;
+                display: none !important;
+                padding-bottom: 0 !important;
+            }
         }
 
         .heroCarousel-image,
         a.heroCarousel-image,
         .heroCarousel-image picture,
-        .heroCarousel-image img {
+        .heroCarousel-image img,
+        a.heroCarousel-image img,
+        .heroCarousel-image img.lazyload,
+        .heroCarousel-image img.lazyloading,
+        .heroCarousel-image img.lazyloaded {
             position: absolute !important;
             inset: 0 !important;
             top: 0 !important;
             right: 0 !important;
             bottom: 0 !important;
             left: 0 !important;
+            display: block !important;
             width: 100% !important;
             height: 100% !important;
-            max-width: 100% !important;
+            max-width: none !important;
             max-height: none !important;
             margin: 0 !important;
-            object-fit: contain !important;
+            object-fit: cover !important;
             object-position: center center !important;
+            background: transparent !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .slick-dots {
+            position: absolute !important;
+            bottom: 12px !important;
+            left: 0;
+            right: 0;
+        }
+
+        // Theme paints a dark gradient on mobile slides — remove it
+        .heroCarousel-image::before,
+        a.heroCarousel-image::before,
+        .heroCarousel-slide::before,
+        .heroCarousel-image-wrapper::before {
+            content: none !important;
+            display: none !important;
+            background: none !important;
+            opacity: 0 !important;
         }
     }
 
@@ -3802,6 +3837,56 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 
             span {
                 color: $cwt-black !important;
+            }
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .halo-block-product .halo-block-header,
+        .halo-block-product .halo-block-header-wrapper,
+        .custom-beast-sellers .halo-block-header,
+        .best-selll .halo-block-header,
+        .halo-block-header.custom-ecb,
+        .custom-ecb {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            position: relative !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            gap: 16px !important;
+            overflow: visible !important;
+
+            .title,
+            h2.title,
+            h3.title {
+                flex: 1 1 auto !important;
+                width: auto !important;
+                max-width: calc(100% - 150px) !important;
+                min-width: 0 !important;
+                display: block !important;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                margin: 0 !important;
+                z-index: 0;
+            }
+
+            a.link,
+            a.collection--link,
+            a.collection--link.link {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                left: auto !important;
+                bottom: auto !important;
+                float: none !important;
+                flex: 0 0 auto !important;
+                align-self: center;
+                margin: 0 0 0 auto !important;
+                z-index: 1;
             }
         }
     }
@@ -7289,6 +7374,66 @@ h2.productView-brand {
     }
 }
 
+// Modals must sit above the sticky header (z-index 1400)
+.modal-background {
+    z-index: 1500 !important;
+}
+
+.modal,
+.modal.modal--editOptions {
+    z-index: 1510 !important;
+}
+
+@media (max-width: 1024px) {
+    .modal,
+    .modal.modal--editOptions {
+        width: calc(100% - 24px) !important;
+        max-width: calc(100% - 24px) !important;
+        left: 50% !important;
+        right: auto !important;
+        margin: 0 !important;
+        max-height: 88vh !important;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .modal-content,
+    .modal-body {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .product-edit-wrapper {
+        .product-edit-item {
+            margin: 0 12px !important;
+            padding: 16px 0 !important;
+        }
+
+        .product-edit-image {
+            width: 72px;
+            margin-right: 10px;
+        }
+
+        .product-edit-content {
+            width: calc(100% - 86px) !important;
+        }
+
+        .product-edit-itemRight {
+            margin-top: 16px !important;
+        }
+    }
+
+    .product-edit-action {
+        position: relative !important;
+        padding: 12px !important;
+        box-sizing: border-box;
+
+        .product-edit-button .button {
+            width: 100% !important;
+        }
+    }
+}
+
 // "Add Product Protection" / "Clear Shopping Cart" / "Continue Shopping" row
 [data-cart-empty] {
     #add-custom-product-btn {
@@ -7907,8 +8052,8 @@ h2.productView-brand {
     }
 
     .cwt-header-logo__img {
-        max-width: 120px;
-        max-height: 38px;
+        max-width: 156px;
+        max-height: 46px;
     }
 
     .cwt-hero__title-line {
@@ -7951,10 +8096,19 @@ h2.productView-brand {
     video,
     iframe,
     .productView-image img,
-    .heroCarousel-image,
     .halo-recentPost img {
         max-width: 100% !important;
         height: auto;
+    }
+
+    .cwt-hero__slider img,
+    .cwt-hero__slider .heroCarousel-image,
+    .cwt-hero__slider .heroCarousel-image img {
+        max-width: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
     }
 
     // Card images use absolute fill inside a padding-ratio box — do not force height:auto
@@ -8814,16 +8968,60 @@ h2.productView-brand {
     }
 
     // Cart
+    .page-type-cart .page,
+    .page-type-cart .page-content,
+    .page-type-cart [data-cart] {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    table.cart,
     .cart {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        box-sizing: border-box;
+
         .cart-list,
         .cart-item,
         .cart-item-block {
             width: 100% !important;
             max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .cart-item {
+            display: block !important;
+            float: none !important;
+            padding: 16px 0 !important;
+            padding-left: 0 !important;
         }
 
         .cart-item-figure {
-            max-width: 80px;
+            float: left;
+            width: 72px !important;
+            max-width: 72px !important;
+            height: auto !important;
+            margin: 0 12px 8px 0 !important;
+        }
+
+        .cart-item-title {
+            display: block !important;
+            height: auto !important;
+            overflow: hidden;
+            padding-left: 0 !important;
+        }
+
+        .cart-item-info {
+            float: none !important;
+            clear: both !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding-left: 0 !important;
+            margin-top: 10px !important;
         }
     }
 
@@ -8837,9 +9035,26 @@ h2.productView-brand {
         }
     }
 
+    [data-cart-content] + .button-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin: 16px 0;
+        text-align: left;
+
+        .button,
+        .button + .button {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+        }
+    }
+
     // Tables — allow horizontal scroll instead of breaking layout
+    // Do not restyle the cart table — it is already a stacked mobile list
     .table,
-    table {
+    table:not(.cart) {
         display: block;
         width: 100%;
         overflow-x: auto;
@@ -8987,8 +9202,8 @@ h2.productView-brand {
     }
 
     .cwt-header-logo__img {
-        max-width: 110px !important;
-        max-height: 32px !important;
+        max-width: 150px !important;
+        max-height: 44px !important;
     }
 
     .halo_sticky_addToCart,
