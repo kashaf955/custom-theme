@@ -886,6 +886,42 @@ body .footer .container {
             .navUser-item-currency {
                 display: none !important;
             }
+
+            .cwt-header-icons {
+                gap: 6px !important;
+            }
+
+            .cwt-header-action-row {
+                padding: 0 !important;
+                min-height: 0 !important;
+
+                .icon {
+                    width: 16px !important;
+                    height: 16px !important;
+
+                    &.icon--account-outline {
+                        width: 17px !important;
+                        height: 17px !important;
+                    }
+                }
+            }
+
+            .cwt-theme-toggle {
+                width: 40px !important;
+                height: 20px !important;
+                margin: 0 2px 0 0 !important;
+
+                .cwt-theme-toggle__thumb {
+                    width: 14px !important;
+                    height: 14px !important;
+                    top: 2px !important;
+                    left: 2px !important;
+                }
+            }
+        }
+
+        html[data-theme="light"] & .cwt-theme-toggle .cwt-theme-toggle__thumb {
+            transform: translateX(18px) !important;
         }
 
         .navUser--left,
@@ -955,8 +991,8 @@ body .footer .container {
 
     @media (max-width: 550px) {
         .navUser .container {
-            padding: 6px 10px !important;
-            gap: 8px;
+            padding: 1px 8px !important;
+            gap: 6px;
         }
 
         .navUser--left,
@@ -1126,6 +1162,11 @@ body .footer .container {
 .halo_middleHeader {
     background-color: $cwt-black !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Remove leftover Halo megamenu promo (COVID-19 Delayed Shipping Notice)
+.bottomMegamenu {
+    display: none !important;
 }
 
 .halo_bottomHeader {
@@ -1746,8 +1787,11 @@ body .footer .container {
     }
 
     @media (max-width: 1024px) {
-        // Hide desktop horizontal nav strip; show full menu only when hamburger opens
-        .halo_bottomHeader > .navPages-container:not(.is-open) {
+        // Mobile hamburger uses #halo-menu-sidebar (items are moved there).
+        // Never paint #menu as a second full-screen overlay.
+        .halo_bottomHeader > .navPages-container,
+        .halo_bottomHeader > #menu.navPages-container,
+        .halo_bottomHeader #menu.navPages-container.is-open {
             display: none !important;
         }
 
@@ -2475,8 +2519,8 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     }
 
     .cwt-header-main {
-        padding-top: 6px;
-        padding-bottom: 6px;
+        padding-top: 4px;
+        padding-bottom: 4px;
         gap: 8px;
         max-width: 100% !important;
         overflow-x: hidden;
@@ -2489,20 +2533,32 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         box-sizing: border-box;
         margin: 0 !important;
 
-        .cwt-header-search {
+        .cwt-header-search,
+        .cwt-header-pages {
             display: none !important;
         }
 
-        .middleHeader-item.left {
+        .middleHeader-item.left,
+        .cwt-header-logo {
             display: flex !important;
             width: auto;
             flex: 1 1 auto;
             min-width: 0;
-            max-width: 100%;
+            max-width: calc(100% - 48px);
             justify-content: flex-start;
             align-items: center;
-            gap: 10px;
+            order: 1;
             overflow: visible !important;
+        }
+
+        .cwt-header-menu-toggle {
+            display: flex !important;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 0 0 auto;
+            order: 2;
+            margin-left: auto;
+            width: auto;
         }
 
         .middleHeader-item.right {
@@ -2546,8 +2602,8 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     }
 
     .cwt-header-logo__img {
-        max-width: 140px;
-        max-height: 44px;
+        max-width: 132px;
+        max-height: 36px;
     }
 
     .halo_middleHeader .mobile_search_custom {
@@ -2567,14 +2623,15 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         }
     }
 
-    // Hamburger — always visible under desktop breakpoint
+    // Hamburger — right side of logo row on phones/tablets
     .halo_middleHeader .item--hamburger,
-    .cwt-header-main .item--hamburger {
-        display: block !important;
+    .cwt-header-main .item--hamburger,
+    .cwt-header-menu-toggle {
+        display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
         flex: 0 0 auto;
-        margin: 0 8px 0 0 !important;
+        margin: 0 !important;
         position: relative;
         z-index: 20;
     }
@@ -2586,9 +2643,10 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         visibility: visible !important;
         opacity: 1 !important;
         position: relative !important;
-        width: 44px !important;
-        height: 44px !important;
-        min-width: 44px !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
         padding: 0 !important;
         margin: 0 !important;
         flex-shrink: 0;
@@ -7074,8 +7132,27 @@ h2.productView-brand {
         }
     }
 
+    .has-activeNavPages .halo-menu-sidebar {
+        z-index: 1300 !important;
+    }
+
     .halo-menu-sidebar {
         background-color: $cwt-black !important;
+        overflow-x: hidden !important;
+
+        .halo-sidebar-wrapper,
+        .navPages-container,
+        .navPages {
+            overflow-x: hidden !important;
+        }
+
+        .navPages-list,
+        .navPages-list--user,
+        .socialLinks,
+        .navPages-item,
+        .socialLinks-item {
+            list-style: none !important;
+        }
 
         .navPages-action,
         .navPages-action .text {
@@ -7085,6 +7162,23 @@ h2.productView-brand {
         .halo-sidebar-header {
             background-color: $cwt-black !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navPages-action-moreIcon::before,
+        .navPages-action-moreIcon::after {
+            content: none !important;
+            display: none !important;
+        }
+    }
+
+    .has-activeNavPages {
+        .recently-viewed-products-sidebar,
+        .lst-seen-widget,
+        .lst-social-media,
+        .wrap-icons {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
     }
 
@@ -8177,12 +8271,12 @@ h2.productView-brand {
     }
 
     .cwt-header-main .middleHeader-item.left {
-        max-width: calc(100% - 110px);
+        max-width: calc(100% - 44px);
     }
 
     .cwt-header-logo__img {
         max-width: 110px !important;
-        max-height: 36px !important;
+        max-height: 32px !important;
     }
 
     .halo_sticky_addToCart,
@@ -11255,35 +11349,61 @@ html.cwt-theme-light {
         }
     }
 
-    // Mobile hamburger drawer — white bg, black text, white submenus
+    // Mobile hamburger uses #halo-menu-sidebar. Dark-theme CSS forced white
+    // labels onto --cwt-card-bg (white in light theme) so subcategories vanished.
     @media (max-width: 1024px) {
-        .halo_bottomHeader .navPages-container.is-open,
+        .halo_bottomHeader > .navPages-container,
+        .halo_bottomHeader > #menu.navPages-container,
         .halo_bottomHeader #menu.navPages-container.is-open,
-        .header.halo_header-layout-2 .halo_bottomHeader #menu.navPages-container.is-open,
-        body.has-activeNavPages .navPages-container.is-open {
+        .header.halo_header-layout-2 .halo_bottomHeader #menu.navPages-container.is-open {
+            display: none !important;
+        }
+
+        body.has-activeNavPages .halo-menu-sidebar,
+        .halo-menu-sidebar {
             background-color: #ffffff !important;
             color: var(--cwt-header-ink) !important;
+            overflow-x: hidden !important;
 
-            .cwt-nav-wrap {
+            .halo-sidebar-header {
+                background-color: #ffffff !important;
+                border-bottom: 1px solid var(--cwt-header-line) !important;
                 color: var(--cwt-header-ink) !important;
-            }
 
-            .halo_allCate,
-            .halo_allCateDropdown,
-            .halo_allCateText,
-            .navPages,
-            .navPages-list,
-            .navPages-item,
-            .navPage-subMenu {
-                background-color: transparent !important;
-                color: var(--cwt-header-ink) !important;
-            }
-
-            .halo_allCateText {
-                border-bottom-color: var(--cwt-header-line) !important;
-
-                .text {
+                .title {
                     color: var(--cwt-header-ink) !important;
+                }
+            }
+
+            .halo-sidebar-close svg,
+            .halo-sidebar-header .close svg {
+                fill: var(--cwt-header-ink) !important;
+                stroke: var(--cwt-header-ink) !important;
+            }
+
+            .halo-sidebar-wrapper,
+            .navPages-container,
+            .navPages {
+                overflow-x: hidden !important;
+                color: var(--cwt-header-ink) !important;
+            }
+
+            .navPages-list,
+            .navPages-list-mobile,
+            .navPages-list:not(.navPages-list--user) {
+                background-color: #ffffff !important;
+                list-style: none !important;
+            }
+
+            .navPages-item,
+            .navPage-subMenu-item-child,
+            .socialLinks,
+            .socialLinks-item {
+                list-style: none !important;
+
+                &::marker {
+                    content: none !important;
+                    display: none !important;
                 }
             }
 
@@ -11291,57 +11411,135 @@ html.cwt-theme-light {
                 border-bottom-color: var(--cwt-header-line) !important;
             }
 
-            a,
+            // Desktop category-bar CSS arrows must not leak into the drawer
+            .navPages-action-moreIcon::before,
+            .navPages-action-moreIcon::after {
+                content: none !important;
+                display: none !important;
+                border: 0 !important;
+            }
+
+            .navPages-action-moreIcon svg,
+            .navPages-action-moreIcon .icon {
+                display: inline-block !important;
+                fill: $cwt-gold-bright !important;
+                stroke: $cwt-gold-bright !important;
+                color: $cwt-gold-bright !important;
+            }
+
             .navPages-action,
             .navPage-subMenu-action,
             .navPages-action .text,
             .navPage-subMenu-action .text,
-            .halo_allCateDropdown a,
-            .halo_allCateDropdown .text,
-            .halo_allCateDropdown span:not(.navPages-action-moreIcon),
-            .cwt-nav-pages a,
-            .cwt-nav-pages .text,
-            .cwt-nav-pages span:not(.navPages-action-moreIcon) {
+            .navPages-action .text span,
+            .navPage-subMenu-action .text span,
+            a.navPages-action,
+            a.navPage-subMenu-action,
+            a.text,
+            a.text span {
+                color: var(--cwt-header-ink) !important;
+                -webkit-text-fill-color: var(--cwt-header-ink) !important;
+            }
+
+            .navPages-action:hover,
+            .navPage-subMenu-action:hover,
+            .navPages-action:hover .text,
+            .navPage-subMenu-action:hover .text,
+            .navPages-action:hover .text span,
+            .navPage-subMenu-action:hover .text span {
+                color: var(--cwt-header-accent) !important;
+                -webkit-text-fill-color: var(--cwt-header-accent) !important;
+            }
+
+            .navPage-subMenu,
+            .navPage-subMenu-horizontal,
+            .navPage-subMenu .navPage-subMenu {
+                background-color: #ffffff !important;
                 color: var(--cwt-header-ink) !important;
             }
 
-            .navPages-action,
-            .navPage-subMenu-action {
-                &:hover,
-                &:focus,
-                &.is-open,
-                &.activePage {
-                    color: var(--cwt-header-accent) !important;
+            .navPage-subMenu-title > .navPages-action,
+            .navPage-subMenu-title > .navPage-subMenu-action {
+                background-color: #f5f5f5 !important;
+                color: var(--cwt-header-ink) !important;
 
-                    .text,
-                    span:not(.navPages-action-moreIcon) {
-                        color: var(--cwt-header-accent) !important;
-                    }
+                .text,
+                .text span,
+                a,
+                a span {
+                    color: var(--cwt-header-ink) !important;
+                    -webkit-text-fill-color: var(--cwt-header-ink) !important;
                 }
             }
 
-            .navPage-subMenu {
-                background-color: #f7f7f7 !important;
-            }
-        }
+            // Account + social stay on black so existing white labels keep contrast
+            .navPages-list--user {
+                background-color: $cwt-black !important;
+                overflow: hidden !important;
+                list-style: none !important;
 
-        // Override global mobile-drawer white-text rule
-        body.has-activeNavPages .navPages-container.is-open .halo_allCateDropdown,
-        .navPages-container.is-open .halo_allCateDropdown {
-            color: var(--cwt-header-ink) !important;
+                .navPages-item,
+                .socialLinks,
+                .socialLinks-item {
+                    list-style: none !important;
+                    background-image: none !important;
 
-            a,
-            .text,
-            span:not(.navPages-action-moreIcon):not(.navPages-label),
-            .navPages-action,
-            .navPages-action .text {
-                color: var(--cwt-header-ink) !important;
-            }
+                    &::before,
+                    &::after,
+                    &::marker {
+                        content: none !important;
+                        display: none !important;
+                        background: none !important;
+                        border: 0 !important;
+                        box-shadow: none !important;
+                    }
+                }
 
-            a:hover,
-            .navPages-action:hover,
-            .navPages-action:hover .text {
-                color: var(--cwt-header-accent) !important;
+                .navPages-action,
+                .navPages-action .text,
+                .navPages-action .text span {
+                    color: #ffffff !important;
+                    -webkit-text-fill-color: #ffffff !important;
+                }
+
+                .navPages-action > .icon,
+                .navPages-action .text > .icon,
+                .navPages-action .text > svg.icon {
+                    fill: #ffffff !important;
+                    stroke: #ffffff !important;
+                    color: #ffffff !important;
+                }
+
+                .socialLinks {
+                    display: flex !important;
+                    flex-wrap: wrap !important;
+                    gap: 8px;
+                    margin: 10px 0 0 !important;
+                    padding: 0 !important;
+                }
+
+                .socialLinks-item {
+                    display: inline-flex !important;
+                    width: auto !important;
+                    height: auto !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    border: 0 !important;
+                    float: none !important;
+                }
+
+                .socialLinks--alt .icon,
+                .socialLinks .icon {
+                    background-color: #ffffff !important;
+                    border-radius: 50% !important;
+                    width: 42px !important;
+                    height: 42px !important;
+
+                    svg {
+                        fill: $cwt-gold-bright !important;
+                        stroke: $cwt-gold-bright !important;
+                    }
+                }
             }
         }
     }

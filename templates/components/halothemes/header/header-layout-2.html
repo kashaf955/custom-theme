@@ -8,11 +8,6 @@
     <div class="halo_middleHeader">
         <div class="middleHeader-container cwt-header-main cwt-site-width">
             <div class="middleHeader-item left cwt-header-logo">
-                <div class="items item--hamburger">
-                    <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
-                        <span class="mobileMenu-toggleIcon">Toggle menu</span>
-                    </a>
-                </div>
                 <div class="items item--logo">
                     {{#if page_type '===' 'default'}}
                         <h1 class="header-logo">
@@ -60,6 +55,13 @@
                     <div class="dropdown dropdown--quickSearch header-search" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
                         {{> components/common/quick-search  name='search_query'}}
                     </div>
+                </div>
+            </div>
+            <div class="middleHeader-item cwt-header-menu-toggle">
+                <div class="items item--hamburger">
+                    <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+                        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                    </a>
                 </div>
             </div>
         </div>
