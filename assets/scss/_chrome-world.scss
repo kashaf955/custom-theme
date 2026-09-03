@@ -387,10 +387,6 @@ table,
         color: var(--cwt-ink) !important;
     }
 
-    .card-body span:not(.button):not(.price):not([class*="price"]) {
-        color: var(--cwt-ink) !important;
-    }
-
     .card-title a:hover {
         color: $cwt-gold-bright !important;
     }
@@ -443,16 +439,12 @@ table,
     }
 
     // Card action buttons — gold/black, never inherit body text
-    .button,
     .button--primary,
-    .button--secondary,
-    .card-figcaption-button,
-    a.button,
-    a.card-figcaption-button {
+    a.button--primary {
         color: $cwt-black !important;
 
         span {
-            color: inherit !important;
+            color: $cwt-black !important;
         }
     }
 
@@ -10681,9 +10673,11 @@ html.cwt-theme-light {
     .card-text,
     .card-title,
     .card-title a,
+    .card-title a span,
     .card-body,
     .card-body p,
-    .card-body span:not(.button):not(.price):not([class*="price"]),
+    .card-text span,
+    .card-desc span,
     .brand,
     .productView-brand,
     .productView-info-name,
@@ -10830,20 +10824,7 @@ html.cwt-theme-light {
         }
     }
 
-    // Buttons keep designed contrast (do not inherit light ink)
-    .button,
-    .button--primary,
-    .button--secondary,
-    .button--tertiary,
-    .card-figcaption-button,
-    a.button,
-    button.button {
-        span,
-        .text {
-            color: inherit !important;
-        }
-    }
-
+    // Buttons keep designed contrast (do not inherit body ink)
     .button--primary,
     a.button--primary,
     button.button--primary {
@@ -10851,6 +10832,7 @@ html.cwt-theme-light {
 
         span, .text {
             color: $cwt-black !important;
+            -webkit-text-fill-color: $cwt-black !important;
         }
     }
 
@@ -10858,18 +10840,27 @@ html.cwt-theme-light {
     a.button--secondary,
     button.button--secondary,
     .card-figcaption-button,
-    .card-figcaption-bottom .button {
+    .card-figcaption-bottom .button,
+    .card-figcaption-bottom a.button,
+    .card .card-body .button,
+    .card .card-body a.button {
+        background-color: $cwt-black !important;
+        border-color: $cwt-gold-bright !important;
         color: #ffffff !important;
 
-        span, .text {
+        span,
+        .text {
             color: #ffffff !important;
         }
 
         &:hover,
         &:focus {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
             color: $cwt-black !important;
 
-            span, .text {
+            span,
+            .text {
                 color: $cwt-black !important;
             }
         }
@@ -11988,8 +11979,7 @@ button.button,
     }
 
     .card-title a,
-    .card-title a.card-ellipsis,
-    .card-title a span {
+    .card-title a.card-ellipsis {
         display: -webkit-box !important;
         -webkit-box-orient: vertical !important;
         -webkit-line-clamp: 2 !important;
@@ -12003,7 +11993,7 @@ button.button,
     .card-title a span {
         display: inline !important;
         max-height: none !important;
-        -webkit-line-clamp: unset;
+        background-image: none !important;
     }
 
     .card-price {
@@ -12154,5 +12144,154 @@ html[data-theme="dark"] {
             color: $cwt-gold-bright !important;
         }
     }
+}
+
+// Product card body: title then price then button, with a real gap
+.card .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px;
+    min-width: 0;
+}
+
+.card .card-title {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.card .card-title a,
+.card .card-title a.card-ellipsis {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-height: 2.7em !important;
+    white-space: normal !important;
+}
+
+.card .card-title a span {
+    display: inline !important;
+    background-image: none !important;
+}
+
+.card .card-price {
+    position: relative !important;
+    z-index: 1;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    padding-top: 2px !important;
+}
+
+// Card CTAs — white label on black
+.card .card-body .card-figcaption-bottom a.button.button--secondary.card-figcaption-button,
+.card .card-body .card-figcaption-bottom .button.card-figcaption-button {
+    background-color: $cwt-black !important;
+    border: 2px solid $cwt-gold-bright !important;
+    color: #ffffff !important;
+}
+
+.card .card-body .card-figcaption-bottom a.button.button--secondary.card-figcaption-button > span,
+.card .card-body .card-figcaption-bottom .button.card-figcaption-button > span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: transparent !important;
+}
+
+.card .card-body .card-figcaption-bottom a.button.button--secondary.card-figcaption-button:hover,
+.card .card-body .card-figcaption-bottom .button.card-figcaption-button:hover {
+    background-color: $cwt-gold-bright !important;
+    color: $cwt-black !important;
+}
+
+.card .card-body .card-figcaption-bottom a.button.button--secondary.card-figcaption-button:hover > span,
+.card .card-body .card-figcaption-bottom .button.card-figcaption-button:hover > span {
+    color: $cwt-black !important;
+    -webkit-text-fill-color: $cwt-black !important;
+}
+
+html[data-theme="light"] .card .card-body .card-figcaption-bottom a.button > span,
+html[data-theme="light"] .card .card-body .card-figcaption-bottom .button > span,
+html[data-theme="light"] .card .card-body a.button.card-figcaption-button > span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+// =============================================================================
+// Product card CTAs + titles (light and dark)
+// Light theme was forcing card-body spans to #1a1a1a, which hid
+// CHOOSE OPTIONS / ADD TO CART on the black buttons.
+// =============================================================================
+.card .card-figcaption-bottom .button,
+.card .card-figcaption-bottom a.button,
+.card .card-figcaption-bottom .card-figcaption-button,
+.card .card-body .button--secondary,
+.card .card-body a.button--secondary,
+.productGrid .card .card-figcaption-bottom .button,
+.productList .card .card-figcaption-bottom .button,
+.halo-block-product .card .card-figcaption-bottom .button {
+    background-color: $cwt-black !important;
+    border: 2px solid $cwt-gold-bright !important;
+    color: #ffffff !important;
+
+    span,
+    .text {
+        color: #ffffff !important;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $cwt-gold-bright !important;
+        border-color: $cwt-gold-bright !important;
+        color: $cwt-black !important;
+
+        span,
+        .text {
+            color: $cwt-black !important;
+        }
+    }
+}
+
+html[data-theme="light"] .card .card-figcaption-bottom .button,
+html[data-theme="light"] .card .card-figcaption-bottom a.button,
+html[data-theme="light"] .card .card-figcaption-bottom .button span,
+html[data-theme="light"] .card .card-figcaption-bottom a.button span,
+html[data-theme="light"] .card .card-body a.button--secondary,
+html[data-theme="light"] .card .card-body a.button--secondary span {
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .card .card-figcaption-bottom .button:hover,
+html[data-theme="light"] .card .card-figcaption-bottom .button:hover span,
+html[data-theme="light"] .card .card-figcaption-bottom a.button:hover,
+html[data-theme="light"] .card .card-figcaption-bottom a.button:hover span {
+    color: $cwt-black !important;
+}
+
+.card .card-title,
+.productGrid .card .card-title,
+.halo-block-product .card .card-title {
+    display: block !important;
+    overflow: hidden;
+}
+
+.card .card-title a,
+.card .card-title a.card-ellipsis,
+.productGrid .card .card-title a,
+.halo-block-product .card .card-title a {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-height: 2.7em !important;
+    white-space: normal !important;
+}
+
+.card .card-title a span {
+    display: inline !important;
+    background-image: none !important;
 }
 
