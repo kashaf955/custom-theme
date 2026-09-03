@@ -123,10 +123,17 @@ export class MobileMenuToggle {
         this.$scrollView.scrollTop(0);
 
         var headerHeight = this.$header.outerHeight() || 0;
-        $('.halo-menu-sidebar').css({
-            top: headerHeight,
-            height: 'calc(100% - ' + headerHeight + 'px)',
-        });
+        if ($(window).width() <= 1024) {
+            $('.halo-menu-sidebar').css({
+                top: 0,
+                height: '100%',
+            });
+        } else {
+            $('.halo-menu-sidebar').css({
+                top: headerHeight,
+                height: 'calc(100% - ' + headerHeight + 'px)',
+            });
+        }
 
         this.resetSubMenus();
     }

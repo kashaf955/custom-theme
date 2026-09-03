@@ -371,52 +371,45 @@ export default function(context) {
     }
 
     function activeMenuMobile() {
-        $('.halo-menu-sidebar .halo-sidebar-close').on('click', event => {
-            event.preventDefault();
+        $('.halo-menu-sidebar .halo-sidebar-close')
+            .off('click.cwtMenuClose')
+            .on('click.cwtMenuClose', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
 
-            if ($('body').hasClass('has-activeNavPages')) {
-                $('.mobileMenu-toggle').trigger('click');
-            }
-        });
-        $(document).on('click', event => {
-            if ($('body').hasClass('has-activeNavPages')) {
-                if (($(event.target).closest('.halo-menu-sidebar').length === 0) && ($(event.target).closest('.mobileMenu-toggle').length === 0)){
-                    $('.mobileMenu-toggle').trigger('click');
+                if ($('body').hasClass('has-activeNavPages')) {
+                    $('.mobileMenu-toggle').first().trigger('click');
                 }
-            }
-        });
+            });
+
+        $(document)
+            .off('click.cwtMenuOutside')
+            .on('click.cwtMenuOutside', (event) => {
+                if (!$('body').hasClass('has-activeNavPages')) {
+                    return;
+                }
+
+                const $t = $(event.target);
+                if (
+                    $t.closest('.halo-menu-sidebar').length === 0
+                    && $t.closest('.mobileMenu-toggle').length === 0
+                    && $t.closest('.cwt-header-menu-toggle').length === 0
+                    && $t.closest('.item--hamburger').length === 0
+                ) {
+                    $('.mobileMenu-toggle').first().trigger('click');
+                }
+            });
 
         var $menuPc = $('#menu .navPages-list:not(.navPages-list--user)'),
-        // var $menuPc = $('#menu .navPages-item.navPages-item-page'),
             $menuMobile = $('#halo-menu-sidebar .navPages-list:not(.navPages-list--user)');
 
         if ($(window).width() <= 1024) {
-            $('.mobileMenu-toggle').on('click', event => {
+            $('.mobileMenu-toggle').off('click.cwtMenuMove').on('click.cwtMenuMove', () => {
                 if ($menuPc.length && !$menuMobile.children().length) {
-                    let items = $menuPc.children().toArray(); // Convert to array
-                    let chunkSize = 10; // Adjust chunk size based on performance
-                    let index = 0;
-
-                    function appendChunk() {
-                        for (let i = 0; i < chunkSize && index < items.length; i++, index++) {
-                            let fragment = $(document.createDocumentFragment());
-                            
-                            fragment.append(items[index]);
-                            setTimeout(function(){
-                                $menuMobile.append(fragment);
-                            }, 400)
-                        }
-
-                        if (index < items.length) {
-                            requestAnimationFrame(appendChunk); // Non-blocking batch append
-                        }
-                    }
-
-                    appendChunk();
+                    $menuMobile.append($menuPc.children());
                 }
             });
         }
-
     }
 
     function footerMobileToggle(){
@@ -448,21 +441,28 @@ export default function(context) {
     }
 
     function haloStickyHeader(tScroll) {
-        if (settings.halo_headerSticky) {
-            // Pin while scrolled. Do not unstick on scroll-down (CSS sticky
-            // keeps the header in flow, so no .header-height spacer).
-            if (tScroll > 4) {
-                $header.addClass('is-sticky');
-            } else {
-                if ($('.halo-search-main').length) {
-                    $('.halo-search-sticky #quickSearch').appendTo('.halo-search-main');
-                }
-                $header.removeClass('is-sticky');
-                $header.css('animation-name', '');
-            }
-
-            scroll_position = tScroll;
+        if (!settings.halo_headerSticky) {
+            return;
         }
+
+        // Mobile: never pin the header
+        if ($(window).width() <= 1024) {
+            $header.removeClass('is-sticky');
+            $header.css('animation-name', '');
+            return;
+        }
+
+        if (tScroll > 4) {
+            $header.addClass('is-sticky');
+        } else {
+            if ($('.halo-search-main').length) {
+                $('.halo-search-sticky #quickSearch').appendTo('.halo-search-main');
+            }
+            $header.removeClass('is-sticky');
+            $header.css('animation-name', '');
+        }
+
+        scroll_position = tScroll;
     }
 
     function haloMultiCategoryFilter() {
