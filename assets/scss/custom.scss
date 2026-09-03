@@ -540,11 +540,24 @@ html.cwt-theme-light {
 
     // Top Deals / Featured "View More" — black + gold button (must load after chrome-world catch-alls)
     .home-layout-2 .halo-block-header .link,
-    .home-layout-2 .halo-block-header .collection--link,
     .home-layout-2 .halo-block-header-wrapper .link,
+    .home-layout-2 .custom-ecb > .link {
+        display: inline-flex !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+        background: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .home-layout-2 .halo-block-header .collection--link,
+    .home-layout-2 .halo-block-header .link a,
     .home-layout-2 .halo-block-header-wrapper .collection--link,
-    .home-layout-2 .custom-ecb > .link,
-    .home-layout-2 .custom-ecb > .collection--link {
+    .home-layout-2 .halo-block-header-wrapper .link a,
+    .home-layout-2 .custom-ecb > .collection--link,
+    .home-layout-2 .custom-ecb > .link a {
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
