@@ -187,6 +187,26 @@
             <p class="card-brand card-brand-{{id}} card-text" data-test-info-type="brandName"></p>
         {{/and}}
 
+        {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#if show_cart_action}}
+                <div class="card-figcaption-bottom">
+                    {{#if has_options}}
+                        <a href="{{url}}" data-event-type="product-click" class="button button--secondary card-figcaption-button" data-product-id="{{id}}"><span>{{lang 'products.choose_options'}}</span></a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--secondary card-figcaption-button"><span>{{lang 'products.pre_order'}}</span></a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+                        <a href="{{add_to_cart_url}}" {{#unless theme_settings.haloAjaxAddToCart}}data-event-type="product-click"{{/unless}} data-button-type="add-cart" class="button button--secondary card-figcaption-button halo-add-to-cart" data-product-id="{{id}}" data-wait-message="{{lang 'products.adding_to_cart'}}"><span>{{lang 'products.add_to_cart'}}</span></a>
+                        <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" data-event-type="product-click" class="button button--disable card-figcaption-button button--outOfStock" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/or}}
+
         <h3 class="card-title">
             {{#if theme_settings.halo_card_title '==' 'ellipsis'}}
                 <a aria-label="{{name}},{{> components/products/product-aria-label}}"
@@ -246,33 +266,13 @@
                     {{/each}}
                 {{else if theme_settings.halo_product_countdown '==' 'sale'}}
                     {{#or non_sale_price_with_tax non_sale_price_without_tax}}
-                        <div class="card-figcaption-countdown"> 
+                        <div class="card-figcaption-countdown">
                             <div class="card-countDown countdown_{{id}}" data-countdown-id="{{id}}" data-countdown="{{theme_settings.halo_product_countdown_time}}"></div>
                         </div>
                     {{/or}}
                 {{/if}}
             {{/if}}
         {{/unless}}
-
-        {{#or customer (unless settings.hide_price_from_guests)}}
-            {{#if show_cart_action}}
-                <div class="card-figcaption-bottom">
-                    {{#if has_options}}
-                        <a href="{{url}}" data-event-type="product-click" class="button button--secondary card-figcaption-button" data-product-id="{{id}}"><span>{{lang 'products.choose_options'}}</span></a>
-                    {{/if}}
-                    {{#if pre_order}}
-                        <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--secondary card-figcaption-button"><span>{{lang 'products.pre_order'}}</span></a>
-                    {{/if}}
-                    {{#if add_to_cart_url }}
-                        <a href="{{add_to_cart_url}}" {{#unless theme_settings.haloAjaxAddToCart}}data-event-type="product-click"{{/unless}} data-button-type="add-cart" class="button button--secondary card-figcaption-button halo-add-to-cart" data-product-id="{{id}}" data-wait-message="{{lang 'products.adding_to_cart'}}"><span>{{lang 'products.add_to_cart'}}</span></a>
-                        <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
-                    {{/if}}
-                    {{#if out_of_stock_message }}
-                        <a href="{{url}}" data-event-type="product-click" class="button button--disable card-figcaption-button button--outOfStock" data-product-id="{{id}}">{{out_of_stock_message}}</a>
-                    {{/if}}
-                </div>
-            {{/if}}
-        {{/or}}
 
         {{#if show_compare}}
             <div class="card-compare">

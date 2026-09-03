@@ -17,16 +17,6 @@
             "value": "Google_Arimo_700"
           },
           {
-            "group": "Montserrat",
-            "label": "Montserrat Light",
-            "value": "Google_Montserrat_400"
-          },
-          {
-            "group": "OpenSans",
-            "label": "Open Sans",
-            "value": "Google_Open+Sans_400"
-          },
-          {
             "group": "OpenSans",
             "label": "Open Sans Bold",
             "value": "Google_Open+Sans_700"
@@ -35,11 +25,6 @@
             "group": "Roboto",
             "label": "Roboto",
             "value": "Google_Roboto_400"
-          },
-          {
-            "group": "Volkhov",
-            "label": "Volkhov",
-            "value": "Google_Volkhov_400"
           }
         ]
       },
@@ -54,19 +39,9 @@
             "value": "Google_Arimo_400"
           },
           {
-            "group": "Karla",
-            "label": "Karla",
-            "value": "Google_Karla_400"
-          },
-          {
             "group": "Roboto",
             "label": "Roboto",
             "value": "Google_Roboto_400"
-          },
-          {
-            "group": "SourceSansPro",
-            "label": "SourceSansPro",
-            "value": "Google_Source+Sans+Pro_400"
           }
         ]
       },
@@ -1365,38 +1340,29 @@
         "content": "Carousel Mobile Images"
       },
       {
-        "type": "paragraph",
-        "content": "Upload a mobile crop in Storefront → Image Manager, then paste the filename here (example: hero-mobile.jpg). Recommended size: 750 × 720. Leave blank to reuse the desktop carousel image. These images show at 1024px and below."
+        "type": "text",
+        "label": "Slide 1 mobile file",
+        "id": "homepage_show_carousel_0_mobile_image"
       },
       {
         "type": "text",
-        "label": "Slider 1: Mobile Image",
-        "id": "homepage_show_carousel_0_mobile_image",
-        "force_reload": true
+        "label": "Slide 2 mobile file",
+        "id": "homepage_show_carousel_1_mobile_image"
       },
       {
         "type": "text",
-        "label": "Slider 2: Mobile Image",
-        "id": "homepage_show_carousel_1_mobile_image",
-        "force_reload": true
+        "label": "Slide 3 mobile file",
+        "id": "homepage_show_carousel_2_mobile_image"
       },
       {
         "type": "text",
-        "label": "Slider 3: Mobile Image",
-        "id": "homepage_show_carousel_2_mobile_image",
-        "force_reload": true
+        "label": "Slide 4 mobile file",
+        "id": "homepage_show_carousel_3_mobile_image"
       },
       {
         "type": "text",
-        "label": "Slider 4: Mobile Image",
-        "id": "homepage_show_carousel_3_mobile_image",
-        "force_reload": true
-      },
-      {
-        "type": "text",
-        "label": "Slider 5: Mobile Image",
-        "id": "homepage_show_carousel_4_mobile_image",
-        "force_reload": true
+        "label": "Slide 5 mobile file",
+        "id": "homepage_show_carousel_4_mobile_image"
       },
       {
         "type": "heading",
@@ -2572,7 +2538,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Category Brand Search Results Page"
+        "content": "Listing page"
       },
       {
         "type": "heading",
