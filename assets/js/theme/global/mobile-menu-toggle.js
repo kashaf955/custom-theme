@@ -122,27 +122,11 @@ export class MobileMenuToggle {
         this.$header.addClass('is-open');
         this.$scrollView.scrollTop(0);
 
-        if ($(window).width() > 1024) {
-            if (($('.page-type-category').length > 0) || ($('.page-type-search').length > 0) || ($('.page-type-brand').length > 0) || ($('.page-type-product').length > 0)) {
-                if ($('header:not(.is-sticky)').length) {
-                    if ($('.halo-topHeader-visible').length > 0) {
-                        var height = this.$header.outerHeight() + 40;
-                        $('.halo-menu-sidebar').css({'top': height});
-                    } else {
-                        var height = this.$header.outerHeight();
-                        $('.halo-menu-sidebar').css({'top': height});
-                    }
-                } else {
-                    var height = this.$header.outerHeight();
-                    $('.halo-menu-sidebar').css({'top': height});
-                }
-            } else {
-                var height = this.$header.outerHeight();
-                $('.halo-menu-sidebar').css({'top': height});
-            }
-        } else {
-            $('.halo-menu-sidebar').css('top', 0);
-        }
+        var headerHeight = this.$header.outerHeight() || 0;
+        $('.halo-menu-sidebar').css({
+            top: headerHeight,
+            height: 'calc(100% - ' + headerHeight + 'px)',
+        });
 
         this.resetSubMenus();
     }

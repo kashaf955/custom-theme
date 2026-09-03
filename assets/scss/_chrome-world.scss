@@ -864,9 +864,9 @@ body .footer .container {
             justify-content: space-between;
             align-items: center;
             gap: 8px;
-            min-height: 0 !important;
+            min-height: 36px !important;
             height: auto !important;
-            padding: 2px 10px !important;
+            padding: 8px 12px !important;
             margin: 0 !important;
             overflow: visible !important;
         }
@@ -991,8 +991,9 @@ body .footer .container {
 
     @media (max-width: 550px) {
         .navUser .container {
-            padding: 1px 8px !important;
+            padding: 6px 8px !important;
             gap: 6px;
+            min-height: 34px !important;
         }
 
         .navUser--left,
@@ -2519,14 +2520,14 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     }
 
     .cwt-header-main {
-        padding-top: 4px;
-        padding-bottom: 4px;
+        padding-top: 6px;
+        padding-bottom: 6px;
         gap: 8px;
         max-width: 100% !important;
         overflow-x: hidden;
         overflow-y: visible;
-        display: flex !important;
-        flex-wrap: nowrap;
+        display: grid !important;
+        grid-template-columns: 1fr auto;
         justify-content: space-between;
         align-items: center;
         width: 100%;
@@ -2534,7 +2535,9 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         margin: 0 !important;
 
         .cwt-header-search,
-        .cwt-header-pages {
+        .cwt-header-pages,
+        .middleHeader-item.center,
+        .middleHeader-item.right.cwt-header-search {
             display: none !important;
         }
 
@@ -2542,62 +2545,28 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         .cwt-header-logo {
             display: flex !important;
             width: auto;
-            flex: 1 1 auto;
             min-width: 0;
-            max-width: calc(100% - 48px);
+            max-width: none;
             justify-content: flex-start;
             align-items: center;
+            grid-column: 1;
             order: 1;
             overflow: visible !important;
+        }
+
+        .middleHeader-item.right.cwt-header-search,
+        .middleHeader-item.right {
+            display: none !important;
         }
 
         .cwt-header-menu-toggle {
             display: flex !important;
             align-items: center;
             justify-content: flex-end;
-            flex: 0 0 auto;
+            grid-column: 2;
             order: 2;
-            margin-left: auto;
+            margin-left: 0;
             width: auto;
-        }
-
-        .middleHeader-item.right {
-            display: flex !important;
-            width: auto;
-            flex: 0 0 auto;
-            gap: 4px;
-            flex-shrink: 0;
-
-            .cwt-header-label,
-            .cwt-header-action-text,
-            .my-account.cwt-header-label,
-            .my-account-link {
-                display: none !important;
-            }
-
-            .items {
-                margin: 0 !important;
-            }
-
-            .item--account {
-                .cwt-header-action-row:not(.accountMobile) {
-                    display: none !important;
-                }
-
-                .accountMobile {
-                    display: flex !important;
-                    padding-top: 0 !important;
-                }
-            }
-
-            .navUser-text {
-                display: none;
-            }
-
-            .cwt-header-action-row .icon {
-                width: 22px;
-                height: 22px;
-            }
         }
     }
 
@@ -2684,6 +2653,31 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         max-width: 100%;
         overflow-x: hidden;
         overflow-y: visible;
+    }
+
+    .header.halo_header-layout-2,
+    .header.halo_header-layout-2.is-sticky,
+    .header.halo_header-layout-2.is-open {
+        z-index: 1400 !important;
+        position: relative;
+
+        .halo_topHeader,
+        .cwt-top-header,
+        .halo_topHeader.cwt-top-header {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            max-height: none !important;
+        }
+    }
+
+    .header.halo_header-layout-2.is-sticky {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
 }
 
@@ -7133,25 +7127,60 @@ h2.productView-brand {
     }
 
     .has-activeNavPages .halo-menu-sidebar {
-        z-index: 1300 !important;
+        z-index: 1200 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        bottom: 0 !important;
+        height: auto !important;
     }
 
     .halo-menu-sidebar {
         background-color: $cwt-black !important;
         overflow-x: hidden !important;
 
+        .halo-sidebar-header {
+            flex: 0 0 auto;
+            background-color: $cwt-black !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 16px !important;
+        }
+
         .halo-sidebar-wrapper,
-        .navPages-container,
+        .navPages-container {
+            flex: 1 1 auto !important;
+            height: auto !important;
+            max-height: none !important;
+            min-height: 0 !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            padding: 0 0 16px !important;
+        }
+
         .navPages {
+            font-size: 15px !important;
             overflow-x: hidden !important;
         }
 
         .navPages-list,
+        .navPages-list-mobile,
         .navPages-list--user,
         .socialLinks,
         .navPages-item,
         .socialLinks-item {
             list-style: none !important;
+            min-height: 0 !important;
+        }
+
+        .navPages-list-mobile {
+            transform: none !important;
+        }
+
+        .navPages-action,
+        .navPage-subMenu-action {
+            font-size: 15px !important;
+            line-height: 1.35 !important;
+            min-height: 44px;
+            padding: 12px 16px !important;
         }
 
         .navPages-action,
@@ -11425,6 +11454,14 @@ html.cwt-theme-light {
                 fill: $cwt-gold-bright !important;
                 stroke: $cwt-gold-bright !important;
                 color: $cwt-gold-bright !important;
+            }
+
+            .navPages-action,
+            .navPage-subMenu-action {
+                font-size: 15px !important;
+                line-height: 1.35 !important;
+                min-height: 44px;
+                padding: 12px 16px !important;
             }
 
             .navPages-action,

@@ -1,5 +1,56 @@
 <nav class="navPages">
-    <ul class="navPages-list navPages-list-mobile"></ul>
+    <ul class="navPages-list navPages-list-mobile navPages-list-depth-max">
+        {{#each categories}}
+            {{#if id '==' '11378'}}
+            {{else}}
+                {{#if id '==' 11466}}
+                {{else}}
+                    {{#if id '==' 14238}}
+                    {{else}}
+                        <li class="navPages-item{{#if children}} has-dropdown{{/if}}">
+                            {{#if ../theme_settings.navigation_design '===' 'simple'}}
+                                {{> components/common/navigation-list}}
+                            {{else}}
+                                {{> components/common/navigation-list-alternate type = 'category'}}
+                            {{/if}}
+                        </li>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/each}}
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="{{urls.home}}">
+                <span class="text">{{lang 'home.heading'}}</span>
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="{{#if theme_settings.hl_header_topLink5}}{{theme_settings.hl_header_topLink5}}{{else}}/about-us{{/if}}">
+                <span class="text">{{#if theme_settings.hl_header_topText5}}{{theme_settings.hl_header_topText5}}{{else}}About Us{{/if}}</span>
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="{{#if theme_settings.hl_header_topLink4}}{{theme_settings.hl_header_topLink4}}{{else}}/contact-us{{/if}}">
+                <span class="text">{{#if theme_settings.hl_header_topText4}}{{theme_settings.hl_header_topText4}}{{else}}Contact Us{{/if}}</span>
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="/price-match-guarantee/">
+                <span class="text">Price Match</span>
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="/easy-returns/">
+                <span class="text">Easy Returns</span>
+            </a>
+        </li>
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navPages-item navPages-item-page">
+                <a class="navPages-action navPages-action-lv1 no-subMenu navPages-action-end" href="{{urls.gift_certificate.purchase}}">
+                    <span class="text">{{lang 'common.gift_cert'}}</span>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
     <ul class="navPages-list navPages-list--user" data-level-list>
         <li class="navPages-item navPages-item-user">
             {{#if customer}}
