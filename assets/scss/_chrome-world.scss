@@ -13792,3 +13792,87 @@ html[data-theme="light"] .cwt-blog-section__header a.collection--link span {
     -webkit-text-fill-color: #ffffff !important;
 }
 
+// -----------------------------------------------------------------------------
+// FAQs — dark chrome-world accordion (FAQ page + homepage teaser)
+// -----------------------------------------------------------------------------
+.halo-faqs-content {
+    .card {
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .title {
+        background-color: $cwt-charcoal;
+        color: $cwt-text-primary;
+        border: 1px solid $cwt-border-subtle;
+        font-weight: 700;
+
+        &.collapsed {
+            background-color: $cwt-black;
+            color: $cwt-gold-bright;
+            border-color: rgba($cwt-gold-bright, 0.4);
+
+            .icon-arrow::before {
+                border-color: $cwt-gold-bright;
+            }
+        }
+
+        @include smin-m {
+            &:hover {
+                background-color: $cwt-black;
+                color: $cwt-gold-bright;
+
+                .icon-arrow::before {
+                    border-color: $cwt-gold-bright;
+                }
+            }
+        }
+    }
+
+    .icon-arrow::before {
+        border-color: $cwt-text-primary;
+    }
+
+    .collapse {
+        background-color: $cwt-black;
+        border: 1px solid $cwt-border-subtle;
+        border-top: 0;
+        padding: 16px 20px;
+
+        .faqs-paragraph {
+            color: $cwt-text-secondary;
+            margin: 0;
+
+            a {
+                color: $cwt-gold-bright;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.haloFaqs-header {
+    background-color: $cwt-black;
+
+    .page-heading {
+        color: #ffffff;
+    }
+}
+
+.page--faqs {
+    background-color: $cwt-black;
+}
+
+.cwt-home-faq {
+    background-color: $cwt-black;
+    padding: 40px 0 60px;
+
+    .cwt-home-faq__list {
+        margin-top: 20px;
+    }
+}
+
