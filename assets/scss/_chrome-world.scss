@@ -6740,6 +6740,19 @@ h2.productView-brand {
     color: var(--cwt-ink);
     border: 1px solid var(--cwt-line);
 
+    // Alert dialogs keep a white panel (stencil alert background). Dark-theme
+    // ink and heading colors would otherwise sit on that white and disappear.
+    &.modal--alert {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+
+        .modal-content,
+        .modal-content * {
+            color: #1a1a1a !important;
+            -webkit-text-fill-color: #1a1a1a !important;
+        }
+    }
+
     .modal-header-title {
         color: var(--cwt-ink);
     }
