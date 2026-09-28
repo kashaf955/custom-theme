@@ -6546,10 +6546,10 @@ html[data-theme="light"] .toggle-title .toggleLink.is-open {
     @media (max-width: 550px) {
         .halo-productCarousel:not(.slick-initialized) > div,
         .productCarousel:not(.slick-initialized) > div {
-            width: 100% !important;
-            max-width: 100% !important;
+            width: 50% !important;
+            max-width: 50% !important;
 
-            &:nth-child(n+2) {
+            &:nth-child(n+3) {
                 display: none !important;
             }
         }
@@ -7790,17 +7790,34 @@ body.openAuthSidebar .halo-auth-sidebar.is-open {
 .navBar--account {
     border-bottom: 1px solid var(--cwt-line);
 
-    .navBar-action {
-        color: var(--cwt-ink-muted);
-
-        &:hover {
-            color: $cwt-gold-bright;
-        }
+    .navBar-section {
+        background-color: transparent !important;
+        border-color: var(--cwt-line) !important;
+        box-shadow: none !important;
     }
 
-    .navBar-item.is-active .navBar-action {
-        color: $cwt-gold-bright;
-        border-color: $cwt-gold-bright;
+    .navBar-item {
+        border-color: var(--cwt-line) !important;
+
+        > a,
+        .navBar-action {
+            background-color: var(--cwt-elevated-bg) !important;
+            color: var(--cwt-ink) !important;
+            border-color: var(--cwt-line) !important;
+
+            &:hover,
+            &:focus {
+                color: $cwt-gold-bright !important;
+                background-color: var(--cwt-card-bg) !important;
+            }
+        }
+
+        &.is-active > a,
+        &.is-active .navBar-action {
+            color: $cwt-black !important;
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+        }
     }
 }
 
@@ -9558,10 +9575,10 @@ body.openAuthSidebar .halo-auth-sidebar.is-open {
     .cwt-related-products {
         .halo-productCarousel:not(.slick-initialized) > div,
         .productCarousel:not(.slick-initialized) > div {
-            width: 100% !important;
-            max-width: 100% !important;
+            width: 50% !important;
+            max-width: 50% !important;
 
-            &:nth-child(n+2) {
+            &:nth-child(n+3) {
                 display: none !important;
             }
         }
@@ -11862,16 +11879,22 @@ html[data-theme="light"] {
     .navBar--account {
         border-bottom-color: rgba(0, 0, 0, 0.1);
 
+        .navBar-item > a,
         .navBar-action {
-            color: #444444 !important;
+            background-color: #ffffff !important;
+            color: #1a1a1a !important;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 color: $cwt-gold-text !important;
+                background-color: #f7f7f7 !important;
             }
         }
 
+        .navBar-item.is-active > a,
         .navBar-item.is-active .navBar-action {
-            color: $cwt-gold-text !important;
+            color: #1a1a1a !important;
+            background-color: #ffffff !important;
             border-color: $cwt-gold-text !important;
         }
     }
