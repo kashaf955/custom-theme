@@ -6313,6 +6313,37 @@ h2.productView-brand {
         &:hover {
             color: $cwt-gold-bright;
         }
+
+        // Open state used a white bar. The label is light, so "Description" vanished on phones.
+        &.is-open {
+            background-color: transparent !important;
+            color: $cwt-gold-bright !important;
+            border-bottom-color: var(--cwt-line);
+
+            .text {
+                color: $cwt-gold-bright !important;
+                -webkit-text-fill-color: $cwt-gold-bright !important;
+            }
+
+            .icon-plus:before,
+            .icon-plus:after {
+                background: $cwt-gold-bright !important;
+            }
+        }
+    }
+}
+
+html[data-theme="light"] .toggle-title .toggleLink.is-open {
+    color: $cwt-gold-text !important;
+
+    .text {
+        color: $cwt-gold-text !important;
+        -webkit-text-fill-color: $cwt-gold-text !important;
+    }
+
+    .icon-plus:before,
+    .icon-plus:after {
+        background: $cwt-gold-text !important;
     }
 }
 
@@ -6331,6 +6362,14 @@ h2.productView-brand {
 
 .description-showmore {
     color: var(--cwt-ink-muted);
+    border: 1px solid var(--cwt-line-strong);
+    border-radius: 6px;
+    padding: 12px 14px;
+    box-sizing: border-box;
+
+    @media (min-width: 1025px) {
+        padding: 20px 24px;
+    }
 }
 
 // Related / similar products carousel — no gutter existed between slides at
@@ -7189,6 +7228,35 @@ body.openSidebar {
 
 body.openAuthSidebar .halo-auth-sidebar.is-open {
     transform: translate3d(0, 0, 0) !important;
+}
+
+// Category sidebar on phones sits under the page overlay (z-index 1550),
+// so taps hit the overlay and the drawer closes instead of opening a category.
+@media (max-width: 1024px) {
+    body.openSidebar .page-sidebar.is-open {
+        z-index: 1600 !important;
+        left: 0 !important;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        max-height: 100vh;
+        max-height: 100dvh;
+    }
+
+    .page-sidebar .all-categories-list .icon-dropdown {
+        z-index: 12;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            top: 0;
+        }
+    }
 }
 
 // =============================================================================
