@@ -13459,9 +13459,13 @@ h1:not(.productView-title):not(.cwt-hero__title-line) {
 .cwt-testimonials,
 .halo-description,
 .productView-bottom,
-.productView-tab,
-.halo_ask-an-experts {
+.productView-tab {
     margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+.halo_ask-an-experts {
+    margin-top: 24px !important;
     margin-bottom: 24px !important;
 }
 
