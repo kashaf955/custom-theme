@@ -6309,6 +6309,35 @@ h2.productView-brand {
     }
 }
 
+// Footer social — Facebook / Instagram / TikTok, black & white, no background
+.footer .socialLinks--alt {
+    .icon {
+        background: transparent !important;
+        background-color: transparent !important;
+        border-radius: 0 !important;
+        overflow: visible;
+
+        svg {
+            fill: #ffffff !important;
+            stroke: none !important;
+        }
+
+        &:hover svg {
+            fill: $cwt-gold-bright !important;
+        }
+    }
+}
+
+html[data-theme="light"] .footer .socialLinks--alt .icon {
+    svg {
+        fill: #1a1a1a !important;
+    }
+
+    &:hover svg {
+        fill: $cwt-gold-text !important;
+    }
+}
+
 // --- Tabs / description ------------------------------------------------------------
 .productView-tab {
     .tabs {
@@ -12975,14 +13004,19 @@ html.cwt-theme-light {
 
                 .socialLinks--alt .icon,
                 .socialLinks .icon {
-                    background-color: #ffffff !important;
-                    border-radius: 50% !important;
-                    width: 42px !important;
-                    height: 42px !important;
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    border-radius: 0 !important;
+                    width: 28px !important;
+                    height: 28px !important;
 
                     svg {
+                        fill: #ffffff !important;
+                        stroke: none !important;
+                    }
+
+                    &:hover svg {
                         fill: $cwt-gold-bright !important;
-                        stroke: $cwt-gold-bright !important;
                     }
                 }
             }
