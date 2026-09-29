@@ -712,13 +712,17 @@ body .footer .container {
             top: 0 !important;
             width: 100%;
             z-index: 1400 !important;
+            // Cancelling halo-fadeInLoad without forcing opacity leaves the header
+            // at opacity:0 while still capturing clicks (invisible click/redirect zone).
             animation: none !important;
+            opacity: 1 !important;
         }
 
         @media (max-width: 1024px) {
             position: relative !important;
             top: auto !important;
             animation: none !important;
+            opacity: 1 !important;
         }
 
         .halo_bottomHeader {
@@ -728,6 +732,12 @@ body .footer .container {
             max-height: none !important;
             overflow: visible !important;
         }
+    }
+
+    // Header must never sit invisible-but-clickable (halo-fadeInLoad starts at 0).
+    &.halo-fadeInLoad {
+        opacity: 1 !important;
+        animation: none !important;
     }
 }
 
@@ -14307,14 +14317,19 @@ html[data-theme="light"] .cwt-blog-section__header a.collection--link span {
         margin-top: 20px;
     }
 
+    // Match other homepage section headers: transparent bar + light title on dark section.
+    // A white header bar + global --cwt-heading (#fff) made "Frequently Asked Questions" invisible.
     .halo-block-header,
     .halo-block-header-wrapper,
     .custom-ecb {
-        background-color: #ffffff !important;
+        background-color: transparent !important;
         border: 0 !important;
 
-        .title {
-            color: #111111 !important;
+        .title,
+        h2.title,
+        h2 {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
             background: transparent !important;
             border: 0 !important;
         }
@@ -14325,6 +14340,21 @@ html[data-theme="light"] .cwt-home-faq,
 html.cwt-theme-light .cwt-home-faq {
     background-color: #ffffff;
 
+    .halo-block-header,
+    .halo-block-header-wrapper,
+    .custom-ecb {
+        background-color: transparent !important;
+
+        .title,
+        h2.title,
+        h2 {
+            color: #111111 !important;
+            -webkit-text-fill-color: #111111 !important;
+            background: transparent !important;
+            border: 0 !important;
+        }
+    }
+
     .halo-faqs-content {
         .card {
             background: transparent !important;
@@ -14333,11 +14363,13 @@ html.cwt-theme-light .cwt-home-faq {
         .title {
             background-color: #f3f3f3 !important;
             color: #1a1a1a !important;
+            -webkit-text-fill-color: #1a1a1a !important;
             border: 1px solid rgba(0, 0, 0, 0.14) !important;
 
             &.collapsed {
                 background-color: #ffffff !important;
                 color: $cwt-gold-text !important;
+                -webkit-text-fill-color: $cwt-gold-text !important;
                 border-color: rgba($cwt-gold-text, 0.5) !important;
 
                 .icon-arrow::before {
@@ -14348,6 +14380,7 @@ html.cwt-theme-light .cwt-home-faq {
             &:hover {
                 background-color: #ffffff !important;
                 color: $cwt-gold-text !important;
+                -webkit-text-fill-color: $cwt-gold-text !important;
 
                 .icon-arrow::before {
                     border-color: $cwt-gold-text !important;
@@ -14372,6 +14405,737 @@ html.cwt-theme-light .cwt-home-faq {
                 }
             }
         }
+    }
+}
+
+// =============================================================================
+// Searchanise (Snize) — search results page + instant search
+// App injects its own light-theme CSS; force contrast for dark theme.
+// Page: /search-results-page?q=…  (body.snize-results-page)
+// =============================================================================
+body.snize-results-page,
+body.snize-results-page .page,
+body.snize-results-page .page-content {
+    background-color: var(--cwt-page-bg) !important;
+    color: var(--cwt-ink) !important;
+}
+
+body.snize-results-page .page-heading {
+    color: var(--cwt-heading) !important;
+    -webkit-text-fill-color: var(--cwt-heading) !important;
+}
+
+// Instant-search dropdown panel
+html[data-theme="dark"],
+html.cwt-theme-dark {
+    .snize-ac-results,
+    .snize-ac-results-content,
+    #snize-instant-search-results {
+        background-color: $cwt-charcoal !important;
+        color: $cwt-text-primary !important;
+        border-color: rgba($cwt-gold-bright, 0.35) !important;
+    }
+
+    .snize-ac-results .snize-label,
+    .snize-ac-results .snize-title,
+    .snize-ac-results .snize-description,
+    .snize-ac-results .snize-price,
+    .snize-ac-results .snize-suggestion,
+    .snize-ac-results a {
+        color: $cwt-text-primary !important;
+    }
+
+    .snize-ac-results .snize-view-all-link,
+    .snize-ac-results #snize-view-all-link {
+        color: $cwt-gold-bright !important;
+    }
+}
+
+// Full results page widget
+html[data-theme="dark"] .snize-search-results,
+html.cwt-theme-dark .snize-search-results,
+body.snize-results-page .snize-search-results,
+body.cwt-theme-dark .snize-search-results {
+    color: $cwt-text-primary !important;
+
+    .snize-search-results-header,
+    .snize-header,
+    .snize-header * {
+        color: rgba(255, 255, 255, 0.85) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    // Products tab
+    .snize-main-panel-controls a,
+    .snize-main-panel-controls-products {
+        color: rgba(255, 255, 255, 0.75) !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
+
+        &.active,
+        &[aria-selected="true"] {
+            color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+        }
+    }
+
+    .snize-products-tab-total {
+        color: inherit !important;
+    }
+
+    // Filter / sort dropdowns — Snize ships dark text; force light chips so labels stay readable
+    &#snize_results .snize-product-filters-header,
+    &#snize_results .snize-product-filters-title,
+    &#snize_results .snize-main-panel-dropdown-button,
+    &#snize_results .snize-horizontal-filters .snize-product-filters-header,
+    &#snize_results .snize-product-filter-container > .snize-product-filters-header,
+    &#snize_results .snize-product-filters-header .snize-product-filters-title,
+    &#snize_results span.snize-product-filters-title {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+        border-color: rgba(255, 255, 255, 0.45) !important;
+    }
+
+    // Desktop horizontal filter chips often have transparent headers — give the title its own pill
+    &#snize_results .snize-product-filters-header {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        border-radius: 2px;
+        padding: 6px 12px !important;
+    }
+
+    &#snize_results .snize-product-filters-header .snize-product-filters-title,
+    &#snize_results span.snize-product-filters-title {
+        background: transparent !important;
+        color: #1a1a1a !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+    }
+
+    // View mode icons
+    .snize-view-mode-icon {
+        background-color: $cwt-charcoal !important;
+        border: 1px solid rgba(255, 255, 255, 0.35) !important;
+
+        svg path,
+        svg {
+            fill: rgba(255, 255, 255, 0.75) !important;
+            stroke: rgba(255, 255, 255, 0.75) !important;
+        }
+
+        &.active {
+            background-color: #ffffff !important;
+            border-color: #ffffff !important;
+
+            svg path,
+            svg {
+                fill: #1a1a1a !important;
+                stroke: #1a1a1a !important;
+            }
+        }
+    }
+
+    // Product cards — base colors (full card chrome is below, outside this block)
+    .snize-title,
+    .snize-title a,
+    a.snize-title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .snize-description {
+        color: rgba(255, 255, 255, 0.55) !important;
+    }
+
+    .snize-price,
+    .snize-price-list,
+    .snize-price-list .snize-price {
+        color: $cwt-gold-bright !important;
+    }
+
+    .snize-sku {
+        color: rgba(255, 255, 255, 0.55) !important;
+    }
+
+    // Filter panel / modal lists — keep menus as light panels (matches filter chips)
+    .snize-product-filters,
+    .snize-product-filter-container,
+    .snize-modal-content,
+    .snize-modal {
+        background-color: $cwt-charcoal !important;
+        color: $cwt-text-primary !important;
+        border-color: rgba($cwt-gold-bright, 0.3) !important;
+    }
+
+    .snize-product-filters-list,
+    .snize-product-filters-list li,
+    .snize-product-filters-list label,
+    .snize-filter-checkbox,
+    .snize-color-name,
+    .snize-sortby-title,
+    .snize-product-filters-showed-products {
+        color: $cwt-text-primary !important;
+    }
+
+    // Sort dropdown menu panel (opened) — white like the chip, dark text
+    .snize-main-panel-dropdown-content {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        z-index: 50 !important;
+
+        a,
+        li,
+        span {
+            color: #1a1a1a !important;
+            -webkit-text-fill-color: #1a1a1a !important;
+            background-color: transparent !important;
+        }
+
+        a:hover,
+        a.current,
+        li:hover {
+            background-color: #f3f3f3 !important;
+            color: #1a1a1a !important;
+        }
+    }
+
+    .snize-price-range-input,
+    .snize-range-min-price,
+    .snize-range-max-price,
+    input.snize-price-range-input {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .snize-pagination a,
+    .snize-pagination-prev,
+    .snize-pagination-next {
+        color: $cwt-text-primary !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .snize-button,
+    .snize-action-button,
+    .snize-add-to-cart-button {
+        background-color: $cwt-black !important;
+        border: 2px solid $cwt-gold-bright !important;
+        color: #ffffff !important;
+    }
+}
+
+// Light theme — keep Snize readable (don't inherit dark overrides)
+html[data-theme="light"] .snize-search-results,
+html.cwt-theme-light .snize-search-results {
+    .snize-search-results-header,
+    .snize-header {
+        color: #555555 !important;
+        -webkit-text-fill-color: #555555 !important;
+    }
+
+    .snize-title,
+    .snize-title a {
+        color: #111111 !important;
+        -webkit-text-fill-color: #111111 !important;
+    }
+
+    .snize-description {
+        color: #666666 !important;
+    }
+
+    .snize-price {
+        color: #111111 !important;
+    }
+
+    .snize-product-filters-header,
+    .snize-product-filters-title,
+    .snize-main-panel-dropdown-button {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+    }
+}
+
+// Extra-specific Snize filter chip overrides (wins over Searchanise widget CSS)
+html[data-theme="dark"] #snize_results.snize-search-results .snize-product-filters-header,
+html.cwt-theme-dark #snize_results.snize-search-results .snize-product-filters-header,
+body.snize-results-page.cwt-theme-dark #snize_results .snize-product-filters-header,
+body.snize-results-page #snize_results .snize-product-filters-header {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    color: #1a1a1a !important;
+}
+
+html[data-theme="dark"] #snize_results.snize-search-results .snize-product-filters-title,
+html.cwt-theme-dark #snize_results.snize-search-results .snize-product-filters-title,
+body.snize-results-page.cwt-theme-dark #snize_results .snize-product-filters-title,
+body.snize-results-page #snize_results .snize-product-filters-title,
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button,
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button span,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button span,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button span,
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button *,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button *,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button * {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    background-color: #ffffff !important;
+}
+
+// Sort-by chip — force visible label + caret on dark theme
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown,
+body.snize-results-page #snize_results .snize-main-panel-dropdown {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 5 !important;
+    overflow: visible !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px;
+    min-width: 140px;
+    min-height: 33px;
+    padding: 6px 12px !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    text-decoration: none !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button span,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button span,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button span {
+    background: transparent !important;
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button .caret,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button .caret,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button .caret {
+    display: inline-block !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin-left: 6px !important;
+    border-left: 4px solid transparent !important;
+    border-right: 4px solid transparent !important;
+    border-top: 5px solid #1a1a1a !important;
+    border-bottom: 0 !important;
+    background: transparent !important;
+    vertical-align: middle;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+// Keep closed sort menu fully collapsed (prevents a second ghost "Relevance")
+// Snize toggles aria-expanded on the button — do not use a missing .open class.
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button[aria-expanded="false"] + .snize-main-panel-dropdown-content,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button[aria-expanded="false"] + .snize-main-panel-dropdown-content,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button[aria-expanded="false"] + .snize-main-panel-dropdown-content,
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown:not(:has(> .snize-main-panel-dropdown-button[aria-expanded="true"])) > .snize-main-panel-dropdown-content,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown:not(:has(> .snize-main-panel-dropdown-button[aria-expanded="true"])) > .snize-main-panel-dropdown-content,
+body.snize-results-page #snize_results .snize-main-panel-dropdown:not(:has(> .snize-main-panel-dropdown-button[aria-expanded="true"])) > .snize-main-panel-dropdown-content {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown-button[aria-expanded="true"] + .snize-main-panel-dropdown-content,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown-button[aria-expanded="true"] + .snize-main-panel-dropdown-content,
+body.snize-results-page #snize_results .snize-main-panel-dropdown-button[aria-expanded="true"] + .snize-main-panel-dropdown-content,
+html[data-theme="dark"] #snize_results .snize-main-panel-dropdown:has(> .snize-main-panel-dropdown-button[aria-expanded="true"]) > .snize-main-panel-dropdown-content,
+html.cwt-theme-dark #snize_results .snize-main-panel-dropdown:has(> .snize-main-panel-dropdown-button[aria-expanded="true"]) > .snize-main-panel-dropdown-content,
+body.snize-results-page #snize_results .snize-main-panel-dropdown:has(> .snize-main-panel-dropdown-button[aria-expanded="true"]) > .snize-main-panel-dropdown-content {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    min-width: 100% !important;
+    z-index: 100 !important;
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+// Horizontal filter chips (Price / Category / Brand / Color / Discount)
+html[data-theme="dark"] #snize_results .snize-filters-dropdown,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown,
+body.snize-results-page #snize_results .snize-filters-dropdown,
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-title,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-title,
+body.snize-results-page #snize_results .snize-filters-dropdown-title {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-text,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-text,
+body.snize-results-page #snize_results .snize-filters-dropdown-text,
+html[data-theme="dark"] #snize_results .snize-product-filters-price-symbol,
+html.cwt-theme-dark #snize_results .snize-product-filters-price-symbol,
+body.snize-results-page #snize_results .snize-product-filters-price-symbol,
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-title span,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-title span,
+body.snize-results-page #snize_results .snize-filters-dropdown-title span,
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-title .caret,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-title .caret,
+body.snize-results-page #snize_results .snize-filters-dropdown-title .caret {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    border-top-color: #1a1a1a !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-content,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-content,
+body.snize-results-page #snize_results .snize-filters-dropdown-content {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+html[data-theme="dark"] #snize_results .snize-filters-dropdown-content *,
+html.cwt-theme-dark #snize_results .snize-filters-dropdown-content *,
+body.snize-results-page #snize_results .snize-filters-dropdown-content * {
+    color: #1a1a1a !important;
+}
+
+// =============================================================================
+// Searchanise product cards — match theme .card chrome (gold frame, white image,
+// dark body, CTA button). Snize injects its own flat list markup.
+// =============================================================================
+#snize_results.snize-search-results,
+.snize-search-results {
+    .snize-search-results-content {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 24px 16px !important;
+        margin: 24px 0 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    .snize-product {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        // Override Snize inline width % so gap works cleanly at 4-up
+        width: calc(25% - 12px) !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+
+        @media (max-width: 1200px) {
+            width: calc(33.333% - 12px) !important;
+        }
+
+        @media (max-width: 800px) {
+            width: calc(50% - 8px) !important;
+        }
+
+        @media (max-width: 480px) {
+            width: 100% !important;
+        }
+    }
+
+    .snize-view-link {
+        display: block !important;
+        height: 100% !important;
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+
+    .snize-item {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: var(--cwt-card-bg) !important;
+        border: 2px solid rgba($cwt-gold-bright, 0.55) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 0 14px rgba($cwt-gold-bright, 0.28), 0 4px 12px rgba(0, 0, 0, 0.2);
+        overflow: hidden !important;
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        box-sizing: border-box !important;
+
+        @media (min-width: 801px) {
+            &:hover {
+                transform: translateY(-5px);
+                border-color: rgba($cwt-gold-bright, 0.9) !important;
+                box-shadow: 0 0 22px rgba($cwt-gold-bright, 0.45), 0 18px 34px rgba(0, 0, 0, 0.18);
+            }
+        }
+    }
+
+    // White image panel (same as theme cards)
+    .snize-thumbnail-wrapper {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        border-radius: 8px 8px 0 0 !important;
+        overflow: hidden !important;
+        flex: 0 0 auto;
+    }
+
+    .snize-thumbnail {
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        padding-bottom: 100% !important; // square slot
+        height: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+    }
+
+    .snize-item-image {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        margin: 0 !important;
+        padding: 8px !important;
+        box-sizing: border-box !important;
+        background: #ffffff !important;
+    }
+
+    .snize-item-image.snize-flip-image {
+        opacity: 0 !important;
+        transition: opacity 0.25s ease;
+    }
+
+    .snize-product:hover .snize-item-image.snize-flip-image {
+        opacity: 1 !important;
+    }
+
+    // Body: CTA → title → price (match theme card order)
+    .snize-overhidden {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 1 auto !important;
+        gap: 8px !important;
+        padding: 14px 16px 18px !important;
+        margin: 0 !important;
+        background: var(--cwt-card-bg) !important;
+        box-sizing: border-box !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .snize-buttons,
+    .snize-buttons-bottom {
+        order: 0 !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 0 4px !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    .snize-button,
+    .snize-action-button,
+    .snize-add-to-cart-button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 36px !important;
+        margin: 0 !important;
+        padding: 8px 12px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        background-color: $cwt-black !important;
+        border: 2px solid $cwt-gold-bright !important;
+        border-radius: 0 !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        box-sizing: border-box !important;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background-color: $cwt-gold-bright !important;
+            border-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+            -webkit-text-fill-color: $cwt-black !important;
+            opacity: 1 !important;
+        }
+    }
+
+    // Kill Snize hover-only CTA — theme cards always show the button
+    .snize-show-cta-on-hover .snize-buttons,
+    .snize-show-cta-on-hover .snize-button,
+    .snize-product .snize-buttons,
+    .snize-product .snize-button,
+    .snize-product:not(:hover) .snize-buttons,
+    .snize-product:not(:hover) .snize-button {
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: static !important;
+        pointer-events: auto !important;
+    }
+
+    .snize-title {
+        order: 1 !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-height: none !important;
+        color: var(--cwt-ink) !important;
+        -webkit-text-fill-color: var(--cwt-ink) !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        line-height: 1.35 !important;
+        letter-spacing: 0.01em;
+        -webkit-line-clamp: 2 !important;
+        text-align: left !important;
+    }
+
+    .snize-description {
+        order: 2 !important;
+        display: none !important; // theme cards don't show long blurbs in the grid
+    }
+
+    .snize-price-list {
+        order: 3 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: baseline !important;
+        gap: 8px !important;
+        margin: 2px 0 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    .snize-price {
+        color: $cwt-gold-bright !important;
+        -webkit-text-fill-color: $cwt-gold-bright !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+    }
+
+    .snize-discounted-price,
+    .snize-price s,
+    .snize-compare-price {
+        color: var(--cwt-ink-faint) !important;
+        font-weight: 400 !important;
+        font-size: 13px !important;
+    }
+}
+
+// Light theme Snize cards — keep gold frame, dark text on white body
+html[data-theme="light"] #snize_results.snize-search-results,
+html.cwt-theme-light #snize_results.snize-search-results {
+    .snize-item {
+        background: #ffffff !important;
+    }
+
+    .snize-overhidden {
+        background: #ffffff !important;
+    }
+
+    .snize-title {
+        color: #111111 !important;
+        -webkit-text-fill-color: #111111 !important;
+    }
+
+    .snize-price {
+        color: $cwt-gold-text !important;
+        -webkit-text-fill-color: $cwt-gold-text !important;
+    }
+
+    .snize-button,
+    .snize-action-button,
+    .snize-add-to-cart-button {
+        background-color: $cwt-black !important;
+        border-color: $cwt-gold-bright !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+
+        &:hover,
+        &:focus {
+            background-color: $cwt-gold-bright !important;
+            color: $cwt-black !important;
+            -webkit-text-fill-color: $cwt-black !important;
+        }
+    }
+}
+
+// Dark theme title/price overrides (variables already light; reinforce)
+html[data-theme="dark"] #snize_results.snize-search-results,
+html.cwt-theme-dark #snize_results.snize-search-results,
+body.snize-results-page.cwt-theme-dark #snize_results {
+    .snize-title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .snize-price {
+        color: $cwt-gold-bright !important;
+        -webkit-text-fill-color: $cwt-gold-bright !important;
+    }
+
+    .snize-overhidden,
+    .snize-item {
+        background: var(--cwt-card-bg) !important;
     }
 }
 
