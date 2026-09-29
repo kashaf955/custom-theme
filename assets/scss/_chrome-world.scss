@@ -697,13 +697,16 @@ body .footer .container {
     @media (max-width: 1024px) {
         overflow: visible !important;
         margin-top: 0 !important;
-        padding-top: 0 !important;
+        // Space above the upper utility bar on phones
+        padding-top: 12px !important;
         position: relative !important;
         top: auto !important;
         left: auto;
         right: auto;
         width: 100%;
         z-index: 1400 !important;
+        background-color: $cwt-black;
+        box-sizing: border-box;
     }
 
     &.is-sticky {
