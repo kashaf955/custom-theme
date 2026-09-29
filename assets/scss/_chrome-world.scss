@@ -3134,7 +3134,7 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     box-sizing: border-box;
 
     @media (min-width: 1201px) {
-        min-height: calc(100vh - 172px);
+        min-height: 0;
     }
 }
 
@@ -3151,10 +3151,11 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     min-width: 0;
 
     @media (min-width: 1201px) {
-        min-height: calc(100vh - 172px);
-        height: calc(100vh - 172px);
-        max-height: calc(100vh - 172px);
+        min-height: 0;
+        height: auto;
+        max-height: none;
         overflow: visible;
+        align-items: center;
     }
 
     @media (max-width: 1200px) {
@@ -3178,8 +3179,11 @@ html.cwt-theme-light .cwt-header-logo__img--light {
     background-color: $cwt-black;
 
     @media (min-width: 1201px) {
-        height: calc(100vh - 172px);
-        max-height: calc(100vh - 172px);
+        width: 100%;
+        // Shrink with the viewport; never taller than 560px.
+        height: 38.9vw;
+        max-height: 560px;
+        aspect-ratio: auto;
     }
 
     // Mobile/tablet — one 16:9 banner. Do not set width on .slick-track
@@ -3321,30 +3325,48 @@ html.cwt-theme-light .cwt-header-logo__img--light {
 
     @media (min-width: 1201px) {
         .heroCarousel,
-        .heroCarousel.slick-slider,
-        .slick-list,
-        .slick-track,
-        .heroCarousel-slide,
-        .heroCarousel-image-wrapper {
+        .heroCarousel.slick-slider {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
             height: 100% !important;
-            min-height: 100% !important;
-            max-height: none !important;
+            min-height: 0 !important;
+            margin: 0 !important;
         }
 
         .slick-list {
+            height: 100% !important;
+            min-height: 0 !important;
+            width: 100% !important;
             overflow: hidden !important;
+        }
+
+        .slick-track {
+            height: 100% !important;
+            min-height: 0 !important;
+            max-width: none !important;
         }
 
         .heroCarousel-slide,
         .heroCarousel.slick-initialized .heroCarousel-slide.slick-current,
         .heroCarousel.slick-initialized .heroCarousel-slide.slick-active {
             position: relative !important;
+            height: 100% !important;
+            min-height: 0 !important;
         }
 
+        .heroCarousel-image-wrapper,
         .slick-slide.is-square-image-type .heroCarousel-image-wrapper,
         .slick-slide.is-vertical-image-type .heroCarousel-image-wrapper {
+            position: relative !important;
             height: 100% !important;
+            min-height: 100% !important;
             max-height: none !important;
+            width: 100% !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background-color: $cwt-black !important;
         }
 
         .heroCarousel-image,
@@ -3353,13 +3375,10 @@ html.cwt-theme-light .cwt-header-logo__img--light {
         .heroCarousel-image img {
             position: absolute !important;
             inset: 0 !important;
-            top: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            left: 0 !important;
+            display: block !important;
             width: 100% !important;
             height: 100% !important;
-            max-width: 100% !important;
+            max-width: none !important;
             max-height: none !important;
             margin: 0 !important;
             object-fit: cover !important;
