@@ -4221,6 +4221,36 @@ html.cwt-theme-light .cwt-hero {
     }
 }
 
+// Light theme — same part categories row on white
+html[data-theme="light"] .cwt-part-cats,
+html.cwt-theme-light .cwt-part-cats {
+    background: #ffffff;
+
+    .cwt-part-cats__link {
+        color: #1a1a1a;
+
+        &:hover,
+        &:focus {
+            .cwt-part-cats__title {
+                color: $cwt-gold-text;
+            }
+        }
+    }
+
+    .cwt-part-cats__icon {
+        background: #ffffff;
+        box-shadow: 0 0 0 2px $cwt-gold-text, 0 0 0 4px #ffffff, 0 0 0 5px $cwt-gold-text;
+    }
+
+    .cwt-part-cats__title {
+        color: #1a1a1a;
+    }
+
+    .cwt-part-cats__desc {
+        color: #555555;
+    }
+}
+
 // -----------------------------------------------------------------------------
 // Shop by popular truck categories — homepage photo grid
 // -----------------------------------------------------------------------------
@@ -14189,52 +14219,54 @@ html[data-theme="light"] .cwt-blog-section__header a.collection--link span {
     .card {
         border-radius: 4px;
         overflow: hidden;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     .title {
-        background-color: $cwt-charcoal;
-        color: $cwt-text-primary;
-        border: 1px solid $cwt-border-subtle;
+        background-color: $cwt-charcoal !important;
+        color: #ffffff !important;
+        border: 1px solid rgba($cwt-gold-bright, 0.45) !important;
         font-weight: 700;
 
         &.collapsed {
-            background-color: $cwt-black;
-            color: $cwt-gold-bright;
-            border-color: rgba($cwt-gold-bright, 0.4);
+            background-color: $cwt-black !important;
+            color: $cwt-gold-bright !important;
+            border-color: rgba($cwt-gold-bright, 0.55) !important;
 
             .icon-arrow::before {
-                border-color: $cwt-gold-bright;
+                border-color: $cwt-gold-bright !important;
             }
         }
 
         @include smin-m {
             &:hover {
-                background-color: $cwt-black;
-                color: $cwt-gold-bright;
+                background-color: $cwt-black !important;
+                color: $cwt-gold-bright !important;
 
                 .icon-arrow::before {
-                    border-color: $cwt-gold-bright;
+                    border-color: $cwt-gold-bright !important;
                 }
             }
         }
     }
 
     .icon-arrow::before {
-        border-color: $cwt-text-primary;
+        border-color: #ffffff !important;
     }
 
     .collapse {
-        background-color: $cwt-black;
-        border: 1px solid $cwt-border-subtle;
-        border-top: 0;
+        background-color: $cwt-black !important;
+        border: 1px solid rgba($cwt-gold-bright, 0.35) !important;
+        border-top: 0 !important;
         padding: 16px 20px;
 
         .faqs-paragraph {
-            color: $cwt-text-secondary;
+            color: $cwt-text-secondary !important;
             margin: 0;
 
             a {
-                color: $cwt-gold-bright;
+                color: $cwt-gold-bright !important;
 
                 &:hover,
                 &:focus {
@@ -14257,12 +14289,89 @@ html[data-theme="light"] .cwt-blog-section__header a.collection--link span {
     background-color: $cwt-black;
 }
 
+// Homepage FAQ — boxed like the hero (theme-colored sides outside the site width)
 .cwt-home-faq {
     background-color: $cwt-black;
     padding: 40px 0 60px;
 
+    > .container {
+        @media (min-width: $cwt-breakpoint-desktop) {
+            width: 90% !important;
+            max-width: 90% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+
     .cwt-home-faq__list {
         margin-top: 20px;
+    }
+
+    .halo-block-header,
+    .halo-block-header-wrapper,
+    .custom-ecb {
+        background-color: #ffffff !important;
+        border: 0 !important;
+
+        .title {
+            color: #111111 !important;
+            background: transparent !important;
+            border: 0 !important;
+        }
+    }
+}
+
+html[data-theme="light"] .cwt-home-faq,
+html.cwt-theme-light .cwt-home-faq {
+    background-color: #ffffff;
+
+    .halo-faqs-content {
+        .card {
+            background: transparent !important;
+        }
+
+        .title {
+            background-color: #f3f3f3 !important;
+            color: #1a1a1a !important;
+            border: 1px solid rgba(0, 0, 0, 0.14) !important;
+
+            &.collapsed {
+                background-color: #ffffff !important;
+                color: $cwt-gold-text !important;
+                border-color: rgba($cwt-gold-text, 0.5) !important;
+
+                .icon-arrow::before {
+                    border-color: $cwt-gold-text !important;
+                }
+            }
+
+            &:hover {
+                background-color: #ffffff !important;
+                color: $cwt-gold-text !important;
+
+                .icon-arrow::before {
+                    border-color: $cwt-gold-text !important;
+                }
+            }
+        }
+
+        .icon-arrow::before {
+            border-color: #1a1a1a !important;
+        }
+
+        .collapse {
+            background-color: #ffffff !important;
+            border: 1px solid rgba(0, 0, 0, 0.12) !important;
+            border-top: 0 !important;
+
+            .faqs-paragraph {
+                color: #444444 !important;
+
+                a {
+                    color: $cwt-gold-text !important;
+                }
+            }
+        }
     }
 }
 
