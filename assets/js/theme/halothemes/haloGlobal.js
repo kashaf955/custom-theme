@@ -76,6 +76,7 @@ export default function(context) {
             loadProductGrid(tScroll);
             hoverMenu();
             shopAllCategoriesToggle();
+            fitMegaMenuToViewport();
         });
 
         $(window).on('scroll', (e) => {
@@ -320,6 +321,43 @@ export default function(context) {
                 });
             }
         }
+    }
+
+    // Header is sticky, so a mega menu taller than the space below it can never be
+    // scrolled into view by the page. Cap each panel at the space left under its top edge.
+    function fitMegaMenuToViewport() {
+        if (fitMegaMenuToViewport._bound) {
+            return;
+        }
+        fitMegaMenuToViewport._bound = true;
+
+        const item = '.halo_bottomHeader .cwt-nav__category-list > .navPages-item';
+        const panel = `${item} > .navPage-subMenu`;
+
+        $(document).on('mouseenter focusin', item, (event) => {
+            const el = event.currentTarget.querySelector(':scope > .navPage-subMenu');
+            if (!el || $(window).width() <= 1024) {
+                return;
+            }
+
+            const top = Math.max(el.getBoundingClientRect().top, 0);
+            el.style.setProperty('max-height', `${Math.floor(Math.max(window.innerHeight - top - 16, 160))}px`, 'important');
+        });
+
+        // At the panel's ends, stop the wheel instead of scrolling the page behind it
+        document.addEventListener('wheel', (event) => {
+            const el = event.target.closest && event.target.closest(panel);
+            if (!el || el.scrollHeight <= el.clientHeight + 1) {
+                return;
+            }
+
+            const atTop = el.scrollTop <= 0;
+            const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+
+            if ((event.deltaY < 0 && atTop) || (event.deltaY > 0 && atBottom)) {
+                event.preventDefault();
+            }
+        }, { passive: false });
     }
 
     function shopAllCategoriesToggle() {
