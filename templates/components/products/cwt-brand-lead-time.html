@@ -1,0 +1,227 @@
+{{!--
+  Shipping / lead time by brand.
+  Matches product brand name first, then brand category name.
+--}}
+{{#if product.brand.name '===' 'Delpann'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days (or 1 week lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Delpann'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days (or 1 week lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Grand General'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days (or 1-2 week lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Grand General'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days (or 1-2 week lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Iconic Metal Gear'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 2-3 business days (or 6-12 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Iconic Metal Gear'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 2-3 business days (or 6-12 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Rig Matters'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships within 2-3 business days</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Rig Matters'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships within 2-3 business days</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Steering Creations'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Steering Creations'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Trux'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Most items in stock, ships in 1-2 business days (or 3-5 days lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Trux'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Most items in stock, ships in 1-2 business days (or 3-5 days lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Twisted Shifterz'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Most items in stock, ships in 1-2 business days</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Twisted Shifterz'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Most items in stock, ships in 1-2 business days</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'United Pacific'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Ships in 1-2 business days</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'United Pacific'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Ships in 1-2 business days</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Zephyr'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days (or 1 week lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Zephyr'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days (or 1 week lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Aranda'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days (or 4-6 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Aranda'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days (or 4-6 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Hogebuilt'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 1-2 business days (or 2-3 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Hogebuilt'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 1-2 business days (or 2-3 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Sears Seating'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 2-3 business days (or 6-8 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Sears Seating'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 2-3 business days (or 6-8 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Lincoln Chrome'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>If in stock, ships in 2-3 business days (or 3-4 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Lincoln Chrome'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>If in stock, ships in 2-3 business days (or 3-4 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#or (if product.brand.name '===' 'Valley Chrome') (if product.brand.name '===' 'Valley Chrome Plating')}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Most items in stock, ships in 1-2 business days (or 4-5 days lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Valley Chrome'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Most items in stock, ships in 1-2 business days (or 4-5 days lead time)</p>
+        </div>
+    {{/contains}}
+{{/or}}
+
+{{#if product.brand.name '===' 'Roadworks'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Most items in stock, ships in 1-2 business days (or 1-2 weeks lead time)</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Roadworks'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Most items in stock, ships in 1-2 business days (or 1-2 weeks lead time)</p>
+        </div>
+    {{/contains}}
+{{/if}}
+
+{{#if product.brand.name '===' 'Southern Stamping'}}
+    <div class="free-delivery-text cwt-brand-lead-time">
+        <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+        <p>Once sketch is approved by you, ships within 5-7 business days</p>
+    </div>
+{{else}}
+    {{#contains (JSONstringify product.category) 'Southern Stamping'}}
+        <div class="free-delivery-text cwt-brand-lead-time">
+            <p class="cwt-brand-lead-time__label"><strong>Shipping info (Lead time):</strong></p>
+            <p>Once sketch is approved by you, ships within 5-7 business days</p>
+        </div>
+    {{/contains}}
+{{/if}}
