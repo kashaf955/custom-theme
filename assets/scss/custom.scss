@@ -371,13 +371,20 @@ main#main-content {
     min-height: 33px; 
     margin-top: 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     p{
         margin-bottom: 0px;
         
         &:nth-of-type(2) {
-            margin-top: 10px;
+            margin-top: 6px;
+        }
+    }
+
+    &.cwt-brand-lead-time {
+        .cwt-brand-lead-time__label {
+            font-weight: 700;
+            margin-bottom: 2px;
         }
     }
 }
